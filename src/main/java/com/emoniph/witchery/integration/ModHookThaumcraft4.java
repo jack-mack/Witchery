@@ -16,10 +16,12 @@ import thaumcraft.api.aspects.AspectList;
 
 public class ModHookThaumcraft4 extends ModHook {
 
+   @Override
    public String getModID() {
       return "Thaumcraft";
    }
 
+   @Override
    protected void doInit() {
       FMLInterModComms.sendMessage(this.getModID(), "harvestStandardCrop", new ItemStack(Witchery.Blocks.CROP_ARTICHOKE, 1, Witchery.Blocks.CROP_ARTICHOKE.getNumGrowthStages()));
       FMLInterModComms.sendMessage(this.getModID(), "harvestStandardCrop", new ItemStack(Witchery.Blocks.CROP_BELLADONNA, 1, Witchery.Blocks.CROP_BELLADONNA.getNumGrowthStages()));
@@ -32,10 +34,12 @@ public class ModHookThaumcraft4 extends ModHook {
       FMLInterModComms.sendMessage("Thaumcraft", "dimensionBlacklist", "" + Config.instance().dimensionTormentID + ":0");
    }
 
+   @Override
    protected void doPostInit() {
       ModHookThaumcraft4.IntegrateThaumcraft.registerAspects();
    }
 
+   @Override
    protected void doReduceMagicPower(EntityLivingBase entity, float factor) {
       ModHookThaumcraft4.IntegrateThaumcraft.reduceMagicPower(entity, factor);
    }

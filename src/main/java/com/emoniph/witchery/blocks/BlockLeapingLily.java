@@ -21,25 +21,30 @@ public class BlockLeapingLily extends BlockLilyPad {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       BlockUtil.registerBlock(this, ItemLeapingLily.class, blockName);
       return super.setBlockName(blockName);
    }
 
+   @Override
    protected boolean canPlaceBlockOn(Block block) {
       return block != null && block.getMaterial() != null && (block.getMaterial().isSolid() || block.getMaterial() == Material.water);
    }
 
+   @Override
    public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
       Material material = par1World.getBlock(par2, par3, par4).getMaterial();
       return super.canPlaceBlockAt(par1World, par2, par3, par4) && material != null && !material.isLiquid();
    }
 
+   @Override
    public boolean canBlockStay(World world, int posX, int posY, int posZ) {
       Material material = world.getBlock(posX, posY - 1, posZ).getMaterial();
       return material != null && (material.isSolid() || material.isLiquid()) && world.isAirBlock(posX, posY + 1, posZ);
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int posX, int posY, int posZ, Entity entity) {
       if(!world.isRemote && entity instanceof EntityLivingBase) {
          EntityLivingBase livingEntity = (EntityLivingBase)entity;

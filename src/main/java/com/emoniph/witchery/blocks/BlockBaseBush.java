@@ -25,6 +25,7 @@ public abstract class BlockBaseBush extends BlockBush {
       this.clazzItem = clazzItem;
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       if(this.registerWithCreateTab) {
          this.setCreativeTab(WitcheryCreativeTab.INSTANCE);

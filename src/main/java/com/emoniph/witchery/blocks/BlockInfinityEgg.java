@@ -16,15 +16,18 @@ public class BlockInfinityEgg extends BlockDragonEgg {
       this.setLightLevel(0.125F);
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
       BlockUtil.registerBlock(this, blockName);
       return super.setBlockName(blockName);
    }
 
+   @Override
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
       return true;
    }
 
+   @Override
    public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player) {}
 }

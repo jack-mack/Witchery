@@ -42,10 +42,12 @@ public class InfusionOverworld extends Infusion {
       super(infusionID);
    }
 
+   @Override
    public IIcon getPowerBarIcon(EntityPlayer player, int index) {
       return Blocks.dirt.getIcon(0, 0);
    }
 
+   @Override
    public void onFalling(World world, EntityPlayer player, LivingFallEvent event) {
       if(event.distance > 3.0F) {
          int blockX = MathHelper.floor_double(player.posX);
@@ -71,6 +73,7 @@ public class InfusionOverworld extends Infusion {
 
    }
 
+   @Override
    public void onLeftClickEntity(ItemStack itemstack, World world, EntityPlayer player, Entity otherEntity) {
       if(!world.isRemote) {
          if(otherEntity instanceof EntityLivingBase) {
@@ -130,6 +133,7 @@ public class InfusionOverworld extends Infusion {
       }
    }
 
+   @Override
    public void onUsingItemTick(ItemStack itemstack, World world, EntityPlayer player, int countdown) {
       if(!world.isRemote) {
          int elapsedTicks = this.getMaxItemUseDuration(itemstack) - countdown;
@@ -189,6 +193,7 @@ public class InfusionOverworld extends Infusion {
 
    }
 
+   @Override
    public void onPlayerStoppedUsing(ItemStack itemstack, World world, EntityPlayer player, int countdown) {
       if(!world.isRemote) {
          int elapsedTicks = this.getMaxItemUseDuration(itemstack) - countdown;
@@ -298,6 +303,7 @@ public class InfusionOverworld extends Infusion {
          this.maxRadius = maxRadius + 2;
       }
 
+      @Override
       public boolean process() {
          ++this.stage;
          Block centerBlock = this.center.getBlock(super.world);

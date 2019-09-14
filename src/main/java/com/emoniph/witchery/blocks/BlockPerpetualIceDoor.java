@@ -19,16 +19,19 @@ public class BlockPerpetualIceDoor extends BlockDoor {
       this.setResistance(5.0F);
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       BlockUtil.registerBlock(this, blockName);
       return super.setBlockName(blockName);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getRenderBlockPass() {
       return 1;
    }
 
+   @Override
    public ArrayList getDrops(World world, int x, int y, int z, int metadata, int fortune) {
       ArrayList ret = new ArrayList();
       int count = this.quantityDropped(metadata, fortune, world.rand);
@@ -40,10 +43,12 @@ public class BlockPerpetualIceDoor extends BlockDoor {
       return ret;
    }
 
+   @Override
    public boolean canPlaceBlockAt(World world, int x, int y, int z) {
       return super.canPlaceBlockAt(world, x, y, z) || world.getBlock(x, y - 1, z) == Witchery.Blocks.PERPETUAL_ICE;
    }
 
+   @Override
    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
       int l = world.getBlockMetadata(x, y, z);
       if((l & 8) == 0) {

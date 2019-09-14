@@ -71,6 +71,7 @@ public class EntityWolfman extends EntityMob implements IEntitySelector {
       super.experienceValue = 20;
    }
 
+   @Override
    public boolean isEntityApplicable(Entity target) {
       if(target instanceof EntityPlayer) {
          EntityPlayer player = (EntityPlayer)target;
@@ -80,6 +81,7 @@ public class EntityWolfman extends EntityMob implements IEntitySelector {
       }
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40.0D);
@@ -88,6 +90,7 @@ public class EntityWolfman extends EntityMob implements IEntitySelector {
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(80.0D);
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
    }
@@ -100,6 +103,7 @@ public class EntityWolfman extends EntityMob implements IEntitySelector {
       this.isSitting = p_70904_1_;
    }
 
+   @Override
    public int getTotalArmorValue() {
       int i = super.getTotalArmorValue() + 10;
       if(i > 20) {
@@ -109,14 +113,17 @@ public class EntityWolfman extends EntityMob implements IEntitySelector {
       return i;
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.wolfman.name");
    }
 
+   @Override
    protected boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    public void onLivingUpdate() {
       if(this.attackTimer > 0) {
          --this.attackTimer;
@@ -133,10 +140,12 @@ public class EntityWolfman extends EntityMob implements IEntitySelector {
       super.onLivingUpdate();
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource source, float damage) {
       return CreatureUtil.isSilverDamage(source)?super.attackEntityFrom(source, Math.min(damage * 1.5F, 15.0F)):super.attackEntityFrom(source, Math.min(damage, 1.0F));
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity targetEntity) {
       this.attackTimer = 10;
       super.worldObj.setEntityState(this, (byte)4);
@@ -148,6 +157,7 @@ public class EntityWolfman extends EntityMob implements IEntitySelector {
       return flag;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void handleHealthUpdate(byte par1) {
       if(par1 == 4) {
@@ -163,30 +173,37 @@ public class EntityWolfman extends EntityMob implements IEntitySelector {
       return this.attackTimer;
    }
 
+   @Override
    public int getTalkInterval() {
       return super.getTalkInterval() * 4;
    }
 
+   @Override
    protected String getLivingSound() {
       return super.worldObj.rand.nextInt(20) == 0?"witchery:mob.wolfman.howl":"witchery:mob.wolfman.say";
    }
 
+   @Override
    protected String getHurtSound() {
       return "witchery:mob.wolfman.hit";
    }
 
+   @Override
    protected String getDeathSound() {
       return "witchery:mob.wolfman.death";
    }
 
+   @Override
    protected void dropFewItems(boolean p_70628_1_, int fortune) {
       super.dropFewItems(p_70628_1_, fortune);
    }
 
+   @Override
    protected Item getDropItem() {
       return Items.bone;
    }
 
+   @Override
    protected void dropRareDrop(int p_70600_1_) {
       switch(super.rand.nextInt(3)) {
       case 0:
@@ -219,6 +236,7 @@ public class EntityWolfman extends EntityMob implements IEntitySelector {
       return this.buyingList;
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       super.writeEntityToNBT(nbtRoot);
       nbtRoot.setInteger("FormerProfession", this.formerProfession);
@@ -230,6 +248,7 @@ public class EntityWolfman extends EntityMob implements IEntitySelector {
 
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       super.readEntityFromNBT(nbtRoot);
       this.formerProfession = nbtRoot.getInteger("FormerProfession");
@@ -250,10 +269,12 @@ public class EntityWolfman extends EntityMob implements IEntitySelector {
       return this.infectious;
    }
 
+   @Override
    public void onKillEntity(EntityLivingBase targetEntity) {
       super.onKillEntity(targetEntity);
    }
 
+   @Override
    protected boolean canDespawn() {
       return false;
    }

@@ -30,17 +30,21 @@ public class EntityAIFlyerWander extends EntityAIBase {
       this.setMutexBits(1);
    }
 
+   @Override
    public boolean shouldExecute() {
       boolean isTame = this.living instanceof EntityTameable && ((EntityTameable)this.living).isTamed();
       return !isTame && this.living.worldObj.getClosestPlayerToEntity(this.living, this.fleeDistance) != null?true:(this.living.getAge() >= 100?false:this.living.getRNG().nextInt(this.living.worldObj.provider.isDaytime()?300:100) == 0 && (!(this.living instanceof EntityTameable) || !((EntityTameable)this.living).isSitting()));
    }
 
+   @Override
    public boolean continueExecuting() {
       return this.living instanceof EntityTameable && !((EntityTameable)this.living).isSitting() || this.living.getRNG().nextInt(40) != 0;
    }
 
+   @Override
    public void startExecuting() {}
 
+   @Override
    public void updateTask() {
       double d0 = this.waypointX - this.living.posX;
       double d1 = this.waypointY - this.living.posY;

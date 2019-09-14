@@ -39,12 +39,14 @@ public class BlockWickerBundle extends BlockBaseRotatedPillar {
       this.setStepSound(Block.soundTypeGrass);
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       super.setBlockName(blockName);
       Blocks.fire.setFireInfo(this, 20, 20);
       return this;
    }
 
+   @Override
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float xOffset, float yOffset, float zOffset) {
       ItemStack heldItem = player.getHeldItem();
       return heldItem != null && heldItem.getItem() == Items.flint_and_steel?tryIgniteMan(world, x, y, z, player.rotationYaw):false;
@@ -134,14 +136,17 @@ public class BlockWickerBundle extends BlockBaseRotatedPillar {
       return world.getBlock(x, y, z) == Witchery.Blocks.WICKER_BUNDLE && limitToValidMetadata(world.getBlockMetadata(x, y, z)) == 1;
    }
 
+   @Override
    public int getRenderType() {
       return 31;
    }
 
+   @Override
    public int damageDropped(int meta) {
       return limitToValidMetadata(meta);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list) {
       for(int i = 0; i < bundleType.length; ++i) {
@@ -150,20 +155,24 @@ public class BlockWickerBundle extends BlockBaseRotatedPillar {
 
    }
 
+   @Override
    public int quantityDropped(Random par1Random) {
       return 1;
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       int metadata = world.getBlockMetadata(x, y, z);
       return new ItemStack(this, 1, metadata >= 0?limitToValidMetadata(metadata):0);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    protected IIcon getSideIcon(int meta) {
       return this.block_side[MathHelper.clamp_int(meta, 0, 1)];
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    protected IIcon getTopIcon(int meta) {
       return this.block_top[MathHelper.clamp_int(meta, 0, 1)];
@@ -173,6 +182,7 @@ public class BlockWickerBundle extends BlockBaseRotatedPillar {
       return par0 & bundleType.length - 1;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {
       this.block_side = new IIcon[bundleType.length];
@@ -185,6 +195,7 @@ public class BlockWickerBundle extends BlockBaseRotatedPillar {
 
    }
 
+   @Override
    public boolean isFlammable(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
       boolean flammable = super.isFlammable(world, x, y, z, face);
       return flammable;
@@ -197,6 +208,7 @@ public class BlockWickerBundle extends BlockBaseRotatedPillar {
          super(block);
       }
 
+      @Override
       protected String[] getNames() {
          return BlockWickerBundle.bundleType;
       }

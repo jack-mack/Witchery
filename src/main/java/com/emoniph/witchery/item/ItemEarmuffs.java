@@ -36,34 +36,41 @@ public class ItemEarmuffs extends ItemArmor {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
    }
 
+   @Override
    public Item setUnlocalizedName(String itemName) {
       ItemUtil.registerItem(this, itemName);
       return super.setUnlocalizedName(itemName);
    }
 
+   @Override
    public boolean hasColor(ItemStack stack) {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getColorFromItemStack(ItemStack stack, int par2) {
       return super.getColorFromItemStack(stack, par2);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean requiresMultipleRenderPasses() {
       return false;
    }
 
+   @Override
    public int getColor(ItemStack stack) {
       return !this.hasColor(stack)?16777215:super.getColor(stack);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack itemstack) {
       return EnumRarity.common;
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advancedTooltips) {
       if(stack != null) {
          String localText = Witchery.resource(this.getUnlocalizedName() + ".tip");
@@ -82,10 +89,12 @@ public class ItemEarmuffs extends ItemArmor {
 
    }
 
+   @Override
    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
       return stack != null?(type == null?"witchery:textures/entities/earmuffs.png":"witchery:textures/entities/empty64x64_overlay.png"):null;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack stack, int armorSlot) {
       if(this.modelClothesChest == null) {

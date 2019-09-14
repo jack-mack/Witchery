@@ -23,6 +23,7 @@ public class EntityAIAttackCloseTargetOnCollide extends EntityAIAttackOnCollide 
       this.maxDistance = maxDistance;
    }
 
+   @Override
    public boolean shouldExecute() {
       boolean execute = super.shouldExecute();
       if(execute && !this.isTargetNearby()) {
@@ -37,6 +38,7 @@ public class EntityAIAttackCloseTargetOnCollide extends EntityAIAttackOnCollide 
       return entityTarget != null && this.field_75441_b.getDistanceSqToEntity(entityTarget) <= this.maxDistance * this.maxDistance && this.field_75441_b.getNavigator().getPathToEntityLiving(entityTarget) != null && (entityTarget.getHeldItem() == null || entityTarget.getHeldItem().getItem() != Witchery.Items.DEVILS_TONGUE_CHARM);
    }
 
+   @Override
    public boolean continueExecuting() {
       boolean execute = super.continueExecuting();
       if(execute && !this.isTargetNearby()) {

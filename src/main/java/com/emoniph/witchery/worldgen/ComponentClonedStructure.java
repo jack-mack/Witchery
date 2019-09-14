@@ -32,6 +32,7 @@ public abstract class ComponentClonedStructure extends WitcheryComponent {
       this.rotation = ItemDuplicationStaff.Rotation.values()[direction];
    }
 
+   @Override
    public boolean addComponentParts(World world, Random random) {
       BiomeGenBase biom = world.getBiomeGenForCoords(this.getXWithOffset(0, 0), this.getZWithOffset(0, 0));
       int groundAvg = this.calcGroundHeight(world, super.boundingBox);
@@ -85,12 +86,14 @@ public abstract class ComponentClonedStructure extends WitcheryComponent {
 
    protected abstract void spawnInhabitant(World var1, StructureBoundingBox var2);
 
+   @Override
    protected void func_143012_a(NBTTagCompound par1NBTTagCompound) {
       super.func_143012_a(par1NBTTagCompound);
       par1NBTTagCompound.setBoolean("WITCShackChest", this.hasMadeChest);
       par1NBTTagCompound.setInteger("WITCWCount", this.witchesSpawned);
    }
 
+   @Override
    protected void func_143011_b(NBTTagCompound par1NBTTagCompound) {
       super.func_143011_b(par1NBTTagCompound);
       this.hasMadeChest = par1NBTTagCompound.getBoolean("WITCShackChest");

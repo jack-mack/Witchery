@@ -14,6 +14,7 @@ public class PotionStoutBelly extends PotionBase implements IHandleLivingUpdate 
       this.setIncurable();
    }
 
+   @Override
    public void onLivingUpdate(World world, EntityLivingBase entity, LivingUpdateEvent event, int amplifier, int duration) {
       if(!world.isRemote && world.getWorldTime() % 20L == 3L && amplifier > 0 && entity.isPotionActive(Potion.confusion)) {
          entity.removePotionEffect(Potion.confusion.id);

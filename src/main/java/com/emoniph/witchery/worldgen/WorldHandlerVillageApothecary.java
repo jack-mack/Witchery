@@ -17,18 +17,22 @@ import net.minecraft.world.gen.structure.StructureVillagePieces.Start;
 
 public class WorldHandlerVillageApothecary implements IVillageCreationHandler, IVillageTradeHandler {
 
+   @Override
    public PieceWeight getVillagePieceWeight(Random random, int size) {
       return new PieceWeight(ComponentVillageApothecary.class, 15, 1 + (size > 2?random.nextInt(2):0));
    }
 
+   @Override
    public Class getComponentClass() {
       return ComponentVillageApothecary.class;
    }
 
+   @Override
    public Object buildComponent(PieceWeight villagePiece, Start startPiece, List pieces, Random random, int p1, int p2, int p3, int p4, int p5) {
       return ComponentVillageApothecary.buildComponent(startPiece, pieces, random, p1, p2, p3, p4, p5);
    }
 
+   @Override
    public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipeList, Random random) {
       recipeList.addToListWithCheck(new MerchantRecipe(new ItemStack(Items.emerald, 2), Witchery.Items.GENERIC.itemDogTongue.createStack(2)));
       recipeList.addToListWithCheck(new MerchantRecipe(new ItemStack(Items.emerald, 1), Witchery.Items.GENERIC.itemBatWool.createStack(3)));

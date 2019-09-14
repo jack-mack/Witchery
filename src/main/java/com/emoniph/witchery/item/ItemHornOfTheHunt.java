@@ -20,14 +20,17 @@ public class ItemHornOfTheHunt extends ItemBase {
       this.setMaxStackSize(1);
    }
 
+   @Override
    public EnumAction getItemUseAction(ItemStack itemstack) {
       return EnumAction.bow;
    }
 
+   @Override
    public int getMaxItemUseDuration(ItemStack itemstack) {
       return TimeUtil.secsToTicks(2);
    }
 
+   @Override
    public void onUsingTick(ItemStack stack, EntityPlayer player, int countdown) {
       if(!player.worldObj.isRemote && countdown == 1) {
          SoundEffect.WITCHERY_RANDOM_HORN.playAtPlayer(player.worldObj, player, 1.0F, 1.0F);
@@ -43,6 +46,7 @@ public class ItemHornOfTheHunt extends ItemBase {
 
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
       player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
       return stack;

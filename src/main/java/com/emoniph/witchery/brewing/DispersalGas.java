@@ -29,6 +29,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class DispersalGas extends Dispersal {
 
+   @Override
    public void onImpactSplashPotion(World world, NBTTagCompound nbtBrew, MovingObjectPosition mop, ModifiersImpact modifiers) {
       Coord coord = new Coord(mop, modifiers.impactPosition, true);
       boolean replaceable = BlockUtil.isReplaceableBlock(world, coord.x, coord.y, coord.z, modifiers.thrower);
@@ -42,16 +43,19 @@ public class DispersalGas extends Dispersal {
 
    }
 
+   @Override
    public String getUnlocalizedName() {
       return "witchery:brew.dispersal.gas";
    }
 
+   @Override
    public RitualStatus onUpdateRitual(World world, int x, int y, int z, final NBTTagCompound nbtBrew, final ModifiersRitual modifiers, ModifiersImpact impactModifiers) {
       BlockPosition target = modifiers.getTarget();
       World targetWorld = target.getWorld(MinecraftServer.getServer());
       boolean height = true;
       boolean blackMagic = false;
       (new BlockActionCircle() {
+         @Override
          public void onBlock(World world, int x, int y, int z) {
             BlockPosition coords = null;
 

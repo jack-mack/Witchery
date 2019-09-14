@@ -11,6 +11,7 @@ public class ItemEntityLocatorTexture extends TextureCompass {
       super("witchery:entitylocator");
    }
 
+   @Override
    public void updateCompass(World world, double playerX, double playerY, double playerZ, boolean p_94241_8_, boolean p_94241_9_) {
       if(!super.framesTextureData.isEmpty()) {
          double d3 = 0.0D;

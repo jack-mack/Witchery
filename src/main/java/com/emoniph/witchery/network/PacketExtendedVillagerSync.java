@@ -25,12 +25,14 @@ public class PacketExtendedVillagerSync implements IMessage {
       this.sleeping = extendedVillager.isSleeping();
    }
 
+   @Override
    public void toBytes(ByteBuf buffer) {
       buffer.writeInt(this.entityId);
       buffer.writeInt(this.blood);
       buffer.writeBoolean(this.sleeping);
    }
 
+   @Override
    public void fromBytes(ByteBuf buffer) {
       this.entityId = buffer.readInt();
       this.blood = buffer.readInt();
@@ -39,6 +41,7 @@ public class PacketExtendedVillagerSync implements IMessage {
 
    public static class Handler implements IMessageHandler<PacketExtendedVillagerSync, IMessage> {
 
+      @Override
       public IMessage onMessage(PacketExtendedVillagerSync message, MessageContext ctx) {
          EntityPlayer player = Witchery.proxy.getPlayer(ctx);
          if(player != null) {

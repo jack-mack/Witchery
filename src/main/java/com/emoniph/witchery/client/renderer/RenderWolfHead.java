@@ -25,6 +25,7 @@ public class RenderWolfHead extends TileEntitySpecialRenderer {
       this.render((float)x, (float)y, (float)z, tile.getBlockMetadata() & 7, (float)(tile.getRotation() * 360) / 16.0F, tile.getSkullType());
    }
 
+   @Override
    public void func_147497_a(TileEntityRendererDispatcher p_147497_1_) {
       super.func_147497_a(p_147497_1_);
       field_147536_b = this;
@@ -73,6 +74,7 @@ public class RenderWolfHead extends TileEntitySpecialRenderer {
       GL11.glPopMatrix();
    }
 
+   @Override
    public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float partialTicks) {
       this.renderTileEntityAt((BlockWolfHead.TileEntityWolfHead)tile, x, y, z, partialTicks);
    }

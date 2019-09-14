@@ -60,11 +60,13 @@ public class GuiScreenMarkupBook extends GuiScreen {
 
    }
 
+   @Override
    public void updateScreen() {
       super.updateScreen();
       ++this.updateCount;
    }
 
+   @Override
    public void initGui() {
       Keyboard.enableRepeatEvents(true);
       this.constructPage();
@@ -153,6 +155,7 @@ public class GuiScreenMarkupBook extends GuiScreen {
       }
    }
 
+   @Override
    public void onGuiClosed() {
       Keyboard.enableRepeatEvents(false);
       this.sendBookToServer();
@@ -171,6 +174,7 @@ public class GuiScreenMarkupBook extends GuiScreen {
 
    }
 
+   @Override
    protected void actionPerformed(GuiButton button) {
       if(button.enabled) {
          if(button.id == 0) {
@@ -203,10 +207,12 @@ public class GuiScreenMarkupBook extends GuiScreen {
 
    }
 
+   @Override
    protected void keyTyped(char par1, int par2) {
       super.keyTyped(par1, par2);
    }
 
+   @Override
    public void drawScreen(int mouseX, int mouseY, float par3) {
       GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
       super.mc.getTextureManager().bindTexture(BACKGROUND);
@@ -237,6 +243,7 @@ public class GuiScreenMarkupBook extends GuiScreen {
 
    }
 
+   @Override
    protected void renderToolTip(ItemStack stack, int x, int y) {
       List list = stack.getTooltip(super.mc.thePlayer, super.mc.gameSettings.advancedItemTooltips);
       int font;

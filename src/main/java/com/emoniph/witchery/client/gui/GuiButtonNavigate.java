@@ -20,6 +20,7 @@ class GuiButtonNavigate extends GuiButton {
       this.texture = texture;
    }
 
+   @Override
    public void drawButton(Minecraft mc, int mouseX, int mouseY) {
       if(super.visible) {
          boolean mouseOver = mouseX >= super.xPosition && mouseY >= super.yPosition && mouseX < super.xPosition + super.width && mouseY < super.yPosition + super.height;

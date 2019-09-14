@@ -27,6 +27,7 @@ public class EntityAIZombieMateNow extends EntityAIBase {
       this.begin = true;
    }
 
+   @Override
    public boolean shouldExecute() {
       if(!this.begin) {
          return false;
@@ -41,23 +42,27 @@ public class EntityAIZombieMateNow extends EntityAIBase {
       }
    }
 
+   @Override
    public void startExecuting() {
       this.matingTimeout = 600;
       this.mating = true;
       this.begin = false;
    }
 
+   @Override
    public void resetTask() {
       this.mate = null;
       this.mating = false;
       this.begin = false;
    }
 
+   @Override
    public boolean continueExecuting() {
       boolean keepGoing = this.matingTimeout >= 0;
       return keepGoing;
    }
 
+   @Override
    public void updateTask() {
       --this.matingTimeout;
       this.zombieObj.getLookHelper().setLookPositionWithEntity(this.mate, 10.0F, 30.0F);

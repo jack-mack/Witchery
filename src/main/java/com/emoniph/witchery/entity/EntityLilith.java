@@ -79,6 +79,7 @@ public class EntityLilith extends EntityMob implements IBossDisplayData, IRanged
       super.experienceValue = 60;
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(16, Byte.valueOf((byte)0));
@@ -87,6 +88,7 @@ public class EntityLilith extends EntityMob implements IBossDisplayData, IRanged
       super.dataWatcher.addObject(21, new Integer(0));
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(200.0D);
@@ -95,24 +97,30 @@ public class EntityLilith extends EntityMob implements IBossDisplayData, IRanged
       this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0D);
    }
 
+   @Override
    public int getTotalArmorValue() {
       return 8;
    }
 
+   @Override
    public void setInWeb() {}
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.lilith.name");
    }
 
+   @Override
    public boolean isAIEnabled() {
       return !this.isFriendly;
    }
 
+   @Override
    protected Entity findPlayerToAttack() {
       return this.isFriendly?null:super.findPlayerToAttack();
    }
 
+   @Override
    protected void updateAITick() {
       super.updateAITick();
    }
@@ -138,6 +146,7 @@ public class EntityLilith extends EntityMob implements IBossDisplayData, IRanged
       this.setHealth(this.getMaxHealth() / 4.0F);
    }
 
+   @Override
    protected void updateAITasks() {
       if(this.getInvulnerableStartTicks() > 0) {
          int R = this.getInvulnerableStartTicks() - 1;
@@ -196,14 +205,17 @@ public class EntityLilith extends EntityMob implements IBossDisplayData, IRanged
 
    }
 
+   @Override
    protected int decreaseAirSupply(int par1) {
       return par1;
    }
 
+   @Override
    protected void collideWithEntity(Entity par1Entity) {
       super.collideWithEntity(par1Entity);
    }
 
+   @Override
    public void onLivingUpdate() {
       super.onLivingUpdate();
       if(this.attackTimer > 0) {
@@ -212,6 +224,7 @@ public class EntityLilith extends EntityMob implements IBossDisplayData, IRanged
 
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource source, float damage) {
       boolean immune = false;
       if(immune) {
@@ -225,10 +238,12 @@ public class EntityLilith extends EntityMob implements IBossDisplayData, IRanged
       }
    }
 
+   @Override
    public float getCapDT(DamageSource source, float damage) {
       return 12.0F;
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       super.writeEntityToNBT(nbtRoot);
       nbtRoot.setInteger("Invul", this.getInvulnerableStartTicks());
@@ -236,6 +251,7 @@ public class EntityLilith extends EntityMob implements IBossDisplayData, IRanged
       nbtRoot.setBoolean("Friendly", this.isFriendly);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       super.readEntityFromNBT(nbtRoot);
       this.setInvulnerableStartTicks(nbtRoot.getInteger("Invul"));
@@ -243,6 +259,7 @@ public class EntityLilith extends EntityMob implements IBossDisplayData, IRanged
       this.isFriendly = nbtRoot.getBoolean("Friendly");
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity par1Entity) {
       this.attackTimer = 10;
       super.worldObj.setEntityState(this, (byte)4);
@@ -255,6 +272,7 @@ public class EntityLilith extends EntityMob implements IBossDisplayData, IRanged
       return flag;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void handleHealthUpdate(byte par1) {
       if(par1 == 4) {
@@ -271,24 +289,30 @@ public class EntityLilith extends EntityMob implements IBossDisplayData, IRanged
       return this.attackTimer;
    }
 
+   @Override
    public float getBrightness(float par1) {
       return 1.0F;
    }
 
+   @Override
    protected String getLivingSound() {
       return this.isFriendly?null:"witchery:mob.lilith.say";
    }
 
+   @Override
    protected String getHurtSound() {
       return "witchery:mob.lilith.hit";
    }
 
+   @Override
    protected String getDeathSound() {
       return this.isFriendly?"witchery:mob.lilith.hit":"witchery:mob.lilith.death";
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {}
 
+   @Override
    public void onDeath(DamageSource source) {
       if(!super.worldObj.isRemote) {
          super.isDead = false;
@@ -358,14 +382,17 @@ public class EntityLilith extends EntityMob implements IBossDisplayData, IRanged
 
    }
 
+   @Override
    protected Item getDropItem() {
       return null;
    }
 
+   @Override
    protected boolean canDespawn() {
       return false;
    }
 
+   @Override
    protected boolean interact(EntityPlayer player) {
       if(!super.worldObj.isRemote && this.isFriendly) {
          ItemStack stack = player.getHeldItem();
@@ -501,6 +528,7 @@ public class EntityLilith extends EntityMob implements IBossDisplayData, IRanged
       return spells;
    }
 
+   @Override
    public void attackEntityWithRangedAttack(EntityLivingBase targetEntity, float par2) {
       if(super.worldObj.rand.nextBoolean()) {
          this.attackTimer = 10;

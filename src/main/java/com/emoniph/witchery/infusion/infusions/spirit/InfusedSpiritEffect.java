@@ -28,6 +28,7 @@ public abstract class InfusedSpiritEffect {
    public static final InfusedSpiritEffect TWISTER = new InfusedSpiritTwisterEffect(4, 3, 0, 0, 2);
    public static final InfusedSpiritEffect GHOST_WALKER = new InfusedSpiritGhostWalkerEffect(5, 3, 1, 1, 0);
    public static final InfusedSpiritEffect DEATH = new InfusedSpiritEffect(6, "death", 0, 5, 5, 5, false) {
+      @Override
       public boolean doUpdateEffect(TileEntity tile, boolean triggered, ArrayList foundEntities) {
          return true;
       }

@@ -72,6 +72,7 @@ public class EntityLeonard extends EntityMob implements IBossDisplayData, IRange
       super.experienceValue = 100;
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(16, Byte.valueOf((byte)0));
@@ -80,6 +81,7 @@ public class EntityLeonard extends EntityMob implements IBossDisplayData, IRange
       super.dataWatcher.addObject(21, new Integer(0));
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(600.0D);
@@ -88,20 +90,25 @@ public class EntityLeonard extends EntityMob implements IBossDisplayData, IRange
       this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0D);
    }
 
+   @Override
    public int getTotalArmorValue() {
       return 0;
    }
 
+   @Override
    public void setInWeb() {}
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.leonard.name");
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    protected void updateAITick() {
       super.updateAITick();
    }
@@ -127,6 +134,7 @@ public class EntityLeonard extends EntityMob implements IBossDisplayData, IRange
       this.setHealth(this.getMaxHealth() / 4.0F);
    }
 
+   @Override
    protected void updateAITasks() {
       if(this.getInvulnerableStartTicks() > 0) {
          int SPAWN_DELAY = this.getInvulnerableStartTicks() - 1;
@@ -220,6 +228,7 @@ public class EntityLeonard extends EntityMob implements IBossDisplayData, IRange
          if(super.ticksExisted % 20 == 2) {
             if(super.worldObj.rand.nextInt(5) == 0) {
                (new BlockActionSphere() {
+                  @Override
                   protected void onBlock(World world, int x, int y, int z) {
                      Block block = world.getBlock(x, y, z);
                      if(block == Witchery.Blocks.BREW_GAS || block == Witchery.Blocks.BREW_LIQUID) {
@@ -278,6 +287,7 @@ public class EntityLeonard extends EntityMob implements IBossDisplayData, IRange
 
    }
 
+   @Override
    public void onDeath(DamageSource source) {
       super.onDeath(source);
       this.removeCoilEffects(40, 40.0D);
@@ -301,14 +311,17 @@ public class EntityLeonard extends EntityMob implements IBossDisplayData, IRange
 
    }
 
+   @Override
    protected int decreaseAirSupply(int par1) {
       return par1;
    }
 
+   @Override
    protected void collideWithEntity(Entity par1Entity) {
       super.collideWithEntity(par1Entity);
    }
 
+   @Override
    public void onLivingUpdate() {
       super.onLivingUpdate();
       if(this.attackTimer > 0) {
@@ -317,6 +330,7 @@ public class EntityLeonard extends EntityMob implements IBossDisplayData, IRange
 
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource source, float damage) {
       boolean immune = this.isImmune;
       if(immune) {
@@ -333,6 +347,7 @@ public class EntityLeonard extends EntityMob implements IBossDisplayData, IRange
       }
    }
 
+   @Override
    public float getCapDT(DamageSource source, float damage) {
       return !this.isImmune && source.getDamageType().equals("player")?2.0F:0.0F;
    }
@@ -345,10 +360,12 @@ public class EntityLeonard extends EntityMob implements IBossDisplayData, IRange
 
    }
 
+   @Override
    public boolean canAttackClass(Class par1Class) {
       return super.canAttackClass(par1Class);
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
       par1NBTTagCompound.setBoolean("PlayerCreated", this.isPlayerCreated());
@@ -356,6 +373,7 @@ public class EntityLeonard extends EntityMob implements IBossDisplayData, IRange
       par1NBTTagCompound.setLong("Lifetime", (long)this.getLifetime());
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
       this.setPlayerCreated(par1NBTTagCompound.getBoolean("PlayerCreated"));
@@ -363,6 +381,7 @@ public class EntityLeonard extends EntityMob implements IBossDisplayData, IRange
       this.setLifetime(par1NBTTagCompound.getInteger("Lifetime"));
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity par1Entity) {
       this.attackTimer = 10;
       super.worldObj.setEntityState(this, (byte)4);
@@ -375,6 +394,7 @@ public class EntityLeonard extends EntityMob implements IBossDisplayData, IRange
       return flag;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void handleHealthUpdate(byte par1) {
       if(par1 == 4) {
@@ -391,26 +411,32 @@ public class EntityLeonard extends EntityMob implements IBossDisplayData, IRange
       return this.attackTimer;
    }
 
+   @Override
    public float getBrightness(float par1) {
       return 1.0F;
    }
 
+   @Override
    protected String getLivingSound() {
       return "witchery:mob.leonard.say";
    }
 
+   @Override
    protected String getHurtSound() {
       return "witchery:mob.leonard.hit";
    }
 
+   @Override
    protected String getDeathSound() {
       return "witchery:mob.leonard.death";
    }
 
+   @Override
    protected void func_145780_a(int par1, int par2, int par3, Block par4) {
       super.func_145780_a(par1, par2, par3, par4);
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {
       Enchantment enchantment = Enchantment.enchantmentsBookList[super.rand.nextInt(Enchantment.enchantmentsBookList.length)];
       int k = MathHelper.getRandomIntegerInRange(super.rand, Math.min(enchantment.getMinLevel() + 2, enchantment.getMaxLevel()), enchantment.getMaxLevel());
@@ -420,6 +446,7 @@ public class EntityLeonard extends EntityMob implements IBossDisplayData, IRange
       this.entityDropItem(new ItemStack(Witchery.Items.LEONARDS_URN), 0.0F);
    }
 
+   @Override
    protected Item getDropItem() {
       return null;
    }
@@ -439,6 +466,7 @@ public class EntityLeonard extends EntityMob implements IBossDisplayData, IRange
 
    }
 
+   @Override
    protected boolean canDespawn() {
       return false;
    }
@@ -458,6 +486,7 @@ public class EntityLeonard extends EntityMob implements IBossDisplayData, IRange
       return spells;
    }
 
+   @Override
    public void attackEntityWithRangedAttack(EntityLivingBase targetEntity, float par2) {
       if(super.worldObj.rand.nextBoolean()) {
          this.attackTimer = 10;

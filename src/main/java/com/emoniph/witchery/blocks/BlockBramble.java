@@ -39,22 +39,27 @@ public class BlockBramble extends BlockBase {
       this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 1.0F, 0.5F + f);
    }
 
+   @Override
    public int getRenderType() {
       return 6;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
       return null;
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int posX, int posY, int posZ, Entity entity) {
       int meta = world.getBlockMetadata(posX, posY, posZ);
       switch(meta) {
@@ -93,6 +98,7 @@ public class BlockBramble extends BlockBase {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int par1, int par2) {
       if(par2 < 0 || par2 >= this.iconArray.length) {
@@ -102,10 +108,12 @@ public class BlockBramble extends BlockBase {
       return this.iconArray[par2];
    }
 
+   @Override
    public int damageDropped(int par1) {
       return par1;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
       for(int j = 0; j < BRAMBLE_TYPES.length; ++j) {
@@ -114,6 +122,7 @@ public class BlockBramble extends BlockBase {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister par1IconRegister) {
       this.iconArray = new IIcon[BRAMBLE_TYPES.length];
@@ -124,6 +133,7 @@ public class BlockBramble extends BlockBase {
 
    }
 
+   @Override
    public void harvestBlock(World world, EntityPlayer player, int x, int y, int z, int meta) {
       super.harvestBlock(world, player, x, y, z, meta);
       if(!world.isRemote && meta == 1 && (player.getHeldItem() == null || player.getHeldItem().getItem() != Items.golden_axe)) {
@@ -157,6 +167,7 @@ public class BlockBramble extends BlockBase {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
       int meta = world.getBlockMetadata(x, y, z);
@@ -169,10 +180,12 @@ public class BlockBramble extends BlockBase {
 
    }
 
+   @Override
    public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
       return !par1World.isAirBlock(par2, par3 - 1, par4);
    }
 
+   @Override
    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, Block par5) {
       this.checkBlockCoordValid(par1World, par2, par3, par4);
    }
@@ -185,6 +198,7 @@ public class BlockBramble extends BlockBase {
 
    }
 
+   @Override
    public boolean canBlockStay(World par1World, int par2, int par3, int par4) {
       return this.canPlaceBlockAt(par1World, par2, par3, par4);
    }
@@ -196,10 +210,12 @@ public class BlockBramble extends BlockBase {
          super(block);
       }
 
+      @Override
       protected String[] getNames() {
          return BlockBramble.BRAMBLE_TYPES;
       }
 
+      @Override
       @SideOnly(Side.CLIENT)
       public IIcon getIconFromDamage(int meta) {
          return super.field_150939_a.getIcon(0, meta);

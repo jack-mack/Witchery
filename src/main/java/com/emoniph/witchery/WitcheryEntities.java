@@ -177,7 +177,7 @@ public class WitcheryEntities {
       this.HELLHOUND = (new WitcheryEntities.LivingRef(136, EntityHellhound.class, "hellhound", this.entities)).addSpawn(Math.max(Config.instance().hellhoundSpawnRate, 1), 1, 3, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.NETHER)).setEgg(14181632, 5968392);
       this.WERE_VILLAGER = (new WitcheryEntities.LivingRef(137, EntityVillagerWere.class, "werevillager", this.entities)).setEgg(5651507, 12422002);
       this.VILLAGE_GUARD = (new WitcheryEntities.LivingRef(138, EntityVillageGuard.class, "villageguard", this.entities)).setEgg(2236962, 5322800);
-      this.VAMPIRE_VILLAGER = (new WitcheryEntities.LivingRef(139, EntityVampire.class, "vampire", this.entities)).setEgg(5322800, 13369344);
+      this.VAMPIRE_VILLAGER = (new WitcheryEntities.LivingRef(139, EntityVampire.class, "vampire", this.entities)).addSpawn(Math.max(Config.instance().vampireSpawnRate, 1), 1, 1, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.HILLS)).setEgg(5322800, 13369344);
       this.GRENADE = new WitcheryEntities.EntityRef(140, EntityGrenade.class, "grenade", 64, 1, this.entities);
       this.LILITH = (new WitcheryEntities.LivingRef(141, EntityLilith.class, "lilith", this.entities)).setEgg(0, 2818048);
       this.FOLLOWER = new WitcheryEntities.LivingRef(142, EntityFollower.class, "follower", this.entities);

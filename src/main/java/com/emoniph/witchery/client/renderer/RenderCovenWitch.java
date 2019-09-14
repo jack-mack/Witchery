@@ -126,26 +126,32 @@ public class RenderCovenWitch extends RenderLiving {
       GL11.glScalef(f1, f1, f1);
    }
 
+   @Override
    public void doRender(EntityLiving par1EntityLiving, double par2, double par4, double par6, float par8, float par9) {
       this.func_82412_a((EntityCovenWitch)par1EntityLiving, par2, par4, par6, par8, par9);
    }
 
+   @Override
    protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2) {
       this.func_82409_b((EntityCovenWitch)par1EntityLivingBase, par2);
    }
 
+   @Override
    protected void renderEquippedItems(EntityLivingBase par1EntityLivingBase, float par2) {
       this.func_82411_a((EntityCovenWitch)par1EntityLivingBase, par2);
    }
 
+   @Override
    public void doRender(EntityLivingBase par1EntityLivingBase, double par2, double par4, double par6, float par8, float par9) {
       this.func_82412_a((EntityCovenWitch)par1EntityLivingBase, par2, par4, par6, par8, par9);
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(Entity par1Entity) {
       return this.getCovenWitchTextures((EntityCovenWitch)par1Entity);
    }
 
+   @Override
    public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9) {
       this.func_82412_a((EntityCovenWitch)par1Entity, par2, par4, par6, par8, par9);
    }

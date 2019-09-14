@@ -39,22 +39,27 @@ public class BlockVoidBramble extends BlockBaseContainer {
       this.setBlockBounds(0.050000012F, 0.0F, 0.050000012F, 0.95F, 1.0F, 0.95F);
    }
 
+   @Override
    public int getRenderType() {
       return 6;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
       return null;
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int posX, int posY, int posZ, Entity entity) {
       if(!world.isRemote && entity instanceof EntityLivingBase && entity instanceof EntityLivingBase) {
          teleportRandomly(world, posX, posY, posZ, entity, 500);
@@ -82,6 +87,7 @@ public class BlockVoidBramble extends BlockBaseContainer {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
       if(rand.nextInt(2) == 0) {
@@ -93,6 +99,7 @@ public class BlockVoidBramble extends BlockBaseContainer {
 
    }
 
+   @Override
    public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player) {
       if(!world.isRemote) {
          BlockVoidBramble.TileEntityVoidBramble tile = (BlockVoidBramble.TileEntityVoidBramble)world.getTileEntity(x, y, z);
@@ -106,6 +113,7 @@ public class BlockVoidBramble extends BlockBaseContainer {
 
    }
 
+   @Override
    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
       if(!world.isRemote && entity instanceof EntityPlayer) {
          EntityPlayer player = (EntityPlayer)entity;
@@ -117,6 +125,7 @@ public class BlockVoidBramble extends BlockBaseContainer {
 
    }
 
+   @Override
    public TileEntity createNewTileEntity(World world, int metadata) {
       return new BlockVoidBramble.TileEntityVoidBramble();
    }
@@ -127,10 +136,12 @@ public class BlockVoidBramble extends BlockBaseContainer {
       private static final String OWNER_KEY = "WITCPlacer";
 
 
+      @Override
       public boolean isPowerInvalid() {
          return this.isInvalid();
       }
 
+      @Override
       protected void initiate() {
          super.initiate();
          if(!super.worldObj.isRemote) {
@@ -144,6 +155,7 @@ public class BlockVoidBramble extends BlockBaseContainer {
 
       }
 
+      @Override
       public void invalidate() {
          super.invalidate();
          if(!super.worldObj.isRemote) {
@@ -161,11 +173,13 @@ public class BlockVoidBramble extends BlockBaseContainer {
          return this.owner != null?this.owner:"";
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtTag) {
          super.writeToNBT(nbtTag);
          nbtTag.setString("WITCPlacer", this.getOwner());
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtTag) {
          super.readFromNBT(nbtTag);
          if(nbtTag.hasKey("WITCPlacer")) {
@@ -176,34 +190,41 @@ public class BlockVoidBramble extends BlockBaseContainer {
 
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          this.readFromNBT(packet.func_148857_g());
          super.worldObj.func_147479_m(super.xCoord, super.yCoord, super.zCoord);
       }
 
+      @Override
       public World getWorld() {
          return super.worldObj;
       }
 
+      @Override
       public int getPosX() {
          return super.xCoord;
       }
 
+      @Override
       public int getPosY() {
          return super.yCoord;
       }
 
+      @Override
       public int getPosZ() {
          return super.zCoord;
       }
 
+      @Override
       public float getRange() {
          return 32.0F;
       }

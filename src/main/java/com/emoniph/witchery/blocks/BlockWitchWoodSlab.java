@@ -30,6 +30,7 @@ public class BlockWitchWoodSlab extends BlockSlab {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       BlockUtil.registerBlock(this, (Class)null, blockName);
       super.setBlockName(blockName);
@@ -37,23 +38,28 @@ public class BlockWitchWoodSlab extends BlockSlab {
       return this;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int p_149691_1_, int p_149691_2_) {
       return Witchery.Blocks.PLANKS.getIcon(p_149691_1_, p_149691_2_ & 7);
    }
 
+   @Override
    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
       return Item.getItemFromBlock(Witchery.Blocks.WOOD_SLAB_SINGLE);
    }
 
+   @Override
    protected ItemStack createStackedBlock(int p_149644_1_) {
       return new ItemStack(Item.getItemFromBlock(Witchery.Blocks.WOOD_SLAB_SINGLE), 2, p_149644_1_ & 7);
    }
 
+   @Override
    public String getUnlocalizedName() {
       return super.getUnlocalizedName();
    }
 
+   @Override
    public String func_150002_b(int p_150002_1_) {
       if(p_150002_1_ < 0 || p_150002_1_ >= BLOCK_TYPES.length) {
          p_150002_1_ = 0;
@@ -62,11 +68,13 @@ public class BlockWitchWoodSlab extends BlockSlab {
       return super.getUnlocalizedName() + "." + BLOCK_TYPES[p_150002_1_];
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_) {
       return super.field_150004_a?Witchery.Items.SLAB_DOUBLE:Witchery.Items.SLAB_SINGLE;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_) {
       if(p_149666_1_ != Item.getItemFromBlock(Witchery.Blocks.WOOD_SLAB_DOUBLE)) {
@@ -79,6 +87,7 @@ public class BlockWitchWoodSlab extends BlockSlab {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister p_149651_1_) {}
 

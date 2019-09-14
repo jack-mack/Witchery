@@ -39,6 +39,7 @@ public class BlockCrystalBall extends BlockBaseContainer {
       this.setBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 0.6F, 0.7F);
    }
 
+   @Override
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
       if(world.isRemote) {
          return true;
@@ -97,18 +98,22 @@ public class BlockCrystalBall extends BlockBaseContainer {
       return sources != null && sources.size() > 0?((PowerSources.RelativePowerSource)sources.get(0)).source():null;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public int quantityDropped(Random rand) {
       return 1;
    }
 
+   @Override
    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, Block par5) {
       this.func_111046_k(par1World, par2, par3, par4);
    }
@@ -123,16 +128,19 @@ public class BlockCrystalBall extends BlockBaseContainer {
       }
    }
 
+   @Override
    public boolean canBlockStay(World world, int x, int y, int z) {
       Material material = world.getBlock(x, y - 1, z).getMaterial();
       return !world.isAirBlock(x, y - 1, z) && material != null && material.isOpaque() && material.isSolid();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {}
 
@@ -141,6 +149,7 @@ public class BlockCrystalBall extends BlockBaseContainer {
       private long lastUsedTime = 0L;
 
 
+      @Override
       public boolean canUpdate() {
          return false;
       }
@@ -153,22 +162,26 @@ public class BlockCrystalBall extends BlockBaseContainer {
          return super.worldObj.getTotalWorldTime() - this.lastUsedTime > 100L;
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtTag) {
          super.writeToNBT(nbtTag);
          nbtTag.setLong("LastUsedTime", this.lastUsedTime);
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtTag) {
          super.readFromNBT(nbtTag);
          this.lastUsedTime = nbtTag.getLong("LastUsedTime");
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          this.readFromNBT(packet.func_148857_g());

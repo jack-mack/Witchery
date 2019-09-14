@@ -46,6 +46,7 @@ public class ComponentCoven extends WitcheryComponent {
 
    }
 
+   @Override
    public boolean addComponentParts(World world, Random random) {
       BiomeGenBase biom = world.getBiomeGenForCoords(this.getXWithOffset(0, 0), this.getZWithOffset(0, 0));
       int groundAvg = this.calcGroundHeight(world, super.boundingBox);
@@ -175,11 +176,13 @@ public class ComponentCoven extends WitcheryComponent {
       }
    }
 
+   @Override
    protected void func_143012_a(NBTTagCompound par1NBTTagCompound) {
       super.func_143012_a(par1NBTTagCompound);
       par1NBTTagCompound.setInteger("WITCWCount", this.witchesSpawned);
    }
 
+   @Override
    protected void func_143011_b(NBTTagCompound par1NBTTagCompound) {
       super.func_143011_b(par1NBTTagCompound);
       if(par1NBTTagCompound.hasKey("WITCWCount")) {

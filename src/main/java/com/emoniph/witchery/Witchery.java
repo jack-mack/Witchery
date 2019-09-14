@@ -293,6 +293,7 @@ public class Witchery {
 
    public static class ChunkloadCallback implements OrderedLoadingCallback {
 
+      @Override
       public void ticketsLoaded(List tickets, World world) {
          Iterator i$ = tickets.iterator();
 
@@ -307,6 +308,7 @@ public class Witchery {
 
       }
 
+      @Override
       public List ticketsLoaded(List tickets, World world, int maxTicketCount) {
          ArrayList validTickets = Lists.newArrayList();
          Iterator i$ = tickets.iterator();

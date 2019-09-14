@@ -154,6 +154,7 @@ public class BlockMirror extends BlockBaseContainer {
       }
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
       if(!world.isRemote && entity.ticksExisted % 5 == 1 && this.isTransportableEntity(entity)) {
          int i1 = world.getBlockMetadata(x, y, z);
@@ -494,6 +495,7 @@ public class BlockMirror extends BlockBaseContainer {
       return !(entity instanceof EntityMirrorFace) && (entity instanceof EntityLivingBase || entity instanceof EntityItem);
    }
 
+   @Override
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
       if(world.isRemote) {
          return true;
@@ -519,18 +521,22 @@ public class BlockMirror extends BlockBaseContainer {
       }
    }
 
+   @Override
    public int getRenderType() {
       return -1;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
       int side = getDirection(world.getBlockMetadata(x, y, z));
       float w = 0.15F;
@@ -549,6 +555,7 @@ public class BlockMirror extends BlockBaseContainer {
       return bounds;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z) {
       int side = getDirection(world.getBlockMetadata(x, y, z));
@@ -591,6 +598,7 @@ public class BlockMirror extends BlockBaseContainer {
       return bounds;
    }
 
+   @Override
    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
       int l = world.getBlockMetadata(x, y, z);
       int i1 = getDirection(l);
@@ -608,10 +616,12 @@ public class BlockMirror extends BlockBaseContainer {
 
    }
 
+   @Override
    public Item getItemDropped(int meta, Random rand, int p_149650_3_) {
       return isBlockTopOfMirror(meta)?Witchery.Items.MIRROR:Item.getItemById(0);
    }
 
+   @Override
    public void dropBlockAsItemWithChance(World world, int x, int y, int z, int p_149690_5_, float p_149690_6_, int p_149690_7_) {
       if(isBlockTopOfMirror(p_149690_5_)) {
          super.dropBlockAsItemWithChance(world, x, y, z, p_149690_5_, p_149690_6_, 0);
@@ -619,17 +629,21 @@ public class BlockMirror extends BlockBaseContainer {
 
    }
 
+   @Override
    public int getMobilityFlag() {
       return super.getMobilityFlag();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public Item getItem(World world, int x, int y, int z) {
       return Witchery.Items.MIRROR;
    }
 
+   @Override
    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack stack) {}
 
+   @Override
    public void onBlockHarvested(World world, int x, int y, int z, int meta, EntityPlayer player) {
       if(player.capabilities.isCreativeMode && isBlockTopOfMirror(meta)) {
          if(world.getBlock(x, y - 1, z) == this) {
@@ -644,6 +658,7 @@ public class BlockMirror extends BlockBaseContainer {
       super.onBlockHarvested(world, x, y, z, meta, player);
    }
 
+   @Override
    public ArrayList getDrops(World world, int x, int y, int z, int meta, int fortune) {
       ArrayList drops = new ArrayList();
       boolean brokenInCreativeMode = (meta & 8) != 0;
@@ -711,6 +726,7 @@ public class BlockMirror extends BlockBaseContainer {
       long lastFairestSpawn = 0L;
 
 
+      @Override
       public void updateEntity() {
          super.updateEntity();
          if(super.ticks % (long)(super.worldObj.isRemote?10:40) == 1L) {
@@ -1078,12 +1094,14 @@ public class BlockMirror extends BlockBaseContainer {
          return this.dimCoords;
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          NBTTagCompound nbtTag = packet.func_148857_g();
@@ -1091,12 +1109,14 @@ public class BlockMirror extends BlockBaseContainer {
          super.worldObj.func_147479_m(super.xCoord, super.yCoord, super.zCoord);
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtRoot) {
          super.writeToNBT(nbtRoot);
          nbtRoot.setLong("LastFairestSpawnTime", this.lastFairestSpawn);
          this.writeItemDataToNBT(nbtRoot);
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtRoot) {
          super.readFromNBT(nbtRoot);
          this.lastFairestSpawn = nbtRoot.getLong("LastFairestSpawnTime");

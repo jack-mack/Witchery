@@ -35,18 +35,22 @@ public class BlockWolfHead extends BlockBaseContainer {
       this.setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 0.5F, 0.75F);
    }
 
+   @Override
    public int getRenderType() {
       return -1;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_) {
       int l = p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_) & 7;
       switch(l) {
@@ -69,34 +73,41 @@ public class BlockWolfHead extends BlockBaseContainer {
 
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
       this.setBlockBoundsBasedOnState(world, x, y, z);
       return super.getCollisionBoundingBoxFromPool(world, x, y, z);
    }
 
+   @Override
    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
       int l = MathHelper.floor_double((double)(entity.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
       world.setBlockMetadataWithNotify(x, y, z, l, 2);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public Item getItem(World world, int x, int y, int z) {
       return Item.getItemFromBlock(this);
    }
 
+   @Override
    public int getDamageValue(World world, int x, int y, int z) {
       TileEntity tileentity = world.getTileEntity(x, y, z);
       return tileentity != null && tileentity instanceof BlockWolfHead.TileEntityWolfHead?((BlockWolfHead.TileEntityWolfHead)tileentity).getSkullType():super.getDamageValue(world, x, y, z);
    }
 
+   @Override
    public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_) {
       super.getSubBlocks(p_149666_1_, p_149666_2_, p_149666_3_);
    }
 
+   @Override
    public int damageDropped(int blockMetadata) {
       return blockMetadata;
    }
 
+   @Override
    public void onBlockHarvested(World world, int x, int y, int z, int metadata, EntityPlayer player) {
       if(player.capabilities.isCreativeMode) {
          metadata |= 8;
@@ -107,10 +118,12 @@ public class BlockWolfHead extends BlockBaseContainer {
       super.onBlockHarvested(world, x, y, z, metadata, player);
    }
 
+   @Override
    public void breakBlock(World world, int x, int y, int z, Block block, int metadata) {
       super.breakBlock(world, x, y, z, block, metadata);
    }
 
+   @Override
    public ArrayList getDrops(World world, int x, int y, int z, int metadata, int fortune) {
       ArrayList ret = new ArrayList();
       if((metadata & 8) == 0) {
@@ -126,18 +139,22 @@ public class BlockWolfHead extends BlockBaseContainer {
       return ret;
    }
 
+   @Override
    public Item getItemDropped(int p_149650_1_, Random rand, int p_149650_3_) {
       return Item.getItemFromBlock(this);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {}
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int p_149691_1_, int p_149691_2_) {
       return Blocks.soul_sand.getBlockTextureFromSide(p_149691_1_);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public String getItemIconName() {
       return this.getTextureName() + "_" + ItemWolfHead.field_94587_a[0];
@@ -149,28 +166,33 @@ public class BlockWolfHead extends BlockBaseContainer {
       private int rotation;
 
 
+      @Override
       public boolean canUpdate() {
          return false;
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtRoot) {
          super.writeToNBT(nbtRoot);
          nbtRoot.setByte("SkullType", (byte)(this.skullType & 255));
          nbtRoot.setByte("Rot", (byte)(this.rotation & 255));
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtRoot) {
          super.readFromNBT(nbtRoot);
          this.skullType = nbtRoot.getByte("SkullType");
          this.rotation = nbtRoot.getByte("Rot");
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          this.readFromNBT(packet.func_148857_g());

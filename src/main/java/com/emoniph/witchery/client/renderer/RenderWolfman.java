@@ -134,6 +134,7 @@ public class RenderWolfman extends RenderLiving {
 
    }
 
+   @Override
    public void doRender(EntityLiving p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_) {
       GL11.glColor3f(1.0F, 1.0F, 1.0F);
       ItemStack itemstack = p_76986_1_.getHeldItem();
@@ -292,26 +293,32 @@ public class RenderWolfman extends RenderLiving {
       GL11.glTranslatef(0.0F, 0.1875F, 0.0F);
    }
 
+   @Override
    protected void func_82408_c(EntityLivingBase p_82408_1_, int p_82408_2_, float p_82408_3_) {
       this.func_82408_c((EntityLiving)p_82408_1_, p_82408_2_, p_82408_3_);
    }
 
+   @Override
    protected int shouldRenderPass(EntityLivingBase p_77032_1_, int p_77032_2_, float p_77032_3_) {
       return this.shouldRenderPass((EntityLiving)p_77032_1_, p_77032_2_, p_77032_3_);
    }
 
+   @Override
    protected void renderEquippedItems(EntityLivingBase p_77029_1_, float p_77029_2_) {
       this.renderEquippedItems((EntityLiving)p_77029_1_, p_77029_2_);
    }
 
+   @Override
    public void doRender(EntityLivingBase p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_) {
       this.doRender((EntityLiving)p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(Entity p_110775_1_) {
       return this.getEntityTexture((EntityLiving)p_110775_1_);
    }
 
+   @Override
    public void doRender(Entity p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_) {
       this.doRender((EntityLiving)p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
    }

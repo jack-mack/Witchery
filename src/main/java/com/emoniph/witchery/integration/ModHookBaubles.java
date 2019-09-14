@@ -12,16 +12,21 @@ public class ModHookBaubles extends ModHook {
    private static final String[] BANNED_ITEMS = new String[]{"item.superLavaPendant", "item.lavaPendant", "item.odinRing", "item.aesirRing"};
 
 
+   @Override
    public String getModID() {
       return "Baubles";
    }
 
+   @Override
    protected void doInit() {}
 
+   @Override
    protected void doPostInit() {}
 
+   @Override
    protected void doReduceMagicPower(EntityLivingBase entity, float factor) {}
 
+   @Override
    public boolean canVampireBeKilled(EntityPlayer player) {
       return ModHookBaubles.IntegrateBaubles.canVampireBeVilled(player);
    }

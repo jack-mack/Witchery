@@ -35,8 +35,10 @@ public abstract class EntityThrowableBase extends Entity {
       this.setSize(0.25F, 0.25F);
    }
 
+   @Override
    protected void entityInit() {}
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean isInRangeToRenderDist(double p_70112_1_) {
       double d1 = super.boundingBox.getAverageEdgeLength() * 4.0D;
@@ -105,6 +107,7 @@ public abstract class EntityThrowableBase extends Entity {
       this.ticksInGround = 0;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void setVelocity(double p_70016_1_, double p_70016_3_, double p_70016_5_) {
       super.motionX = p_70016_1_;
@@ -118,6 +121,7 @@ public abstract class EntityThrowableBase extends Entity {
 
    }
 
+   @Override
    public void onUpdate() {
       super.lastTickPosX = super.posX;
       super.lastTickPosY = super.posY;
@@ -255,6 +259,7 @@ public abstract class EntityThrowableBase extends Entity {
 
    protected abstract void onImpact(MovingObjectPosition var1);
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound p_70014_1_) {
       p_70014_1_.setShort("xTile", (short)this.field_145788_c);
       p_70014_1_.setShort("yTile", (short)this.field_145786_d);
@@ -269,6 +274,7 @@ public abstract class EntityThrowableBase extends Entity {
       p_70014_1_.setString("ownerName", this.throwerName == null?"":this.throwerName);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound p_70037_1_) {
       this.field_145788_c = p_70037_1_.getShort("xTile");
       this.field_145786_d = p_70037_1_.getShort("yTile");
@@ -283,6 +289,7 @@ public abstract class EntityThrowableBase extends Entity {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public float getShadowSize() {
       return 0.0F;

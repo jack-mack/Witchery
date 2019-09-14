@@ -32,6 +32,7 @@ public class RiteInfusionRecharge extends Rite {
       this.ticksToLive = ticksToLive;
    }
 
+   @Override
    public void addSteps(ArrayList steps, int intialStage) {
       steps.add(new RiteInfusionRecharge.StepInfusePlayers(this, intialStage));
    }
@@ -51,10 +52,12 @@ public class RiteInfusionRecharge extends Rite {
          this.ticksSoFar = ticksSoFar;
       }
 
+      @Override
       public int getCurrentStage() {
          return this.ticksSoFar;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(ticks % 20L != 0L) {
             return RitualStep.Result.STARTING;

@@ -112,6 +112,7 @@ public class RenderGoblin extends RenderLiving {
 
    }
 
+   @Override
    public void doRender(EntityLiving par1EntityLiving, double par2, double par4, double par6, float par8, float par9) {
       GL11.glColor3f(1.0F, 1.0F, 1.0F);
       ItemStack itemstack = par1EntityLiving.getHeldItem();
@@ -256,26 +257,32 @@ public class RenderGoblin extends RenderLiving {
       GL11.glTranslatef(0.0F, 0.1875F, 0.0F);
    }
 
+   @Override
    protected void func_82408_c(EntityLivingBase par1EntityLivingBase, int par2, float par3) {
       this.func_82408_c((EntityLiving)par1EntityLivingBase, par2, par3);
    }
 
+   @Override
    protected int shouldRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3) {
       return this.shouldRenderPass((EntityLiving)par1EntityLivingBase, par2, par3);
    }
 
+   @Override
    protected void renderEquippedItems(EntityLivingBase par1EntityLivingBase, float par2) {
       this.renderEquippedItems((EntityLiving)par1EntityLivingBase, par2);
    }
 
+   @Override
    public void doRender(EntityLivingBase par1Entity, double par2, double par4, double par6, float par8, float par9) {
       this.doRender((EntityLiving)par1Entity, par2, par4, par6, par8, par9);
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(Entity par1Entity) {
       return this.getEntityTexture((EntityLiving)par1Entity);
    }
 
+   @Override
    public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9) {
       this.doRender((EntityLiving)par1Entity, par2, par4, par6, par8, par9);
    }

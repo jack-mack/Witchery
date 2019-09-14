@@ -77,6 +77,7 @@ public class EntityWitchProjectile extends EntityThrowable {
       this.setDamageValue(generalSubItem.damageValue);
    }
 
+   @Override
    protected void entityInit() {
       super.dataWatcher.addObject(6, Integer.valueOf(0));
       super.entityInit();
@@ -95,18 +96,22 @@ public class EntityWitchProjectile extends EntityThrowable {
       return Witchery.Items.GENERIC.subItems.get(this.damageValue) instanceof ItemGeneral.Brew || Witchery.Items.GENERIC.itemQuicklime.damageValue == this.damageValue;
    }
 
+   @Override
    protected float getGravityVelocity() {
       return this.isPotion()?0.05F:super.getGravityVelocity();
    }
 
+   @Override
    protected float func_70182_d() {
       return this.isPotion()?0.5F:super.func_70182_d();
    }
 
+   @Override
    protected float func_70183_g() {
       return this.isPotion()?-20.0F:super.func_70183_g();
    }
 
+   @Override
    protected void onImpact(MovingObjectPosition mop) {
       if(!super.worldObj.isRemote && mop != null) {
          boolean enhanced = false;
@@ -1410,6 +1415,7 @@ public class EntityWitchProjectile extends EntityThrowable {
       }
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtTag) {
       super.readEntityFromNBT(nbtTag);
       if(nbtTag.hasKey("damageValue")) {
@@ -1421,6 +1427,7 @@ public class EntityWitchProjectile extends EntityThrowable {
 
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtTag) {
       super.writeEntityToNBT(nbtTag);
       nbtTag.setInteger("damageValue", this.damageValue);

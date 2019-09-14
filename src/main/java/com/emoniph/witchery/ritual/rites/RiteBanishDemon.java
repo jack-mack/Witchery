@@ -27,6 +27,7 @@ public class RiteBanishDemon extends Rite {
       this.radius = radius;
    }
 
+   @Override
    public void addSteps(ArrayList steps, int initialStage) {
       steps.add(new RiteBanishDemon.BanishDemonStep(this, initialStage));
    }
@@ -43,10 +44,12 @@ public class RiteBanishDemon extends Rite {
          this.ticksSoFar = ticksSoFar;
       }
 
+      @Override
       public int getCurrentStage() {
          return this.ticksSoFar;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(ticks % 20L != 0L) {
             return RitualStep.Result.STARTING;

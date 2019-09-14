@@ -35,6 +35,7 @@ public class BlockStockade extends BlockBase {
    private boolean tipTexturing;
 
 
+   @Override
    public int damageDropped(int metadata) {
       if(metadata < 0 || metadata >= (this.alpha?ICE_NAMES.length:WOOD_NAMES.length)) {
          metadata = 0;
@@ -50,10 +51,12 @@ public class BlockStockade extends BlockBase {
       this.alpha = alpha;
    }
 
+   @Override
    public int getRenderType() {
       return Witchery.proxy.getStockageRenderId();
    }
 
+   @Override
    public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
       if(!world.isRemote && entity instanceof EntityLivingBase) {
          EntityLivingBase living = (EntityLivingBase)entity;
@@ -62,6 +65,7 @@ public class BlockStockade extends BlockBase {
 
    }
 
+   @Override
    public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB bb, List list, Entity entity) {
       boolean connectN = this.canConnectFenceTo(world, x, y, z - 1);
       boolean connectS = this.canConnectFenceTo(world, x, y, z + 1);
@@ -96,6 +100,7 @@ public class BlockStockade extends BlockBase {
 
    }
 
+   @Override
    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
       boolean connectN = this.canConnectFenceTo(world, x, y, z - 1);
       boolean connectS = this.canConnectFenceTo(world, x, y, z + 1);
@@ -118,18 +123,22 @@ public class BlockStockade extends BlockBase {
       this.setBlockBounds(f, 0.0F, f1, f2, (connectN || connectS) && (connectW || connectE)?1.0F:0.9F, f3);
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public int getRenderBlockPass() {
       return this.alpha?1:super.getRenderBlockPass();
    }
 
+   @Override
    public boolean getBlocksMovement(IBlockAccess p_149655_1_, int p_149655_2_, int p_149655_3_, int p_149655_4_) {
       return false;
    }
@@ -139,6 +148,7 @@ public class BlockStockade extends BlockBase {
       return block == this || block == Blocks.fence_gate || block == Witchery.Blocks.PERPETUAL_ICE_FENCE_GATE;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
       if(world.getBlock(x, y, z) == this) {
@@ -190,6 +200,7 @@ public class BlockStockade extends BlockBase {
       return true;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int side, int meta) {
       if(meta < 0 || meta >= (this.alpha?ICE_TEXTURES.length:WOOD_TEXTURES.length)) {
@@ -199,6 +210,7 @@ public class BlockStockade extends BlockBase {
       return side != 1 && side != 0 && !this.tipTexturing?this.tree[meta]:this.tree_top[meta];
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void getSubBlocks(Item block, CreativeTabs creativeTabs, List list) {
       for(int i = 0; i < (this.alpha?ICE_TEXTURES.length:WOOD_TEXTURES.length); ++i) {
@@ -207,6 +219,7 @@ public class BlockStockade extends BlockBase {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {
       this.tree = new IIcon[this.alpha?ICE_TEXTURES.length:WOOD_TEXTURES.length];
@@ -237,6 +250,7 @@ public class BlockStockade extends BlockBase {
          super(block);
       }
 
+      @Override
       protected String[] getNames() {
          return ((BlockStockade)super.field_150939_a).alpha?BlockStockade.ICE_NAMES:BlockStockade.WOOD_NAMES;
       }

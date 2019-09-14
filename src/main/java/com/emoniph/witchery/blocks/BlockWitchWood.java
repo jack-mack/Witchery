@@ -32,12 +32,14 @@ public class BlockWitchWood extends BlockBase implements IFuelHandler {
       GameRegistry.registerFuelHandler(this);
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       super.setBlockName(blockName);
       Blocks.fire.setFireInfo(this, 5, 20);
       return this;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int par1, int par2) {
       if(par2 < 0 || par2 >= this.iconArray.length) {
@@ -47,10 +49,12 @@ public class BlockWitchWood extends BlockBase implements IFuelHandler {
       return this.iconArray[par2];
    }
 
+   @Override
    public int damageDropped(int par1) {
       return par1;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list) {
       for(int i = 0; i < WOOD_TYPES.length; ++i) {
@@ -59,6 +63,7 @@ public class BlockWitchWood extends BlockBase implements IFuelHandler {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister par1IconRegister) {
       this.iconArray = new IIcon[WOOD_TYPES.length];
@@ -69,14 +74,17 @@ public class BlockWitchWood extends BlockBase implements IFuelHandler {
 
    }
 
+   @Override
    public int getBurnTime(ItemStack fuel) {
       return Item.getItemFromBlock(this) == fuel.getItem()?300:0;
    }
 
+   @Override
    public int getFlammability(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
       return world.getBlockMetadata(x, y, z) == 2?1:super.getFlammability(world, x, y, z, face);
    }
 
+   @Override
    public int getFireSpreadSpeed(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
       return world.getBlockMetadata(x, y, z) == 2?1:super.getFireSpreadSpeed(world, x, y, z, face);
    }
@@ -88,6 +96,7 @@ public class BlockWitchWood extends BlockBase implements IFuelHandler {
          super(block);
       }
 
+      @Override
       protected String[] getNames() {
          return BlockWitchWood.WOOD_TYPES;
       }

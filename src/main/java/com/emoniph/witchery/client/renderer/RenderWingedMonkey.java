@@ -36,18 +36,22 @@ public class RenderWingedMonkey extends RenderLiving {
       super.doRender(entity, par2, par4, par6, par8, par9);
    }
 
+   @Override
    public void doRender(EntityLiving entity, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderMonkey((EntityWingedMonkey)entity, par2, par4, par6, par8, par9);
    }
 
+   @Override
    public void doRender(EntityLivingBase par1, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderMonkey((EntityWingedMonkey)par1, par2, par4, par6, par8, par9);
    }
 
+   @Override
    public void doRender(Entity entity, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderMonkey((EntityWingedMonkey)entity, par2, par4, par6, par8, par9);
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(Entity par1Entity) {
       return TEXTURE_URL;
    }

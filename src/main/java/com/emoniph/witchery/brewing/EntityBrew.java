@@ -37,6 +37,7 @@ public class EntityBrew extends EntityThrowableBase {
       this.setColor(WitcheryBrewRegistry.INSTANCE.getBrewColor(brewStack.getTagCompound()));
    }
 
+   @Override
    protected void entityInit() {
       super.dataWatcher.addObject(6, Integer.valueOf(0));
       super.dataWatcher.addObject(12, Byte.valueOf((byte)0));
@@ -63,18 +64,22 @@ public class EntityBrew extends EntityThrowableBase {
       return this.brewStack;
    }
 
+   @Override
    protected float getGravityVelocity() {
       return this.getIsSpell()?0.0F:0.05F;
    }
 
+   @Override
    protected float func_70182_d() {
       return this.getIsSpell()?4.0F:0.75F;
    }
 
+   @Override
    protected float func_70183_g() {
       return this.getIsSpell()?0.0F:-20.0F;
    }
 
+   @Override
    protected void onImpact(MovingObjectPosition mop) {
       if(!super.worldObj.isRemote && mop != null && WitcheryBrewRegistry.INSTANCE.impactSplashPotion(super.worldObj, this.brewStack, mop, new ModifiersImpact(new EntityPosition(this), false, 0, EntityUtil.playerOrFake(super.worldObj, this.getThrower())))) {
          super.worldObj.playAuxSFX(2002, MathHelper.floor_double(super.posX), MathHelper.floor_double(super.posY), MathHelper.floor_double(super.posZ), this.getColor());
@@ -83,6 +88,7 @@ public class EntityBrew extends EntityThrowableBase {
       this.setDead();
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       super.readEntityFromNBT(nbtRoot);
       if(nbtRoot.hasKey("Brew", 10)) {
@@ -99,6 +105,7 @@ public class EntityBrew extends EntityThrowableBase {
 
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       super.writeEntityToNBT(nbtRoot);
       if(this.brewStack != null) {

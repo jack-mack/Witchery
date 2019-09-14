@@ -57,6 +57,7 @@ public class EntitySplatter extends Entity {
 
    }
 
+   @Override
    protected void entityInit() {
       super.dataWatcher.addObject(6, Integer.valueOf(0));
    }
@@ -69,6 +70,7 @@ public class EntitySplatter extends Entity {
       return this.getDataWatcher().getWatchableObjectInt(6);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean isInRangeToRenderDist(double distSq) {
       double d1 = super.boundingBox.getAverageEdgeLength() * 4.0D;
@@ -96,6 +98,7 @@ public class EntitySplatter extends Entity {
       this.ticksInGround = 0;
    }
 
+   @Override
    public void setVelocity(double motionX, double motionY, double motionZ) {
       super.motionX = motionX;
       super.motionY = motionY;
@@ -108,6 +111,7 @@ public class EntitySplatter extends Entity {
 
    }
 
+   @Override
    public void onUpdate() {
       super.lastTickPosX = super.posX;
       super.lastTickPosY = super.posY;
@@ -270,6 +274,7 @@ public class EntitySplatter extends Entity {
 
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       nbtRoot.setShort("xTile", (short)this.field_145788_c);
       nbtRoot.setShort("yTile", (short)this.field_145786_d);
@@ -282,6 +287,7 @@ public class EntitySplatter extends Entity {
       nbtRoot.setInteger("Effect", this.effectID);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       this.field_145788_c = nbtRoot.getShort("xTile");
       this.field_145786_d = nbtRoot.getShort("yTile");
@@ -294,6 +300,7 @@ public class EntitySplatter extends Entity {
       this.setColor(nbtRoot.getInteger("Color"));
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public float getShadowSize() {
       return 0.0F;

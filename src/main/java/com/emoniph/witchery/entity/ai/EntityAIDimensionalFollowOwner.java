@@ -31,6 +31,7 @@ public class EntityAIDimensionalFollowOwner extends EntityAIBase {
       this.setMutexBits(3);
    }
 
+   @Override
    public boolean shouldExecute() {
       EntityLivingBase entitylivingbase = this.thePet.getOwner();
       if(entitylivingbase == null) {
@@ -45,22 +46,26 @@ public class EntityAIDimensionalFollowOwner extends EntityAIBase {
       }
    }
 
+   @Override
    public boolean continueExecuting() {
       return !this.petPathfinder.noPath() && this.thePet.getDistanceSqToEntity(this.theOwner) > (double)(this.maxDist * this.maxDist) && !this.thePet.isSitting();
    }
 
+   @Override
    public void startExecuting() {
       this.field_75343_h = 0;
       this.field_75344_i = this.thePet.getNavigator().getAvoidsWater();
       this.thePet.getNavigator().setAvoidsWater(false);
    }
 
+   @Override
    public void resetTask() {
       this.theOwner = null;
       this.petPathfinder.clearPathEntity();
       this.thePet.getNavigator().setAvoidsWater(this.field_75344_i);
    }
 
+   @Override
    public void updateTask() {
       this.thePet.getLookHelper().setLookPositionWithEntity(this.theOwner, 10.0F, (float)this.thePet.getVerticalFaceSpeed());
       if(!this.thePet.isSitting() && --this.field_75343_h <= 0) {

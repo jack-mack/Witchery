@@ -14,11 +14,13 @@ public class PotionIllFitting extends PotionBase {
       super(id, true, color);
    }
 
+   @Override
    public void postContructInitialize() {
       this.setPermenant();
       this.setIncurable();
    }
 
+   @Override
    public boolean isReady(int duration, int amplifier) {
       if(duration % 15 == 0) {
          switch(amplifier) {
@@ -36,6 +38,7 @@ public class PotionIllFitting extends PotionBase {
       }
    }
 
+   @Override
    public void performEffect(EntityLivingBase entity, int amplifier) {
       World world = entity.worldObj;
       if(!world.isRemote && !isTargetBanned(entity)) {

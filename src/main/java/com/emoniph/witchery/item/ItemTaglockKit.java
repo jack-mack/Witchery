@@ -62,12 +62,14 @@ public class ItemTaglockKit extends ItemBase {
       this.setMaxDamage(0);
    }
 
+   @Override
    public String getItemStackDisplayName(ItemStack itemStack) {
       String entityID = this.getBoundEntityDisplayName(itemStack, Integer.valueOf(1));
       String localizedName = super.getItemStackDisplayName(itemStack);
       return !entityID.isEmpty()?String.format("%s (%s)", new Object[]{localizedName, entityID}):localizedName;
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advTooltips) {
       super.addInformation(stack, player, list, advTooltips);
       String entityID = this.getBoundEntityDisplayName(stack, Integer.valueOf(1));
@@ -79,15 +81,18 @@ public class ItemTaglockKit extends ItemBase {
 
    }
 
+   @Override
    public void registerIcons(IIconRegister par1IconRegister) {
       this.emptyIcon = par1IconRegister.registerIcon(this.getIconString());
       this.fullIcon = par1IconRegister.registerIcon(this.getIconString() + ".full");
    }
 
+   @Override
    public int getMaxItemUseDuration(ItemStack stack) {
       return 1200;
    }
 
+   @Override
    public void onUsingTick(ItemStack stack, EntityPlayer player, int countdown) {
       World world = player.worldObj;
       int elapsedTicks = this.getMaxItemUseDuration(stack) - countdown;
@@ -113,10 +118,12 @@ public class ItemTaglockKit extends ItemBase {
 
    }
 
+   @Override
    public EnumAction getItemUseAction(ItemStack stack) {
       return EnumAction.none;
    }
 
+   @Override
    public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
       if(!world.isRemote) {
          Witchery.packetPipeline.sendTo((IMessage)(new PacketCamPos(false, false, (Entity)null)), player);
@@ -125,6 +132,7 @@ public class ItemTaglockKit extends ItemBase {
       return stack;
    }
 
+   @Override
    public void onPlayerStoppedUsing(ItemStack stack, World world, EntityPlayer player, int countdown) {
       if(!world.isRemote) {
          Witchery.packetPipeline.sendTo((IMessage)(new PacketCamPos(false, false, (Entity)null)), player);
@@ -132,11 +140,13 @@ public class ItemTaglockKit extends ItemBase {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIconFromDamage(int damageValue) {
       return damageValue == 1?this.fullIcon:this.emptyIcon;
    }
 
+   @Override
    public boolean onItemUseFirst(ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
       Block block = world.getBlock(x, y, z);
       if(block != Blocks.bed && block != Witchery.Blocks.COFFIN && !block.getUnlocalizedName().equals("tile.blockCarpentersBed") && !block.isBed(world, x, y, z, player)) {

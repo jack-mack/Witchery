@@ -43,56 +43,69 @@ public class EntityMindrake extends EntityTameable implements IEntitySelector {
       this.setSize(0.6F, 0.8F);
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.mindrake.name");
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(4.0D);
       this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.4D);
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    public int getMaxSafePointTries() {
       return this.getAttackTarget() == null?3:3 + (int)(this.getHealth() - 1.0F);
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
    }
 
+   @Override
    public void onUpdate() {
       super.onUpdate();
    }
 
+   @Override
    protected String getLivingSound() {
       return null;
    }
 
+   @Override
    protected String getHurtSound() {
       return "mob.ghast.scream";
    }
 
+   @Override
    protected String getDeathSound() {
       return "mob.ghast.death";
    }
 
+   @Override
    public boolean isEntityApplicable(Entity target) {
       return !this.isTamed()?target instanceof EntityPlayer:false;
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity entity) {
       if(!super.worldObj.isRemote) {
          super.worldObj.createExplosion(this, super.posX, super.posY, super.posZ, 1.5F, false);
@@ -106,6 +119,7 @@ public class EntityMindrake extends EntityTameable implements IEntitySelector {
       return true;
    }
 
+   @Override
    public void onDeath(DamageSource par1DamageSource) {
       super.onDeath(par1DamageSource);
       if(!super.worldObj.isRemote) {
@@ -114,10 +128,12 @@ public class EntityMindrake extends EntityTameable implements IEntitySelector {
 
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {
       this.entityDropItem(new ItemStack(Witchery.Items.SEEDS_MANDRAKE, super.worldObj.rand.nextDouble() <= 0.25D?2:1), 0.0F);
    }
 
+   @Override
    public EntityAgeable createChild(EntityAgeable var1) {
       return null;
    }

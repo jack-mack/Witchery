@@ -20,6 +20,7 @@ public class CreaturePowerBlaze extends CreaturePower {
       super(powerID, EntityBlaze.class);
    }
 
+   @Override
    public void onActivate(World world, EntityPlayer player, int elapsedTicks, MovingObjectPosition mop) {
       if(!world.isRemote) {
          world.playAuxSFXAtEntity((EntityPlayer)null, 1009, (int)player.posX, (int)player.posY, (int)player.posZ, 0);
@@ -50,6 +51,7 @@ public class CreaturePowerBlaze extends CreaturePower {
 
    }
 
+   @Override
    public void onDamage(World world, EntityPlayer player, LivingHurtEvent event) {
       if(event.source.isFireDamage() && event.isCancelable()) {
          int currentEnergy = Infusion.getCurrentEnergy(player);

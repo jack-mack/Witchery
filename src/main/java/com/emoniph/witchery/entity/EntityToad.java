@@ -73,40 +73,49 @@ public class EntityToad extends EntityTameable implements IFamiliar {
       return this.timeToLive != -1;
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.20000001192092895D);
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
    }
 
+   @Override
    public int getTotalArmorValue() {
       return super.getTotalArmorValue() + (this.isFamiliar()?5:0);
    }
 
+   @Override
    public int getTalkInterval() {
       return super.getTalkInterval() * 2;
    }
 
+   @Override
    public void setMaxHealth(float maxHealth) {
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue((double)maxHealth);
       this.setHealth(maxHealth);
       this.setFamiliar(true);
    }
 
+   @Override
    public EntityLivingBase getOwner() {
       return this.isFamiliar() && !super.worldObj.isRemote?TameableUtil.getOwnerAccrossDimensions(this):super.getOwner();
    }
 
+   @Override
    protected int decreaseAirSupply(int par1) {
       return par1;
    }
 
+   @Override
    protected void fall(float par1) {}
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    protected void updateAITick() {
       super.updateAITick();
       super.dataWatcher.updateObject(18, Float.valueOf(this.getHealth()));
@@ -136,6 +145,7 @@ public class EntityToad extends EntityTameable implements IFamiliar {
 
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(18, new Float(this.getHealth()));
@@ -144,6 +154,7 @@ public class EntityToad extends EntityTameable implements IFamiliar {
       super.dataWatcher.addObject(26, Byte.valueOf((byte)0));
    }
 
+   @Override
    public boolean isFamiliar() {
       return super.dataWatcher.getWatchableObjectByte(26) > 0;
    }
@@ -152,10 +163,12 @@ public class EntityToad extends EntityTameable implements IFamiliar {
       super.dataWatcher.updateObject(26, Byte.valueOf((byte)(familiar?1:0)));
    }
 
+   @Override
    protected void func_145780_a(int par1, int par2, int par3, Block par4) {
       this.playSound("mob.slime.small", 0.15F, 1.0F);
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
       par1NBTTagCompound.setByte("SkinColor", (byte)this.getSkinColor());
@@ -164,6 +177,7 @@ public class EntityToad extends EntityTameable implements IFamiliar {
       par1NBTTagCompound.setBoolean("Poisonous", this.poisoned);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
       if(par1NBTTagCompound.hasKey("SkinColor")) {
@@ -188,30 +202,37 @@ public class EntityToad extends EntityTameable implements IFamiliar {
 
    }
 
+   @Override
    protected String getLivingSound() {
       return "witchery:mob.toad.toad_croak";
    }
 
+   @Override
    protected String getHurtSound() {
       return "witchery:mob.toad.toad_hurt";
    }
 
+   @Override
    protected String getDeathSound() {
       return "witchery:mob.toad.toad_hurt";
    }
 
+   @Override
    protected float getSoundVolume() {
       return 0.4F;
    }
 
+   @Override
    protected Item getDropItem() {
       return !this.isTemp()?Items.slime_ball:super.getDropItem();
    }
 
+   @Override
    public void onLivingUpdate() {
       super.onLivingUpdate();
    }
 
+   @Override
    public void onUpdate() {
       super.isImmuneToFire = this.isFamiliar();
       super.onUpdate();
@@ -221,14 +242,17 @@ public class EntityToad extends EntityTameable implements IFamiliar {
 
    }
 
+   @Override
    public float getEyeHeight() {
       return super.height * 0.8F;
    }
 
+   @Override
    public int getVerticalFaceSpeed() {
       return this.isSitting()?20:super.getVerticalFaceSpeed();
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
       if(this.isEntityInvulnerable()) {
          return false;
@@ -246,10 +270,12 @@ public class EntityToad extends EntityTameable implements IFamiliar {
       }
    }
 
+   @Override
    public void setTamed(boolean par1) {
       super.setTamed(par1);
    }
 
+   @Override
    public boolean interact(EntityPlayer par1EntityPlayer) {
       if(this.isTemp()) {
          return true;
@@ -337,10 +363,12 @@ public class EntityToad extends EntityTameable implements IFamiliar {
       }
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.toad.name");
    }
 
+   @Override
    public boolean isBreedingItem(ItemStack par1ItemStack) {
       return par1ItemStack != null && par1ItemStack.getItem() == Items.rotten_flesh;
    }
@@ -363,6 +391,7 @@ public class EntityToad extends EntityTameable implements IFamiliar {
       return entity;
    }
 
+   @Override
    public boolean canMateWith(EntityAnimal par1EntityAnimal) {
       if(par1EntityAnimal == this) {
          return false;
@@ -380,10 +409,12 @@ public class EntityToad extends EntityTameable implements IFamiliar {
       return super.dataWatcher.getWatchableObjectByte(19) == 1;
    }
 
+   @Override
    protected boolean canDespawn() {
       return false;
    }
 
+   @Override
    public boolean func_142018_a(EntityLivingBase par1EntityLivingBase, EntityLivingBase par2EntityLivingBase) {
       if(!(par1EntityLivingBase instanceof EntityCreeper) && !(par1EntityLivingBase instanceof EntityGhast)) {
          if(par1EntityLivingBase instanceof EntityToad) {
@@ -399,10 +430,12 @@ public class EntityToad extends EntityTameable implements IFamiliar {
       }
    }
 
+   @Override
    public EntityAgeable createChild(EntityAgeable par1EntityAgeable) {
       return this.spawnBabyAnimal(par1EntityAgeable);
    }
 
+   @Override
    public void clearFamiliar() {
       this.setFamiliar(false);
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);

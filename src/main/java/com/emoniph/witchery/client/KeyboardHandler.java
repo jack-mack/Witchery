@@ -32,6 +32,7 @@ public class KeyboardHandler {
          private int remainingJumps;
          private boolean clearFall;
 
+         @Override
          protected void onKeyDown(EntityPlayer player, boolean repeated, boolean end) {
             if(!player.capabilities.isCreativeMode && !end) {
                if(this.isJumping) {
@@ -57,6 +58,7 @@ public class KeyboardHandler {
             }
 
          }
+         @Override
          protected void onTick(EntityPlayer player, boolean end) {
             if(player.onGround) {
                this.isJumping = false;
@@ -66,6 +68,7 @@ public class KeyboardHandler {
          }
       };
       this.HOTBAR1 = new KeyboardHandler.KeyInfo(Minecraft.getMinecraft().gameSettings.keyBindsHotbar[0], this.bindings) {
+         @Override
          protected void onKeyDown(EntityPlayer player, boolean repeated, boolean end) {
             if(!end) {
                ExtendedPlayer playerEx = ExtendedPlayer.get(player);
@@ -83,13 +86,16 @@ public class KeyboardHandler {
             }
 
          }
+         @Override
          protected void onKeyUp(EntityPlayer player, boolean end) {}
+         @Override
          protected void onTick(EntityPlayer player, boolean end) {}
       };
 
       for(int i = 1; i < Minecraft.getMinecraft().gameSettings.keyBindsHotbar.length; ++i) {
          final KeyBinding binding = Minecraft.getMinecraft().gameSettings.keyBindsHotbar[i];
          KeyboardHandler.KeyInfo var10001 = new KeyboardHandler.KeyInfo(binding, this.bindings) {
+            @Override
             protected void onKeyDown(EntityPlayer player, boolean repeated, boolean end) {
                if(!end) {
                   ExtendedPlayer playerEx = ExtendedPlayer.get(player);

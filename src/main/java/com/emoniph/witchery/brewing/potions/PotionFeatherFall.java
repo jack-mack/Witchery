@@ -9,10 +9,12 @@ public class PotionFeatherFall extends PotionBase {
       super(id, color);
    }
 
+   @Override
    public boolean isReady(int duration, int amplifier) {
       return true;
    }
 
+   @Override
    public void performEffect(EntityLivingBase entity, int amplifier) {
       int activationDistance = amplifier >= 2?3:(amplifier >= 1?4:5);
       int maxFallDistance = amplifier >= 3?3:(amplifier >= 2?4:(amplifier >= 1?5:6));

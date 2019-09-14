@@ -28,12 +28,14 @@ public class BlockSnowSlab extends BlockSlab {
       super.opaque = false;
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       BlockUtil.registerBlock(this, (Class)null, blockName);
       super.setBlockName(blockName);
       return this;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean shouldSideBeRendered(IBlockAccess block, int x, int y, int z, int side) {
       if(super.field_150004_a) {
@@ -54,28 +56,34 @@ public class BlockSnowSlab extends BlockSlab {
       return p_150003_0_ == Witchery.Blocks.SNOW_SLAB_SINGLE || p_150003_0_ == Witchery.Blocks.SNOW_SLAB_DOUBLE;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int p_149691_1_, int p_149691_2_) {
       return Blocks.snow.getIcon(p_149691_1_, p_149691_2_ & 7);
    }
 
+   @Override
    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
       return Item.getItemFromBlock(Witchery.Blocks.SNOW_SLAB_SINGLE);
    }
 
+   @Override
    protected ItemStack createStackedBlock(int p_149644_1_) {
       return new ItemStack(Item.getItemFromBlock(Witchery.Blocks.SNOW_SLAB_SINGLE), 2, p_149644_1_ & 7);
    }
 
+   @Override
    public String func_150002_b(int p_150002_1_) {
       return super.getUnlocalizedName();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_) {
       return super.field_150004_a?Witchery.Items.SNOW_SLAB_DOUBLE:Witchery.Items.SNOW_SLAB_SINGLE;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister p_149651_1_) {}
 }

@@ -7,6 +7,7 @@ public class TileEntityBase extends TileEntity {
    protected long ticks = 0L;
 
 
+   @Override
    public void updateEntity() {
       super.updateEntity();
       if(this.ticks == 0L) {

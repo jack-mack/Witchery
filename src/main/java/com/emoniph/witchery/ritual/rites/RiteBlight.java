@@ -26,6 +26,7 @@ public class RiteBlight extends RiteExpandingEffect {
       super(radius, height, true);
    }
 
+   @Override
    public boolean doRadiusAction(World world, int posX, int posY, int posZ, int radius, EntityPlayer player, boolean enhanced) {
       double radiusSq = (double)(radius * radius);
       double minSq = (double)Math.max(0, (radius - 1) * (radius - 1));
@@ -124,6 +125,7 @@ public class RiteBlight extends RiteExpandingEffect {
       return true;
    }
 
+   @Override
    public void doBlockAction(World world, int posX, int posY, int posZ, int currentRadius, EntityPlayer player, boolean enhanced) {
       if(!world.isRemote) {
          Block blockID = world.getBlock(posX, posY, posZ);

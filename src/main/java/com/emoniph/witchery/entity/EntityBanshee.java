@@ -39,6 +39,7 @@ public class EntityBanshee extends EntitySummonedUndead {
       super.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40.0D);
@@ -46,14 +47,17 @@ public class EntityBanshee extends EntitySummonedUndead {
       this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(0.0D);
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
    }
 
+   @Override
    protected boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    public void onLivingUpdate() {
       super.onLivingUpdate();
       boolean startedScreaming = false;
@@ -93,39 +97,48 @@ public class EntityBanshee extends EntitySummonedUndead {
 
    }
 
+   @Override
    public void onUpdate() {
       super.onUpdate();
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity par1Entity) {
       boolean flag = super.attackEntityAsMob(par1Entity);
       return flag;
    }
 
+   @Override
    protected String getLivingSound() {
       return null;
    }
 
+   @Override
    protected String getHurtSound() {
       return "witchery:mob.spectre.spectre_hit";
    }
 
+   @Override
    protected String getDeathSound() {
       return "witchery:mob.spectre.spectre_hit";
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.banshee.name");
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
    }
 
+   @Override
    public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData) {
       IEntityLivingData par1EntityLivingData1 = super.onSpawnWithEgg(par1EntityLivingData);
       return (IEntityLivingData)par1EntityLivingData1;

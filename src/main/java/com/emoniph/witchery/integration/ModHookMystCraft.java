@@ -8,10 +8,12 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class ModHookMystCraft extends ModHook {
 
+   @Override
    public String getModID() {
       return "Mystcraft";
    }
 
+   @Override
    protected void doInit() {
       this.removeMystCraftFluid(Witchery.Fluids.FLOWING_SPIRIT.getName());
       this.removeMystCraftFluid(Witchery.Fluids.HOLLOW_TEARS.getName());
@@ -31,7 +33,9 @@ public class ModHookMystCraft extends ModHook {
       FMLInterModComms.sendMessage(this.getModID(), "fluidsymbol", nbtRoot);
    }
 
+   @Override
    protected void doPostInit() {}
 
+   @Override
    protected void doReduceMagicPower(EntityLivingBase entity, float factor) {}
 }

@@ -23,10 +23,12 @@ public class RecipeShapelessAddKeys implements IRecipe {
       this.pattern = pattern;
    }
 
+   @Override
    public ItemStack getRecipeOutput() {
       return null;
    }
 
+   @Override
    public boolean matches(InventoryCrafting par1InventoryCrafting, World par2World) {
       ArrayList arraylist = new ArrayList(Arrays.asList(this.pattern));
 
@@ -56,6 +58,7 @@ public class RecipeShapelessAddKeys implements IRecipe {
       return arraylist.isEmpty();
    }
 
+   @Override
    public ItemStack getCraftingResult(InventoryCrafting inv) {
       ItemStack ring = this.findRecipeItemStack(inv, this.prototype.getItem(), this.prototype.getItemDamage());
       ItemStack result = ring != null?ring.copy():this.prototype.copy();
@@ -119,6 +122,7 @@ public class RecipeShapelessAddKeys implements IRecipe {
       return null;
    }
 
+   @Override
    public int getRecipeSize() {
       return this.pattern.length;
    }

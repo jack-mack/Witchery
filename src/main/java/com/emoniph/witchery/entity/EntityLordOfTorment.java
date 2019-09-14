@@ -71,6 +71,7 @@ public class EntityLordOfTorment extends EntityFlyingMob implements IRangedAttac
       super.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(500.0D);
@@ -79,11 +80,13 @@ public class EntityLordOfTorment extends EntityFlyingMob implements IRangedAttac
       this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(50.0D);
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(16, Byte.valueOf((byte)0));
    }
 
+   @Override
    public void onUpdate() {
       super.onUpdate();
       if(super.worldObj.isRemote) {
@@ -97,18 +100,22 @@ public class EntityLordOfTorment extends EntityFlyingMob implements IRangedAttac
       return super.dataWatcher.getWatchableObjectByte(16) != 0;
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    protected int decreaseAirSupply(int air) {
       return air;
    }
 
+   @Override
    protected boolean canDespawn() {
       return false;
    }
 
+   @Override
    public void onLivingUpdate() {
       super.onLivingUpdate();
       if(this.attackTimer > 0) {
@@ -121,6 +128,7 @@ public class EntityLordOfTorment extends EntityFlyingMob implements IRangedAttac
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void handleHealthUpdate(byte state) {
       if(state == 4) {
@@ -132,6 +140,7 @@ public class EntityLordOfTorment extends EntityFlyingMob implements IRangedAttac
 
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity target) {
       this.attackTimer = 10;
       super.worldObj.setEntityState(this, (byte)4);
@@ -149,14 +158,17 @@ public class EntityLordOfTorment extends EntityFlyingMob implements IRangedAttac
       return this.attackTimer;
    }
 
+   @Override
    public float getBrightness(float par1) {
       return 1.0F;
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.lordoftorment.name");
    }
 
+   @Override
    public void readFromNBT(NBTTagCompound nbtRoot) {
       super.readFromNBT(nbtRoot);
       if(nbtRoot.hasKey("WITCAttackers")) {
@@ -172,6 +184,7 @@ public class EntityLordOfTorment extends EntityFlyingMob implements IRangedAttac
 
    }
 
+   @Override
    public void writeToNBT(NBTTagCompound nbtRoot) {
       super.writeToNBT(nbtRoot);
       NBTTagList nbtAttackers = new NBTTagList();
@@ -186,6 +199,7 @@ public class EntityLordOfTorment extends EntityFlyingMob implements IRangedAttac
       nbtRoot.setTag("WITCAttackers", nbtAttackers);
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource source, float damage) {
       if(source.isExplosion()) {
          return false;
@@ -232,30 +246,37 @@ public class EntityLordOfTorment extends EntityFlyingMob implements IRangedAttac
       }
    }
 
+   @Override
    public float getCapDT(DamageSource source, float damage) {
       return 5.0F;
    }
 
+   @Override
    protected String getLivingSound() {
       return "witchery:mob.torment.laugh";
    }
 
+   @Override
    protected String getHurtSound() {
       return "witchery:mob.torment.hit";
    }
 
+   @Override
    protected String getDeathSound() {
       return "witchery:mob.torment.death";
    }
 
+   @Override
    public int getTalkInterval() {
       return TimeUtil.secsToTicks(10);
    }
 
+   @Override
    protected Item getDropItem() {
       return null;
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {
       Enchantment enchantment = Enchantment.enchantmentsBookList[super.rand.nextInt(Enchantment.enchantmentsBookList.length)];
       int k = MathHelper.getRandomIntegerInRange(super.rand, Math.min(enchantment.getMinLevel() + 3, enchantment.getMaxLevel()), enchantment.getMaxLevel());
@@ -269,26 +290,32 @@ public class EntityLordOfTorment extends EntityFlyingMob implements IRangedAttac
       this.entityDropItem(Witchery.Items.GENERIC.itemBrewSoulTorment.createStack(), 0.0F);
    }
 
+   @Override
    protected float getSoundVolume() {
       return 2.0F;
    }
 
+   @Override
    public boolean getCanSpawnHere() {
       return true;
    }
 
+   @Override
    public int getMaxSpawnedInChunk() {
       return 1;
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
    }
 
+   @Override
    public void attackEntityWithRangedAttack(EntityLivingBase targetEntity, float par2) {
       this.attackTimer = 10;
       super.worldObj.setEntityState(this, (byte)4);

@@ -30,10 +30,12 @@ public class BrewActionTranspose extends BrewActionEffect {
       super(itemKey, namePart, powerCost, baseProbability, effectLevel);
    }
 
+   @Override
    public boolean isRitualTargetLocationValid(MinecraftServer server, World world, int x, int y, int z, BlockPosition target, ModifiersRitual modifiers) {
       return BrewActionRitual.isDistanceAllowed(world, x, y, z, target, modifiers.covenSize, modifiers.leonard) && CircleUtil.isMediumCircle(target.getWorld(server), target.x, target.y, target.z, Witchery.Blocks.GLYPH_OTHERWHERE);
    }
 
+   @Override
    protected void doApplyRitualToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersRitual ritual, ModifiersEffect modifiers, ItemStack stack) {
       boolean height = true;
       BlockPosition midSource = ritual.getTarget();
@@ -64,6 +66,7 @@ public class BrewActionTranspose extends BrewActionEffect {
 
    }
 
+   @Override
    protected void doApplyRitualToEntity(World world, EntityLivingBase targetEntity, ModifiersRitual ritualModifiers, ModifiersEffect modifiers, ItemStack stack) {
       if(!PotionEnderInhibition.isActive(targetEntity, 3)) {
          BlockPosition target = ritualModifiers.getTarget();
@@ -73,8 +76,10 @@ public class BrewActionTranspose extends BrewActionEffect {
 
    }
 
+   @Override
    protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {}
 
+   @Override
    protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
       if(!PotionEnderInhibition.isActive(targetEntity, modifiers.getStrength())) {
          this.teleportAway(world, new BlockPosition(world, modifiers.impactLocation != null?modifiers.impactLocation:new EntityPosition(targetEntity)), targetEntity, 10 * (modifiers.getStrength() + 1));

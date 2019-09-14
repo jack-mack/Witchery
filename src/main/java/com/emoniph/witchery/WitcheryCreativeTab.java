@@ -14,10 +14,12 @@ public final class WitcheryCreativeTab extends CreativeTabs {
       super("tabWitchery");
    }
 
+   @Override
    public Item getTabIconItem() {
       return Witchery.Items.POPPET;
    }
 
+   @Override
    public ItemStack getIconItemStack() {
       return Witchery.Items.GENERIC.itemBroomEnchanted.createStack();
    }

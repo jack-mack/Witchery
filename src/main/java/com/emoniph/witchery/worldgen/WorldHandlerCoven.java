@@ -18,18 +18,22 @@ public class WorldHandlerCoven implements IWorldGenHandler {
       this.range = range;
    }
 
+   @Override
    public int getExtentX() {
       return 11;
    }
 
+   @Override
    public int getExtentZ() {
       return 11;
    }
 
+   @Override
    public int getRange() {
       return this.range;
    }
 
+   @Override
    public boolean generate(World world, Random random, int x, int z) {
       if(Config.instance().generateCovens && random.nextDouble() < this.chance) {
          int direction = random.nextInt(4);
@@ -44,5 +48,6 @@ public class WorldHandlerCoven implements IWorldGenHandler {
       }
    }
 
+   @Override
    public void initiate() {}
 }

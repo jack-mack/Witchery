@@ -227,6 +227,7 @@ public class ModelWitchesClothes extends ModelBiped {
       this.setRotation(this.shoulderLeft, 0.0F, 0.2974289F, 0.1830717F);
    }
 
+   @Override
    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
       EntityLivingBase living;
       ItemStack belt;

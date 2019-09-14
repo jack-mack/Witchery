@@ -18,18 +18,22 @@ public class WorldHandlerShack implements IWorldGenHandler {
       this.range = range;
    }
 
+   @Override
    public int getExtentX() {
       return 7;
    }
 
+   @Override
    public int getExtentZ() {
       return 7;
    }
 
+   @Override
    public int getRange() {
       return this.range;
    }
 
+   @Override
    public boolean generate(World world, Random random, int x, int z) {
       if(Config.instance().generateShacks && random.nextDouble() < this.chance) {
          int direction = random.nextInt(4);
@@ -41,5 +45,6 @@ public class WorldHandlerShack implements IWorldGenHandler {
       }
    }
 
+   @Override
    public void initiate() {}
 }

@@ -34,6 +34,7 @@ public class RiteNaturesPower extends Rite {
       this.expanse = expanse;
    }
 
+   @Override
    public void addSteps(ArrayList steps, int intialStage) {
       steps.add(new RiteNaturesPower.StepNaturesPower(this, intialStage));
    }
@@ -51,10 +52,12 @@ public class RiteNaturesPower extends Rite {
          this.stage = initialStage;
       }
 
+      @Override
       public int getCurrentStage() {
          return (byte)this.stage;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(ticks % 20L != 0L) {
             return RitualStep.Result.STARTING;

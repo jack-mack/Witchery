@@ -40,6 +40,7 @@ public class BlockWitchSapling extends BlockBaseBush implements IFuelHandler, IG
       GameRegistry.registerFuelHandler(this);
    }
 
+   @Override
    public void updateTick(World world, int x, int y, int z, Random rand) {
       if(!world.isRemote) {
          super.updateTick(world, x, y, z, rand);
@@ -50,6 +51,7 @@ public class BlockWitchSapling extends BlockBaseBush implements IFuelHandler, IG
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int par1, int metadata) {
       metadata &= 3;
@@ -117,10 +119,12 @@ public class BlockWitchSapling extends BlockBaseBush implements IFuelHandler, IG
       return world.getBlock(x, y, z) == this && (world.getBlockMetadata(x, y, z) & 3) == metadata;
    }
 
+   @Override
    public int damageDropped(int metadata) {
       return metadata & 3;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list) {
       for(int i = 0; i < WOOD_TYPES.length; ++i) {
@@ -129,6 +133,7 @@ public class BlockWitchSapling extends BlockBaseBush implements IFuelHandler, IG
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {
       this.saplingIcon = new IIcon[WOOD_TYPES.length];
@@ -139,18 +144,22 @@ public class BlockWitchSapling extends BlockBaseBush implements IFuelHandler, IG
 
    }
 
+   @Override
    public int getBurnTime(ItemStack fuel) {
       return Item.getItemFromBlock(this) == fuel.getItem()?100:0;
    }
 
+   @Override
    public boolean func_149851_a(World world, int rand, int x, int y, boolean z) {
       return true;
    }
 
+   @Override
    public boolean func_149852_a(World world, Random rand, int x, int y, int z) {
       return (double)world.rand.nextFloat() < 0.75D;
    }
 
+   @Override
    public void func_149853_b(World world, Random rand, int x, int y, int z) {
       markOrGrowMarked(world, x, y, z, rand);
    }
@@ -162,10 +171,12 @@ public class BlockWitchSapling extends BlockBaseBush implements IFuelHandler, IG
          super(block);
       }
 
+      @Override
       protected String[] getNames() {
          return BlockWitchSapling.WOOD_TYPES;
       }
 
+      @Override
       @SideOnly(Side.CLIENT)
       public IIcon getIconFromDamage(int par1) {
          return super.field_150939_a.getIcon(0, par1);

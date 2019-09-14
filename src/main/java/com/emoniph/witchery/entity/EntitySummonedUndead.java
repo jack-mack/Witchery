@@ -19,6 +19,7 @@ public class EntitySummonedUndead extends EntityMob {
       super(world);
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(17, "");
@@ -26,6 +27,7 @@ public class EntitySummonedUndead extends EntityMob {
       super.dataWatcher.addObject(19, Integer.valueOf(Integer.valueOf(0).intValue()));
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       super.writeEntityToNBT(nbtRoot);
       if(this.getSummonerName() == null) {
@@ -38,6 +40,7 @@ public class EntitySummonedUndead extends EntityMob {
       nbtRoot.setInteger("SuicideIn", this.timeToLive);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       super.readEntityFromNBT(nbtRoot);
       String s = nbtRoot.getString("Summoner");
@@ -62,6 +65,7 @@ public class EntitySummonedUndead extends EntityMob {
       return this.timeToLive != -1;
    }
 
+   @Override
    protected int decreaseAirSupply(int par1) {
       return par1;
    }
@@ -79,10 +83,12 @@ public class EntitySummonedUndead extends EntityMob {
       return super.worldObj.getPlayerEntityByName(this.getSummonerName());
    }
 
+   @Override
    public EnumCreatureAttribute getCreatureAttribute() {
       return EnumCreatureAttribute.UNDEAD;
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {
       if(!this.isTemp()) {
          int chance = super.rand.nextInt(Math.max(4 - par2, 2));
@@ -94,6 +100,7 @@ public class EntitySummonedUndead extends EntityMob {
 
    }
 
+   @Override
    protected void updateAITick() {
       super.updateAITick();
       if(super.worldObj != null && !super.isDead && !super.worldObj.isRemote && this.timeToLive != -1 && (--this.timeToLive == 0 || this.getAttackTarget() == null || this.getAttackTarget().isDead)) {
@@ -103,6 +110,7 @@ public class EntitySummonedUndead extends EntityMob {
 
    }
 
+   @Override
    public int getTalkInterval() {
       return super.getTalkInterval() * 3;
    }
@@ -123,6 +131,7 @@ public class EntitySummonedUndead extends EntityMob {
       super.dataWatcher.updateObject(19, Integer.valueOf(Integer.valueOf(obscured?1:0).intValue()));
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource damageSource, float damage) {
       return super.attackEntityFrom(damageSource, Math.min(damage, 15.0F));
    }

@@ -62,10 +62,12 @@ public class EntityBroom extends Entity {
       super.prevPosZ = z;
    }
 
+   @Override
    protected boolean canTriggerWalking() {
       return false;
    }
 
+   @Override
    protected void entityInit() {
       super.dataWatcher.addObject(10, "");
       super.dataWatcher.addObject(16, Byte.valueOf((byte)-1));
@@ -74,6 +76,7 @@ public class EntityBroom extends Entity {
       super.dataWatcher.addObject(19, new Float(0.0F));
    }
 
+   @Override
    protected void dealFireDamage(int par1) {}
 
    public void setBrushColor(int color) {
@@ -96,22 +99,27 @@ public class EntityBroom extends Entity {
       return super.dataWatcher.getWatchableObjectString(10).length() > 0;
    }
 
+   @Override
    public AxisAlignedBB getCollisionBox(Entity par1Entity) {
       return par1Entity.boundingBox;
    }
 
+   @Override
    public AxisAlignedBB getBoundingBox() {
       return super.boundingBox;
    }
 
+   @Override
    public boolean canBePushed() {
       return true;
    }
 
+   @Override
    public double getMountedYOffset() {
       return (double)super.height * 0.55D;
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
       if(this.isEntityInvulnerable()) {
          return false;
@@ -149,6 +157,7 @@ public class EntityBroom extends Entity {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void performHurtAnimation() {
       this.setForwardDirection(-this.getForwardDirection());
@@ -156,10 +165,12 @@ public class EntityBroom extends Entity {
       this.setDamageTaken(this.getDamageTaken() * 11.0F);
    }
 
+   @Override
    public boolean canBeCollidedWith() {
       return !super.isDead && super.riddenByEntity == null;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void setPositionAndRotation2(double x, double y, double z, float yaw, float pitch, int par9) {
       if(this.field_70279_a) {
@@ -186,6 +197,7 @@ public class EntityBroom extends Entity {
       super.motionZ = this.velocityZ;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void setVelocity(double x, double y, double z) {
       this.velocityX = super.motionX = x;
@@ -193,6 +205,7 @@ public class EntityBroom extends Entity {
       this.velocityZ = super.motionZ = z;
    }
 
+   @Override
    public void onUpdate() {
       super.onUpdate();
       if(super.ticksExisted % 100 == 0 && super.riddenByEntity != null && super.riddenByEntity instanceof EntityPlayer) {
@@ -333,10 +346,12 @@ public class EntityBroom extends Entity {
 
    }
 
+   @Override
    public void updateRiderPosition() {
       super.updateRiderPosition();
    }
 
+   @Override
    protected void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       par1NBTTagCompound.setString("CustomName", this.getCustomNameTag());
       int brushColor = this.getBrushColor();
@@ -346,6 +361,7 @@ public class EntityBroom extends Entity {
 
    }
 
+   @Override
    protected void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       if(par1NBTTagCompound.hasKey("CustomName") && par1NBTTagCompound.getString("CustomName").length() > 0) {
          this.setCustomNameTag(par1NBTTagCompound.getString("CustomName"));
@@ -357,11 +373,13 @@ public class EntityBroom extends Entity {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public float getShadowSize() {
       return 0.0F;
    }
 
+   @Override
    public boolean interactFirst(EntityPlayer player) {
       if(super.riddenByEntity != null && super.riddenByEntity instanceof EntityPlayer && super.riddenByEntity != player) {
          return true;

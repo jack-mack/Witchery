@@ -47,6 +47,7 @@ public class PacketPlayerSync implements IMessage {
 
    }
 
+   @Override
    public void toBytes(ByteBuf buffer) {
       buffer.writeInt(this.infusionID);
       buffer.writeInt(this.curEnergy);
@@ -58,6 +59,7 @@ public class PacketPlayerSync implements IMessage {
       buffer.writeLong(this.brewTime);
    }
 
+   @Override
    public void fromBytes(ByteBuf buffer) {
       this.infusionID = buffer.readInt();
       this.curEnergy = buffer.readInt();
@@ -71,6 +73,7 @@ public class PacketPlayerSync implements IMessage {
 
    public static class Handler implements IMessageHandler<PacketPlayerSync, IMessage> {
 
+      @Override
       public IMessage onMessage(PacketPlayerSync message, MessageContext ctx) {
          EntityPlayer player = Witchery.proxy.getPlayer(ctx);
          if(player != null && message != null) {

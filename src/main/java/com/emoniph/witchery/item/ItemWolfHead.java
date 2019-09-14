@@ -33,6 +33,7 @@ public class ItemWolfHead extends MultiItemBlock {
       this.setTextureName("witchery:wolfhead");
    }
 
+   @Override
    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
       if(side == 0) {
          return false;
@@ -84,6 +85,7 @@ public class ItemWolfHead extends MultiItemBlock {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void getSubItems(Item p_150895_1_, CreativeTabs p_150895_2_, List p_150895_3_) {
       for(int i = 0; i < skullTypes.length; ++i) {
@@ -92,10 +94,12 @@ public class ItemWolfHead extends MultiItemBlock {
 
    }
 
+   @Override
    public int getMetadata(int p_77647_1_) {
       return p_77647_1_;
    }
 
+   @Override
    public String getUnlocalizedName(ItemStack p_77667_1_) {
       int i = p_77667_1_.getItemDamage();
       if(i < 0 || i >= skullTypes.length) {
@@ -105,6 +109,7 @@ public class ItemWolfHead extends MultiItemBlock {
       return super.getUnlocalizedName() + "." + skullTypes[i];
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIconFromDamage(int p_77617_1_) {
       if(p_77617_1_ < 0 || p_77617_1_ >= skullTypes.length) {
@@ -114,10 +119,12 @@ public class ItemWolfHead extends MultiItemBlock {
       return this.field_94586_c[p_77617_1_];
    }
 
+   @Override
    public String getItemStackDisplayName(ItemStack p_77653_1_) {
       return super.getItemStackDisplayName(p_77653_1_);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerIcons(IIconRegister p_94581_1_) {
       this.field_94586_c = new IIcon[field_94587_a.length];
@@ -128,6 +135,7 @@ public class ItemWolfHead extends MultiItemBlock {
 
    }
 
+   @Override
    protected String[] getNames() {
       return skullTypes;
    }

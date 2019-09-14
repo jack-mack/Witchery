@@ -21,6 +21,7 @@ public class BlockSpanishMoss extends BlockVine {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       BlockUtil.registerBlock(this, blockName);
       super.setBlockName(blockName);
@@ -28,20 +29,24 @@ public class BlockSpanishMoss extends BlockVine {
       return this;
    }
 
+   @Override
    public boolean isLadder(IBlockAccess world, int x, int y, int z, EntityLivingBase entity) {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getBlockColor() {
       return ColorizerFoliage.getFoliageColorBirch();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getRenderColor(int par1) {
       return ColorizerFoliage.getFoliageColorBirch();
    }
 
+   @Override
    public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
       for(int i = 0; i < 2; ++i) {
          super.updateTick(par1World, par2, par3, par4, par5Random);

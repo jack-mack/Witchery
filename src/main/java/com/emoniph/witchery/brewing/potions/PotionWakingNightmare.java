@@ -21,11 +21,13 @@ public class PotionWakingNightmare extends PotionBase implements IHandleLivingUp
       super(id, true, color);
    }
 
+   @Override
    public void postContructInitialize() {
       this.setPermenant();
       this.setIncurable();
    }
 
+   @Override
    public void onLivingUpdate(World world, EntityLivingBase entity, LivingUpdateEvent event, int amplifier, int duration) {
       if(!world.isRemote && world.getTotalWorldTime() % 20L == 3L && entity.dimension != Config.instance().dimensionDreamID && world.rand.nextInt(amplifier > 3?30:(amplifier > 1?60:180)) == 0) {
          double R = 16.0D;

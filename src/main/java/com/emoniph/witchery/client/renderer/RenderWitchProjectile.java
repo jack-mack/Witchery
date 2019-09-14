@@ -23,6 +23,7 @@ public class RenderWitchProjectile extends RenderSnowball {
       super(item, damageValue);
    }
 
+   @Override
    public void doRender(Entity entity, double par2, double par4, double par6, float par8, float par9) {
       if(entity instanceof EntityWitchProjectile) {
          EntityWitchProjectile entityProjectile = (EntityWitchProjectile)entity;

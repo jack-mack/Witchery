@@ -18,6 +18,7 @@ public class PredictionNetherTrip extends Prediction {
       super(id, itemWeight, selfFulfillmentProbabilityPerSec, translationKey);
    }
 
+   @Override
    public boolean isPredictionPossible(World world, EntityPlayer player) {
       try {
          NBTTagCompound e = Infusion.getNBT(player);
@@ -30,6 +31,7 @@ public class PredictionNetherTrip extends Prediction {
       }
    }
 
+   @Override
    public boolean doSelfFulfillment(World world2, EntityPlayer player) {
       boolean FALL_DISTANCE = true;
       boolean RADIUS = true;
@@ -82,6 +84,7 @@ public class PredictionNetherTrip extends Prediction {
       }
    }
 
+   @Override
    public boolean checkIfFulfilled(World world, EntityPlayer player, LivingUpdateEvent event, boolean isPastDue, boolean veryOld) {
       if(player.dimension == -1) {
          Log.instance().debug(String.format("Prediction for got to nether fulfilled as predicted", new Object[0]));

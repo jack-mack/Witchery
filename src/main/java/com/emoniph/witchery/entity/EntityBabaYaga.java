@@ -72,12 +72,14 @@ public class EntityBabaYaga extends EntityMob implements IBossDisplayData, IRang
       super.experienceValue = 70;
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       this.getDataWatcher().addObject(21, Byte.valueOf((byte)0));
       super.dataWatcher.addObject(17, "");
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
       if(this.getOwnerName() == null) {
@@ -88,6 +90,7 @@ public class EntityBabaYaga extends EntityMob implements IBossDisplayData, IRang
 
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
       String s = par1NBTTagCompound.getString("Owner");
@@ -97,18 +100,22 @@ public class EntityBabaYaga extends EntityMob implements IBossDisplayData, IRang
 
    }
 
+   @Override
    public String getOwnerName() {
       return super.dataWatcher.getWatchableObjectString(17);
    }
 
+   @Override
    public void setOwner(String par1Str) {
       super.dataWatcher.updateObject(17, par1Str);
    }
 
+   @Override
    public EntityPlayer getOwnerEntity() {
       return super.worldObj.getPlayerEntityByName(this.getOwnerName());
    }
 
+   @Override
    public boolean isEntityApplicable(Entity entity) {
       if(entity != null && entity instanceof EntityPlayer) {
          String ownerName = this.getOwnerName();
@@ -119,22 +126,27 @@ public class EntityBabaYaga extends EntityMob implements IBossDisplayData, IRang
       }
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.babayaga.name");
    }
 
+   @Override
    public int getTotalArmorValue() {
       return 4;
    }
 
+   @Override
    protected String getLivingSound() {
       return "witchery:mob.baba.baba_living";
    }
 
+   @Override
    protected String getHurtSound() {
       return "mob.witch.hurt";
    }
 
+   @Override
    protected String getDeathSound() {
       return "witchery:mob.baba.baba_death";
    }
@@ -147,22 +159,27 @@ public class EntityBabaYaga extends EntityMob implements IBossDisplayData, IRang
       return this.getDataWatcher().getWatchableObjectByte(21) == 1;
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(500.0D);
       this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3D);
    }
 
+   @Override
    protected int decreaseAirSupply(int par1) {
       return par1;
    }
 
+   @Override
    protected void fall(float par1) {}
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    public void onLivingUpdate() {
       if(!super.worldObj.isRemote) {
          if(this.getAggressive()) {
@@ -306,6 +323,7 @@ public class EntityBabaYaga extends EntityMob implements IBossDisplayData, IRang
       }
    }
 
+   @Override
    protected float applyPotionDamageCalculations(DamageSource par1DamageSource, float par2) {
       par2 = super.applyPotionDamageCalculations(par1DamageSource, par2);
       if(par1DamageSource.getEntity() == this) {
@@ -319,6 +337,7 @@ public class EntityBabaYaga extends EntityMob implements IBossDisplayData, IRang
       return par2;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void handleHealthUpdate(byte par1) {
       if(par1 == 15) {
@@ -331,6 +350,7 @@ public class EntityBabaYaga extends EntityMob implements IBossDisplayData, IRang
 
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource source, float damage) {
       boolean result = super.attackEntityFrom(source, Math.min(damage, 15.0F));
       if(!super.worldObj.isRemote && source.getEntity() != null && source.getEntity() instanceof EntityLiving) {
@@ -358,10 +378,12 @@ public class EntityBabaYaga extends EntityMob implements IBossDisplayData, IRang
       return result;
    }
 
+   @Override
    public float getCapDT(DamageSource source, float damage) {
       return 15.0F;
    }
 
+   @Override
    public void onDeath(DamageSource par1DamageSource) {
       super.onDeath(par1DamageSource);
       if(!super.worldObj.isRemote) {
@@ -371,6 +393,7 @@ public class EntityBabaYaga extends EntityMob implements IBossDisplayData, IRang
       this.setDead();
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {
       int j = super.rand.nextInt(3) + 2;
 
@@ -394,6 +417,7 @@ public class EntityBabaYaga extends EntityMob implements IBossDisplayData, IRang
       this.entityDropItem(new ItemStack(Witchery.Items.BABAS_HAT), 0.0F);
    }
 
+   @Override
    public void attackEntityWithRangedAttack(EntityLivingBase par1EntityLivingBase, float par2) {
       if(!this.getAggressive()) {
          if(super.worldObj.rand.nextInt(3) == 0) {

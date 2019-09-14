@@ -23,10 +23,13 @@ public class InfusedBrewGraveEffect extends InfusedBrewEffect {
       super(id, durationMS, 16, 16);
    }
 
+   @Override
    public void immediateEffect(World world, EntityPlayer player, ItemStack stack) {}
 
+   @Override
    public void regularEffect(World world, EntityPlayer player) {}
 
+   @Override
    public boolean tryUseEffect(EntityPlayer player, MovingObjectPosition mop) {
       if(this.isActive(player)) {
          NBTTagCompound nbtPlayer = Infusion.getNBT(player);

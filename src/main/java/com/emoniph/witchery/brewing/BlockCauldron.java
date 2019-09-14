@@ -48,24 +48,29 @@ public class BlockCauldron extends BlockBaseContainer {
       this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.85F, 1.0F);
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
       float f = 0.0625F;
       return AxisAlignedBB.getBoundingBox((double)((float)x + 0.0625F), (double)y, (double)((float)z + 0.0625F), (double)((float)(x + 1) - 0.0625F), (double)((float)(y + 1) - 0.0625F), (double)((float)(z + 1) - 0.0625F));
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
       TileEntityCauldron cauldron = (TileEntityCauldron)BlockUtil.getTileEntity(world, x, y, z, TileEntityCauldron.class);
@@ -138,6 +143,7 @@ public class BlockCauldron extends BlockBaseContainer {
 
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
       if(!world.isRemote && entity instanceof EntityItem) {
          TileEntityCauldron cauldron = (TileEntityCauldron)BlockUtil.getTileEntity(world, x, y, z, TileEntityCauldron.class);
@@ -176,10 +182,12 @@ public class BlockCauldron extends BlockBaseContainer {
 
    }
 
+   @Override
    public boolean hasComparatorInputOverride() {
       return true;
    }
 
+   @Override
    public int getComparatorInputOverride(World world, int x, int y, int z, int side) {
       TileEntityCauldron cauldron = (TileEntityCauldron)BlockUtil.getTileEntity(world, x, y, z, TileEntityCauldron.class);
       byte signal = 0;
@@ -213,6 +221,7 @@ public class BlockCauldron extends BlockBaseContainer {
       }
    }
 
+   @Override
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
       if(world.isRemote) {
          return true;

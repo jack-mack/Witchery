@@ -30,6 +30,7 @@ public class PredictionFight extends Prediction {
       this.bindTameable = bindTameable;
    }
 
+   @Override
    public boolean doSelfFulfillment(World world, EntityPlayer player) {
       try {
          int ex = MathHelper.floor_double(player.posX);
@@ -108,6 +109,7 @@ public class PredictionFight extends Prediction {
       return true;
    }
 
+   @Override
    public boolean checkIfFulfilled(World world, EntityPlayer player, LivingHurtEvent event, boolean isPastDue, boolean veryOld) {
       if(!event.isCanceled()) {
          Entity attackingEntity = event.source.getEntity();

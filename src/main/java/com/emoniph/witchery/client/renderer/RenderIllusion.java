@@ -34,22 +34,27 @@ public class RenderIllusion extends RenderLiving {
       super.preRenderCallback(illusionEntity, par2);
    }
 
+   @Override
    public void doRender(EntityLiving par1EntityLiving, double par2, double par4, double par6, float par8, float par9) {
       this.renderLivingIllusion((EntityIllusion)par1EntityLiving, par2, par4, par6, par8, par9);
    }
 
+   @Override
    protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2) {
       this.preRenderIllusion((EntityIllusion)par1EntityLivingBase, par2);
    }
 
+   @Override
    public void doRender(EntityLivingBase par1EntityLivingBase, double par2, double par4, double par6, float par8, float par9) {
       this.renderLivingIllusion((EntityIllusion)par1EntityLivingBase, par2, par4, par6, par8, par9);
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(Entity par1Entity) {
       return this.textures;
    }
 
+   @Override
    public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9) {
       this.renderLivingIllusion((EntityIllusion)par1Entity, par2, par4, par6, par8, par9);
    }

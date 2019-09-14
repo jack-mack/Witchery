@@ -27,6 +27,7 @@ public class PredictionRescue extends PredictionAlwaysForced {
       this.entityClass = entityClass;
    }
 
+   @Override
    public boolean checkIfFulfilled(World world, EntityPlayer player, LivingHurtEvent event, boolean isPastDue, boolean veryOld) {
       if(!event.isCanceled()) {
          Entity attackingEntity = event.source.getEntity();

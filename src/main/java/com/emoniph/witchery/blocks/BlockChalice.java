@@ -29,26 +29,32 @@ public class BlockChalice extends BlockBaseContainer {
       this.setBlockBounds(0.3F, 0.0F, 0.37F, 0.63F, 0.46F, 0.695F);
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public int quantityDropped(Random rand) {
       return 1;
    }
 
+   @Override
    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
       return Witchery.Items.GENERIC;
    }
 
+   @Override
    public int damageDropped(int metadata) {
       return metadata == 1?Witchery.Items.GENERIC.itemChaliceFull.damageValue:Witchery.Items.GENERIC.itemChaliceEmpty.damageValue;
    }
 
+   @Override
    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, Block par5) {
       this.func_111046_k(par1World, par2, par3, par4);
    }
@@ -63,21 +69,25 @@ public class BlockChalice extends BlockBaseContainer {
       }
    }
 
+   @Override
    public boolean canBlockStay(World world, int x, int y, int z) {
       Material material = world.getBlock(x, y - 1, z).getMaterial();
       return !world.isAirBlock(x, y - 1, z) && material != null && material.isOpaque() && material.isSolid();
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       TileEntity tileEntity = world.getTileEntity(x, y, z);
       return tileEntity != null && tileEntity instanceof BlockChalice.TileEntityChalice && ((BlockChalice.TileEntityChalice)tileEntity).isFilled()?Witchery.Items.GENERIC.itemChaliceFull.createStack():Witchery.Items.GENERIC.itemChaliceEmpty.createStack();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
       int metadata = world.getBlockMetadata(x, y, z);
@@ -101,6 +111,7 @@ public class BlockChalice extends BlockBaseContainer {
          return this.filled;
       }
 
+      @Override
       public void updateEntity() {
          if(!this.checkState) {
             this.checkState = true;
@@ -112,11 +123,13 @@ public class BlockChalice extends BlockBaseContainer {
          super.updateEntity();
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtTag) {
          super.writeToNBT(nbtTag);
          nbtTag.setBoolean("WITCFilled", this.filled);
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtTag) {
          super.readFromNBT(nbtTag);
          if(nbtTag.hasKey("WITCFilled")) {
@@ -125,12 +138,14 @@ public class BlockChalice extends BlockBaseContainer {
 
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          this.readFromNBT(packet.func_148857_g());

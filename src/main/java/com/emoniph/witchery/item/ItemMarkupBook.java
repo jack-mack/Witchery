@@ -28,6 +28,7 @@ public class ItemMarkupBook extends ItemBase {
       this.creativeMetaValues = creativeMetaValues;
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
       int posX = MathHelper.floor_double(player.posX);
       int posY = MathHelper.floor_double(player.posY);
@@ -36,6 +37,7 @@ public class ItemMarkupBook extends ItemBase {
       return stack;
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean expandedTooltip) {
       String itemName = Item.itemRegistry.getNameForObject(stack.getItem());
       String[] arr$ = Witchery.resource("item." + itemName + ".tip").split("\n");
@@ -50,6 +52,7 @@ public class ItemMarkupBook extends ItemBase {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void getSubItems(Item item, CreativeTabs creativeTabs, List itemList) {
       int[] arr$ = this.creativeMetaValues;

@@ -47,25 +47,31 @@ public class ItemVampireClothes extends ItemArmor implements ISpecialArmor {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
    }
 
+   @Override
    public Item setUnlocalizedName(String itemName) {
       ItemUtil.registerItem(this, itemName);
       return super.setUnlocalizedName(itemName);
    }
 
+   @Override
    public int getItemEnchantability() {
       return ArmorMaterial.GOLD.getEnchantability();
    }
 
+   @Override
    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
       return stack != null && super.armorType == 2?"witchery:textures/entities/vampirearmor.png":(stack != null?(type == null?"witchery:textures/entities/vampirearmor_over_first.png":"witchery:textures/entities/vampirearmor_over.png"):null);
    }
 
+   @Override
    public boolean hasColor(ItemStack stack) {
       return true;
    }
 
+   @Override
    public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {}
 
+   @Override
    public int getColor(ItemStack stack) {
       if(!this.hasColor(stack)) {
          return super.getColor(stack);
@@ -79,27 +85,32 @@ public class ItemVampireClothes extends ItemArmor implements ISpecialArmor {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getColorFromItemStack(ItemStack stack, int par2) {
       return super.getColorFromItemStack(stack, par2);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean requiresMultipleRenderPasses() {
       return true;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIconFromDamageForRenderPass(int damage, int renderPass) {
       return renderPass == 0?this.iconUnderlay:this.getIconFromDamage(damage);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerIcons(IIconRegister iconRegister) {
       super.registerIcons(iconRegister);
       this.iconUnderlay = iconRegister.registerIcon(this.getIconString() + "_first");
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack stack, int armorSlot) {
       if(this.modelClothesChest == null) {
@@ -155,16 +166,19 @@ public class ItemVampireClothes extends ItemArmor implements ISpecialArmor {
       return null;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack stack) {
       return EnumRarity.uncommon;
    }
 
+   @Override
    public String getItemStackDisplayName(ItemStack stack) {
       String baseName = super.getItemStackDisplayName(stack);
       return baseName;
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advancedTooltips) {
       String localText = Witchery.resource(this.getUnlocalizedName() + ".tip");
       if(localText != null) {
@@ -210,14 +224,17 @@ public class ItemVampireClothes extends ItemArmor implements ISpecialArmor {
       return numLightPiecesWorn(entity, true) >= 3;
    }
 
+   @Override
    public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
       return new ArmorProperties(0, (double)this.realDamageReduction / 25.0D, armor.getMaxDamage() + 1 - armor.getItemDamage());
    }
 
+   @Override
    public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) {
       return this.realDamageReduction;
    }
 
+   @Override
    public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
       stack.damageItem(damage, entity);
    }

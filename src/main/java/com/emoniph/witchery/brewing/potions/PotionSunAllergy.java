@@ -17,6 +17,7 @@ public class PotionSunAllergy extends PotionBase implements IHandleLivingUpdate 
       this.setIncurable();
    }
 
+   @Override
    public void onLivingUpdate(World world, EntityLivingBase entity, LivingUpdateEvent event, int amplifier, int duration) {
       if(!world.isRemote && world.getWorldTime() % 20L == 0L && world.isDaytime()) {
          float f = entity.getBrightness(1.0F);

@@ -26,6 +26,7 @@ public class EntityAIMateWithPlayer extends EntityAIBase {
       this.mate = player;
    }
 
+   @Override
    public boolean shouldExecute() {
       if(this.villagerObj.getGrowingAge() != 0) {
          return false;
@@ -45,20 +46,24 @@ public class EntityAIMateWithPlayer extends EntityAIBase {
       }
    }
 
+   @Override
    public void startExecuting() {
       this.matingTimeout = 1000;
       this.villagerObj.setMating(true);
    }
 
+   @Override
    public void resetTask() {
       this.mate = null;
       this.villagerObj.setMating(false);
    }
 
+   @Override
    public boolean continueExecuting() {
       return this.matingTimeout >= 0 && this.villagerObj.getGrowingAge() == 0;
    }
 
+   @Override
    public void updateTask() {
       if(this.matingTimeout > 0) {
          --this.matingTimeout;

@@ -26,11 +26,13 @@ public class BlockWitchDoor extends BlockDoor {
       this.setStepSound(Block.soundTypeWood);
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       BlockUtil.registerBlock(this, blockName);
       return super.setBlockName(blockName);
    }
 
+   @Override
    public void breakBlock(World world, int posX, int posY, int posZ, Block block, int metadata) {
       if(block == Witchery.Blocks.DOOR_ALDER) {
          int i1 = this.func_150012_g(world, posX, posY, posZ);
@@ -44,6 +46,7 @@ public class BlockWitchDoor extends BlockDoor {
       super.breakBlock(world, posX, posY, posZ, block, metadata);
    }
 
+   @Override
    public boolean onBlockActivated(World world, int posX, int posY, int posZ, EntityPlayer player, int par6, float par7, float par8, float par9) {
       if(this == Witchery.Blocks.DOOR_ALDER) {
          boolean result = super.onBlockActivated(world, posX, posY, posZ, player, par6, par7, par8, par9);
@@ -59,6 +62,7 @@ public class BlockWitchDoor extends BlockDoor {
       }
    }
 
+   @Override
    public void onBlockHarvested(World world, int posX, int posY, int posZ, int par5, EntityPlayer player) {
       if(this == Witchery.Blocks.DOOR_ROWAN) {
          ItemStack stack;
@@ -82,6 +86,7 @@ public class BlockWitchDoor extends BlockDoor {
       super.onBlockHarvested(world, posX, posY, posZ, par5, player);
    }
 
+   @Override
    public ArrayList getDrops(World world, int x, int y, int z, int metadata, int fortune) {
       if(this == Witchery.Blocks.DOOR_ROWAN) {
          ArrayList drops = new ArrayList();
@@ -131,6 +136,7 @@ public class BlockWitchDoor extends BlockDoor {
       return false;
    }
 
+   @Override
    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
       int l = world.getBlockMetadata(x, y, z);
       if((l & 8) == 0) {
@@ -160,6 +166,7 @@ public class BlockWitchDoor extends BlockDoor {
 
    }
 
+   @Override
    protected void dropBlockAsItem(World world, int x, int y, int z, ItemStack stack) {
       super.dropBlockAsItem(world, x, y, z, stack);
    }
@@ -187,11 +194,13 @@ public class BlockWitchDoor extends BlockDoor {
       return this.disableStats();
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       Block block = world.getBlock(x, y, z);
       return block == Witchery.Blocks.DOOR_ALDER?Witchery.Items.GENERIC.itemDoorAlder.createStack():Witchery.Items.GENERIC.itemDoorRowan.createStack();
    }
 
+   @Override
    public void func_150014_a(World world, int x, int y, int z, boolean par5) {
       if(this != Witchery.Blocks.DOOR_ALDER && !par5) {
          super.func_150014_a(world, x, y, z, par5);
@@ -199,22 +208,27 @@ public class BlockWitchDoor extends BlockDoor {
 
    }
 
+   @Override
    public int isProvidingWeakPower(IBlockAccess world, int x, int y, int z, int side) {
       return this == Witchery.Blocks.DOOR_ALDER?(this.func_150015_f(world, x, y, z)?15:0):super.isProvidingWeakPower(world, x, y, z, side);
    }
 
+   @Override
    public int isProvidingStrongPower(IBlockAccess par1IBlockAccess, int posX, int posY, int posZ, int side) {
       return this == Witchery.Blocks.DOOR_ALDER?(side == 1?this.isProvidingWeakPower(par1IBlockAccess, posX, posY, posZ, side):0):super.isProvidingStrongPower(par1IBlockAccess, posX, posY, posZ, side);
    }
 
+   @Override
    public boolean canProvidePower() {
       return this == Witchery.Blocks.DOOR_ALDER;
    }
 
+   @Override
    public Item getItemDropped(int metadata, Random rand, int fortune) {
       return (metadata & 8) != 0?null:Witchery.Items.GENERIC;
    }
 
+   @Override
    public int damageDropped(int metadata) {
       return (metadata & 8) != 0?0:(this == Witchery.Blocks.DOOR_ALDER?Witchery.Items.GENERIC.itemDoorAlder.damageValue:Witchery.Items.GENERIC.itemDoorRowan.damageValue);
    }

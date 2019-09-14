@@ -51,6 +51,7 @@ public class ModelCoffin extends ModelBase {
       this.base.addBox(-7.0F, 0.0F, -8.0F, 14, 5, 15, 0.0F);
    }
 
+   @Override
    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
       this.sideLeft.render(f5);
       this.baseLower.render(f5);

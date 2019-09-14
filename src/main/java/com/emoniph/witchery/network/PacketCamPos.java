@@ -25,12 +25,14 @@ public class PacketCamPos implements IMessage {
       this.entityID = entity != null?entity.getEntityId():0;
    }
 
+   @Override
    public void toBytes(ByteBuf buffer) {
       buffer.writeBoolean(this.active);
       buffer.writeBoolean(this.updatePosition);
       buffer.writeInt(this.entityID);
    }
 
+   @Override
    public void fromBytes(ByteBuf buffer) {
       this.active = buffer.readBoolean();
       this.updatePosition = buffer.readBoolean();
@@ -39,6 +41,7 @@ public class PacketCamPos implements IMessage {
 
    public static class Handler implements IMessageHandler<PacketCamPos, IMessage> {
 
+      @Override
       public IMessage onMessage(PacketCamPos message, MessageContext ctx) {
          EntityPlayer player = Witchery.proxy.getPlayer(ctx);
          PlayerRender.moveCameraActive = message.active;

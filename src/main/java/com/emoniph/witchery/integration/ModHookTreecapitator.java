@@ -10,10 +10,12 @@ import net.minecraft.nbt.NBTTagList;
 
 public class ModHookTreecapitator extends ModHook {
 
+   @Override
    public String getModID() {
       return "TreeCapitator";
    }
 
+   @Override
    protected void doInit() {
       NBTTagCompound tpModCfg = new NBTTagCompound();
       tpModCfg.setString("modID", "witchery");
@@ -39,7 +41,9 @@ public class ModHookTreecapitator extends ModHook {
       FMLInterModComms.sendMessage(this.getModID(), "ThirdPartyModConfig", tpModCfg);
    }
 
+   @Override
    protected void doPostInit() {}
 
+   @Override
    protected void doReduceMagicPower(EntityLivingBase entity, float factor) {}
 }

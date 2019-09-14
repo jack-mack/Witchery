@@ -13,6 +13,7 @@ public class PredictionArrow extends PredictionFight {
       super(id, itemWeight, selfFulfillmentProbabilityPerSec, translationKey, EntitySkeleton.class, false);
    }
 
+   @Override
    public boolean checkIfFulfilled(World world, EntityPlayer player, LivingHurtEvent event, boolean isPastDue, boolean veryOld) {
       if(!event.isCanceled()) {
          boolean hitByArrow = event.source.damageType == "arrow";

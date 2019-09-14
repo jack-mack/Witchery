@@ -73,16 +73,20 @@ public class EntityWitchHunter extends EntityCreature implements IRangedAttackMo
 
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.witchhunter.name");
    }
 
+   @Override
    public boolean isEntityApplicable(Entity entity) {
-      if(!CreatureUtil.isUndead(entity) && !CreatureUtil.isDemonic(entity) && !(entity instanceof EntityWitch) && !CreatureUtil.isWerewolf(entity)) {
+      if(!CreatureUtil.isUndead(entity) && !CreatureUtil.isDemonic(entity) && !(entity instanceof EntityWitch) && !CreatureUtil.isWerewolf(entity) && !CreatureUtil.isVampire(entity)) {
          if(!(entity instanceof EntityPlayer)) {
             return false;
          } else {
             EntityPlayer player = (EntityPlayer)entity;
+            ExtendedPlayer playerEx = ExtendedPlayer.get(player);
+
             return CreatureUtil.isWitch(entity) || CreatureUtil.isWerewolf(entity) || CreatureUtil.isVampire(entity) || this.targetPlayerName != null && !this.targetPlayerName.isEmpty() && player.getCommandSenderName().equals(this.targetPlayerName);
          }
       } else {
@@ -90,6 +94,7 @@ public class EntityWitchHunter extends EntityCreature implements IRangedAttackMo
       }
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
@@ -97,31 +102,38 @@ public class EntityWitchHunter extends EntityCreature implements IRangedAttackMo
       this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(13, new Byte((byte)0));
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    protected String getLivingSound() {
       return null;
    }
 
+   @Override
    protected String getHurtSound() {
       return "mob.villager.hit";
    }
 
+   @Override
    protected String getDeathSound() {
       return "mob.villager.death";
    }
 
+   @Override
    protected void func_145780_a(int par1, int par2, int par3, Block par4) {
       this.playSound("step.grass", 0.15F, 1.0F);
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity targetEntity) {
       float f = (float)this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
       int i = 0;
@@ -153,6 +165,7 @@ public class EntityWitchHunter extends EntityCreature implements IRangedAttackMo
       return flag;
    }
 
+   @Override
    public void onLivingUpdate() {
       this.updateArmSwingProgress();
       float f = this.getBrightness(1.0F);
@@ -167,14 +180,17 @@ public class EntityWitchHunter extends EntityCreature implements IRangedAttackMo
       super.onLivingUpdate();
    }
 
+   @Override
    protected String getSwimSound() {
       return "game.hostile.swim";
    }
 
+   @Override
    protected String getSplashSound() {
       return "game.hostile.swim.splash";
    }
 
+   @Override
    public void updateRidden() {
       super.updateRidden();
       if(super.ridingEntity instanceof EntityCreature) {
@@ -184,6 +200,7 @@ public class EntityWitchHunter extends EntityCreature implements IRangedAttackMo
 
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource damageSource, float damage) {
       if(damageSource.getEntity() != null && (damageSource.getEntity() instanceof EntityVillageGuard || damageSource.getEntity() instanceof EntityWitchHunter)) {
          return false;
@@ -205,10 +222,12 @@ public class EntityWitchHunter extends EntityCreature implements IRangedAttackMo
       }
    }
 
+   @Override
    protected String func_146067_o(int distance) {
       return distance > 4?"game.hostile.hurt.fall.big":"game.hostile.hurt.fall.small";
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {
       int j = super.rand.nextInt(3 + par2);
 
@@ -218,10 +237,12 @@ public class EntityWitchHunter extends EntityCreature implements IRangedAttackMo
 
    }
 
+   @Override
    protected void dropRareDrop(int par1) {
       this.entityDropItem(Witchery.Items.GENERIC.itemBoltAntiMagic.createStack(2), 0.0F);
    }
 
+   @Override
    public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData) {
       par1EntityLivingData = super.onSpawnWithEgg(par1EntityLivingData);
       this.setHunterType(super.worldObj.rand.nextInt(3));
@@ -242,6 +263,7 @@ public class EntityWitchHunter extends EntityCreature implements IRangedAttackMo
 
    }
 
+   @Override
    public void attackEntityWithRangedAttack(EntityLivingBase par1EntityLivingBase, float par2) {
       EntityBolt entityarrow = new EntityBolt(super.worldObj, this, par1EntityLivingBase, 1.6F, (float)(14 - super.worldObj.difficultySetting.getDifficultyId() * 4));
       int i = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, this.getHeldItem());
@@ -281,6 +303,7 @@ public class EntityWitchHunter extends EntityCreature implements IRangedAttackMo
       super.dataWatcher.updateObject(13, Byte.valueOf((byte)par1));
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       super.readEntityFromNBT(nbtRoot);
       if(nbtRoot.hasKey("HunterType")) {
@@ -292,12 +315,14 @@ public class EntityWitchHunter extends EntityCreature implements IRangedAttackMo
       this.setCombatTask();
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       super.writeEntityToNBT(nbtRoot);
       nbtRoot.setByte("HunterType", (byte)this.getHunterType());
       nbtRoot.setString("HunterTarget", this.targetPlayerName);
    }
 
+   @Override
    public void setCurrentItemOrArmor(int slot, ItemStack stack) {
       super.setCurrentItemOrArmor(slot, stack);
       if(!super.worldObj.isRemote && slot == 0) {
@@ -306,6 +331,7 @@ public class EntityWitchHunter extends EntityCreature implements IRangedAttackMo
 
    }
 
+   @Override
    public double getYOffset() {
       return super.getYOffset() - 0.5D;
    }
@@ -322,36 +348,61 @@ public class EntityWitchHunter extends EntityCreature implements IRangedAttackMo
    }
 
    public static void handleWitchHunterEffects(EntityPlayer player, long totalWorldTicks) {
-      NBTTagCompound nbtPlayer = Infusion.getNBT(player);
-      if(nbtPlayer != null) {
-         long triggerTimeTicks = nbtPlayer.getLong("WITCHunterTrigger");
-         if(triggerTimeTicks > 0L && totalWorldTicks >= triggerTimeTicks + HUNTER_DELAY && player.worldObj.rand.nextDouble() < 0.01D || isVampireActive(player, totalWorldTicks)) {
-            nbtPlayer.removeTag("WITCHunterTrigger");
-            boolean MAX_SPAWNS = true;
-            boolean tries = true;
-            int spawned = 0;
+      boolean vampActive = isVampireActive(player, totalWorldTicks);
+      boolean npcVampActive = isNPCVampireActive(player);
 
-            for(int i = 0; i < 3 && spawned < 2; ++i) {
-               EntityWitchHunter creature = (EntityWitchHunter)Infusion.spawnCreature(player.worldObj, EntityWitchHunter.class, MathHelper.floor_double(player.posX), MathHelper.floor_double(player.posY), MathHelper.floor_double(player.posZ), player, 3, 8, ParticleEffect.SMOKE, (SoundEffect)null);
-               if(creature != null) {
-                  ++spawned;
+      if (vampActive || npcVampActive) {
+         if (vampActive) {
+            NBTTagCompound nbtPlayer = Infusion.getNBT(player);
+            if (nbtPlayer != null) {
+               long triggerTimeTicks = nbtPlayer.getLong("WITCHunterTrigger");
+               if (triggerTimeTicks > 0L && totalWorldTicks >= triggerTimeTicks + HUNTER_DELAY && player.worldObj.rand.nextDouble() < 0.01D) {
+                  nbtPlayer.removeTag("WITCHunterTrigger");
+               }
+            }
+         }
+
+         int spawned = 0;
+
+         for(int i = 0; i < 3 && spawned < 2; ++i) {
+            EntityWitchHunter creature = (EntityWitchHunter)Infusion.spawnCreature(player.worldObj, EntityWitchHunter.class, MathHelper.floor_double(player.posX), MathHelper.floor_double(player.posY), MathHelper.floor_double(player.posZ), player, 3, 8, ParticleEffect.SMOKE, (SoundEffect)null);
+            if(creature != null) {
+               ++spawned;
+               creature.onSpawnWithEgg((IEntityLivingData)null);
+               if (vampActive) {
                   creature.targetPlayerName = player.getCommandSenderName();
-                  creature.onSpawnWithEgg((IEntityLivingData)null);
                   EntityUtil.setTarget(creature, player);
                }
             }
+         }
 
-            if(spawned > 0) {
-               Witchery.packetPipeline.sendTo((IMessage)(new PacketSound(SoundEffect.WITCHERY_RANDOM_THEYCOME, player, 1.0F, 1.0F)), player);
-            }
+         if(spawned > 0) {
+            Witchery.packetPipeline.sendTo((IMessage)(new PacketSound(SoundEffect.WITCHERY_RANDOM_THEYCOME, player, 1.0F, 1.0F)), player);
          }
       }
 
    }
 
+   //there are vampires in the village
+   private static boolean isNPCVampireActive(EntityPlayer player) {
+      List vampires = player.worldObj.getEntitiesWithinAABB(EntityVampire.class, player.boundingBox.expand(64.0D, 16.0D, 64.0D));
+      if(vampires != null || vampires.size() > 0) {
+         if(player.worldObj.rand.nextDouble() < Config.instance().vampireHunterSpawnChance) {
+            Village village = player.worldObj.villageCollectionObj.findNearestVillage(MathHelper.floor_double(player.posX), MathHelper.floor_double(player.posY), MathHelper.floor_double(player.posZ), 128);
+            if(village != null) {
+               List hunters = player.worldObj.getEntitiesWithinAABB(EntityWitchHunter.class, player.boundingBox.expand(64.0D, 16.0D, 64.0D));
+               return hunters == null || hunters.size() == 0;
+            }
+         }
+      }
+      return false;
+   }
+
+   // player is a level 10 active vampire with bad reputation
    private static boolean isVampireActive(EntityPlayer player, long totalWorldTicks) {
       if(Config.instance().vampireHunterSpawnChance > 0.0D && !player.capabilities.isCreativeMode) {
          ExtendedPlayer playerEx = ExtendedPlayer.get(player);
+
          if(playerEx.getVampireLevel() < 10) {
             return false;
          } else {
@@ -370,6 +421,7 @@ public class EntityWitchHunter extends EntityCreature implements IRangedAttackMo
       }
    }
 
+   @Override
    protected void attackEntity(Entity p_70785_1_, float p_70785_2_) {
       if(super.attackTime <= 0 && p_70785_2_ < 2.0F && p_70785_1_.boundingBox.maxY > super.boundingBox.minY && p_70785_1_.boundingBox.minY < super.boundingBox.maxY) {
          super.attackTime = 20;
@@ -378,6 +430,7 @@ public class EntityWitchHunter extends EntityCreature implements IRangedAttackMo
 
    }
 
+   @Override
    public float getBlockPathWeight(int p_70783_1_, int p_70783_2_, int p_70783_3_) {
       return 0.5F - super.worldObj.getLightBrightness(p_70783_1_, p_70783_2_, p_70783_3_);
    }
@@ -401,10 +454,12 @@ public class EntityWitchHunter extends EntityCreature implements IRangedAttackMo
       }
    }
 
+   @Override
    public boolean getCanSpawnHere() {
       return super.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere();
    }
 
+   @Override
    protected boolean func_146066_aG() {
       return true;
    }

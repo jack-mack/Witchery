@@ -14,11 +14,13 @@ public class PotionSinking extends PotionBase implements IHandleLivingUpdate {
       super(id, true, color);
    }
 
+   @Override
    public void postContructInitialize() {
       this.setPermenant();
       this.setIncurable();
    }
 
+   @Override
    public void onLivingUpdate(World world, EntityLivingBase entity, LivingUpdateEvent event, int amplifier, int duration) {
       if(entity instanceof EntityPlayer) {
          EntityPlayer player = (EntityPlayer)entity;

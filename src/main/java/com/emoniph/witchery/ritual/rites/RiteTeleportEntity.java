@@ -24,6 +24,7 @@ public class RiteTeleportEntity extends RiteTeleportation {
       super(radius);
    }
 
+   @Override
    protected boolean teleport(World world, int posX, int posY, int posZ, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
       if(!world.isRemote) {
          ItemStack taglockStack = null;

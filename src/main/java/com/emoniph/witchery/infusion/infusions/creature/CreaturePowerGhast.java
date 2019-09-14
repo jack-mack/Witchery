@@ -20,6 +20,7 @@ public class CreaturePowerGhast extends CreaturePower {
       super(powerID, EntityGhast.class);
    }
 
+   @Override
    public void onActivate(World world, EntityPlayer player, int elapsedTicks, MovingObjectPosition mop) {
       if(!world.isRemote) {
          world.playAuxSFXAtEntity((EntityPlayer)null, 1008, (int)player.posX, (int)player.posY, (int)player.posZ, 0);
@@ -44,6 +45,7 @@ public class CreaturePowerGhast extends CreaturePower {
 
    }
 
+   @Override
    public void onDamage(World world, EntityPlayer player, LivingHurtEvent event) {
       if(event.source.isFireDamage() && event.isCancelable()) {
          int currentEnergy = Infusion.getCurrentEnergy(player);

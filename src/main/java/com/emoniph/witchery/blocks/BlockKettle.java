@@ -56,24 +56,29 @@ public class BlockKettle extends BlockBaseContainer {
       this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
       float f = 0.0625F;
       return AxisAlignedBB.getBoundingBox((double)((float)x + f), (double)y, (double)((float)z + f), (double)((float)(x + 1) - f), (double)((float)(y + 1) - f), (double)((float)(z + 1) - f));
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public AxisAlignedBB getSelectedBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
       return super.getSelectedBoundingBoxFromPool(par1World, par2, par3, par4);
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, Block par5) {
       this.func_111046_k(par1World, par2, par3, par4);
    }
@@ -87,10 +92,12 @@ public class BlockKettle extends BlockBaseContainer {
       }
    }
 
+   @Override
    public boolean canBlockStay(World world, int x, int y, int z) {
       return true;
    }
 
+   @Override
    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
       int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
       if(l == 0) {
@@ -111,6 +118,7 @@ public class BlockKettle extends BlockBaseContainer {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
       return false;
@@ -130,6 +138,7 @@ public class BlockKettle extends BlockBaseContainer {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
       BlockKettle.TileEntityKettle tileEntity = (BlockKettle.TileEntityKettle)world.getTileEntity(x, y, z);
@@ -182,6 +191,7 @@ public class BlockKettle extends BlockBaseContainer {
       }
    }
 
+   @Override
    public boolean onBlockActivated(World world, int posX, int posY, int posZ, EntityPlayer player, int par6, float par7, float par8, float par9) {
       ItemStack current = player.inventory.getCurrentItem();
       if(current != null) {
@@ -312,6 +322,7 @@ public class BlockKettle extends BlockBaseContainer {
       return false;
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int posX, int posY, int posZ, Entity entity) {
       if(!world.isRemote && entity instanceof EntityItem) {
          BlockKettle.TileEntityKettle tileEntity = (BlockKettle.TileEntityKettle)world.getTileEntity(posX, posY, posZ);
@@ -364,6 +375,7 @@ public class BlockKettle extends BlockBaseContainer {
       private FluidTank tank = new FluidTank(1000);
 
 
+      @Override
       public void updateEntity() {
          super.updateEntity();
          if(!super.worldObj.isRemote && !this.isRuined && super.ticks % 20L == 0L && this.isFilled() && (this.someFilled() || this.furnaceItemStacks[6] != null)) {
@@ -479,25 +491,30 @@ public class BlockKettle extends BlockBaseContainer {
          return false;
       }
 
+      @Override
       public int getSizeInventory() {
          return this.furnaceItemStacks.length;
       }
 
+      @Override
       public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
          Log.instance().debug(String.format("isItemValidForSlot(%d, %s)", new Object[]{Integer.valueOf(slot), itemstack.toString()}));
          ItemStack stackInSlot = this.getStackInSlot(slot);
          return slot == 6?true:(slot == 7?itemstack.getItem() == Items.glass_bottle && (stackInSlot != null?stackInSlot.stackSize:0) + itemstack.stackSize <= this.getInventoryStackLimit():this.getStackInSlot(6) == null && (stackInSlot != null?stackInSlot.stackSize:0) + itemstack.stackSize <= this.getInventoryStackLimit());
       }
 
+      @Override
       public int[] getAccessibleSlotsFromSide(int var1) {
          return side_slots;
       }
 
+      @Override
       public boolean canInsertItem(int slot, ItemStack stack, int side) {
          ItemStack stackInSlot = this.getStackInSlot(slot);
          return slot == 6?false:(slot == 7?stack.getItem() == Items.glass_bottle && (stackInSlot != null?stackInSlot.stackSize:0) + stack.stackSize <= this.getInventoryStackLimit():stack.getItem() != Items.glass_bottle && this.getStackInSlot(6) == null && this.isFilled());
       }
 
+      @Override
       public boolean canExtractItem(int slot, ItemStack stack, int side) {
          Log.instance().debug(String.format("canExtract(%d, %s, %d)", new Object[]{Integer.valueOf(slot), stack.toString(), Integer.valueOf(side)}));
          ItemStack bottles = this.getStackInSlot(7);
@@ -517,10 +534,12 @@ public class BlockKettle extends BlockBaseContainer {
          return this.color;
       }
 
+      @Override
       public ItemStack getStackInSlot(int par1) {
          return this.furnaceItemStacks[par1];
       }
 
+      @Override
       public void setInventorySlotContents(int slot, ItemStack stack) {
          Log.instance().debug("setInventorySlotContents");
          if(slot == 6 && this.consumeBottles) {
@@ -564,6 +583,7 @@ public class BlockKettle extends BlockBaseContainer {
          this.consumeBottles = consume;
       }
 
+      @Override
       public ItemStack decrStackSize(int slot, int quantity) {
          Log.instance().debug("decrStackSize");
          if(this.furnaceItemStacks[slot] != null) {
@@ -607,6 +627,7 @@ public class BlockKettle extends BlockBaseContainer {
          }
       }
 
+      @Override
       public ItemStack getStackInSlotOnClosing(int par1) {
          Log.instance().debug("getStackInSlotOnClosing");
          if(this.furnaceItemStacks[par1] != null) {
@@ -624,14 +645,17 @@ public class BlockKettle extends BlockBaseContainer {
          }
       }
 
+      @Override
       public String getInventoryName() {
          return this.getBlockType().getLocalizedName();
       }
 
+      @Override
       public boolean hasCustomInventoryName() {
          return true;
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
          super.readFromNBT(par1NBTTagCompound);
          if(this.tank.getFluidAmount() > 0) {
@@ -655,6 +679,7 @@ public class BlockKettle extends BlockBaseContainer {
          this.color = par1NBTTagCompound.getInteger("LiquidColor");
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
          super.writeToNBT(par1NBTTagCompound);
          par1NBTTagCompound.setBoolean("Ruined", this.isRuined);
@@ -675,24 +700,30 @@ public class BlockKettle extends BlockBaseContainer {
          this.tank.writeToNBT(par1NBTTagCompound);
       }
 
+      @Override
       public int getInventoryStackLimit() {
          return 64;
       }
 
+      @Override
       public void openInventory() {}
 
+      @Override
       public void closeInventory() {}
 
+      @Override
       public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer) {
          return super.worldObj.getTileEntity(super.xCoord, super.yCoord, super.zCoord) != this?false:par1EntityPlayer.getDistanceSq((double)super.xCoord + 0.5D, (double)super.yCoord + 0.5D, (double)super.zCoord + 0.5D) <= 64.0D;
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          this.readFromNBT(packet.func_148857_g());
@@ -720,27 +751,33 @@ public class BlockKettle extends BlockBaseContainer {
          super.worldObj.markBlockForUpdate(super.xCoord, super.yCoord, super.zCoord);
       }
 
+      @Override
       public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
          int result = this.tank.fill(resource, doFill);
          return result;
       }
 
+      @Override
       public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
          return resource != null && resource.isFluidEqual(this.tank.getFluid())?this.tank.drain(resource.amount, doDrain):null;
       }
 
+      @Override
       public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
          return this.tank.drain(maxDrain, doDrain);
       }
 
+      @Override
       public boolean canFill(ForgeDirection from, Fluid fluid) {
          return fluid == null?false:fluid.getName().equals(FluidRegistry.WATER.getName());
       }
 
+      @Override
       public boolean canDrain(ForgeDirection from, Fluid fluid) {
          return fluid == null?false:fluid.getName().equals(FluidRegistry.WATER.getName());
       }
 
+      @Override
       public FluidTankInfo[] getTankInfo(ForgeDirection from) {
          return new FluidTankInfo[]{this.tank.getInfo()};
       }

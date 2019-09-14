@@ -17,6 +17,7 @@ public class RenderWitchCat extends RenderOcelot {
       super(par1ModelBase, par2);
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(EntityOcelot par1EntityOcelot) {
       return blackTextures;
    }

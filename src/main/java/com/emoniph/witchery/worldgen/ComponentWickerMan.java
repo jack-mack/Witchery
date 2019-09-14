@@ -21,6 +21,7 @@ public class ComponentWickerMan extends WitcheryComponent {
       super(direction, random, x, z, 6, 8, 5);
    }
 
+   @Override
    public boolean addComponentParts(World world, Random random) {
       BiomeGenBase biom = world.getBiomeGenForCoords(this.getXWithOffset(0, 0), this.getZWithOffset(0, 0));
       int groundAvg = this.calcGroundHeight(world, super.boundingBox);

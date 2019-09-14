@@ -41,16 +41,19 @@ public class ItemBoline extends ItemSword {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
    }
 
+   @Override
    public Item setUnlocalizedName(String itemName) {
       ItemUtil.registerItem(this, itemName);
       return super.setUnlocalizedName(itemName);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack stack) {
       return EnumRarity.uncommon;
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean moreTips) {
       String localText = Witchery.resource("item.witchery:boline.tip");
       if(localText != null) {
@@ -67,16 +70,19 @@ public class ItemBoline extends ItemSword {
 
    }
 
+   @Override
    public Multimap getItemAttributeModifiers() {
       HashMultimap multimap = HashMultimap.create();
       multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(Item.field_111210_e, "Weapon modifier", (double)this.effectiveWeaponDamage, 0));
       return multimap;
    }
 
+   @Override
    public float func_150931_i() {
       return ToolMaterial.WOOD.getDamageVsEntity();
    }
 
+   @Override
    public boolean onBlockDestroyed(ItemStack stack, World world, Block block, int posX, int posY, int posZ, EntityLivingBase entity) {
       if(block != null && block != Blocks.leaves && block != Blocks.web && block != Blocks.tallgrass && block != Blocks.vine && block != Blocks.tripwire && !(block instanceof IShearable) && block.getBlockHardness(world, posX, posY, posZ) != 0.0F) {
          stack.damageItem(2, entity);
@@ -85,14 +91,17 @@ public class ItemBoline extends ItemSword {
       return true;
    }
 
+   @Override
    public boolean canHarvestBlock(Block par1Block, ItemStack stack) {
       return par1Block == Witchery.Blocks.WEB || par1Block == Blocks.web || par1Block == Blocks.redstone_wire || par1Block == Blocks.tripwire;
    }
 
+   @Override
    public float func_150893_a(ItemStack stack, Block block) {
       return block != Witchery.Blocks.WEB && block != Blocks.web && block != Blocks.leaves?(block != Blocks.wool && block != Witchery.Blocks.TRAPPED_PLANT?super.func_150893_a(stack, block):5.0F):15.0F;
    }
 
+   @Override
    public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity) {
       if(entity.worldObj.isRemote) {
          return false;
@@ -119,6 +128,7 @@ public class ItemBoline extends ItemSword {
       }
    }
 
+   @Override
    public boolean onBlockStartBreak(ItemStack itemstack, int x, int y, int z, EntityPlayer player) {
       if(player.worldObj.isRemote) {
          return false;

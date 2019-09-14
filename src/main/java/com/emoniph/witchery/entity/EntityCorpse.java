@@ -26,31 +26,38 @@ public class EntityCorpse extends EntityLiving {
       this.setSize(1.2F, 0.5F);
    }
 
+   @Override
    public boolean canBePushed() {
       return false;
    }
 
+   @Override
    public boolean canBeCollidedWith() {
       return super.canBeCollidedWith();
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
       this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0D);
    }
 
+   @Override
    public void moveEntity(double par1, double par3, double par5) {}
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(17, "");
    }
 
+   @Override
    protected boolean interact(EntityPlayer par1EntityPlayer) {
       return true;
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
       if(!super.worldObj.isRemote) {
          if(par1DamageSource.getSourceOfDamage() != null && par1DamageSource.getSourceOfDamage() instanceof EntityPlayer && ((EntityPlayer)par1DamageSource.getSourceOfDamage()).capabilities.isCreativeMode) {
@@ -75,14 +82,17 @@ public class EntityCorpse extends EntityLiving {
       }
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.body.name");
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       super.writeEntityToNBT(nbtRoot);
       if(this.getOwnerName() == null) {
@@ -93,6 +103,7 @@ public class EntityCorpse extends EntityLiving {
 
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       super.readEntityFromNBT(nbtRoot);
       String s = nbtRoot.getString("Owner");
@@ -121,6 +132,7 @@ public class EntityCorpse extends EntityLiving {
       return super.worldObj.getPlayerEntityByName(this.getOwnerName());
    }
 
+   @Override
    public void onDeath(DamageSource par1DamageSource) {
       super.onDeath(par1DamageSource);
       if(!super.worldObj.isRemote) {
@@ -145,6 +157,7 @@ public class EntityCorpse extends EntityLiving {
 
    }
 
+   @Override
    public void onLivingUpdate() {
       super.onLivingUpdate();
    }

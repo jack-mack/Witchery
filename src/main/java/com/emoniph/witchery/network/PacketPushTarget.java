@@ -22,12 +22,14 @@ public class PacketPushTarget implements IMessage {
       this.motionZ = motionZ;
    }
 
+   @Override
    public void toBytes(ByteBuf buffer) {
       buffer.writeDouble(this.motionX);
       buffer.writeDouble(this.motionY);
       buffer.writeDouble(this.motionZ);
    }
 
+   @Override
    public void fromBytes(ByteBuf buffer) {
       this.motionX = buffer.readDouble();
       this.motionY = buffer.readDouble();
@@ -36,6 +38,7 @@ public class PacketPushTarget implements IMessage {
 
    public static class Handler implements IMessageHandler<PacketPushTarget, IMessage> {
 
+      @Override
       public IMessage onMessage(PacketPushTarget message, MessageContext ctx) {
          EntityPlayer player = Witchery.proxy.getPlayer(ctx);
          player.motionX = message.motionX;

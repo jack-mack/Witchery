@@ -17,10 +17,12 @@ public class PotionVolatility extends PotionBase implements IHandleLivingHurt {
       this.setIncurable();
    }
 
+   @Override
    public boolean handleAllHurtEvents() {
       return false;
    }
 
+   @Override
    public void onLivingHurt(World world, EntityLivingBase entity, LivingHurtEvent event, int amplifier) {
       if(!world.isRemote && this.isExplodableDamage(event.source)) {
          boolean breakable = Config.instance().allowVolatilityPotionBlockDamage;

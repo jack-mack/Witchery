@@ -23,6 +23,7 @@ public class EntitySoulfire extends EntitySmallFireball {
       this.setSize(0.3125F, 0.3125F);
    }
 
+   @Override
    protected void onImpact(MovingObjectPosition par1MovingObjectPosition) {
       super.onImpact(par1MovingObjectPosition);
       if(!super.worldObj.isRemote && par1MovingObjectPosition.entityHit != null) {

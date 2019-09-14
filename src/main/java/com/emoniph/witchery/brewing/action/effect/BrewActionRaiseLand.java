@@ -26,6 +26,7 @@ public class BrewActionRaiseLand extends BrewActionEffect {
       super(itemKey, namePart, powerCost, new Probability(1.0D), effectLevel);
    }
 
+   @Override
    protected void doApplyRitualToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersRitual ritualModifiers, ModifiersEffect modifiers, ItemStack stack) {
       int r = (modifiers.getStrength() + 1) * 2;
       int rsq = r * r;
@@ -42,11 +43,13 @@ public class BrewActionRaiseLand extends BrewActionEffect {
 
    }
 
+   @Override
    protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {
       Coord coord = new Coord(targetEntity);
       this.doApplyToBlock(world, coord.x, coord.y - 1, coord.z, ForgeDirection.UP, 1, modifiers, stack);
    }
 
+   @Override
    protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {
       while(!world.isAirBlock(x, y + 1, z) && y < 255) {
          ++y;

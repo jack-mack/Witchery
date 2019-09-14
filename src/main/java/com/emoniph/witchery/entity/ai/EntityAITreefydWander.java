@@ -13,10 +13,12 @@ public class EntityAITreefydWander extends EntityAIWander {
       this.treefyd = treefyd;
    }
 
+   @Override
    public boolean shouldExecute() {
       return !this.treefyd.isSentinal() && super.shouldExecute();
    }
 
+   @Override
    public boolean continueExecuting() {
       return !this.treefyd.isSentinal() && super.continueExecuting();
    }

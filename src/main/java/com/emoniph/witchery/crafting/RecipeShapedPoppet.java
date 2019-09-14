@@ -18,6 +18,7 @@ public class RecipeShapedPoppet implements IRecipe {
       this.pattern = pattern;
    }
 
+   @Override
    public boolean matches(InventoryCrafting inv, World world) {
       for(int i = 0; i < inv.getSizeInventory(); ++i) {
          ItemStack stack = inv.getStackInSlot(i);
@@ -39,6 +40,7 @@ public class RecipeShapedPoppet implements IRecipe {
       return true;
    }
 
+   @Override
    public ItemStack getCraftingResult(InventoryCrafting inv) {
       ItemStack stackPoppet = this.prototype.copy();
       ItemStack stackTaglockKit = this.findTaglockKit(inv);
@@ -60,10 +62,12 @@ public class RecipeShapedPoppet implements IRecipe {
       return null;
    }
 
+   @Override
    public int getRecipeSize() {
       return this.pattern.length;
    }
 
+   @Override
    public ItemStack getRecipeOutput() {
       return null;
    }

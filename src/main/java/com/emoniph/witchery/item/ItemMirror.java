@@ -20,6 +20,7 @@ public class ItemMirror extends ItemBase {
       this.setMaxStackSize(1);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advTooltips) {
       super.addInformation(stack, player, list, advTooltips);
@@ -42,6 +43,7 @@ public class ItemMirror extends ItemBase {
 
    }
 
+   @Override
    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
       if(world.isRemote) {
          return true;

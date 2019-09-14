@@ -57,10 +57,12 @@ public class BlockAltar extends BlockBaseContainer {
       this.setHardness(2.0F);
    }
 
+   @Override
    public TileEntity createNewTileEntity(World world, int metadata) {
       return new BlockAltar.TileEntityAltar();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int side, int metadata) {
       switch(BlockAltar.NamelessClass2119415077.$SwitchMap$com$emoniph$witchery$util$BlockSide[BlockSide.fromInteger(side).ordinal()]) {
@@ -73,6 +75,7 @@ public class BlockAltar extends BlockBaseContainer {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
       int i = Minecraft.getMinecraft().gameSettings.particleSetting;
@@ -105,6 +108,7 @@ public class BlockAltar extends BlockBaseContainer {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {
       super.blockIcon = iconRegister.registerIcon(this.getTextureName());
@@ -113,6 +117,7 @@ public class BlockAltar extends BlockBaseContainer {
       this.blockIconTopJoined = iconRegister.registerIcon(this.getTextureName() + "_joined_top");
    }
 
+   @Override
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
       BlockAltar.TileEntityAltar tileEntity = (BlockAltar.TileEntityAltar)world.getTileEntity(x, y, z);
       if(tileEntity != null && tileEntity.isValidAndUpdate()) {
@@ -123,21 +128,25 @@ public class BlockAltar extends BlockBaseContainer {
       }
    }
 
+   @Override
    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
       super.onBlockPlacedBy(world, x, y, z, par5EntityLivingBase, par6ItemStack);
       this.updateMultiblock(world, x, y, z, (Coord)null);
    }
 
+   @Override
    public void breakBlock(World world, int x, int y, int z, Block block, int par6) {
       this.updateMultiblock(world, x, y, z, new Coord(x, y, z));
       super.breakBlock(world, x, y, z, block, par6);
    }
 
+   @Override
    public void onBlockDestroyedByExplosion(World world, int posX, int posY, int posZ, Explosion explosion) {
       BlockAltar.TileEntityAltar tileEntity = (BlockAltar.TileEntityAltar)world.getTileEntity(posX, posY, posZ);
       this.updateMultiblock(world, posX, posY, posZ, (Coord)null);
    }
 
+   @Override
    public void onNeighborBlockChange(World world, int posX, int posY, int posZ, Block block) {
       TileEntity tileEntity = world.getTileEntity(posX, posY, posZ);
       if(tileEntity != null && tileEntity instanceof BlockAltar.TileEntityAltar && !world.isRemote) {
@@ -220,10 +229,12 @@ public class BlockAltar extends BlockBaseContainer {
       private ArrayList extraNatureIDs = null;
 
 
+      @Override
       public boolean isPowerInvalid() {
          return this.isInvalid();
       }
 
+      @Override
       protected void initiate() {
          super.initiate();
          if(!super.worldObj.isRemote && this.isCore()) {
@@ -237,6 +248,7 @@ public class BlockAltar extends BlockBaseContainer {
 
       }
 
+      @Override
       public void invalidate() {
          super.invalidate();
          if(!super.worldObj.isRemote) {
@@ -249,6 +261,7 @@ public class BlockAltar extends BlockBaseContainer {
 
       }
 
+      @Override
       public void updateEntity() {
          super.updateEntity();
          if(!super.worldObj.isRemote) {
@@ -269,10 +282,12 @@ public class BlockAltar extends BlockBaseContainer {
 
       }
 
+      @Override
       public float getRange() {
          return (float)(16 * this.rangeScale);
       }
 
+      @Override
       public int getEnhancementLevel() {
          return this.enhancementLevel;
       }
@@ -293,6 +308,7 @@ public class BlockAltar extends BlockBaseContainer {
          }
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtTag) {
          if(this.core != null) {
             this.core.setNBT(nbtTag, "Core");
@@ -310,6 +326,7 @@ public class BlockAltar extends BlockBaseContainer {
          super.writeToNBT(nbtTag);
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtTag) {
          this.core = Coord.createFrom(nbtTag, "Core");
          this.power = nbtTag.getFloat("Power");
@@ -356,12 +373,14 @@ public class BlockAltar extends BlockBaseContainer {
          return this.core != null && this.core.isAtPosition(this);
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          this.readFromNBT(packet.func_148857_g());
@@ -391,6 +410,7 @@ public class BlockAltar extends BlockBaseContainer {
 
       }
 
+      @Override
       public boolean consumePower(float requiredPower) {
          if(this.core != null) {
             BlockAltar.TileEntityAltar tileEntity = (BlockAltar.TileEntityAltar)this.core.getBlockTileEntity(super.worldObj);
@@ -411,6 +431,7 @@ public class BlockAltar extends BlockBaseContainer {
          }
       }
 
+      @Override
       public float getCurrentPower() {
          if(this.core != null) {
             BlockAltar.TileEntityAltar tileEntity = (BlockAltar.TileEntityAltar)this.core.getBlockTileEntity(super.worldObj);
@@ -454,14 +475,17 @@ public class BlockAltar extends BlockBaseContainer {
          return this.core != null;
       }
 
+      @Override
       public World getWorld() {
          return super.worldObj;
       }
 
+      @Override
       public Coord getLocation() {
          return new Coord(this);
       }
 
+      @Override
       public boolean isLocationEqual(Coord location) {
          return location != null && location.isAtPosition(this);
       }

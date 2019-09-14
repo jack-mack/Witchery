@@ -43,6 +43,7 @@ public class BlockWitchLeaves extends BlockLeavesBase implements IShearable {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       BlockUtil.registerBlock(this, BlockWitchLeaves.ClassItemBlock.class, blockName);
       super.setBlockName(blockName);
@@ -50,6 +51,7 @@ public class BlockWitchLeaves extends BlockLeavesBase implements IShearable {
       return this;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getBlockColor() {
       double d0 = 0.5D;
@@ -57,6 +59,7 @@ public class BlockWitchLeaves extends BlockLeavesBase implements IShearable {
       return ColorizerFoliage.getFoliageColor(d0, d1);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getRenderColor(int par1) {
       return (par1 & 3) == 1?getFoliageColorAlder():((par1 & 3) == 2?getFoliageColorHawthorn():getFoliageColorBasic());
@@ -77,6 +80,7 @@ public class BlockWitchLeaves extends BlockLeavesBase implements IShearable {
       return 4764952;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
       int l = world.getBlockMetadata(x, y, z);
@@ -102,6 +106,7 @@ public class BlockWitchLeaves extends BlockLeavesBase implements IShearable {
       }
    }
 
+   @Override
    public void breakBlock(World world, int x, int y, int z, Block block0, int meta0) {
       byte b0 = 1;
       int i1 = b0 + 1;
@@ -120,6 +125,7 @@ public class BlockWitchLeaves extends BlockLeavesBase implements IShearable {
 
    }
 
+   @Override
    public void updateTick(World world, int x, int y, int z, Random rand) {
       if(!world.isRemote) {
          int meta = world.getBlockMetadata(x, y, z);
@@ -200,6 +206,7 @@ public class BlockWitchLeaves extends BlockLeavesBase implements IShearable {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
       if(world.canLightningStrikeAt(x, y + 1, z) && !World.doesBlockHaveSolidTopSurface(world, x, y - 1, z) && rand.nextInt(15) == 1) {
@@ -216,14 +223,17 @@ public class BlockWitchLeaves extends BlockLeavesBase implements IShearable {
       world.setBlockToAir(x, y, z);
    }
 
+   @Override
    public int quantityDropped(Random rand) {
       return rand.nextInt(20) == 0?1:0;
    }
 
+   @Override
    public Item getItemDropped(int metadata, Random rand, int fortune) {
       return Item.getItemFromBlock(Witchery.Blocks.SAPLING);
    }
 
+   @Override
    public void dropBlockAsItemWithChance(World world, int x, int y, int z, int par5, float par6, int par7) {
       if(!world.isRemote) {
          int j1 = 20;
@@ -258,19 +268,23 @@ public class BlockWitchLeaves extends BlockLeavesBase implements IShearable {
 
    }
 
+   @Override
    public void harvestBlock(World world, EntityPlayer player, int par3, int par4, int par5, int par6) {
       super.harvestBlock(world, player, par3, par4, par5, par6);
    }
 
+   @Override
    public int damageDropped(int par1) {
       return par1 & 3;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       this.setGraphicsLevel(Witchery.proxy.getGraphicsLevel());
       return !super.field_150121_P;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int par1, int par2) {
       return (par2 & 3) == 1?this.iconsForModes[this.field_94394_cP][1]:((par2 & 3) == 2?this.iconsForModes[this.field_94394_cP][2]:this.iconsForModes[this.field_94394_cP][0]);
@@ -281,6 +295,7 @@ public class BlockWitchLeaves extends BlockLeavesBase implements IShearable {
       this.field_94394_cP = par1?0:1;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list) {
       for(int i = 0; i < LEAF_TYPES.length; ++i) {
@@ -289,10 +304,12 @@ public class BlockWitchLeaves extends BlockLeavesBase implements IShearable {
 
    }
 
+   @Override
    protected ItemStack createStackedBlock(int par1) {
       return new ItemStack(this, 1, par1 & 3);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister par1IconRegister) {
       for(int i = 0; i < field_94396_b.length; ++i) {
@@ -305,20 +322,24 @@ public class BlockWitchLeaves extends BlockLeavesBase implements IShearable {
 
    }
 
+   @Override
    public boolean isShearable(ItemStack item, IBlockAccess world, int x, int y, int z) {
       return true;
    }
 
+   @Override
    public ArrayList onSheared(ItemStack item, IBlockAccess world, int x, int y, int z, int fortune) {
       ArrayList ret = new ArrayList();
       ret.add(new ItemStack(this, 1, world.getBlockMetadata(x, y, z) & 3));
       return ret;
    }
 
+   @Override
    public void beginLeavesDecay(World world, int x, int y, int z) {
       world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) | 8, 4);
    }
 
+   @Override
    public boolean isLeaves(IBlockAccess world, int x, int y, int z) {
       return true;
    }
@@ -330,6 +351,7 @@ public class BlockWitchLeaves extends BlockLeavesBase implements IShearable {
          super(block);
       }
 
+      @Override
       protected String[] getNames() {
          return BlockWitchLeaves.LEAF_TYPES;
       }

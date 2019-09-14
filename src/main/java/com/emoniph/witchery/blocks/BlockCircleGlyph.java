@@ -40,6 +40,7 @@ public class BlockCircleGlyph extends BlockBase {
       this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.015625F, 1.0F);
    }
 
+   @Override
    public void onBlockClicked(World world, int posX, int posY, int posZ, EntityPlayer player) {
       if(!world.isRemote) {
          ItemStack itemstack = player.getHeldItem();
@@ -50,8 +51,10 @@ public class BlockCircleGlyph extends BlockBase {
 
    }
 
+   @Override
    public void harvestBlock(World world, EntityPlayer player, int posX, int posY, int posZ, int meta) {}
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegistrar) {
       this.icons = new IIcon[12];
@@ -62,27 +65,33 @@ public class BlockCircleGlyph extends BlockBase {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int face, int metadata) {
       return this.icons[MathHelper.clamp_int(metadata, 0, 12)];
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
       return null;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public int quantityDropped(Random rand) {
       return 0;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
       double d0;
@@ -120,6 +129,7 @@ public class BlockCircleGlyph extends BlockBase {
 
    }
 
+   @Override
    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
       this.func_111046_k(world, x, y, z);
    }
@@ -133,16 +143,19 @@ public class BlockCircleGlyph extends BlockBase {
       }
    }
 
+   @Override
    public boolean canBlockStay(World world, int x, int y, int z) {
       Material materialBelow = world.getBlock(x, y - 1, z).getMaterial();
       return !world.isAirBlock(x, y - 1, z) && materialBelow != null && materialBelow.isOpaque() && materialBelow.isSolid();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean shouldSideBeRendered(IBlockAccess blockAccess, int x, int y, int z, int side) {
       return side == 1;
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       Block block = world.getBlock(x, y, z);
       return block == Witchery.Blocks.GLYPH_INFERNAL?new ItemStack(Witchery.Items.CHALK_INFERNAL):(block == Witchery.Blocks.GLYPH_OTHERWHERE?new ItemStack(Witchery.Items.CHALK_OTHERWHERE):new ItemStack(Witchery.Items.CHALK_RITUAL));

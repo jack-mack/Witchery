@@ -13,6 +13,7 @@ public class ItemKobolditePickaxe extends ItemPickaxe {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
    }
 
+   @Override
    public Item setUnlocalizedName(String itemName) {
       ItemUtil.registerItem(this, itemName);
       return super.setUnlocalizedName(itemName);

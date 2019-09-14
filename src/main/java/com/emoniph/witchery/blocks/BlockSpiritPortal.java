@@ -35,19 +35,23 @@ public class BlockSpiritPortal extends BlockBreakable {
       this.setCreativeTab((CreativeTabs)null);
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       BlockUtil.registerBlock(this, blockName);
       return super.setBlockName(blockName);
    }
 
+   @Override
    public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
       super.updateTick(par1World, par2, par3, par4, par5Random);
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
       return null;
    }
 
+   @Override
    public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {
       float f;
       float f1;
@@ -63,14 +67,17 @@ public class BlockSpiritPortal extends BlockBreakable {
 
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, Block par5) {
       byte b0 = 0;
       byte b1 = 1;
@@ -107,6 +114,7 @@ public class BlockSpiritPortal extends BlockBreakable {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
       if(par1IBlockAccess.getBlock(par2, par3, par4) == this) {
@@ -122,10 +130,12 @@ public class BlockSpiritPortal extends BlockBreakable {
       }
    }
 
+   @Override
    public int quantityDropped(Random par1Random) {
       return 0;
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
       if(!world.isRemote && entity instanceof EntityPlayer && entity.dimension == Config.instance().dimensionDreamID && entity.ridingEntity == null && entity.riddenByEntity == null && WorldProviderDreamWorld.canPlayerManifest((EntityPlayer)entity)) {
          WorldProviderDreamWorld.manifestPlayerInOverworldAsGhost((EntityPlayer)entity);
@@ -133,15 +143,18 @@ public class BlockSpiritPortal extends BlockBreakable {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getRenderBlockPass() {
       return 1;
    }
 
+   @Override
    public int colorMultiplier(IBlockAccess iblockaccess, int x, int y, int z) {
       return '\uff66';
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
       for(int l = 0; l < 2; ++l) {
@@ -168,6 +181,7 @@ public class BlockSpiritPortal extends BlockBreakable {
 
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       return null;
    }

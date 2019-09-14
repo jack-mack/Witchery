@@ -17,6 +17,7 @@ public class RiteEclipse extends Rite {
    private static Hashtable lastEclipseTimes = new Hashtable();
 
 
+   @Override
    public void addSteps(ArrayList steps, int initialStage) {
       steps.add(new RiteEclipse.StepEclipse(this, initialStage));
    }
@@ -34,10 +35,12 @@ public class RiteEclipse extends Rite {
          this.stage = initialStage;
       }
 
+      @Override
       public int getCurrentStage() {
          return this.stage;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(ticks % 30L != 0L) {
             return RitualStep.Result.STARTING;

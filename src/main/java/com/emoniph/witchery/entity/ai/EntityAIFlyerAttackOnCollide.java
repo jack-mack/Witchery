@@ -34,25 +34,30 @@ public class EntityAIFlyerAttackOnCollide extends EntityAIBase {
       this.setMutexBits(3);
    }
 
+   @Override
    public boolean shouldExecute() {
       EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
       return entitylivingbase == null?false:(!entitylivingbase.isEntityAlive()?false:this.classTarget == null || this.classTarget.isAssignableFrom(entitylivingbase.getClass()));
    }
 
+   @Override
    public boolean continueExecuting() {
       EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
       return entitylivingbase == null?false:(!entitylivingbase.isEntityAlive()?false:(!this.longMemory?!this.attacker.getNavigator().noPath():this.attacker.isWithinHomeDistance(MathHelper.floor_double(entitylivingbase.posX), MathHelper.floor_double(entitylivingbase.posY), MathHelper.floor_double(entitylivingbase.posZ))));
    }
 
+   @Override
    public void startExecuting() {
       this.attacker.getNavigator().setPath(this.entityPathEntity, this.speedTowardsTarget);
       this.field_75445_i = 0;
    }
 
+   @Override
    public void resetTask() {
       this.attacker.getNavigator().clearPathEntity();
    }
 
+   @Override
    public void updateTask() {
       EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
       this.attacker.getLookHelper().setLookPositionWithEntity(entitylivingbase, 30.0F, 30.0F);

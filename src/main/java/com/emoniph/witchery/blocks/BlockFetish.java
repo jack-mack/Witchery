@@ -71,6 +71,7 @@ public class BlockFetish extends BlockBaseContainer {
       this.setStepSound(Block.soundTypeWood);
    }
 
+   @Override
    public void getSubBlocks(Item item, CreativeTabs tabs, List list) {
       super.getSubBlocks(item, tabs, list);
       if(Item.getItemFromBlock(Witchery.Blocks.FETISH_SCARECROW) == item) {
@@ -95,21 +96,25 @@ public class BlockFetish extends BlockBaseContainer {
 
    }
 
+   @Override
    public void onBlockAdded(World world, int posX, int posY, int posZ) {
       super.onBlockAdded(world, posX, posY, posZ);
       BlockUtil.setBlockDefaultDirection(world, posX, posY, posZ);
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int posX, int posY, int posZ) {
       BlockFetish.TileEntityFetish tile = (BlockFetish.TileEntityFetish)BlockUtil.getTileEntity(world, posX, posY, posZ, BlockFetish.TileEntityFetish.class);
       return this != Witchery.Blocks.FETISH_WITCHS_LADDER && (tile == null || !tile.isSpectral())?super.getCollisionBoundingBoxFromPool(world, posX, posY, posZ):null;
    }
 
+   @Override
    public float getBlockHardness(World world, int posX, int posY, int posZ) {
       BlockFetish.TileEntityFetish tile = (BlockFetish.TileEntityFetish)BlockUtil.getTileEntity(world, posX, posY, posZ, BlockFetish.TileEntityFetish.class);
       return tile != null && tile.isSpectral()?-1.0F:super.getBlockHardness(world, posX, posY, posZ);
    }
 
+   @Override
    public void onBlockPlacedBy(World world, int posX, int posY, int posZ, EntityLivingBase player, ItemStack stack) {
       int l = MathHelper.floor_double((double)(player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
       if(l == 0) {
@@ -151,6 +156,7 @@ public class BlockFetish extends BlockBaseContainer {
 
    }
 
+   @Override
    public void onBlockHarvested(World world, int posX, int posY, int posZ, int par5, EntityPlayer par6EntityPlayer) {
       if(par6EntityPlayer.capabilities.isCreativeMode) {
          par5 |= 8;
@@ -168,6 +174,7 @@ public class BlockFetish extends BlockBaseContainer {
 
    }
 
+   @Override
    public ArrayList getDrops(World world, int x, int y, int z, int metadata, int fortune) {
       ArrayList drops = new ArrayList();
       if((metadata & 8) == 0) {
@@ -188,27 +195,33 @@ public class BlockFetish extends BlockBaseContainer {
       return drops;
    }
 
+   @Override
    public int getRenderType() {
       return this == Witchery.Blocks.FETISH_WITCHS_LADDER?1:super.getRenderType();
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
       return this == Witchery.Blocks.FETISH_WITCHS_LADDER;
    }
 
+   @Override
    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
       return null;
    }
 
+   @Override
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
       BlockFetish.TileEntityFetish tile = (BlockFetish.TileEntityFetish)BlockUtil.getTileEntity(world, x, y, z, BlockFetish.TileEntityFetish.class);
       if(tile != null && player != null) {
@@ -247,15 +260,18 @@ public class BlockFetish extends BlockBaseContainer {
       return false;
    }
 
+   @Override
    public int isProvidingWeakPower(IBlockAccess par1IBlockAccess, int posX, int posY, int posZ, int side) {
       BlockFetish.TileEntityFetish tile = (BlockFetish.TileEntityFetish)BlockUtil.getTileEntity(par1IBlockAccess, posX, posY, posZ, BlockFetish.TileEntityFetish.class);
       return tile != null?tile.getPowerLevel():super.isProvidingWeakPower(par1IBlockAccess, posX, posY, posZ, side);
    }
 
+   @Override
    public int isProvidingStrongPower(IBlockAccess par1IBlockAccess, int posX, int posY, int posZ, int side) {
       return side == 1?this.isProvidingWeakPower(par1IBlockAccess, posX, posY, posZ, side):0;
    }
 
+   @Override
    public boolean canProvidePower() {
       return true;
    }
@@ -266,6 +282,7 @@ public class BlockFetish extends BlockBaseContainer {
          super(block);
       }
 
+      @Override
       public String getItemStackDisplayName(ItemStack stack) {
          String s = super.getItemStackDisplayName(stack);
          String effect = InfusedSpiritEffect.getEffectDisplayName(stack);
@@ -304,6 +321,7 @@ public class BlockFetish extends BlockBaseContainer {
          return this.expectedBlock;
       }
 
+      @Override
       public void updateEntity() {
          super.updateEntity();
          if(!super.worldObj.isRemote && TimeUtil.secondsElapsed(1, super.ticks)) {
@@ -438,6 +456,7 @@ public class BlockFetish extends BlockBaseContainer {
          return this.color;
       }
 
+      @Override
       public int getEffectType() {
          return this.effectType;
       }
@@ -450,14 +469,17 @@ public class BlockFetish extends BlockBaseContainer {
 
       }
 
+      @Override
       public int getX() {
          return super.xCoord;
       }
 
+      @Override
       public int getY() {
          return super.yCoord;
       }
 
+      @Override
       public int getZ() {
          return super.zCoord;
       }
@@ -477,18 +499,21 @@ public class BlockFetish extends BlockBaseContainer {
 
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          this.readFromNBT(packet.func_148857_g());
          super.worldObj.func_147479_m(super.xCoord, super.yCoord, super.zCoord);
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtRoot) {
          super.readFromNBT(nbtRoot);
          this.lastActivationTime = nbtRoot.getLong("LastActivation");
@@ -563,6 +588,7 @@ public class BlockFetish extends BlockBaseContainer {
 
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtRoot) {
          super.writeToNBT(nbtRoot);
          nbtRoot.setLong("LastActivation", this.lastActivationTime);

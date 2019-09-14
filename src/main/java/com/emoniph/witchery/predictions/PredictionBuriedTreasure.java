@@ -20,14 +20,17 @@ public class PredictionBuriedTreasure extends PredictionAlwaysForced {
       this.chestGenHook = chestGenHook;
    }
 
+   @Override
    public boolean shouldTrySelfFulfill(World world, EntityPlayer player) {
       return false;
    }
 
+   @Override
    public boolean doSelfFulfillment(World world, EntityPlayer player) {
       return false;
    }
 
+   @Override
    public boolean checkIfFulfilled(World world, EntityPlayer player, HarvestDropsEvent event, boolean isPastDue, boolean veryOld) {
       if(!event.isCanceled() && (event.block == Blocks.grass || event.block == Blocks.dirt || event.block == Blocks.sand || event.block == Blocks.mycelium) && event.y > 6 && this.shouldWeActivate(world, player, isPastDue) && !world.isAirBlock(event.x + 1, event.y - 1, event.z) && !world.isAirBlock(event.x - 1, event.y - 1, event.z) && !world.isAirBlock(event.x, event.y - 1, event.z + 1) && !world.isAirBlock(event.x, event.y - 1, event.z - 1) && !world.isAirBlock(event.x, event.y - 2, event.z)) {
          world.setBlock(event.x, event.y - 1, event.z, Blocks.chest);

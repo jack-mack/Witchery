@@ -30,31 +30,37 @@ public class BlockWitchVine extends BlockBase {
       this.setStepSound(Block.soundTypeGrass);
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
       this.setBlockBoundsBasedOnState(world, x, y, z);
       return super.getCollisionBoundingBoxFromPool(world, x, y, z);
    }
 
+   @Override
    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
       this.setBoundsBasedOnMetadata(world.getBlockMetadata(x, y, z));
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z) {
       this.setBlockBoundsBasedOnState(world, x, y, z);
       return super.getSelectedBoundingBoxFromPool(world, x, y, z);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getBlockColor() {
       return ColorizerFoliage.getFoliageColorBasic();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getRenderColor(int meta) {
       return ColorizerFoliage.getFoliageColorBasic();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
       return world.getBiomeGenForCoords(x, z).getBiomeFoliageColor(x, y, z);
@@ -74,30 +80,37 @@ public class BlockWitchVine extends BlockBase {
 
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public int getRenderType() {
       return Witchery.proxy.getVineRenderId();
    }
 
+   @Override
    public Item getItemDropped(int metadata, Random rand, int fortune) {
       return null;
    }
 
+   @Override
    public int quantityDropped(Random rand) {
       return 0;
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       return null;
    }
 
+   @Override
    public boolean isLadder(IBlockAccess world, int x, int y, int z, EntityLivingBase entity) {
       return true;
    }

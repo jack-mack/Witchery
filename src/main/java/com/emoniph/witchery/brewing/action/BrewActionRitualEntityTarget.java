@@ -29,6 +29,7 @@ public class BrewActionRitualEntityTarget extends BrewActionRitual {
       super(itemKey, powerCost, false);
    }
 
+   @Override
    public RitualStatus updateRitual(MinecraftServer server, BrewActionList actionList, World world, int x, int y, int z, ModifiersRitual modifiers, ModifiersImpact impactModifiers) {
       NBTTagCompound tag = actionList.getTopItemStack().getTagCompound();
       if(tag == null) {

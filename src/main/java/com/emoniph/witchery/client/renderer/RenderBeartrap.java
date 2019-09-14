@@ -18,6 +18,7 @@ public class RenderBeartrap extends TileEntitySpecialRenderer {
    private static final ResourceLocation TEXTURE_URL = new ResourceLocation("witchery", "textures/blocks/beartrap.png");
 
 
+   @Override
    public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float t) {
       GL11.glPushMatrix();
       GL11.glTranslatef((float)x, (float)y, (float)z);

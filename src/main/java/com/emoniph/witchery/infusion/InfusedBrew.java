@@ -18,10 +18,12 @@ public class InfusedBrew extends ItemGeneral.Drinkable {
       super.potion = true;
    }
 
+   @Override
    public void onDrunk(World world, EntityPlayer player, ItemStack itemstack) {
       this.effect.drunk(world, player, itemstack);
    }
 
+   @Override
    public boolean isInfused() {
       return true;
    }

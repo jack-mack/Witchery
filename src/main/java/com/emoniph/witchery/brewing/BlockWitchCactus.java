@@ -32,38 +32,46 @@ public class BlockWitchCactus extends BlockBase {
       super.registerWithCreateTab = false;
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
       float f = 0.0625F;
       return AxisAlignedBB.getBoundingBox((double)((float)x + f), (double)y, (double)((float)z + f), (double)((float)(x + 1) - f), (double)((float)(y + 1) - f), (double)((float)(z + 1) - f));
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z) {
       float f = 0.0625F;
       return AxisAlignedBB.getBoundingBox((double)((float)x + f), (double)y, (double)((float)z + f), (double)((float)(x + 1) - f), (double)(y + 1), (double)((float)(z + 1) - f));
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int side, int meta) {
       return side == 1?this.iconTop:(side == 0?this.iconBottom:super.blockIcon);
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public int getRenderType() {
       return 13;
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
       entity.attackEntityFrom(DamageSource.cactus, 1.0F);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {
       super.blockIcon = iconRegister.registerIcon(this.getTextureName() + "_side");
@@ -71,22 +79,27 @@ public class BlockWitchCactus extends BlockBase {
       this.iconBottom = iconRegister.registerIcon(this.getTextureName() + "_bottom");
    }
 
+   @Override
    public Item getItemDropped(int meta, Random random, int fortune) {
       return null;
    }
 
+   @Override
    public int quantityDropped(int meta, int fortune, Random random) {
       return 0;
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       return null;
    }
 
+   @Override
    public boolean canBlockStay(World world, int x, int y, int z) {
       return !BlockUtil.isReplaceableBlock(world, x, y - 1, z);
    }
 
+   @Override
    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
       if(!this.canBlockStay(world, x, y, z)) {
          world.func_147480_a(x, y, z, true);

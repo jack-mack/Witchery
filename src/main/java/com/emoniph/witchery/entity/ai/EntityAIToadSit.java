@@ -24,14 +24,17 @@ public class EntityAIToadSit extends EntityAIBase {
       this.setMutexBits(5);
    }
 
+   @Override
    public boolean shouldExecute() {
       return !this.theOcelot.isSitting() && this.theOcelot.getRNG().nextDouble() <= 0.006500000134110451D && this.getNearbySitableBlockDistance();
    }
 
+   @Override
    public boolean continueExecuting() {
       return this.currentTick <= this.maxSittingTicks && this.field_75402_d <= 60 && this.isSittableBlock(this.theOcelot.worldObj, this.sitableBlockX, this.sitableBlockY, this.sitableBlockZ);
    }
 
+   @Override
    public void startExecuting() {
       this.theOcelot.getNavigator().tryMoveToXYZ((double)((float)this.sitableBlockX) + 0.5D, (double)(this.sitableBlockY + 1), (double)((float)this.sitableBlockZ) + 0.5D, this.field_75404_b);
       this.currentTick = 0;
@@ -39,10 +42,12 @@ public class EntityAIToadSit extends EntityAIBase {
       this.maxSittingTicks = this.theOcelot.getRNG().nextInt(this.theOcelot.getRNG().nextInt(1200) + 1200) + 1200;
    }
 
+   @Override
    public void resetTask() {
       this.theOcelot.setSitting(false);
    }
 
+   @Override
    public void updateTask() {
       ++this.currentTick;
       this.theOcelot.func_70907_r().setSitting(false);

@@ -33,6 +33,7 @@ public class ItemVanillaPotion extends ItemBase {
 
    public ItemVanillaPotion() {
       this.potionAntidote = ItemVanillaPotion.SubItem.register(new ItemVanillaPotion.SubItem(0, "antidote", '\uff00', null) {
+         @Override
          public void onDrunk(World world, EntityPlayer player, ItemStack stack) {
             if(player != null && world != null && !world.isRemote) {
                if(player.isPotionActive(Potion.poison)) {
@@ -51,6 +52,7 @@ public class ItemVanillaPotion extends ItemBase {
       this.setMaxDamage(0);
    }
 
+   @Override
    public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
       if(!player.capabilities.isCreativeMode) {
          --stack.stackSize;
@@ -74,33 +76,40 @@ public class ItemVanillaPotion extends ItemBase {
       return stack;
    }
 
+   @Override
    public int getMaxItemUseDuration(ItemStack par1ItemStack) {
       return 32;
    }
 
+   @Override
    public EnumAction getItemUseAction(ItemStack par1ItemStack) {
       return EnumAction.drink;
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
       par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
       return par1ItemStack;
    }
 
+   @Override
    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIconFromDamage(int par1) {
       return this.field_94590_d;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIconFromDamageForRenderPass(int par1, int par2) {
       return par2 == 0?this.field_94592_ct:super.getIconFromDamageForRenderPass(par1, par2);
    }
 
+   @Override
    public String getUnlocalizedName(ItemStack itemStack) {
       int damage = itemStack.getItemDamage();
 
@@ -114,21 +123,25 @@ public class ItemVanillaPotion extends ItemBase {
       return damage >= 0 && damage < this.subItems.size()?((ItemVanillaPotion.SubItem)this.subItems.get(damage)).color:0;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getColorFromItemStack(ItemStack par1ItemStack, int par2) {
       return par2 > 0?16777215:this.getColorFromDamage(par1ItemStack.getItemDamage());
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean requiresMultipleRenderPasses() {
       return true;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean hasEffect(ItemStack par1ItemStack) {
       return true;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void getSubItems(Item item, CreativeTabs creativeTabs, List itemList) {
       Iterator i$ = this.subItems.iterator();
@@ -142,6 +155,7 @@ public class ItemVanillaPotion extends ItemBase {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerIcons(IIconRegister par1IconRegister) {
       this.field_94590_d = par1IconRegister.registerIcon(this.getIconString() + "_" + "bottle_drinkable");

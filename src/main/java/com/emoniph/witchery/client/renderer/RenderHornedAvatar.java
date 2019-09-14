@@ -38,22 +38,27 @@ public class RenderHornedAvatar extends RenderLiving {
 
    }
 
+   @Override
    public void doRender(EntityLiving entity, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderHornedAvatar((EntityHornedHuntsman)entity, par2, par4, par6, par8, par9);
    }
 
+   @Override
    protected void rotateCorpse(EntityLivingBase par1EntityLivingBase, float par2, float par3, float par4) {
       this.rotateHornedAvatarCorpse((EntityHornedHuntsman)par1EntityLivingBase, par2, par3, par4);
    }
 
+   @Override
    public void doRender(EntityLivingBase par1, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderHornedAvatar((EntityHornedHuntsman)par1, par2, par4, par6, par8, par9);
    }
 
+   @Override
    public void doRender(Entity entity, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderHornedAvatar((EntityHornedHuntsman)entity, par2, par4, par6, par8, par9);
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(Entity par1Entity) {
       return this.func_110832_a((EntityHornedHuntsman)par1Entity);
    }

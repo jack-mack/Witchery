@@ -27,6 +27,7 @@ public class EntityAIVillagerMateNow extends EntityAIBase {
       this.begin = true;
    }
 
+   @Override
    public boolean shouldExecute() {
       if(this.villagerObj.getGrowingAge() == 0 && this.begin) {
          this.villageObj = this.worldObj.villageCollectionObj.findNearestVillage(MathHelper.floor_double(this.villagerObj.posX), MathHelper.floor_double(this.villagerObj.posY), MathHelper.floor_double(this.villagerObj.posZ), 0);
@@ -48,12 +49,14 @@ public class EntityAIVillagerMateNow extends EntityAIBase {
       }
    }
 
+   @Override
    public void startExecuting() {
       this.matingTimeout = 300;
       this.villagerObj.setMating(true);
       this.begin = false;
    }
 
+   @Override
    public void resetTask() {
       this.villageObj = null;
       this.mate = null;
@@ -61,11 +64,13 @@ public class EntityAIVillagerMateNow extends EntityAIBase {
       this.begin = false;
    }
 
+   @Override
    public boolean continueExecuting() {
       boolean keepGoing = this.matingTimeout >= 0 && this.checkSufficientDoorsPresentForNewVillager() && this.villagerObj.getGrowingAge() == 0;
       return keepGoing;
    }
 
+   @Override
    public void updateTask() {
       --this.matingTimeout;
       this.villagerObj.getLookHelper().setLookPositionWithEntity(this.mate, 10.0F, 30.0F);

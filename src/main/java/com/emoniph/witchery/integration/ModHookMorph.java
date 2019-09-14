@@ -15,16 +15,20 @@ public class ModHookMorph extends ModHook {
    private static Method methodHasMorph;
 
 
+   @Override
    public String getModID() {
       return "Morph";
    }
 
+   @Override
    protected void doInit() {
       Witchery.modHooks.isMorphPresent = true;
    }
 
+   @Override
    protected void doPostInit() {}
 
+   @Override
    protected void doReduceMagicPower(EntityLivingBase entity, float factor) {}
 
    @SideOnly(Side.CLIENT)

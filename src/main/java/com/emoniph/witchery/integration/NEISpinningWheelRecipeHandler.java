@@ -14,18 +14,22 @@ import net.minecraft.util.StatCollector;
 
 public class NEISpinningWheelRecipeHandler extends TemplateRecipeHandler {
 
+   @Override
    public Class getGuiClass() {
       return BlockSpinningWheelGUI.class;
    }
 
+   @Override
    public String getRecipeName() {
       return StatCollector.translateToLocal("tile.witchery:spinningwheel.name");
    }
 
+   @Override
    public void loadTransferRects() {
       this.transferRects.add(new RecipeTransferRect(new Rectangle(74, 9, 24, 18), "witchery_spinning", new Object[0]));
    }
 
+   @Override
    public void loadCraftingRecipes(String outputId, Object ... results) {
       if(outputId.equals("witchery_spinning") && this.getClass() == NEISpinningWheelRecipeHandler.class) {
          Iterator i$ = SpinningRecipes.instance().recipes.iterator();
@@ -40,6 +44,7 @@ public class NEISpinningWheelRecipeHandler extends TemplateRecipeHandler {
 
    }
 
+   @Override
    public void loadCraftingRecipes(ItemStack result) {
       SpinningRecipes.SpinningRecipe recipe = SpinningRecipes.instance().findRecipeFor(result);
       if(recipe != null) {
@@ -48,6 +53,7 @@ public class NEISpinningWheelRecipeHandler extends TemplateRecipeHandler {
 
    }
 
+   @Override
    public void loadUsageRecipes(ItemStack ingredient) {
       SpinningRecipes.SpinningRecipe recipe = SpinningRecipes.instance().findRecipeUsing(ingredient);
       if(recipe != null) {
@@ -56,14 +62,17 @@ public class NEISpinningWheelRecipeHandler extends TemplateRecipeHandler {
 
    }
 
+   @Override
    public String getGuiTexture() {
       return "witchery:textures/gui/spinningwheel.png";
    }
 
+   @Override
    public void drawExtras(int recipe) {
       this.drawProgressBar(51, 25, 176, 0, 14, 14, 48, 7);
    }
 
+   @Override
    public String getOverlayIdentifier() {
       return "witchery_spinning";
    }
@@ -96,10 +105,12 @@ public class NEISpinningWheelRecipeHandler extends TemplateRecipeHandler {
 
       }
 
+      @Override
       public PositionedStack getResult() {
          return this.output;
       }
 
+      @Override
       public ArrayList getIngredients() {
          ArrayList recipestacks = new ArrayList();
          recipestacks.add(this.fibre);

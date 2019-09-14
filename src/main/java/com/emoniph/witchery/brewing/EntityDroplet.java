@@ -50,6 +50,7 @@ public class EntityDroplet extends Entity {
       this.setColor(WitcheryBrewRegistry.INSTANCE.getBrewColor(nbtBrew));
    }
 
+   @Override
    protected void entityInit() {
       super.dataWatcher.addObject(6, Integer.valueOf(0));
    }
@@ -66,6 +67,7 @@ public class EntityDroplet extends Entity {
       return this.nbtBrew;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean isInRangeToRenderDist(double distSq) {
       double d1 = super.boundingBox.getAverageEdgeLength() * 4.0D;
@@ -93,6 +95,7 @@ public class EntityDroplet extends Entity {
       this.ticksInGround = 0;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void setVelocity(double motionX, double motionY, double motionZ) {
       super.motionX = motionX;
@@ -106,6 +109,7 @@ public class EntityDroplet extends Entity {
 
    }
 
+   @Override
    public void onUpdate() {
       super.lastTickPosX = super.posX;
       super.lastTickPosY = super.posY;
@@ -245,6 +249,7 @@ public class EntityDroplet extends Entity {
       this.setDead();
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       nbtRoot.setShort("xTile", (short)this.field_145788_c);
       nbtRoot.setShort("yTile", (short)this.field_145786_d);
@@ -258,6 +263,7 @@ public class EntityDroplet extends Entity {
 
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       this.field_145788_c = nbtRoot.getShort("xTile");
       this.field_145786_d = nbtRoot.getShort("yTile");
@@ -276,6 +282,7 @@ public class EntityDroplet extends Entity {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public float getShadowSize() {
       return 0.0F;

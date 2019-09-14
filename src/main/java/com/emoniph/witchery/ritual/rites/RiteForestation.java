@@ -36,6 +36,7 @@ public class RiteForestation extends Rite {
       this.metadata = protoMeta;
    }
 
+   @Override
    public void addSteps(ArrayList steps, int intialStage) {
       steps.add(new RiteForestation.StepForestation(this, intialStage));
    }
@@ -53,6 +54,7 @@ public class RiteForestation extends Rite {
          this.stage = initialStage;
       }
 
+      @Override
       public int getCurrentStage() {
          return (byte)this.stage;
       }
@@ -67,6 +69,7 @@ public class RiteForestation extends Rite {
          }
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(ticks % 20L != 0L) {
             return RitualStep.Result.STARTING;

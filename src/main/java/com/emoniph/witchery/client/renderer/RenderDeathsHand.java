@@ -33,6 +33,7 @@ public class RenderDeathsHand implements IItemRenderer {
    double scale = 1.0D;
 
 
+   @Override
    public boolean handleRenderType(ItemStack item, ItemRenderType type) {
       switch(RenderDeathsHand.NamelessClass1509705120.$SwitchMap$net$minecraftforge$client$IItemRenderer$ItemRenderType[type.ordinal()]) {
       case 1:
@@ -43,10 +44,12 @@ public class RenderDeathsHand implements IItemRenderer {
       }
    }
 
+   @Override
    public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
       return false;
    }
 
+   @Override
    public void renderItem(ItemRenderType type, ItemStack item, Object ... data) {
       switch(RenderDeathsHand.NamelessClass1509705120.$SwitchMap$net$minecraftforge$client$IItemRenderer$ItemRenderType[type.ordinal()]) {
       case 1:

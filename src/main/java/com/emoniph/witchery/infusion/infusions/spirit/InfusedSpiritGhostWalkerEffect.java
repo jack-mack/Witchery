@@ -14,10 +14,12 @@ public class InfusedSpiritGhostWalkerEffect extends InfusedSpiritEffect {
       super(id, "ghostwalker", spirits, spectres, banshees, poltergeists);
    }
 
+   @Override
    public double getRadius() {
       return 8.0D;
    }
 
+   @Override
    public boolean doUpdateEffect(TileEntity tile, boolean triggered, ArrayList foundEntities) {
       if(triggered) {
          Iterator i$ = foundEntities.iterator();

@@ -14,18 +14,22 @@ import net.minecraft.util.StatCollector;
 
 public class NEIKettleRecipeHandler extends TemplateRecipeHandler {
 
+   @Override
    public void loadTransferRects() {
       this.transferRects.add(new RecipeTransferRect(new Rectangle(84, 23, 24, 18), "witchery_brewing", new Object[0]));
    }
 
+   @Override
    public Class getGuiClass() {
       return GuiCrafting.class;
    }
 
+   @Override
    public String getRecipeName() {
       return StatCollector.translateToLocal("tile.witchery:kettle.name");
    }
 
+   @Override
    public void loadCraftingRecipes(String outputId, Object ... results) {
       if(outputId.equals("witchery_brewing") && this.getClass() == NEIKettleRecipeHandler.class) {
          Iterator i$ = KettleRecipes.instance().recipes.iterator();
@@ -40,6 +44,7 @@ public class NEIKettleRecipeHandler extends TemplateRecipeHandler {
 
    }
 
+   @Override
    public void loadCraftingRecipes(ItemStack result) {
       KettleRecipes.KettleRecipe recipe = KettleRecipes.instance().findRecipeFor(result);
       if(recipe != null) {
@@ -48,14 +53,18 @@ public class NEIKettleRecipeHandler extends TemplateRecipeHandler {
 
    }
 
+   @Override
    public void loadUsageRecipes(ItemStack ingredient) {}
 
+   @Override
    public String getGuiTexture() {
       return "textures/gui/container/crafting_table.png";
    }
 
+   @Override
    public void drawExtras(int recipe) {}
 
+   @Override
    public String getOverlayIdentifier() {
       return "witchery_brewing";
    }
@@ -81,10 +90,12 @@ public class NEIKettleRecipeHandler extends TemplateRecipeHandler {
 
       }
 
+      @Override
       public PositionedStack getResult() {
          return this.result;
       }
 
+      @Override
       public ArrayList getIngredients() {
          ArrayList recipestacks = new ArrayList();
          recipestacks.add(this.result);

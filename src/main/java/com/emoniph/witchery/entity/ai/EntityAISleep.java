@@ -24,6 +24,7 @@ public class EntityAISleep extends EntityAIBase {
       this.setMutexBits(7);
    }
 
+   @Override
    public boolean shouldExecute() {
       long time = this.world.getWorldTime() % 24000L;
       if(time >= 13000L && time < 23999L && this.villager.hurtTime <= 0) {
@@ -79,6 +80,7 @@ public class EntityAISleep extends EntityAIBase {
       }
    }
 
+   @Override
    public void startExecuting() {
       ExtendedVillager ext = ExtendedVillager.get(this.villager);
       if(ext != null) {
@@ -87,6 +89,7 @@ public class EntityAISleep extends EntityAIBase {
 
    }
 
+   @Override
    public void resetTask() {
       this.village = null;
       ExtendedVillager ext = ExtendedVillager.get(this.villager);
@@ -96,11 +99,13 @@ public class EntityAISleep extends EntityAIBase {
 
    }
 
+   @Override
    public boolean continueExecuting() {
       long time = this.world.getWorldTime() % 24000L;
       return time > 13000L && time < 23999L && this.villager.hurtTime == 0;
    }
 
+   @Override
    public void updateTask() {
       ExtendedVillager ext = ExtendedVillager.get(this.villager);
       if(ext != null) {

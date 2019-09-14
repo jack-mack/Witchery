@@ -15,6 +15,7 @@ public abstract class RiteTeleportation extends Rite {
       this.radius = radius;
    }
 
+   @Override
    public void addSteps(ArrayList steps, int intialStage) {
       steps.add(new RiteTeleportation.StepTeleportation(this));
    }
@@ -31,6 +32,7 @@ public abstract class RiteTeleportation extends Rite {
          this.rite = rite;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          return ticks % 20L != 0L?RitualStep.Result.STARTING:(this.rite.teleport(world, posX, posY, posZ, ritual)?RitualStep.Result.COMPLETED:RitualStep.Result.ABORTED_REFUND);
       }

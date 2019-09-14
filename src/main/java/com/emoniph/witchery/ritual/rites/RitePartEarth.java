@@ -21,6 +21,7 @@ public class RitePartEarth extends Rite {
       this.depth = depth;
    }
 
+   @Override
    public void addSteps(ArrayList steps, int initialStage) {
       steps.add(new RitePartEarth.StepPartEarth(this, initialStage));
    }
@@ -39,10 +40,12 @@ public class RitePartEarth extends Rite {
          this.stage = initialStage;
       }
 
+      @Override
       public int getCurrentStage() {
          return this.stage;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(this.stage == 0 && ticks % 20L != 0L) {
             return RitualStep.Result.STARTING;

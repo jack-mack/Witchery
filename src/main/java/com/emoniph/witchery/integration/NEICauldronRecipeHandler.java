@@ -15,18 +15,22 @@ import net.minecraft.util.StatCollector;
 
 public class NEICauldronRecipeHandler extends TemplateRecipeHandler {
 
+   @Override
    public void loadTransferRects() {
       this.transferRects.add(new RecipeTransferRect(new Rectangle(92, 31, 24, 18), "witchery_brewing_plus", new Object[0]));
    }
 
+   @Override
    public Class getGuiClass() {
       return GuiCrafting.class;
    }
 
+   @Override
    public String getRecipeName() {
       return StatCollector.translateToLocal("tile.witchery:cauldron.name");
    }
 
+   @Override
    public void loadCraftingRecipes(String outputId, Object ... results) {
       if(outputId.equals("witchery_brewing_plus") && this.getClass() == NEICauldronRecipeHandler.class) {
          Iterator i$ = WitcheryBrewRegistry.INSTANCE.getRecipes().iterator();
@@ -46,6 +50,7 @@ public class NEICauldronRecipeHandler extends TemplateRecipeHandler {
 
    }
 
+   @Override
    public void loadCraftingRecipes(ItemStack result) {
       Iterator i$ = WitcheryBrewRegistry.INSTANCE.getRecipes().iterator();
 
@@ -63,6 +68,7 @@ public class NEICauldronRecipeHandler extends TemplateRecipeHandler {
 
    }
 
+   @Override
    public void loadUsageRecipes(ItemStack ingredient) {
       Iterator i$ = WitcheryBrewRegistry.INSTANCE.getRecipes().iterator();
 
@@ -86,12 +92,15 @@ public class NEICauldronRecipeHandler extends TemplateRecipeHandler {
 
    }
 
+   @Override
    public String getGuiTexture() {
       return "witchery:textures/gui/witchesCauldron.png";
    }
 
+   @Override
    public void drawExtras(int recipe) {}
 
+   @Override
    public String getOverlayIdentifier() {
       return "witchery_brewing_plus";
    }
@@ -117,10 +126,12 @@ public class NEICauldronRecipeHandler extends TemplateRecipeHandler {
 
       }
 
+      @Override
       public PositionedStack getResult() {
          return this.result;
       }
 
+      @Override
       public ArrayList getIngredients() {
          ArrayList recipestacks = new ArrayList();
          recipestacks.add(this.result);

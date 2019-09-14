@@ -15,6 +15,7 @@ public class RecipeShapelessBiomeCopy extends ShapelessRecipes {
       super(result, Arrays.asList(ingredients));
    }
 
+   @Override
    public ItemStack getCraftingResult(InventoryCrafting matrix) {
       ItemStack result = super.getCraftingResult(matrix);
       int slot = InvUtil.getSlotContainingItem((IInventory)matrix, Witchery.Items.BIOME_BOOK, 0);

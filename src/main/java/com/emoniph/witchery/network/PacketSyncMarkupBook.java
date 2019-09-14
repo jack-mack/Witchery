@@ -29,6 +29,7 @@ public class PacketSyncMarkupBook implements IMessage {
       this.pages = new ArrayList(pageStack);
    }
 
+   @Override
    public void toBytes(ByteBuf buffer) {
       buffer.writeInt(this.slot);
       buffer.writeInt(this.pages.size());
@@ -41,6 +42,7 @@ public class PacketSyncMarkupBook implements IMessage {
 
    }
 
+   @Override
    public void fromBytes(ByteBuf buffer) {
       this.slot = buffer.readInt();
       int size = buffer.readInt();
@@ -54,6 +56,7 @@ public class PacketSyncMarkupBook implements IMessage {
 
    public static class Handler implements IMessageHandler<PacketSyncMarkupBook, IMessage> {
 
+      @Override
       public IMessage onMessage(PacketSyncMarkupBook message, MessageContext ctx) {
          EntityPlayer player = Witchery.proxy.getPlayer(ctx);
          if(message.slot >= 0 && message.slot < player.inventory.getSizeInventory()) {

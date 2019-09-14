@@ -41,22 +41,27 @@ public class RenderToad extends RenderLiving {
       super.rotateCorpse(entity, par2, par3, par4);
    }
 
+   @Override
    public void doRender(EntityLiving entity, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderToad((EntityToad)entity, par2, par4, par6, par8, par9);
    }
 
+   @Override
    protected void rotateCorpse(EntityLivingBase par1EntityLivingBase, float par2, float par3, float par4) {
       this.rotateToadCorpse((EntityToad)par1EntityLivingBase, par2, par3, par4);
    }
 
+   @Override
    public void doRender(EntityLivingBase par1, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderToad((EntityToad)par1, par2, par4, par6, par8, par9);
    }
 
+   @Override
    public void doRender(Entity entity, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderToad((EntityToad)entity, par2, par4, par6, par8, par9);
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(Entity par1Entity) {
       return TEXTURE_URL;
    }

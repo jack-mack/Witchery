@@ -73,71 +73,87 @@ public class WorldProviderDreamWorld extends WorldProvider {
    public static final String SPIRIT_WORLD_MANIFEST_SKIP_TIME_TICK_KEY = "WITCManifestSkipTick";
 
 
+   @Override
    public void setDimension(int dim) {
       super.dimensionId = dim;
       super.setDimension(dim);
    }
 
+   @Override
    public long getSeed() {
       Long seed = Long.valueOf(super.getSeed());
       return seed.longValue();
    }
 
+   @Override
    public IChunkProvider createChunkGenerator() {
       WorldProvider overworldProvider = DimensionManager.getProvider(0);
       return overworldProvider.terrainType.getChunkGenerator(super.worldObj, super.worldObj.getWorldInfo().getGeneratorOptions());
    }
 
+   @Override
    public void registerWorldChunkManager() {
       super.registerWorldChunkManager();
       super.dimensionId = Config.instance().dimensionDreamID;
    }
 
+   @Override
    public String getWelcomeMessage() {
       return this instanceof WorldProviderDreamWorld?"Entering the " + this.getDimensionName():null;
    }
 
+   @Override
    public String getDepartMessage() {
       return this instanceof WorldProviderDreamWorld?"Leaving the " + this.getDimensionName():null;
    }
 
+   @Override
    public String getDimensionName() {
       return "Spirit World";
    }
 
+   @Override
    public float getStarBrightness(float par1) {
       return 0.0F;
    }
 
+   @Override
    public boolean canRespawnHere() {
       return false;
    }
 
+   @Override
    public double getMovementFactor() {
       return 1.0D;
    }
 
+   @Override
    public float calculateCelestialAngle(long par1, float par3) {
       return this.nightmare > 0?0.5F:1.0F;
    }
 
+   @Override
    public float getCloudHeight() {
       return 0.0F;
    }
 
+   @Override
    public boolean canCoordinateBeSpawn(int par1, int par2) {
       int var3 = super.worldObj.getTopSolidOrLiquidBlock(par1, par2);
       return var3 != -1;
    }
 
+   @Override
    public ChunkCoordinates getEntrancePortalLocation() {
       return new ChunkCoordinates(100, 50, 0);
    }
 
+   @Override
    public int getAverageGroundLevel() {
       return 64;
    }
 
+   @Override
    public double getHorizon() {
       return 0.0D;
    }
@@ -147,15 +163,18 @@ public class WorldProviderDreamWorld extends WorldProvider {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean isSkyColored() {
       return true;
    }
 
+   @Override
    public double getVoidFogYFactor() {
       return 1.0D;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public Vec3 getFogColor(float par1, float par2) {
       float var3 = MathHelper.cos(par1 * 3.1415927F * 2.0F) * 2.0F + 0.5F;
@@ -190,10 +209,12 @@ public class WorldProviderDreamWorld extends WorldProvider {
       return Vec3.createVectorHelper((double)var4, (double)var5, (double)var6);
    }
 
+   @Override
    public void setAllowedSpawnTypes(boolean allowHostile, boolean allowPeaceful) {
       allowPeaceful = true;
    }
 
+   @Override
    public void updateWeather() {
       if(super.worldObj != null && super.worldObj.rand.nextInt(20) == 0) {
          int playerHasNightmare = 0;

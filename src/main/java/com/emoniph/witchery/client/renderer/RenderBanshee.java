@@ -35,22 +35,27 @@ public class RenderBanshee extends RenderLiving {
       super.rotateCorpse(entity, par2, par3, par4);
    }
 
+   @Override
    public void doRender(EntityLiving entity, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderNightmare((EntityBanshee)entity, par2, par4, par6, par8, par9);
    }
 
+   @Override
    protected void rotateCorpse(EntityLivingBase entity, float par2, float par3, float par4) {
       this.rotateNightmareCorpse((EntityBanshee)entity, par2, par3, par4);
    }
 
+   @Override
    public void doRender(EntityLivingBase par1, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderNightmare((EntityBanshee)par1, par2, par4, par6, par8, par9);
    }
 
+   @Override
    public void doRender(Entity entity, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderNightmare((EntityBanshee)entity, par2, par4, par6, par8, par9);
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(Entity par1Entity) {
       return this.func_110832_a((EntityBanshee)par1Entity);
    }

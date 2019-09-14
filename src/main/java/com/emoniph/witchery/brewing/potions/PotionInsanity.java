@@ -22,16 +22,19 @@ public class PotionInsanity extends PotionBase {
       super(id, true, color);
    }
 
+   @Override
    public void postContructInitialize() {
       this.setIncurable();
       this.setPermenant();
       this.hideInventoryText();
    }
 
+   @Override
    public boolean isReady(int duration, int amplifier) {
       return duration % 20 == 13;
    }
 
+   @Override
    public void performEffect(EntityLivingBase entity, int amplifier) {
       if(entity instanceof EntityPlayer) {
          EntityPlayer player = (EntityPlayer)entity;
@@ -76,6 +79,7 @@ public class PotionInsanity extends PotionBase {
 
    }
 
+   @Override
    public void renderInventoryEffect(int x, int y, PotionEffect effect, Minecraft mc) {
       int factor = effect.getDuration() / 60 % 7;
       String s1 = I18n.format(Witchery.resource("witchery:potion.insanity." + factor), new Object[0]);

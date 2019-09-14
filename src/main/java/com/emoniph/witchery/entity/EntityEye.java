@@ -21,46 +21,58 @@ public class EntityEye extends EntityLiving {
       super.noClip = true;
    }
 
+   @Override
    protected void fall(float par1) {}
 
+   @Override
    protected void updateFallState(double par1, boolean par3) {}
 
+   @Override
    public boolean isOnLadder() {
       return false;
    }
 
+   @Override
    protected int decreaseAirSupply(int par1) {
       return par1;
    }
 
+   @Override
    protected boolean interact(EntityPlayer par1EntityPlayer) {
       return true;
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
       return true;
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.eye.name");
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
    }
 
+   @Override
    public void onLivingUpdate() {
       super.motionY = 0.5D;
       super.onLivingUpdate();
@@ -70,6 +82,7 @@ public class EntityEye extends EntityLiving {
 
    }
 
+   @Override
    public void moveEntityWithHeading(float par1, float par2) {
       if(this.isInWater()) {
          this.moveFlying(par1, par2, 0.02F);

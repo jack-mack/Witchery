@@ -55,6 +55,7 @@ public class ModelBloodCrucible extends ModelBase {
       modelRenderer.rotateAngleZ = z;
    }
 
+   @Override
    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
       this.left2.render(f5);
       this.right2.render(f5);

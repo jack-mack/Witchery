@@ -39,6 +39,7 @@ public class ComponentVillageKeep extends Village {
       this.fillWithBlocks(world, bounds, x, y, z, x + w - 1, y + h - 1, z + d - 1, block, block, false);
    }
 
+   @Override
    public boolean addComponentParts(World world, Random rand, StructureBoundingBox bounds) {
       boolean height = true;
       if(super.field_143015_k < 0) {
@@ -291,6 +292,7 @@ public class ComponentVillageKeep extends Village {
       this.placeBlockAtCurrentPosition(world, Blocks.torch, 0, 3 + offsetX, 6, 4, bounds);
    }
 
+   @Override
    protected int getMetadataWithOffset(Block block, int meta) {
       if(block == Blocks.log) {
          int rawMeta = meta / 4;
@@ -312,12 +314,14 @@ public class ComponentVillageKeep extends Village {
       }
    }
 
+   @Override
    protected void func_143012_a(NBTTagCompound nbtRoot) {
       super.func_143012_a(nbtRoot);
       nbtRoot.setBoolean("Chest", this.hasMadeChest);
       nbtRoot.setInteger("Guards", this.guardsSpawned);
    }
 
+   @Override
    protected void func_143011_b(NBTTagCompound nbtRoot) {
       super.func_143011_b(nbtRoot);
       this.hasMadeChest = nbtRoot.getBoolean("Chest");

@@ -58,22 +58,27 @@ public class BlockWitchesOven extends BlockBaseContainer {
       this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l) {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
       return Item.getItemFromBlock(Witchery.Blocks.OVEN_IDLE);
    }
 
+   @Override
    public void onBlockAdded(World par1World, int par2, int par3, int par4) {
       super.onBlockAdded(par1World, par2, par3, par4);
       BlockUtil.setBlockDefaultDirection(par1World, par2, par3, par4);
@@ -83,6 +88,7 @@ public class BlockWitchesOven extends BlockBaseContainer {
       return block == Witchery.Blocks.OVEN_IDLE || block == Witchery.Blocks.OVEN_BURNING;
    }
 
+   @Override
    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
       if(par1World.isRemote) {
          return true;
@@ -115,6 +121,7 @@ public class BlockWitchesOven extends BlockBaseContainer {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
       if(this.isActive) {
@@ -141,6 +148,7 @@ public class BlockWitchesOven extends BlockBaseContainer {
 
    }
 
+   @Override
    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
       int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
       if(l == 0) {
@@ -161,6 +169,7 @@ public class BlockWitchesOven extends BlockBaseContainer {
 
    }
 
+   @Override
    public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6) {
       if(!keepFurnaceInventory) {
          par1World.getTileEntity(par2, par3, par4);
@@ -201,15 +210,18 @@ public class BlockWitchesOven extends BlockBaseContainer {
       super.breakBlock(par1World, par2, par3, par4, par5, par6);
    }
 
+   @Override
    public boolean hasComparatorInputOverride() {
       return true;
    }
 
+   @Override
    public int getComparatorInputOverride(World par1World, int par2, int par3, int par4, int par5) {
       TileEntity te = par1World.getTileEntity(par2, par3, par4);
       return te != null && te instanceof IInventory?Container.calcRedstoneFromInventory((IInventory)te):0;
    }
 
+   @Override
    public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_) {
       return Item.getItemFromBlock(Witchery.Blocks.OVEN_IDLE);
    }
@@ -243,6 +255,7 @@ public class BlockWitchesOven extends BlockBaseContainer {
 
       }
 
+      @Override
       public void addCraftingToCrafters(ICrafting par1ICrafting) {
          super.addCraftingToCrafters(par1ICrafting);
          par1ICrafting.sendProgressBarUpdate(this, 0, this.furnace.furnaceCookTime);
@@ -250,6 +263,7 @@ public class BlockWitchesOven extends BlockBaseContainer {
          par1ICrafting.sendProgressBarUpdate(this, 2, this.furnace.currentItemBurnTime);
       }
 
+      @Override
       public void detectAndSendChanges() {
          super.detectAndSendChanges();
 
@@ -273,6 +287,7 @@ public class BlockWitchesOven extends BlockBaseContainer {
          this.lastItemBurnTime = this.furnace.currentItemBurnTime;
       }
 
+      @Override
       @SideOnly(Side.CLIENT)
       public void updateProgressBar(int par1, int par2) {
          if(par1 == 0) {
@@ -289,10 +304,12 @@ public class BlockWitchesOven extends BlockBaseContainer {
 
       }
 
+      @Override
       public boolean canInteractWith(EntityPlayer par1EntityPlayer) {
          return this.furnace.isUseableByPlayer(par1EntityPlayer);
       }
 
+      @Override
       public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex) {
          ItemStack itemstack = null;
          Slot slot = (Slot)super.inventorySlots.get(slotIndex);
@@ -368,14 +385,17 @@ public class BlockWitchesOven extends BlockBaseContainer {
       private static final int[] slots_sides = new int[]{3, 2, 4, 1};
 
 
+      @Override
       public int getSizeInventory() {
          return this.furnaceItemStacks.length;
       }
 
+      @Override
       public ItemStack getStackInSlot(int par1) {
          return this.furnaceItemStacks[par1];
       }
 
+      @Override
       public ItemStack decrStackSize(int par1, int par2) {
          if(this.furnaceItemStacks[par1] != null) {
             ItemStack itemstack;
@@ -396,6 +416,7 @@ public class BlockWitchesOven extends BlockBaseContainer {
          }
       }
 
+      @Override
       public ItemStack getStackInSlotOnClosing(int par1) {
          if(this.furnaceItemStacks[par1] != null) {
             ItemStack itemstack = this.furnaceItemStacks[par1];
@@ -406,6 +427,7 @@ public class BlockWitchesOven extends BlockBaseContainer {
          }
       }
 
+      @Override
       public void setInventorySlotContents(int par1, ItemStack par2ItemStack) {
          this.furnaceItemStacks[par1] = par2ItemStack;
          if(par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit()) {
@@ -414,14 +436,17 @@ public class BlockWitchesOven extends BlockBaseContainer {
 
       }
 
+      @Override
       public String getInventoryName() {
          return this.getBlockType().getLocalizedName();
       }
 
+      @Override
       public boolean hasCustomInventoryName() {
          return true;
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
          super.readFromNBT(par1NBTTagCompound);
          NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items", 10);
@@ -440,6 +465,7 @@ public class BlockWitchesOven extends BlockBaseContainer {
          this.currentItemBurnTime = TileEntityFurnace.getItemBurnTime(this.furnaceItemStacks[1]);
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
          super.writeToNBT(par1NBTTagCompound);
          par1NBTTagCompound.setShort("BurnTime", (short)this.furnaceBurnTime);
@@ -458,6 +484,7 @@ public class BlockWitchesOven extends BlockBaseContainer {
          par1NBTTagCompound.setTag("Items", nbttaglist);
       }
 
+      @Override
       public int getInventoryStackLimit() {
          return 64;
       }
@@ -480,6 +507,7 @@ public class BlockWitchesOven extends BlockBaseContainer {
          return this.furnaceBurnTime > 0;
       }
 
+      @Override
       public void updateEntity() {
          boolean flag = this.furnaceBurnTime > 0;
          boolean flag1 = false;
@@ -713,26 +741,33 @@ public class BlockWitchesOven extends BlockBaseContainer {
 
       }
 
+      @Override
       public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer) {
          return super.worldObj.getTileEntity(super.xCoord, super.yCoord, super.zCoord) != this?false:par1EntityPlayer.getDistanceSq((double)super.xCoord + 0.5D, (double)super.yCoord + 0.5D, (double)super.zCoord + 0.5D) <= 64.0D;
       }
 
+      @Override
       public void openInventory() {}
 
+      @Override
       public void closeInventory() {}
 
+      @Override
       public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
          return slot != 2 && slot != 3?(slot == 1?TileEntityFurnace.isItemFuel(itemstack):(slot == 4?Witchery.Items.GENERIC.itemEmptyClayJar.isMatch(itemstack):slot != 0 || !Witchery.Items.GENERIC.itemEmptyClayJar.isMatch(itemstack))):false;
       }
 
+      @Override
       public int[] getAccessibleSlotsFromSide(int side) {
          return BlockSide.BOTTOM.isEqual(side)?slots_bottom:(BlockSide.TOP.isEqual(side)?slots_top:slots_sides);
       }
 
+      @Override
       public boolean canInsertItem(int slot, ItemStack itemstack, int par3) {
          return this.isItemValidForSlot(slot, itemstack);
       }
 
+      @Override
       public boolean canExtractItem(int slot, ItemStack stack, int side) {
          return BlockSide.TOP.isEqual(side)?false:(BlockSide.BOTTOM.isEqual(side)?slot == 1 && stack.getItem() == Items.bucket:slot == 3 || slot == 2);
       }

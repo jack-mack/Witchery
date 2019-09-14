@@ -27,6 +27,7 @@ public class RenderGrenade extends RenderSnowball {
       this.item = item;
    }
 
+   @Override
    public void doRender(Entity entity, double par2, double par4, double par6, float par8, float par9) {
       EntityGrenade brew = (EntityGrenade)entity;
       Item item = brew.getMode() == 0?Witchery.Items.SUN_GRENADE:Witchery.Items.DUP_GRENADE;

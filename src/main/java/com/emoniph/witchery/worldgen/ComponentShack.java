@@ -33,6 +33,7 @@ public class ComponentShack extends WitcheryComponent {
       super(direction, random, x, z, 7, 10, 7);
    }
 
+   @Override
    public boolean addComponentParts(World world, Random random) {
       BiomeGenBase biom = world.getBiomeGenForCoords(this.getXWithOffset(0, 0), this.getZWithOffset(0, 0));
       int groundAvg = this.calcGroundHeight(world, super.boundingBox);
@@ -143,12 +144,14 @@ public class ComponentShack extends WitcheryComponent {
 
    }
 
+   @Override
    protected void func_143012_a(NBTTagCompound par1NBTTagCompound) {
       super.func_143012_a(par1NBTTagCompound);
       par1NBTTagCompound.setBoolean("WITCShackChest", this.hasMadeChest);
       par1NBTTagCompound.setInteger("WITCWCount", this.witchesSpawned);
    }
 
+   @Override
    protected void func_143011_b(NBTTagCompound par1NBTTagCompound) {
       super.func_143011_b(par1NBTTagCompound);
       this.hasMadeChest = par1NBTTagCompound.getBoolean("WITCShackChest");

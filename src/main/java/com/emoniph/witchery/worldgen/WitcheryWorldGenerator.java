@@ -52,6 +52,7 @@ public class WitcheryWorldGenerator implements IWorldGenerator {
 
    }
 
+   @Override
    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
       if(world.provider.dimensionId == 0) {
          this.generateOverworld(world, world.rand, chunkX * 16, chunkZ * 16);

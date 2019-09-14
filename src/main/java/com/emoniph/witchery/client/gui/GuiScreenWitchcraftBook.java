@@ -294,11 +294,13 @@ public class GuiScreenWitchcraftBook extends GuiScreen {
       this.itemstack.getTagCompound().setInteger("CurrentPage", this.currPage);
    }
 
+   @Override
    public void updateScreen() {
       super.updateScreen();
       ++this.updateCount;
    }
 
+   @Override
    public void initGui() {
       super.buttonList.clear();
       Keyboard.enableRepeatEvents(true);
@@ -323,6 +325,7 @@ public class GuiScreenWitchcraftBook extends GuiScreen {
       this.updateButtons();
    }
 
+   @Override
    public void onGuiClosed() {
       Keyboard.enableRepeatEvents(false);
       this.sendBookToServer(false);
@@ -340,6 +343,7 @@ public class GuiScreenWitchcraftBook extends GuiScreen {
 
    }
 
+   @Override
    protected void actionPerformed(GuiButton par1GuiButton) {
       if(par1GuiButton.enabled) {
          if(par1GuiButton.id == 0) {
@@ -365,10 +369,12 @@ public class GuiScreenWitchcraftBook extends GuiScreen {
 
    }
 
+   @Override
    protected void keyTyped(char par1, int par2) {
       super.keyTyped(par1, par2);
    }
 
+   @Override
    public void drawScreen(int par1, int par2, float par3) {
       GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
       int k;

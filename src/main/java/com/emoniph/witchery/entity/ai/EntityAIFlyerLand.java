@@ -29,6 +29,7 @@ public class EntityAIFlyerLand extends EntityAIBase {
       this.setMutexBits(1);
    }
 
+   @Override
    public boolean shouldExecute() {
       return !this.isLanded() && !this.liquidBelow((int)this.living.posY - 1) && !this.liquidBelow((int)this.living.posY) && this.worldObj.rand.nextInt(20) == 0;
    }
@@ -37,11 +38,13 @@ public class EntityAIFlyerLand extends EntityAIBase {
       return this.worldObj.getBlock(MathHelper.floor_double(this.living.posX), y, MathHelper.floor_double(this.living.posZ)).getMaterial().isLiquid();
    }
 
+   @Override
    public boolean continueExecuting() {
       boolean cont = !this.isLanded() && !this.liquidBelow((int)this.living.posY - 1) && !this.liquidBelow((int)this.living.posY);
       return cont;
    }
 
+   @Override
    public void startExecuting() {
       this.courseChangeCooldown = 100;
       int x0 = MathHelper.floor_double(this.living.posX);
@@ -58,6 +61,7 @@ public class EntityAIFlyerLand extends EntityAIBase {
 
    }
 
+   @Override
    public void resetTask() {
       this.target = null;
       super.resetTask();
@@ -120,6 +124,7 @@ public class EntityAIFlyerLand extends EntityAIBase {
       return null;
    }
 
+   @Override
    public void updateTask() {
       if(!this.isLanded()) {
          if(this.target != null && this.living.getDistanceSq((double)this.target[0], this.living.posY, (double)this.target[2]) > 1.0D && this.courseChangeCooldown-- > 0) {

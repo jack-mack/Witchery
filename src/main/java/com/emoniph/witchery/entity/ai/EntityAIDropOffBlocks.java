@@ -27,6 +27,7 @@ public class EntityAIDropOffBlocks extends EntityAIBase {
       this.setMutexBits(7);
    }
 
+   @Override
    public boolean shouldExecute() {
       if((this.entity == null || this.entity.isWorshipping() || this.entity.getHeldItem() != null) && this.entity.getLeashed() && !(this.entity.getHeldItem().getItem() instanceof ItemTool)) {
          if(this.targetTile != null && !this.targetTile.isInvalid() && this.entity.getNavigator().getPathToXYZ((double)this.targetTile.xCoord, (double)this.targetTile.yCoord, (double)this.targetTile.zCoord) != null) {
@@ -45,6 +46,7 @@ public class EntityAIDropOffBlocks extends EntityAIBase {
       }
    }
 
+   @Override
    public void startExecuting() {}
 
    private void setTargetTile() {
@@ -73,10 +75,12 @@ public class EntityAIDropOffBlocks extends EntityAIBase {
 
    }
 
+   @Override
    public boolean continueExecuting() {
       return this.entity != null && !this.entity.isWorshipping() && this.entity.getHeldItem() != null && this.entity.getLeashed() && this.targetTile != null;
    }
 
+   @Override
    public void updateTask() {
       double SPEED = 0.6D;
       if(this.entity.getNavigator().noPath()) {
@@ -131,6 +135,7 @@ public class EntityAIDropOffBlocks extends EntityAIBase {
 
                private static final String __OBFID = "CL_00001710";
 
+               @Override
                public String call() {
                   return par1ItemStack.getDisplayName();
                }

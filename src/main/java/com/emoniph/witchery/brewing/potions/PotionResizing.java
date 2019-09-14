@@ -45,6 +45,7 @@ public class PotionResizing extends PotionBase implements IHandlePreRenderLiving
       super(id, color);
    }
 
+   @Override
    public void removeAttributesModifiersFromEntity(EntityLivingBase entity, BaseAttributeMap attributes, int amplifier) {
       EntitySizeInfo sizeInfo = new EntitySizeInfo(entity);
       setEntitySize(entity, sizeInfo.defaultWidth, sizeInfo.defaultHeight);
@@ -99,6 +100,7 @@ public class PotionResizing extends PotionBase implements IHandlePreRenderLiving
 
    }
 
+   @Override
    public void onLivingRender(World world, EntityLivingBase entity, Pre event, int amplifier) {
       GL11.glPushMatrix();
       GL11.glTranslated(event.x, event.y, event.z);
@@ -116,10 +118,12 @@ public class PotionResizing extends PotionBase implements IHandlePreRenderLiving
       return scale;
    }
 
+   @Override
    public void onLivingRender(World world, EntityLivingBase entity, Post event, int amplifier) {
       GL11.glPopMatrix();
    }
 
+   @Override
    public void onLivingUpdate(World world, EntityLivingBase entity, LivingUpdateEvent event, int amplifier, int duration) {
       float reductionFactor = 0.03F * (float)(event.entity.worldObj.isRemote?1:20);
       if(world.isRemote || entity.ticksExisted % 20 == 0) {
@@ -147,10 +151,12 @@ public class PotionResizing extends PotionBase implements IHandlePreRenderLiving
 
    }
 
+   @Override
    public boolean handleAllHurtEvents() {
       return true;
    }
 
+   @Override
    public void onLivingHurt(World world, EntityLivingBase entity, LivingHurtEvent event, int amplifier) {
       if(!world.isRemote) {
          PotionEffect effectDefender = entity.getActivePotionEffect(this);
@@ -172,6 +178,7 @@ public class PotionResizing extends PotionBase implements IHandlePreRenderLiving
 
    }
 
+   @Override
    public void onLivingAttack(World world, EntityLivingBase entity, LivingAttackEvent event, int amplifier) {
       if(Witchery.modHooks.isAM2Present && !world.isRemote && event.source == DamageSource.inWall && amplifier <= 1 && entity instanceof EntityPlayer && !event.entity.worldObj.getBlock(MathHelper.floor_double(event.entity.posX), MathHelper.floor_double(event.entity.posY), MathHelper.floor_double(event.entity.posZ)).isNormalCube()) {
          event.setCanceled(true);
@@ -219,6 +226,7 @@ public class PotionResizing extends PotionBase implements IHandlePreRenderLiving
       return sizeDiff;
    }
 
+   @Override
    public void onLivingJump(World world, EntityLivingBase entity, LivingJumpEvent event, int amplifier) {
       float scale = getScaleFactor(amplifier);
       if(scale > 1.0F) {

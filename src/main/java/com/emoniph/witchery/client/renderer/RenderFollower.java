@@ -25,6 +25,7 @@ public class RenderFollower extends RenderBiped {
       this.model = model;
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(EntityLiving entity) {
       return this.getEntityTexture((EntityFollower)entity);
    }

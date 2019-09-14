@@ -81,10 +81,12 @@ public class RenderBolt extends Render {
       return bolt.isHolyDamage()?arrowTextures3:(bolt.isSilverDamage()?arrowTextures4:(bolt.isDraining()?arrowTextures2:arrowTextures));
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(Entity par1Entity) {
       return this.getArrowTextures((EntityBolt)par1Entity);
    }
 
+   @Override
    public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9) {
       this.renderArrow((EntityBolt)par1Entity, par2, par4, par6, par8, par9);
    }

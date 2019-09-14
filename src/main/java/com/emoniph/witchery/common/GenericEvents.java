@@ -9,19 +9,7 @@ import com.emoniph.witchery.common.ExtendedPlayer;
 import com.emoniph.witchery.common.ExtendedVillager;
 import com.emoniph.witchery.common.Shapeshift;
 import com.emoniph.witchery.dimension.WorldProviderDreamWorld;
-import com.emoniph.witchery.entity.EntityDemon;
-import com.emoniph.witchery.entity.EntityFollower;
-import com.emoniph.witchery.entity.EntityGoblin;
-import com.emoniph.witchery.entity.EntityHornedHuntsman;
-import com.emoniph.witchery.entity.EntityItemWaystone;
-import com.emoniph.witchery.entity.EntityMindrake;
-import com.emoniph.witchery.entity.EntityOwl;
-import com.emoniph.witchery.entity.EntitySummonedUndead;
-import com.emoniph.witchery.entity.EntityToad;
-import com.emoniph.witchery.entity.EntityVillageGuard;
-import com.emoniph.witchery.entity.EntityVillagerWere;
-import com.emoniph.witchery.entity.EntityWitchHunter;
-import com.emoniph.witchery.entity.EntityWolfman;
+import com.emoniph.witchery.entity.*;
 import com.emoniph.witchery.entity.ai.EntityAIDigBlocks;
 import com.emoniph.witchery.entity.ai.EntityAISleep;
 import com.emoniph.witchery.familiar.Familiar;
@@ -216,6 +204,7 @@ public class GenericEvents {
       } else if(event.entity instanceof EntityZombie) {
          EntityZombie creature2 = (EntityZombie)event.entity;
          creature2.targetTasks.addTask(3, new EntityAINearestAttackableTarget(creature2, EntityFollower.class, 0, false, false, new IEntitySelector() {
+            @Override
             public boolean isEntityApplicable(Entity entity) {
                return entity instanceof EntityFollower && ((EntityFollower)entity).getFollowerType() == 0;
             }
@@ -223,6 +212,7 @@ public class GenericEvents {
       } else if(event.entity instanceof EntitySkeleton) {
          EntitySkeleton creature3 = (EntitySkeleton)event.entity;
          creature3.targetTasks.addTask(3, new EntityAINearestAttackableTarget(creature3, EntityFollower.class, 0, true, false, new IEntitySelector() {
+            @Override
             public boolean isEntityApplicable(Entity entity) {
                return entity instanceof EntityFollower && ((EntityFollower)entity).getFollowerType() == 0;
             }

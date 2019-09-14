@@ -76,16 +76,19 @@ public class EntityDemon extends EntityGolem implements IRangedAttackMob, IMerch
       super.experienceValue = 10;
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(16, Byte.valueOf((byte)0));
       super.dataWatcher.addObject(17, Integer.valueOf(0));
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.demon.name");
    }
 
+   @Override
    public boolean interact(EntityPlayer par1EntityPlayer) {
       if(super.dimension == Config.instance().dimensionDreamID) {
          return super.interact(par1EntityPlayer);
@@ -105,32 +108,39 @@ public class EntityDemon extends EntityGolem implements IRangedAttackMob, IMerch
       }
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    protected void updateAITick() {
       super.updateAITick();
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
       return super.attackEntityFrom(par1DamageSource, Math.min(par2, 15.0F));
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(100.0D);
       this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
    }
 
+   @Override
    protected int decreaseAirSupply(int par1) {
       return par1;
    }
 
+   @Override
    protected void collideWithEntity(Entity par1Entity) {
       super.collideWithEntity(par1Entity);
    }
 
+   @Override
    public void onLivingUpdate() {
       super.onLivingUpdate();
       if(this.attackTimer > 0) {
@@ -160,10 +170,12 @@ public class EntityDemon extends EntityGolem implements IRangedAttackMob, IMerch
 
    }
 
+   @Override
    public boolean canAttackClass(Class par1Class) {
       return super.canAttackClass(par1Class);
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
       par1NBTTagCompound.setBoolean("PlayerCreated", this.isPlayerCreated());
@@ -173,6 +185,7 @@ public class EntityDemon extends EntityGolem implements IRangedAttackMob, IMerch
 
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
       this.setPlayerCreated(par1NBTTagCompound.getBoolean("PlayerCreated"));
@@ -183,6 +196,7 @@ public class EntityDemon extends EntityGolem implements IRangedAttackMob, IMerch
 
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity par1Entity) {
       this.attackTimer = 10;
       super.worldObj.setEntityState(this, (byte)4);
@@ -195,6 +209,7 @@ public class EntityDemon extends EntityGolem implements IRangedAttackMob, IMerch
       return flag;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void handleHealthUpdate(byte par1) {
       if(par1 == 4) {
@@ -211,26 +226,32 @@ public class EntityDemon extends EntityGolem implements IRangedAttackMob, IMerch
       return this.attackTimer;
    }
 
+   @Override
    public float getBrightness(float par1) {
       return 1.0F;
    }
 
+   @Override
    protected String getLivingSound() {
       return "mob.blaze.breathe";
    }
 
+   @Override
    protected String getHurtSound() {
       return "mob.wither.hurt";
    }
 
+   @Override
    protected String getDeathSound() {
       return "mob.wither.death";
    }
 
+   @Override
    protected void func_145780_a(int par1, int par2, int par3, Block par4) {
       this.playSound("mob.irongolem.walk", 1.0F, 1.0F);
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {
       if(par1) {
          int j = super.rand.nextInt(2 + par2);
@@ -242,6 +263,7 @@ public class EntityDemon extends EntityGolem implements IRangedAttackMob, IMerch
 
    }
 
+   @Override
    protected Item getDropItem() {
       return Items.magma_cream;
    }
@@ -261,14 +283,17 @@ public class EntityDemon extends EntityGolem implements IRangedAttackMob, IMerch
 
    }
 
+   @Override
    public void onDeath(DamageSource par1DamageSource) {
       super.onDeath(par1DamageSource);
    }
 
+   @Override
    protected boolean canDespawn() {
       return true;
    }
 
+   @Override
    public void attackEntityWithRangedAttack(EntityLivingBase targetEntity, float par2) {
       if(targetEntity.getHeldItem() == null || targetEntity.getHeldItem().getItem() != Witchery.Items.DEVILS_TONGUE_CHARM || super.worldObj.rand.nextDouble() < 0.05D) {
          double d0 = targetEntity.posX - super.posX;
@@ -289,15 +314,18 @@ public class EntityDemon extends EntityGolem implements IRangedAttackMob, IMerch
 
    }
 
+   @Override
    public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData) {
       this.addPotionEffect(new PotionEffect(Potion.jump.id, Integer.MAX_VALUE, 4));
       return super.onSpawnWithEgg(par1EntityLivingData);
    }
 
+   @Override
    public void setCustomer(EntityPlayer par1EntityPlayer) {
       this.buyingPlayer = par1EntityPlayer;
    }
 
+   @Override
    public EntityPlayer getCustomer() {
       return this.buyingPlayer;
    }
@@ -306,6 +334,7 @@ public class EntityDemon extends EntityGolem implements IRangedAttackMob, IMerch
       return this.buyingPlayer != null;
    }
 
+   @Override
    public void useRecipe(MerchantRecipe par1MerchantRecipe) {
       par1MerchantRecipe.incrementToolUses();
       Item itemToBuy = par1MerchantRecipe.getItemToBuy().getItem();
@@ -325,6 +354,7 @@ public class EntityDemon extends EntityGolem implements IRangedAttackMob, IMerch
 
    }
 
+   @Override
    public void func_110297_a_(ItemStack par1ItemStack) {
       if(!super.worldObj.isRemote && super.livingSoundTime > -this.getTalkInterval() + 20) {
          super.livingSoundTime = -this.getTalkInterval();
@@ -337,6 +367,7 @@ public class EntityDemon extends EntityGolem implements IRangedAttackMob, IMerch
 
    }
 
+   @Override
    protected void attackEntity(Entity entity, float par2) {
       if(super.attackTime <= 0 && par2 < 2.0F && entity.boundingBox.maxY > super.boundingBox.minY && entity.boundingBox.minY < super.boundingBox.maxY) {
          super.attackTime = 20;
@@ -346,6 +377,7 @@ public class EntityDemon extends EntityGolem implements IRangedAttackMob, IMerch
       super.attackEntity(entity, par2);
    }
 
+   @Override
    public MerchantRecipeList getRecipes(EntityPlayer par1EntityPlayer) {
       if(this.buyingList == null) {
          this.addDefaultEquipmentAndRecipies(super.rand.nextInt(4) + 6);
@@ -444,6 +476,7 @@ public class EntityDemon extends EntityGolem implements IRangedAttackMob, IMerch
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void setRecipes(MerchantRecipeList par1MerchantRecipeList) {}
 }

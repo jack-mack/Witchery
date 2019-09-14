@@ -18,6 +18,7 @@ public class BrewSoul extends ItemGeneral.Drinkable {
       this.setPotion(true);
    }
 
+   @Override
    public void onDrunk(World world, EntityPlayer player, ItemStack itemstack) {
       this.effect.acquireKnowledge(player);
    }

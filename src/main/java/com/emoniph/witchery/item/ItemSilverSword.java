@@ -17,19 +17,23 @@ public class ItemSilverSword extends ItemSword {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
    }
 
+   @Override
    public Item setUnlocalizedName(String itemName) {
       ItemUtil.registerItem(this, itemName);
       return super.setUnlocalizedName(itemName);
    }
 
+   @Override
    public String getToolMaterialName() {
       return "SILVER";
    }
 
+   @Override
    public int getItemEnchantability() {
       return ToolMaterial.IRON.getEnchantability();
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean moreTips) {
       String localText = Witchery.resource(this.getUnlocalizedName() + ".tip");
       if(localText != null) {

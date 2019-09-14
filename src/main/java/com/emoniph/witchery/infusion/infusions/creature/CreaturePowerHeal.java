@@ -19,11 +19,13 @@ public class CreaturePowerHeal extends CreaturePower {
       this.charges = charges;
    }
 
+   @Override
    public void onActivate(World world, EntityPlayer player, int elapsedTicks, MovingObjectPosition mop) {
       player.addPotionEffect(new PotionEffect(Potion.heal.id, 10, 0));
       SoundEffect.RANDOM_FIZZ.playAtPlayer(world, player);
    }
 
+   @Override
    public int getChargesPerSacrifice() {
       return this.charges;
    }

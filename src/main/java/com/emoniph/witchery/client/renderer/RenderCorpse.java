@@ -19,6 +19,7 @@ public class RenderCorpse extends RenderLiving {
 
    public RenderCorpse() {
       super(new ModelBiped() {
+         @Override
          public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) {}
       }, 0.0F);
    }
@@ -33,6 +34,7 @@ public class RenderCorpse extends RenderLiving {
       return entity.getLocationSkin();
    }
 
+   @Override
    protected void rotateCorpse(EntityLivingBase par1EntityLivingBase, float par2, float par3, float par4) {
       GL11.glTranslatef(0.9F, 0.25F, 0.0F);
       GL11.glRotatef(this.getDeathMaxRotation(par1EntityLivingBase), 0.0F, 0.0F, 1.0F);
@@ -56,22 +58,27 @@ public class RenderCorpse extends RenderLiving {
 
    }
 
+   @Override
    protected float renderSwingProgress(EntityLivingBase par1EntityLivingBase, float par2) {
       return 0.0F;
    }
 
+   @Override
    public void doRender(EntityLiving entity, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderCorpse((EntityCorpse)entity, par2, par4, par6, par8, par9);
    }
 
+   @Override
    public void doRender(EntityLivingBase par1, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderCorpse((EntityCorpse)par1, par2, par4, par6, par8, par9);
    }
 
+   @Override
    public void doRender(Entity entity, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderCorpse((EntityCorpse)entity, par2, par4, par6, par8, par9);
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(Entity par1Entity) {
       return this.getEntityTexture((EntityCorpse)par1Entity);
    }

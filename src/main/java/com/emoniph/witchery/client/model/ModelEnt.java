@@ -131,6 +131,7 @@ public class ModelEnt extends ModelBase {
       this.setRotation(this.LeavesTopInner, 0.0F, 0.0F, 0.0F);
    }
 
+   @Override
    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
       super.render(entity, f, f1, f2, f3, f4, f5);
       this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
@@ -161,6 +162,7 @@ public class ModelEnt extends ModelBase {
       model.rotateAngleZ = z;
    }
 
+   @Override
    public void setLivingAnimations(EntityLivingBase par1EntityLiving, float par2, float par3, float par4) {
       EntityEnt entity = (EntityEnt)par1EntityLiving;
       int i = entity.getAttackTimer();
@@ -180,6 +182,7 @@ public class ModelEnt extends ModelBase {
       return (Math.abs(par1 % par2 - par2 * 0.5F) - par2 * 0.25F) / (par2 * 0.25F);
    }
 
+   @Override
    public void setRotationAngles(float par1, float par2, float f2, float f3, float f4, float f5, Entity entity) {
       super.setRotationAngles(par1, par2, f2, f3, f4, f5, entity);
       float f6 = 0.7853982F;

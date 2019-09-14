@@ -21,10 +21,12 @@ public class RecipeAttachTaglock implements IRecipe {
       this.pattern = pattern;
    }
 
+   @Override
    public ItemStack getRecipeOutput() {
       return null;
    }
 
+   @Override
    public boolean matches(InventoryCrafting par1InventoryCrafting, World par2World) {
       ArrayList arraylist = new ArrayList(Arrays.asList(this.pattern));
 
@@ -54,6 +56,7 @@ public class RecipeAttachTaglock implements IRecipe {
       return arraylist.isEmpty();
    }
 
+   @Override
    public ItemStack getCraftingResult(InventoryCrafting inv) {
       ItemStack newPoppet = this.prototype.copy();
       int i = 0;
@@ -79,6 +82,7 @@ public class RecipeAttachTaglock implements IRecipe {
       return null;
    }
 
+   @Override
    public int getRecipeSize() {
       return this.pattern.length;
    }

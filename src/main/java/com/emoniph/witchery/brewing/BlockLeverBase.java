@@ -40,39 +40,48 @@ public class BlockLeverBase extends BlockBaseContainer {
 
    }
 
+   @Override
    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
       return Item.getItemFromBlock(Blocks.lever);
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       return new ItemStack(Blocks.lever);
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_) {
       return null;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public int getRenderType() {
       return 12;
    }
 
+   @Override
    public boolean canPlaceBlockOnSide(World p_149707_1_, int p_149707_2_, int p_149707_3_, int p_149707_4_, int p_149707_5_) {
       ForgeDirection dir = ForgeDirection.getOrientation(p_149707_5_);
       return dir == ForgeDirection.DOWN && p_149707_1_.isSideSolid(p_149707_2_, p_149707_3_ + 1, p_149707_4_, ForgeDirection.DOWN) || dir == ForgeDirection.UP && p_149707_1_.isSideSolid(p_149707_2_, p_149707_3_ - 1, p_149707_4_, ForgeDirection.UP) || dir == ForgeDirection.NORTH && p_149707_1_.isSideSolid(p_149707_2_, p_149707_3_, p_149707_4_ + 1, ForgeDirection.NORTH) || dir == ForgeDirection.SOUTH && p_149707_1_.isSideSolid(p_149707_2_, p_149707_3_, p_149707_4_ - 1, ForgeDirection.SOUTH) || dir == ForgeDirection.WEST && p_149707_1_.isSideSolid(p_149707_2_ + 1, p_149707_3_, p_149707_4_, ForgeDirection.WEST) || dir == ForgeDirection.EAST && p_149707_1_.isSideSolid(p_149707_2_ - 1, p_149707_3_, p_149707_4_, ForgeDirection.EAST);
    }
 
+   @Override
    public boolean canPlaceBlockAt(World p_149742_1_, int p_149742_2_, int p_149742_3_, int p_149742_4_) {
       return p_149742_1_.isSideSolid(p_149742_2_ - 1, p_149742_3_, p_149742_4_, ForgeDirection.EAST) || p_149742_1_.isSideSolid(p_149742_2_ + 1, p_149742_3_, p_149742_4_, ForgeDirection.WEST) || p_149742_1_.isSideSolid(p_149742_2_, p_149742_3_, p_149742_4_ - 1, ForgeDirection.SOUTH) || p_149742_1_.isSideSolid(p_149742_2_, p_149742_3_, p_149742_4_ + 1, ForgeDirection.NORTH) || p_149742_1_.isSideSolid(p_149742_2_, p_149742_3_ - 1, p_149742_4_, ForgeDirection.UP) || p_149742_1_.isSideSolid(p_149742_2_, p_149742_3_ + 1, p_149742_4_, ForgeDirection.DOWN);
    }
 
+   @Override
    public int onBlockPlaced(World p_149660_1_, int p_149660_2_, int p_149660_3_, int p_149660_4_, int p_149660_5_, float p_149660_6_, float p_149660_7_, float p_149660_8_, int p_149660_9_) {
       int k1 = p_149660_9_ & 8;
       int j1 = p_149660_9_ & 7;
@@ -104,6 +113,7 @@ public class BlockLeverBase extends BlockBaseContainer {
       return b0 + k1;
    }
 
+   @Override
    public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_, int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_, ItemStack p_149689_6_) {
       int l = p_149689_1_.getBlockMetadata(p_149689_2_, p_149689_3_, p_149689_4_);
       int i1 = l & 7;
@@ -143,6 +153,7 @@ public class BlockLeverBase extends BlockBaseContainer {
       }
    }
 
+   @Override
    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_) {
       if(this.func_149820_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_)) {
          int l = p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_) & 7;
@@ -197,6 +208,7 @@ public class BlockLeverBase extends BlockBaseContainer {
       }
    }
 
+   @Override
    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_) {
       int l = p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_) & 7;
       float f = 0.1875F;
@@ -220,6 +232,7 @@ public class BlockLeverBase extends BlockBaseContainer {
 
    }
 
+   @Override
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
       if(world.isRemote) {
          return true;
@@ -257,6 +270,7 @@ public class BlockLeverBase extends BlockBaseContainer {
       }
    }
 
+   @Override
    public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_) {
       if((p_149749_6_ & 8) > 0) {
          p_149749_1_.notifyBlocksOfNeighborChange(p_149749_2_, p_149749_3_, p_149749_4_, this);
@@ -281,10 +295,12 @@ public class BlockLeverBase extends BlockBaseContainer {
       super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
    }
 
+   @Override
    public int isProvidingWeakPower(IBlockAccess p_149709_1_, int p_149709_2_, int p_149709_3_, int p_149709_4_, int p_149709_5_) {
       return (p_149709_1_.getBlockMetadata(p_149709_2_, p_149709_3_, p_149709_4_) & 8) > 0?15:0;
    }
 
+   @Override
    public int isProvidingStrongPower(IBlockAccess p_149748_1_, int p_149748_2_, int p_149748_3_, int p_149748_4_, int p_149748_5_) {
       int i1 = p_149748_1_.getBlockMetadata(p_149748_2_, p_149748_3_, p_149748_4_);
       if((i1 & 8) == 0) {
@@ -295,6 +311,7 @@ public class BlockLeverBase extends BlockBaseContainer {
       }
    }
 
+   @Override
    public boolean canProvidePower() {
       return true;
    }

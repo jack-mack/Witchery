@@ -28,6 +28,7 @@ public class ItemParasyticLouse extends ItemBase {
       this.setHasSubtypes(true);
    }
 
+   @Override
    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
       if(par3World.isRemote) {
          return true;
@@ -56,10 +57,12 @@ public class ItemParasyticLouse extends ItemBase {
       }
    }
 
+   @Override
    public String getItemStackDisplayName(ItemStack stack) {
       return super.getItemStackDisplayName(stack);
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advancedTooltips) {
       List effects = Items.potionitem.getEffects(stack.getItemDamage());
       if(effects != null && !effects.isEmpty()) {
@@ -80,6 +83,7 @@ public class ItemParasyticLouse extends ItemBase {
 
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
       if(par2World.isRemote) {
          return par1ItemStack;

@@ -33,31 +33,38 @@ public class BlockSilverVat extends BlockBaseContainer {
       this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.64F, 1.0F);
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l) {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public void onBlockAdded(World world, int x, int y, int z) {
       super.onBlockAdded(world, x, y, z);
    }
 
+   @Override
    public boolean hasComparatorInputOverride() {
       return true;
    }
 
+   @Override
    public int getComparatorInputOverride(World world, int x, int y, int z, int side) {
       TileEntity tile = world.getTileEntity(x, y, z);
       return tile != null && tile instanceof IInventory?Container.calcRedstoneFromInventory((IInventory)tile):0;
    }
 
+   @Override
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
       if(!world.isRemote) {
          BlockSilverVat.TileEntitySilverVat tile = (BlockSilverVat.TileEntitySilverVat)BlockUtil.getTileEntity(world, x, y, z, BlockSilverVat.TileEntitySilverVat.class);
@@ -78,6 +85,7 @@ public class BlockSilverVat extends BlockBaseContainer {
       }
    }
 
+   @Override
    public void onNeighborChange(IBlockAccess world, int x, int y, int z, int tileX, int tileY, int tileZ) {
       if(y == tileY && (x == tileX || z == tileZ)) {
          BlockSilverVat.TileEntitySilverVat vat = (BlockSilverVat.TileEntitySilverVat)BlockUtil.getTileEntity(world, x, y, z, BlockSilverVat.TileEntitySilverVat.class);
@@ -130,6 +138,7 @@ public class BlockSilverVat extends BlockBaseContainer {
       private boolean reenterLock;
 
 
+      @Override
       public boolean canUpdate() {
          return false;
       }
@@ -142,6 +151,7 @@ public class BlockSilverVat extends BlockBaseContainer {
 
       }
 
+      @Override
       public int getSizeInventory() {
          return this.slots.length;
       }
@@ -154,10 +164,12 @@ public class BlockSilverVat extends BlockBaseContainer {
          return this.sides[side];
       }
 
+      @Override
       public ItemStack getStackInSlot(int slot) {
          return this.slots[slot];
       }
 
+      @Override
       public ItemStack decrStackSize(int slot, int quantity) {
          if(this.slots[slot] != null) {
             ItemStack itemstack;
@@ -178,6 +190,7 @@ public class BlockSilverVat extends BlockBaseContainer {
          }
       }
 
+      @Override
       public ItemStack getStackInSlotOnClosing(int slot) {
          if(this.slots[slot] != null) {
             ItemStack itemstack = this.slots[slot];
@@ -188,6 +201,7 @@ public class BlockSilverVat extends BlockBaseContainer {
          }
       }
 
+      @Override
       public void setInventorySlotContents(int slot, ItemStack stack) {
          this.slots[slot] = stack;
          if(stack != null && stack.stackSize > this.getInventoryStackLimit()) {
@@ -196,14 +210,17 @@ public class BlockSilverVat extends BlockBaseContainer {
 
       }
 
+      @Override
       public String getInventoryName() {
          return this.getBlockType().getLocalizedName();
       }
 
+      @Override
       public boolean hasCustomInventoryName() {
          return true;
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtRoot) {
          super.readFromNBT(nbtRoot);
          NBTTagList nbtSlotList = nbtRoot.getTagList("Items", 10);
@@ -219,6 +236,7 @@ public class BlockSilverVat extends BlockBaseContainer {
 
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtRoot) {
          super.writeToNBT(nbtRoot);
          NBTTagList nbtSlotList = new NBTTagList();
@@ -235,10 +253,12 @@ public class BlockSilverVat extends BlockBaseContainer {
          nbtRoot.setTag("Items", nbtSlotList);
       }
 
+      @Override
       public int getInventoryStackLimit() {
          return 64;
       }
 
+      @Override
       public void markDirty() {
          super.markDirty();
          if(!super.worldObj.isRemote) {
@@ -247,26 +267,32 @@ public class BlockSilverVat extends BlockBaseContainer {
 
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          this.readFromNBT(packet.func_148857_g());
          super.worldObj.func_147479_m(super.xCoord, super.yCoord, super.zCoord);
       }
 
+      @Override
       public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer) {
          return super.worldObj.getTileEntity(super.xCoord, super.yCoord, super.zCoord) != this?false:par1EntityPlayer.getDistanceSq((double)super.xCoord + 0.5D, (double)super.yCoord + 0.5D, (double)super.zCoord + 0.5D) <= 64.0D;
       }
 
+      @Override
       public void openInventory() {}
 
+      @Override
       public void closeInventory() {}
 
+      @Override
       public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
          return false;
       }

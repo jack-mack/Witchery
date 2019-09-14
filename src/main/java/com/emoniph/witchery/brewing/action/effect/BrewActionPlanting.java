@@ -27,8 +27,10 @@ public class BrewActionPlanting extends BrewActionEffect {
       super(itemKey, namePart, powerCost, new Probability(1.0D), effectLevel);
    }
 
+   @Override
    protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {}
 
+   @Override
    protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, final ModifiersEffect modifiers, ItemStack stack) {
       int R = radius + modifiers.getStrength();
       double RADIUS_SQ = (double)(R * R);
@@ -48,6 +50,7 @@ public class BrewActionPlanting extends BrewActionEffect {
 
          boolean Y_RANGE1 = true;
          (new BlockActionCircle() {
+            @Override
             public void onBlock(World world, int x, int y, int z) {
                int index = seeds.size() - 1;
                if(index >= 0) {

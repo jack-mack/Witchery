@@ -35,11 +35,13 @@ public class ItemDuplicationStaff extends ItemBase {
       this.setFull3D();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack itemstack) {
       return EnumRarity.epic;
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
       if(!world.isRemote && player.isSneaking()) {
          MovingObjectPosition pickedBlock = InfusionOtherwhere.doCustomRayTrace(world, player, true, 6.0D);
@@ -54,6 +56,7 @@ public class ItemDuplicationStaff extends ItemBase {
       return stack;
    }
 
+   @Override
    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
       if(stack.hasTagCompound() && stack.getTagCompound().hasKey("SavedSchematic")) {
          if(!player.isSneaking()) {

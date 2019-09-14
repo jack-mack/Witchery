@@ -62,6 +62,7 @@ public class EntitySpirit extends EntityFlyingTameable {
       super.tasks.addTask(11, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F, 0.2F));
    }
 
+   @Override
    protected boolean canDespawn() {
       return true;
    }
@@ -131,12 +132,14 @@ public class EntitySpirit extends EntityFlyingTameable {
 
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       super.writeEntityToNBT(nbtRoot);
       nbtRoot.setInteger("SuicideIn", this.timeToLive);
       nbtRoot.setInteger("SpiritType", this.spiritType);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       super.readEntityFromNBT(nbtRoot);
       if(nbtRoot.hasKey("SuicideIn")) {
@@ -153,6 +156,7 @@ public class EntitySpirit extends EntityFlyingTameable {
 
    }
 
+   @Override
    protected void updateAITick() {
       this.getNavigator().clearPathEntity();
       super.updateAITick();
@@ -166,15 +170,18 @@ public class EntitySpirit extends EntityFlyingTameable {
 
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(21, Integer.valueOf(0));
    }
 
+   @Override
    protected int decreaseAirSupply(int par1) {
       return par1;
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(4.0D);
@@ -183,10 +190,12 @@ public class EntitySpirit extends EntityFlyingTameable {
       this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0D);
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {
       if(this.spiritType != 2) {
          ItemStack stack;
@@ -200,10 +209,12 @@ public class EntitySpirit extends EntityFlyingTameable {
       }
    }
 
+   @Override
    public void onLivingUpdate() {
       super.onLivingUpdate();
    }
 
+   @Override
    public void onUpdate() {
       super.onUpdate();
       if(super.worldObj.isRemote) {
@@ -222,22 +233,27 @@ public class EntitySpirit extends EntityFlyingTameable {
 
    }
 
+   @Override
    public int getTalkInterval() {
       return super.getTalkInterval() * 2;
    }
 
+   @Override
    protected String getLivingSound() {
       return null;
    }
 
+   @Override
    protected String getHurtSound() {
       return null;
    }
 
+   @Override
    protected String getDeathSound() {
       return null;
    }
 
+   @Override
    public boolean interact(EntityPlayer par1EntityPlayer) {
       return false;
    }
@@ -246,10 +262,12 @@ public class EntitySpirit extends EntityFlyingTameable {
       return null;
    }
 
+   @Override
    public boolean isBreedingItem(ItemStack itemstack) {
       return itemstack != null && itemstack.getItem() == Items.bone;
    }
 
+   @Override
    public boolean canMateWith(EntityAnimal par1EntityAnimal) {
       return false;
    }
@@ -262,6 +280,7 @@ public class EntitySpirit extends EntityFlyingTameable {
       super.dataWatcher.updateObject(21, Integer.valueOf(par1));
    }
 
+   @Override
    public boolean getCanSpawnHere() {
       if(super.worldObj.provider.dimensionId != Config.instance().dimensionDreamID) {
          return false;
@@ -276,15 +295,18 @@ public class EntitySpirit extends EntityFlyingTameable {
       }
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.spirit.name");
    }
 
+   @Override
    public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData) {
       par1EntityLivingData = super.onSpawnWithEgg(par1EntityLivingData);
       return par1EntityLivingData;
    }
 
+   @Override
    public EntityAgeable createChild(EntityAgeable par1EntityAgeable) {
       return null;
    }

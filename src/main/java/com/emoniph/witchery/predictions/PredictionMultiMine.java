@@ -24,6 +24,7 @@ public class PredictionMultiMine extends PredictionAlwaysForced {
       this.itemPrototype = itemPrototype;
    }
 
+   @Override
    public boolean checkIfFulfilled(World world, EntityPlayer player, HarvestDropsEvent event, boolean isPastDue, boolean veryOld) {
       if(!event.isCanceled() && (event.block == this.block || veryOld && event.block == Blocks.stone) && this.shouldWeActivate(world, player, isPastDue)) {
          int optional = this.maxExtra - this.minExtra;

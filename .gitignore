@@ -1,5 +1,7 @@
 .gradle
 /build/
+/out/
+/run/
 gradle-app.setting
 !gradle-wrapper.jar
 .gradletasknamecache
@@ -8,4 +10,6 @@ ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
 .DS_Store
-/fb/
+*.iml
+*.ipr
+*.iws

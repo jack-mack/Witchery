@@ -26,12 +26,14 @@ public class PotionHellishAura extends PotionBase implements IHandleRenderLiving
       super(id, color);
    }
 
+   @Override
    public boolean isReady(int duration, int amplifier) {
       byte frequencyFactor = 25;
       int k = frequencyFactor >> amplifier;
       return k > 0?duration % k == 0:true;
    }
 
+   @Override
    public void performEffect(EntityLivingBase entity, int amplifier) {
       World world = entity.worldObj;
       if(!world.isRemote) {
@@ -52,6 +54,7 @@ public class PotionHellishAura extends PotionBase implements IHandleRenderLiving
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void onLivingRender(World world, EntityLivingBase entity, Post event, int amplifier) {
       double p_76977_2_ = entity.posX;

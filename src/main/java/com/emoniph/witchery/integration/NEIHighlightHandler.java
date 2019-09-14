@@ -27,6 +27,7 @@ public class NEIHighlightHandler implements IHighlightHandler {
       this.block = block;
    }
 
+   @Override
    public ItemStack identifyHighlight(World world, EntityPlayer player, MovingObjectPosition mop) {
       if(this.block == Witchery.Blocks.TRAPPED_PLANT) {
          if(mop == null || mop.typeOfHit == MovingObjectType.ENTITY) {
@@ -62,6 +63,7 @@ public class NEIHighlightHandler implements IHighlightHandler {
       return null;
    }
 
+   @Override
    public List handleTextData(ItemStack itemStack, World world, EntityPlayer player, MovingObjectPosition mop, List currenttip, Layout layout) {
       return null;
    }

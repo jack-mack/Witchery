@@ -33,10 +33,12 @@ public class BlockDisease extends BlockFluidClassic {
       this.setLightOpacity(1);
    }
 
+   @Override
    public int getMaxRenderHeightMeta() {
       return 16;
    }
 
+   @Override
    public void updateTick(World world, int x, int y, int z, Random rand) {
       super.updateTick(world, x, y, z, rand);
       int chance = Config.instance().diseaseRemovalChance;
@@ -50,16 +52,19 @@ public class BlockDisease extends BlockFluidClassic {
 
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       BlockUtil.registerBlock(this, blockName);
       return super.setBlockName(blockName);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int side, int meta) {
       return side != 0 && side != 1?this.icons[1]:this.icons[0];
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {
       this.icons = new IIcon[]{iconRegister.registerIcon(this.getTextureName() + "_still"), iconRegister.registerIcon(this.getTextureName() + "_flow")};
@@ -69,6 +74,7 @@ public class BlockDisease extends BlockFluidClassic {
 
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
       if(!world.isRemote && entity != null && entity instanceof EntityLivingBase) {
          EntityLivingBase livingEntity = (EntityLivingBase)entity;
@@ -79,10 +85,12 @@ public class BlockDisease extends BlockFluidClassic {
 
    }
 
+   @Override
    public boolean canDisplace(IBlockAccess world, int x, int y, int z) {
       return super.canDisplace(world, x, y, z);
    }
 
+   @Override
    public boolean displaceIfPossible(World world, int x, int y, int z) {
       return super.displaceIfPossible(world, x, y, z);
    }

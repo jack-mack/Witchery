@@ -16,6 +16,7 @@ public class ComponentGoblinHut extends ComponentClonedStructure {
       super(direction, random, x, z, w, h, d);
    }
 
+   @Override
    protected NBTTagCompound getSchematic(World world, Random random) {
       NBTTagCompound nbtSchematic = new NBTTagCompound();
       NBTTagList nbtList = new NBTTagList();
@@ -976,6 +977,7 @@ public class ComponentGoblinHut extends ComponentClonedStructure {
       return nbtSchematic;
    }
 
+   @Override
    protected void spawnInhabitant(World world, StructureBoundingBox bounds) {
       EntityGoblin goblin = new EntityGoblin(world);
       goblin.func_110163_bv();

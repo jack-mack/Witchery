@@ -82,6 +82,7 @@ public class Config {
    public float mantrapAlpha;
    public int townZombieMode;
    public boolean allowVolatilityPotionBlockDamage;
+   public int vampireSpawnRate;
    public boolean allowStakingVampires;
    public boolean allowCovenWitchVisits;
    public boolean allowVampireRitual;
@@ -238,6 +239,7 @@ public class Config {
       }
 
       this.allowVampireWolfHybrids = this.configuration.get("general", "AllowVampireWerewolfHybrids", true).getBoolean(true);
+      this.vampireSpawnRate = this.configuration.get("general", "VampireSpawnWeight", 5).getInt();
       this.allowStakingVampires = this.configuration.get("general", "AllowStakingVampires", true).getBoolean(true);
       this.allowCovenWitchVisits = this.configuration.get("general", "AllowCovenWitchVisits", true).getBoolean(true);
       this.allowVampireQuests = this.configuration.get("general", "AllowVampireQuests", true).getBoolean(true);

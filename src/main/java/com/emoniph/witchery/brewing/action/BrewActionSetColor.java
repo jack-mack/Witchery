@@ -23,24 +23,32 @@ public class BrewActionSetColor extends BrewAction {
       super(itemKey, (BrewNamePart)null, powerCost, Probability.CERTAIN, false, color);
    }
 
+   @Override
    public final void applyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {}
 
+   @Override
    public void prepareSplashPotion(World world, BrewActionList actionList, ModifiersImpact modifiers) {}
 
+   @Override
    public void applyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack stack) {}
 
+   @Override
    public boolean removeWhenAddedToCauldron(World world) {
       return true;
    }
 
+   @Override
    public boolean augmentEffectLevels(EffectLevelCounter totalEffects) {
       return true;
    }
 
+   @Override
    public void augmentEffectModifiers(ModifiersEffect modifiers) {}
 
+   @Override
    public void prepareRitual(World world, int x, int y, int z, ModifiersRitual modifiers, ItemStack stack) {}
 
+   @Override
    public RitualStatus updateRitual(MinecraftServer server, BrewActionList actionList, World world, int x, int y, int z, ModifiersRitual modifiers, ModifiersImpact impactModifiers) {
       return RitualStatus.COMPLETE;
    }

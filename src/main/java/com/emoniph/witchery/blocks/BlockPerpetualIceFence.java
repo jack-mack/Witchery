@@ -19,16 +19,19 @@ public class BlockPerpetualIceFence extends BlockFence {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       BlockUtil.registerBlock(this, blockName);
       return super.setBlockName(blockName);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getRenderBlockPass() {
       return 1;
    }
 
+   @Override
    public boolean canConnectFenceTo(IBlockAccess world, int x, int y, int z) {
       Block block = world.getBlock(x, y, z);
       return super.canConnectFenceTo(world, x, y, z) || block == Witchery.Blocks.PERPETUAL_ICE_FENCE_GATE;

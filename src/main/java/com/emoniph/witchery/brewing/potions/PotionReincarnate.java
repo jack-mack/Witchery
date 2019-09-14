@@ -23,6 +23,7 @@ public class PotionReincarnate extends PotionBase implements IHandleLivingDeath 
       super(id, color);
    }
 
+   @Override
    public void onLivingDeath(World world, EntityLivingBase entity, LivingDeathEvent event, int amplifier) {
       if(!world.isRemote) {
          Class creatureToSpawn = null;

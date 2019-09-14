@@ -56,12 +56,14 @@ public class EntityFamiliar extends EntityOcelot {
       super.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       this.setTameSkin(1);
       super.dataWatcher.addObject(23, Integer.valueOf(-1));
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.familiar.name");
    }
@@ -74,33 +76,39 @@ public class EntityFamiliar extends EntityOcelot {
       return super.dataWatcher.getWatchableObjectInt(23);
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtTag) {
       super.writeEntityToNBT(nbtTag);
       nbtTag.setInteger("ItemToFind", this.getItemIDToFind());
       nbtTag.setInteger("Searches", this.searches);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtTag) {
       super.readEntityFromNBT(nbtTag);
       this.setItemIDToFind(nbtTag.getInteger("ItemToFind"));
       this.searches = nbtTag.getInteger("Searches");
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public float getShadowSize() {
       super.getShadowSize();
       return 0.0F;
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0D);
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity par1Entity) {
       return par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), 0.5F);
    }
 
+   @Override
    public boolean interact(EntityPlayer player) {
       if(this.isTamed() && TameableUtil.isOwner(this, player) && !super.worldObj.isRemote) {
          ItemStack item = player.getCurrentEquippedItem();
@@ -147,42 +155,52 @@ public class EntityFamiliar extends EntityOcelot {
       return item == null?-1:Arrays.asList(ITEMS).indexOf(item.getItem());
    }
 
+   @Override
    protected String getLivingSound() {
       return "mob.pig.say";
    }
 
+   @Override
    protected String getHurtSound() {
       return "mob.pig.say";
    }
 
+   @Override
    protected String getDeathSound() {
       return "mob.pig.death";
    }
 
+   @Override
    protected void func_145780_a(int par1, int par2, int par3, Block par4) {
       this.playSound("mob.pig.step", 0.15F, 1.0F);
    }
 
+   @Override
    protected float getSoundVolume() {
       return 0.4F;
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {
       this.entityDropItem(Witchery.Items.GENERIC.itemSpectralDust.createStack(), 0.0F);
    }
 
+   @Override
    public boolean isBreedingItem(ItemStack par1ItemStack) {
       return false;
    }
 
+   @Override
    public boolean canMateWith(EntityAnimal par1EntityAnimal) {
       return false;
    }
 
+   @Override
    public EntityOcelot createChild(EntityAgeable par1EntityAgeable) {
       return null;
    }
 
+   @Override
    public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
       this.getEntityAttribute(SharedMonsterAttributes.followRange).applyModifier(new AttributeModifier("Random spawn bonus", super.rand.nextGaussian() * 0.05D, 1));
       return data;

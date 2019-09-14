@@ -13,6 +13,7 @@ public class EntityAIAvoidEntityConditionally extends EntityAIAvoidEntity {
       this.condition = condition;
    }
 
+   @Override
    public boolean shouldExecute() {
       return super.shouldExecute() && !this.condition.shouldAvoid();
    }

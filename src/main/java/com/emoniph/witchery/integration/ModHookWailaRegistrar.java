@@ -56,6 +56,7 @@ public class ModHookWailaRegistrar implements IWailaDataProvider, IWailaEntityPr
       registrar.registerOverrideEntityProvider(provider, EntityVillagerWere.class);
    }
 
+   @Override
    public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
       if(accessor.getBlock() == Witchery.Blocks.TRAPPED_PLANT) {
          int foundMeta = accessor.getMetadata();
@@ -91,18 +92,22 @@ public class ModHookWailaRegistrar implements IWailaDataProvider, IWailaEntityPr
       return null;
    }
 
+   @Override
    public List getWailaHead(ItemStack itemStack, List currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
       return currenttip;
    }
 
+   @Override
    public List getWailaBody(ItemStack itemStack, List currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
       return currenttip;
    }
 
+   @Override
    public List getWailaTail(ItemStack itemStack, List currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
       return currenttip;
    }
 
+   @Override
    public Entity getWailaOverride(IWailaEntityAccessor accessor, IWailaConfigHandler config) {
       if(accessor.getEntity() instanceof EntityIllusionCreeper) {
          if(CREEPER == null || CREEPER.worldObj != accessor.getWorld()) {
@@ -135,20 +140,25 @@ public class ModHookWailaRegistrar implements IWailaDataProvider, IWailaEntityPr
       }
    }
 
+   @Override
    public List getWailaHead(Entity entity, List currenttip, IWailaEntityAccessor accessor, IWailaConfigHandler config) {
       return currenttip;
    }
 
+   @Override
    public List getWailaBody(Entity entity, List currenttip, IWailaEntityAccessor accessor, IWailaConfigHandler config) {
       return currenttip;
    }
 
+   @Override
    public List getWailaTail(Entity entity, List currenttip, IWailaEntityAccessor accessor, IWailaConfigHandler config) {
       return currenttip;
    }
    
    //in orig file - no find after decomp
+   @Override
    public NBTTagCompound getNBTData(EntityPlayerMP player, TileEntity te, NBTTagCompound tag, World world, int x, int y, int z) { return tag; }
+   @Override
    public NBTTagCompound getNBTData(EntityPlayerMP player, Entity ent, NBTTagCompound tag, World world) { return tag; }
 
 }

@@ -18,6 +18,7 @@ public class RiteProtectionCircleAttractive extends RiteProtectionCircle {
       super(radius, upkeepPowerCost, ticksToLive);
    }
 
+   @Override
    protected void update(World world, int posX, int posY, int posZ, int radius, long ticks) {
       this.attract(world, posX, posY, posZ, (float)radius);
    }

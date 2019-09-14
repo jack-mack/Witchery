@@ -8,6 +8,7 @@ public class PotionQueasy extends PotionBase {
       super(id, true, color);
    }
 
+   @Override
    public void postContructInitialize() {
       this.setIncurable();
    }

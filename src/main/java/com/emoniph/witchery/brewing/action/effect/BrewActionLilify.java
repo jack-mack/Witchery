@@ -22,6 +22,7 @@ public class BrewActionLilify extends BrewActionEffect {
       super(itemKey, namePart, powerCost, new Probability(1.0D), effectLevel);
    }
 
+   @Override
    protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {
       x += side.offsetX;
       y += side.offsetY;
@@ -37,6 +38,7 @@ public class BrewActionLilify extends BrewActionEffect {
 
    }
 
+   @Override
    protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
       Coord coord = new Coord(targetEntity);
       this.doApplyToBlock(world, coord.x, coord.y, coord.z, ForgeDirection.UP, 1, modifiers, actionStack);

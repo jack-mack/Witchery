@@ -9,12 +9,15 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class PacketClearFallDamage implements IMessage {
 
+   @Override
    public void toBytes(ByteBuf buffer) {}
 
+   @Override
    public void fromBytes(ByteBuf buffer) {}
 
    public static class Handler implements IMessageHandler<PacketClearFallDamage, IMessage> {
 
+      @Override
       public IMessage onMessage(PacketClearFallDamage message, MessageContext ctx) {
          EntityPlayer player = Witchery.proxy.getPlayer(ctx);
          if(player != null) {

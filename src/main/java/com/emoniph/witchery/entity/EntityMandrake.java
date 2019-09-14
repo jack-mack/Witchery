@@ -37,47 +37,58 @@ public class EntityMandrake extends EntityMob {
       this.setSize(0.6F, 0.9F);
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.mandrake.name");
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.65D);
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    public int getMaxSafePointTries() {
       return this.getAttackTarget() == null?3:3 + (int)(this.getHealth() - 1.0F);
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
    }
 
+   @Override
    protected String getLivingSound() {
       return "mob.ghast.scream";
    }
 
+   @Override
    protected String getHurtSound() {
       return "mob.ghast.scream";
    }
 
+   @Override
    protected String getDeathSound() {
       return "mob.ghast.death";
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity entity) {
       if(!super.worldObj.isRemote && entity instanceof EntityPlayer) {
          EntityPlayer player = (EntityPlayer)entity;
@@ -89,6 +100,7 @@ public class EntityMandrake extends EntityMob {
       return true;
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {
       this.entityDropItem(Witchery.Items.GENERIC.itemMandrakeRoot.createStack(), 0.0F);
       this.entityDropItem(new ItemStack(Witchery.Items.SEEDS_MANDRAKE, super.worldObj.rand.nextDouble() <= 0.25D?2:1), 0.0F);

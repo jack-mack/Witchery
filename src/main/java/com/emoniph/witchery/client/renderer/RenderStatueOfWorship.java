@@ -18,6 +18,7 @@ public class RenderStatueOfWorship extends TileEntitySpecialRenderer {
    private static final ResourceLocation TEXTURE_URL = new ResourceLocation("witchery", "textures/blocks/statueofworship.png");
 
 
+   @Override
    public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float var8) {
       GL11.glPushMatrix();
       GL11.glTranslated(x, y, z);

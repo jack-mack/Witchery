@@ -20,11 +20,14 @@ public abstract class BrewActionBlockCircle extends BrewActionEffect {
       super(itemKey, namePart, powerCost, new Probability(1.0D), effectLevel);
    }
 
+   @Override
    protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {}
 
+   @Override
    protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, final ModifiersEffect modifiers, ItemStack stack) {
       final Count counter = new Count();
       (new BlockActionCircle() {
+         @Override
          public void onBlock(World world, int x, int y, int z) {
             BrewActionBlockCircle.this.onCircleBlock(world, x, y, z, modifiers, counter);
          }

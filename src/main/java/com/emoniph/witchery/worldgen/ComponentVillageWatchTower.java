@@ -34,6 +34,7 @@ public class ComponentVillageWatchTower extends Village {
       super.boundingBox = bounds;
    }
 
+   @Override
    public boolean addComponentParts(World world, Random rand, StructureBoundingBox bounds) {
       boolean height = true;
       if(super.field_143015_k < 0) {
@@ -176,12 +177,14 @@ public class ComponentVillageWatchTower extends Village {
       return true;
    }
 
+   @Override
    protected void func_143012_a(NBTTagCompound nbtRoot) {
       super.func_143012_a(nbtRoot);
       nbtRoot.setBoolean("Chest", this.hasMadeChest);
       nbtRoot.setInteger("Guards", this.guardsSpawned);
    }
 
+   @Override
    protected void func_143011_b(NBTTagCompound nbtRoot) {
       super.func_143011_b(nbtRoot);
       this.hasMadeChest = nbtRoot.getBoolean("Chest");

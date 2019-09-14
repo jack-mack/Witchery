@@ -26,6 +26,7 @@ public class RiteCrater extends Rite {
       this.height = height;
    }
 
+   @Override
    public void addSteps(ArrayList steps, int intialStage) {
       steps.add(new RiteCrater.StepCrater(this, intialStage));
    }
@@ -42,10 +43,12 @@ public class RiteCrater extends Rite {
          this.stage = initialStage;
       }
 
+      @Override
       public int getCurrentStage() {
          return (byte)this.stage;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(ticks % 10L != 0L) {
             return RitualStep.Result.STARTING;

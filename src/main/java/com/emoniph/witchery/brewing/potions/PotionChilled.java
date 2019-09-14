@@ -15,14 +15,17 @@ public class PotionChilled extends PotionBase implements IHandleLivingHurt {
       super(id, color);
    }
 
+   @Override
    public void postContructInitialize() {
       this.func_111184_a(SharedMonsterAttributes.movementSpeed, "7A20B8CD-7A97-4800-A7DC-5B464E31A11A", -0.1D, 2);
    }
 
+   @Override
    public boolean handleAllHurtEvents() {
       return false;
    }
 
+   @Override
    public void onLivingHurt(World world, EntityLivingBase entity, LivingHurtEvent event, int amplifier) {
       if(!world.isRemote && event.source.isFireDamage()) {
          event.ammount = Math.max(event.ammount - (float)(1 + amplifier), Math.min(event.ammount, amplifier >= 2?0.0F:1.0F));
@@ -30,11 +33,13 @@ public class PotionChilled extends PotionBase implements IHandleLivingHurt {
 
    }
 
+   @Override
    public boolean isReady(int duration, int amplifier) {
       int k = 25 >> amplifier;
       return k > 0?duration % k == 0:true;
    }
 
+   @Override
    public void performEffect(EntityLivingBase entity, int amplifier) {
       if(entity instanceof EntityBlaze || amplifier >= 2) {
          entity.attackEntityFrom(DamageSource.magic, 1.0F);

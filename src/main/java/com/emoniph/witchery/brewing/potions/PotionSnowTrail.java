@@ -19,10 +19,12 @@ public class PotionSnowTrail extends PotionBase {
       super(id, color);
    }
 
+   @Override
    public boolean isReady(int duration, int amplifier) {
       return duration % 10 == 0;
    }
 
+   @Override
    public void performEffect(EntityLivingBase entity, int amplifier) {
       if(!entity.worldObj.isRemote) {
          for(int coord = 0; coord < 4; ++coord) {
@@ -50,6 +52,7 @@ public class PotionSnowTrail extends PotionBase {
    public static void createSnowCovering(World world, int x, int y, int z, int radius, EntityPlayer source) {
       if(BlockProtect.checkModsForBreakOK(world, x, y, z, source)) {
          (new BlockActionCircle() {
+            @Override
             public void onBlock(World world, int x, int y, int z) {
                boolean maxSearch = true;
                int i;

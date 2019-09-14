@@ -9,18 +9,22 @@ import net.minecraft.world.IBlockAccess;
 
 public class RenderPitGrass implements ISimpleBlockRenderingHandler {
 
+   @Override
    public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
       renderer.renderBlockAsItem(Blocks.grass, metadata, 1.0F);
    }
 
+   @Override
    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
       return renderer.renderStandardBlock(Blocks.grass, x, y, z);
    }
 
+   @Override
    public boolean shouldRender3DInInventory(int modelId) {
       return true;
    }
 
+   @Override
    public int getRenderId() {
       return Witchery.proxy.getPitGrassRenderId();
    }

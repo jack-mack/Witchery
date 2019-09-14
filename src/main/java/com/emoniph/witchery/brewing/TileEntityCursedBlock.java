@@ -25,6 +25,7 @@ public class TileEntityCursedBlock extends TileEntityBase {
    String thrower;
 
 
+   @Override
    public boolean canUpdate() {
       return false;
    }
@@ -63,18 +64,21 @@ public class TileEntityCursedBlock extends TileEntityBase {
 
    }
 
+   @Override
    public Packet getDescriptionPacket() {
       NBTTagCompound nbtTag = new NBTTagCompound();
       this.writeToNBT(nbtTag);
       return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
    }
 
+   @Override
    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
       super.onDataPacket(net, packet);
       this.readFromNBT(packet.func_148857_g());
       super.worldObj.func_147479_m(super.xCoord, super.yCoord, super.zCoord);
    }
 
+   @Override
    public void writeToNBT(NBTTagCompound nbtRoot) {
       super.writeToNBT(nbtRoot);
       if(this.nbtEffect != null) {
@@ -91,6 +95,7 @@ public class TileEntityCursedBlock extends TileEntityBase {
 
    }
 
+   @Override
    public void readFromNBT(NBTTagCompound nbtRoot) {
       super.readFromNBT(nbtRoot);
       if(nbtRoot.hasKey("Effect")) {

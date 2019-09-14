@@ -32,6 +32,7 @@ public class SacrificeOptionalItem extends SacrificeItem {
       super(new ItemStack[]{optionalSacrifice});
    }
 
+   @Override
    public void addDescription(StringBuffer sb) {
       ItemStack[] arr$ = super.itemstacks;
       int len$ = arr$.length;
@@ -68,11 +69,13 @@ public class SacrificeOptionalItem extends SacrificeItem {
 
    }
 
+   @Override
    public boolean isMatch(World world, int posX, int posY, int posZ, int maxDistance, ArrayList entities, ArrayList grassperStacks) {
       super.isMatch(world, posX, posY, posZ, maxDistance, entities, grassperStacks);
       return true;
    }
 
+   @Override
    public void addSteps(ArrayList steps, AxisAlignedBB bounds, int maxDistance) {
       ItemStack[] arr$ = super.itemstacks;
       int len$ = arr$.length;
@@ -91,6 +94,7 @@ public class SacrificeOptionalItem extends SacrificeItem {
          super.showMessages = false;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(ticks % 20L != 0L) {
             return RitualStep.Result.STARTING;

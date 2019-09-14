@@ -8,6 +8,7 @@ public class PotionGasMask extends PotionBase {
       super(id, color);
    }
 
+   @Override
    public void postContructInitialize() {
       this.setIncurable();
    }

@@ -23,19 +23,23 @@ public class ItemWolfToken extends ItemBase {
       this.setMaxDamage(0);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack itemstack) {
       return EnumRarity.epic;
    }
 
+   @Override
    public EnumAction getItemUseAction(ItemStack itemstack) {
       return EnumAction.bow;
    }
 
+   @Override
    public int getMaxItemUseDuration(ItemStack itemstack) {
       return TimeUtil.secsToTicks(1);
    }
 
+   @Override
    public void onUsingTick(ItemStack stack, EntityPlayer player, int countdown) {
       if(!player.worldObj.isRemote && countdown == 1) {
          ExtendedPlayer playerEx;
@@ -65,6 +69,7 @@ public class ItemWolfToken extends ItemBase {
 
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
       player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
       return stack;

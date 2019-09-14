@@ -81,11 +81,13 @@ public class ItemPoppet extends ItemBase {
       this.setHasSubtypes(true);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack itemstack) {
       return EnumRarity.values()[((ItemPoppet.PoppetType)this.poppetTypes.get(itemstack.getItemDamage())).rarity];
    }
 
+   @Override
    public String getUnlocalizedName(ItemStack itemStack) {
       int damage = itemStack.getItemDamage();
 
@@ -94,6 +96,7 @@ public class ItemPoppet extends ItemBase {
       return damage >= 0 && damage < this.poppetTypes.size()?((ItemPoppet.PoppetType)this.poppetTypes.get(damage)).getUnlocalizedName():"";
    }
 
+   @Override
    public String getItemStackDisplayName(ItemStack itemstack) {
       String entityID;
       String localizedName;
@@ -109,6 +112,7 @@ public class ItemPoppet extends ItemBase {
       }
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advTooltips) {
       String entityID;
       if(this.vampiricPoppet.isMatch(stack)) {
@@ -136,6 +140,7 @@ public class ItemPoppet extends ItemBase {
 
    }
 
+   @Override
    public void registerIcons(IIconRegister iconRegister) {
       Iterator i$ = this.poppetTypes.iterator();
 
@@ -146,6 +151,7 @@ public class ItemPoppet extends ItemBase {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIconFromDamage(int damage) {
       if(damage < 0 || damage >= this.poppetTypes.size()) {
@@ -155,6 +161,7 @@ public class ItemPoppet extends ItemBase {
       return ((ItemPoppet.PoppetType)this.poppetTypes.get(damage)).icon;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void getSubItems(Item item, CreativeTabs tab, List itemList) {
       Iterator i$ = this.poppetTypes.iterator();
@@ -166,27 +173,33 @@ public class ItemPoppet extends ItemBase {
 
    }
 
+   @Override
    public void onCreated(ItemStack stack, World world, EntityPlayer player) {
       this.ensureNBT(stack);
       super.onCreated(stack, world, player);
    }
 
+   @Override
    public boolean isDamageable() {
       return true;
    }
 
+   @Override
    public boolean isDamaged(ItemStack stack) {
       this.ensureNBT(stack);
       return this.getDamageNBT(stack) > 0;
    }
 
+   @Override
    public void setDamage(ItemStack stack, int damage) {}
 
+   @Override
    public int getDisplayDamage(ItemStack stack) {
       this.ensureNBT(stack);
       return this.getDamageNBT(stack);
    }
 
+   @Override
    public int getMaxDamage() {
       return 1000;
    }
@@ -225,6 +238,7 @@ public class ItemPoppet extends ItemBase {
 
    }
 
+   @Override
    public void onUpdate(ItemStack stack, World world, Entity entity, int par4, boolean par5) {
       if(!world.isRemote && this.voodooPoppet.isMatch(stack) && entity.isInsideOfMaterial(Material.water) && entity.getAir() <= 0) {
          EntityLivingBase boundEntity = Witchery.Items.TAGLOCK_KIT.getBoundEntity(world, entity, stack, Integer.valueOf(1));
@@ -252,6 +266,7 @@ public class ItemPoppet extends ItemBase {
       super.onUpdate(stack, world, entity, par4, par5);
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
       if(this.voodooPoppet.isMatch(itemstack)) {
          player.setItemInUse(itemstack, this.getMaxItemUseDuration(itemstack));
@@ -260,14 +275,17 @@ public class ItemPoppet extends ItemBase {
       return super.onItemRightClick(itemstack, world, player);
    }
 
+   @Override
    public int getMaxItemUseDuration(ItemStack par1ItemStack) {
       return 80;
    }
 
+   @Override
    public EnumAction getItemUseAction(ItemStack par1ItemStack) {
       return EnumAction.bow;
    }
 
+   @Override
    public void onPlayerStoppedUsing(ItemStack itemstack, World world, EntityPlayer player, int ticks) {
       if(!world.isRemote) {
          if(this.voodooPoppet.isMatch(itemstack)) {

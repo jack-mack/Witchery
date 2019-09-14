@@ -56,10 +56,12 @@ public class EntityEnt extends EntityMob implements IEntitySelector {
       super.experienceValue = 25;
    }
 
+   @Override
    public boolean isEntityApplicable(Entity entity) {
       return true;
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(17, "");
@@ -74,14 +76,17 @@ public class EntityEnt extends EntityMob implements IEntitySelector {
       super.dataWatcher.updateObject(16, Byte.valueOf((byte)(par1?1:0)));
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.ent.name");
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    protected void updateAITick() {
       super.updateAITick();
       if(!super.worldObj.isRemote && this.isEntityAlive()) {
@@ -94,6 +99,7 @@ public class EntityEnt extends EntityMob implements IEntitySelector {
 
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(200.0D);
@@ -102,14 +108,17 @@ public class EntityEnt extends EntityMob implements IEntitySelector {
       this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0D);
    }
 
+   @Override
    protected int decreaseAirSupply(int par1) {
       return par1;
    }
 
+   @Override
    protected void collideWithEntity(Entity par1Entity) {
       super.collideWithEntity(par1Entity);
    }
 
+   @Override
    public void onLivingUpdate() {
       super.onLivingUpdate();
       if(this.attackTimer > 0) {
@@ -148,10 +157,12 @@ public class EntityEnt extends EntityMob implements IEntitySelector {
 
    }
 
+   @Override
    public boolean canAttackClass(Class par1Class) {
       return super.canAttackClass(par1Class);
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
       if(this.getOwnerName() == null) {
@@ -162,6 +173,7 @@ public class EntityEnt extends EntityMob implements IEntitySelector {
 
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
       String s = par1NBTTagCompound.getString("Owner");
@@ -184,6 +196,7 @@ public class EntityEnt extends EntityMob implements IEntitySelector {
       return super.worldObj.getPlayerEntityByName(this.getOwnerName());
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity par1Entity) {
       this.attackTimer = 10;
       super.worldObj.setEntityState(this, (byte)4);
@@ -196,6 +209,7 @@ public class EntityEnt extends EntityMob implements IEntitySelector {
       return flag;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void handleHealthUpdate(byte par1) {
       if(par1 == 4) {
@@ -207,6 +221,7 @@ public class EntityEnt extends EntityMob implements IEntitySelector {
 
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
       Entity entity = par1DamageSource.getEntity();
       par2 = Math.min(par2, 15.0F);
@@ -222,26 +237,32 @@ public class EntityEnt extends EntityMob implements IEntitySelector {
       return this.attackTimer;
    }
 
+   @Override
    public float getBrightness(float par1) {
       return 1.0F;
    }
 
+   @Override
    protected String getLivingSound() {
       return null;
    }
 
+   @Override
    protected String getHurtSound() {
       return "mob.horse.zombie.hit";
    }
 
+   @Override
    protected String getDeathSound() {
       return "mob.horse.zombie.death";
    }
 
+   @Override
    protected void func_145780_a(int par1, int par2, int par3, Block par4) {
       this.playSound("mob.irongolem.walk", 1.0F, 1.0F);
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {
       this.entityDropItem(Witchery.Items.GENERIC.itemBranchEnt.createStack(), 0.0F);
       this.entityDropItem(new ItemStack(Witchery.Blocks.SAPLING, 1, super.worldObj.rand.nextInt(3)), 0.0F);
@@ -262,14 +283,17 @@ public class EntityEnt extends EntityMob implements IEntitySelector {
 
    }
 
+   @Override
    public void onDeath(DamageSource par1DamageSource) {
       super.onDeath(par1DamageSource);
    }
 
+   @Override
    protected boolean canDespawn() {
       return true;
    }
 
+   @Override
    public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData) {
       return super.onSpawnWithEgg(par1EntityLivingData);
    }

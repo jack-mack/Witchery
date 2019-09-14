@@ -96,6 +96,7 @@ public class ModelMonkey extends ModelBase {
       modelRenderer.rotateAngleZ = z;
    }
 
+   @Override
    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
       EntityWingedMonkey entitybat = (EntityWingedMonkey)entity;
       this.armRight.rotateAngleZ = 0.0F;

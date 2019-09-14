@@ -22,11 +22,13 @@ public class PacketSpellPrepared implements IMessage {
       this.level = level;
    }
 
+   @Override
    public void toBytes(ByteBuf buffer) {
       buffer.writeInt(this.effectID);
       buffer.writeInt(this.level);
    }
 
+   @Override
    public void fromBytes(ByteBuf buffer) {
       this.effectID = buffer.readInt();
       this.level = buffer.readInt();
@@ -34,6 +36,7 @@ public class PacketSpellPrepared implements IMessage {
 
    public static class Handler implements IMessageHandler<PacketSpellPrepared, IMessage> {
 
+      @Override
       public IMessage onMessage(PacketSpellPrepared message, MessageContext ctx) {
          EntityPlayer player = Witchery.proxy.getPlayer(ctx);
          player.getEntityData().setInteger("WITCSpellEffectID", message.effectID);

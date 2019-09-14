@@ -17,6 +17,7 @@ public class PredictionFall extends Prediction {
       super(id, itemWeight, selfFulfillmentProbabilityPerSec, translationKey);
    }
 
+   @Override
    public boolean doSelfFulfillment(World world, EntityPlayer player) {
       boolean FALL_DISTANCE = true;
       boolean RADIUS = true;
@@ -58,6 +59,7 @@ public class PredictionFall extends Prediction {
       return false;
    }
 
+   @Override
    public boolean checkIfFulfilled(World world, EntityPlayer player, LivingHurtEvent event, boolean isPastDue, boolean veryOld) {
       if(!event.isCanceled()) {
          boolean fallen = event.source == DamageSource.fall;

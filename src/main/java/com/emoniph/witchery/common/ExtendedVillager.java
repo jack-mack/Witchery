@@ -45,12 +45,14 @@ public class ExtendedVillager implements IExtendedEntityProperties {
       return this.villager;
    }
 
+   @Override
    public void saveNBTData(NBTTagCompound compound) {
       NBTTagCompound props = new NBTTagCompound();
       props.setInteger("Blood", this.blood);
       compound.setTag("WitcheryExtendedVillager", props);
    }
 
+   @Override
    public void loadNBTData(NBTTagCompound compound) {
       if(compound.hasKey("WitcheryExtendedVillager")) {
          NBTTagCompound props = (NBTTagCompound)compound.getTag("WitcheryExtendedVillager");
@@ -59,6 +61,7 @@ public class ExtendedVillager implements IExtendedEntityProperties {
 
    }
 
+   @Override
    public void init(Entity entity, World world) {}
 
    public void setBlood(int blood) {

@@ -16,6 +16,7 @@ public class PredictionWet extends Prediction {
       super(id, itemWeight, selfFulfillmentProbabilityPerSec, translationKey);
    }
 
+   @Override
    public boolean doSelfFulfillment(World world, EntityPlayer player) {
       boolean FALL_DISTANCE = true;
       boolean RADIUS = true;
@@ -57,6 +58,7 @@ public class PredictionWet extends Prediction {
       return false;
    }
 
+   @Override
    public boolean checkIfFulfilled(World world, EntityPlayer player, LivingUpdateEvent event, boolean isPastDue, boolean veryOld) {
       if(player.isWet()) {
          Log.instance().debug(String.format("Prediction for WET fulfilled as predicted", new Object[0]));

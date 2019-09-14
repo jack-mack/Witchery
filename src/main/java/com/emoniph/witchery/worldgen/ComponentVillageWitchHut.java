@@ -29,6 +29,7 @@ public class ComponentVillageWitchHut extends House1 {
       this.tablePosition = par3Random.nextInt(2) + 1;
    }
 
+   @Override
    protected void func_143012_a(NBTTagCompound par1NBTTagCompound) {
       super.func_143012_a(par1NBTTagCompound);
       par1NBTTagCompound.setInteger("T", this.tablePosition);
@@ -36,6 +37,7 @@ public class ComponentVillageWitchHut extends House1 {
       par1NBTTagCompound.setInteger("WITCWCount", this.witchesSpawned);
    }
 
+   @Override
    protected void func_143011_b(NBTTagCompound par1NBTTagCompound) {
       super.func_143011_b(par1NBTTagCompound);
       this.tablePosition = par1NBTTagCompound.getInteger("T");
@@ -48,6 +50,7 @@ public class ComponentVillageWitchHut extends House1 {
       return canVillageGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(par1List, structureboundingbox) == null?new ComponentVillageWitchHut(par0ComponentVillageStartPiece, par7, par2Random, structureboundingbox, par6):null;
    }
 
+   @Override
    public boolean addComponentParts(World par1World, Random par2Random, StructureBoundingBox par3StructureBoundingBox) {
       if(super.field_143015_k < 0) {
          super.field_143015_k = this.getAverageGroundLevel(par1World, par3StructureBoundingBox);

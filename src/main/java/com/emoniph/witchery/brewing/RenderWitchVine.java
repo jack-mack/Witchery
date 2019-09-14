@@ -10,8 +10,10 @@ import net.minecraft.world.IBlockAccess;
 
 public class RenderWitchVine implements ISimpleBlockRenderingHandler {
 
+   @Override
    public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {}
 
+   @Override
    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
       Tessellator tessellator = Tessellator.instance;
       IIcon iicon = renderer.getBlockIconFromSide(block, 0);
@@ -95,10 +97,12 @@ public class RenderWitchVine implements ISimpleBlockRenderingHandler {
       return true;
    }
 
+   @Override
    public boolean shouldRender3DInInventory(int modelId) {
       return false;
    }
 
+   @Override
    public int getRenderId() {
       return Witchery.proxy.getVineRenderId();
    }

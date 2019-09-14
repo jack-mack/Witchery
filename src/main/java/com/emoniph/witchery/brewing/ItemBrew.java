@@ -34,21 +34,25 @@ public class ItemBrew extends ItemBase {
       super.registerWithCreativeTab = false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean hasEffect(ItemStack stack, int pass) {
       return pass == 0;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean requiresMultipleRenderPasses() {
       return true;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(ItemStack stack, int pass) {
       return pass == 0?this.itemIconOverlay:(stack != null && !WitcheryBrewRegistry.INSTANCE.isSplash(stack.getTagCompound())?super.itemIcon:this.itemIconSplash);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerIcons(IIconRegister iconRegister) {
       super.registerIcons(iconRegister);
@@ -56,12 +60,14 @@ public class ItemBrew extends ItemBase {
       this.itemIconSplash = iconRegister.registerIcon("witchery:brew_splash");
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public String getItemStackDisplayName(ItemStack stack) {
       NBTTagCompound nbtRoot = stack.getTagCompound();
       return nbtRoot != null?nbtRoot.getString("BrewName"):super.getItemStackDisplayName(stack);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getColorFromItemStack(ItemStack stack, int pass) {
       if(pass == 0) {
@@ -72,6 +78,7 @@ public class ItemBrew extends ItemBase {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean expanded) {
       NBTTagCompound nbtRoot = stack.getTagCompound();
@@ -92,10 +99,12 @@ public class ItemBrew extends ItemBase {
 
    }
 
+   @Override
    public EnumRarity getRarity(ItemStack stack) {
       return EnumRarity.common;
    }
 
+   @Override
    public int getMaxItemUseDuration(ItemStack stack) {
       boolean DEFAULT_SPEED = true;
       NBTTagCompound nbtRoot = stack.getTagCompound();
@@ -103,10 +112,12 @@ public class ItemBrew extends ItemBase {
       return drinkSpeed > 0?drinkSpeed:32;
    }
 
+   @Override
    public EnumAction getItemUseAction(ItemStack stack) {
       return WitcheryBrewRegistry.INSTANCE.isSplash(stack.getTagCompound())?EnumAction.bow:EnumAction.drink;
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
       if(WitcheryBrewRegistry.INSTANCE.isSplash(stack.getTagCompound())) {
          if(!player.capabilities.isCreativeMode) {
@@ -124,6 +135,7 @@ public class ItemBrew extends ItemBase {
       return stack;
    }
 
+   @Override
    public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
       if(!player.capabilities.isCreativeMode) {
          --stack.stackSize;

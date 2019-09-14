@@ -19,6 +19,7 @@ import net.minecraft.world.World;
 
 public class RiteRemoveVampirism extends Rite {
 
+   @Override
    public void addSteps(ArrayList steps, int intialStage) {
       steps.add(new RiteRemoveVampirism.StepCurseCreature(this));
    }
@@ -33,6 +34,7 @@ public class RiteRemoveVampirism extends Rite {
          this.rite = rite;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(ticks % 20L != 0L) {
             return RitualStep.Result.STARTING;

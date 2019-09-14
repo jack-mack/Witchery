@@ -26,11 +26,7 @@ targetCompatibility = 7
 
 minecraft {
     version = "1.7.10-10.13.4.1614-1.7.10"
-	if (file('../run').exists()){
-		assetDir = "../run/assets"
-	}else{
-		assetDir = "assets"
-	}
+	runDir = "run"
 }
 
 repositories {

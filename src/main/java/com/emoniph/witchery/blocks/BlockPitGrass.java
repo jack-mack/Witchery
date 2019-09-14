@@ -20,9 +20,11 @@ import net.minecraft.world.World;
 public class BlockPitGrass extends BlockBase {
 
    private static final Material passThrough = new Material(MapColor.grassColor) {
+      @Override
       public boolean blocksMovement() {
          return true;
       }
+      @Override
       public boolean isOpaque() {
          return false;
       }
@@ -42,29 +44,36 @@ public class BlockPitGrass extends BlockBase {
       this.setTickRandomly(false);
    }
 
+   @Override
    public int getRenderType() {
       return Witchery.proxy.getPitGrassRenderId();
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
       return null;
    }
 
+   @Override
    public Item getItemDropped(int p_149650_1_, Random rand, int p_149650_3_) {
       return Item.getItemFromBlock(this);
    }
 
+   @Override
    public void updateTick(World world, int x, int y, int z, Random rand) {}
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int p_149691_1_, int p_149691_2_) {
       return p_149691_1_ == 1?this.iconTop:(p_149691_1_ == 0?Blocks.dirt.getBlockTextureFromSide(p_149691_1_):super.blockIcon);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
       if(side == 1) {
@@ -77,6 +86,7 @@ public class BlockPitGrass extends BlockBase {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {
       super.blockIcon = iconRegister.registerIcon(this.getTextureName() + "_side");
@@ -85,6 +95,7 @@ public class BlockPitGrass extends BlockBase {
       this.iconSideOverlay = iconRegister.registerIcon(this.getTextureName() + "_side_overlay");
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getBlockColor() {
       double d0 = 0.5D;
@@ -92,11 +103,13 @@ public class BlockPitGrass extends BlockBase {
       return ColorizerGrass.getGrassColor(d0, d1);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getRenderColor(int meta) {
       return this.getBlockColor();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
       int l = 0;

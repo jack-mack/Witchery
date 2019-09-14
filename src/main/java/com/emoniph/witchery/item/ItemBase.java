@@ -16,6 +16,7 @@ public class ItemBase extends Item {
    protected boolean autoGenerateTooltip = false;
 
 
+   @Override
    public Item setUnlocalizedName(String itemName) {
       ItemUtil.registerItem(this, itemName);
       if(this.registerWithCreativeTab) {
@@ -25,6 +26,7 @@ public class ItemBase extends Item {
       return super.setUnlocalizedName(itemName);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean moreTips) {
       if(this.autoGenerateTooltip) {

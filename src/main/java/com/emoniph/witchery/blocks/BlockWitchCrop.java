@@ -72,6 +72,7 @@ public class BlockWitchCrop extends BlockBaseBush implements IGrowable {
       return this;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {
       this.iconArray = new IIcon[this.getNumGrowthStages() + 1];
@@ -82,6 +83,7 @@ public class BlockWitchCrop extends BlockBaseBush implements IGrowable {
 
    }
 
+   @Override
    protected boolean canPlaceBlockOn(Block block) {
       return this.waterPlant?block == Blocks.water:block == Blocks.grass || block == Blocks.dirt || block == Blocks.farmland || block == this || block == Witchery.Blocks.CROP_WORMWOOD;
    }
@@ -90,6 +92,7 @@ public class BlockWitchCrop extends BlockBaseBush implements IGrowable {
       return this.growthStages;
    }
 
+   @Override
    public void updateTick(World world, int posX, int posY, int posZ, Random rand) {
       super.updateTick(world, posX, posY, posZ, rand);
       if(world.getBlockLightValue(posX, posY + 1, posZ) >= 9) {
@@ -136,14 +139,17 @@ public class BlockWitchCrop extends BlockBaseBush implements IGrowable {
       }
    }
 
+   @Override
    public boolean func_149851_a(World world, int x, int y, int z, boolean flag) {
       return world.getBlockMetadata(x, y, z) != this.getNumGrowthStages();
    }
 
+   @Override
    public boolean func_149852_a(World world, Random rand, int x, int y, int z) {
       return true;
    }
 
+   @Override
    public void func_149853_b(World world, Random rand, int x, int y, int z) {
       this.fertilize(world, x, y, z);
    }
@@ -192,6 +198,7 @@ public class BlockWitchCrop extends BlockBaseBush implements IGrowable {
       return f;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int par1, int par2) {
       int stages = this.getNumGrowthStages();
@@ -202,6 +209,7 @@ public class BlockWitchCrop extends BlockBaseBush implements IGrowable {
       return this.iconArray != null?this.iconArray[par2]:null;
    }
 
+   @Override
    public int getRenderType() {
       return this != Witchery.Blocks.CROP_SNOWBELL && this != Witchery.Blocks.CROP_WOLFSBANE && this != Witchery.Blocks.CROP_WORMWOOD?6:1;
    }
@@ -214,10 +222,12 @@ public class BlockWitchCrop extends BlockBaseBush implements IGrowable {
       return this.cropItemPrototype.copy();
    }
 
+   @Override
    public void dropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int par5, float par6, int par7) {
       super.dropBlockAsItemWithChance(par1World, par2, par3, par4, par5, par6, 0);
    }
 
+   @Override
    public ArrayList getDrops(World world, int x, int y, int z, int metadata, int fortune) {
       ArrayList ret = new ArrayList();
       world.getBlock(x, y, z);
@@ -259,6 +269,7 @@ public class BlockWitchCrop extends BlockBaseBush implements IGrowable {
       return ret;
    }
 
+   @Override
    protected void dropBlockAsItem(World p_149642_1_, int p_149642_2_, int p_149642_3_, int p_149642_4_, ItemStack p_149642_5_) {
       if(!p_149642_1_.isRemote && p_149642_1_.getGameRules().getGameRuleBooleanValue("doTileDrops")) {
          float f = 0.7F;
@@ -276,22 +287,27 @@ public class BlockWitchCrop extends BlockBaseBush implements IGrowable {
 
    }
 
+   @Override
    public Item getItemDropped(int par1, Random rand, int par3) {
       return par1 == this.getNumGrowthStages()?this.cropItemPrototype.getItem():this.seedItemPrototype.getItem();
    }
 
+   @Override
    public int damageDropped(int par1) {
       return par1 == this.getNumGrowthStages()?this.cropItemPrototype.getItemDamage():this.seedItemPrototype.getItemDamage();
    }
 
+   @Override
    public int quantityDropped(Random rand) {
       return 1;
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       return this.seedItemPrototype;
    }
 
+   @Override
    public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z) {
       return this.waterPlant?EnumPlantType.Water:super.getPlantType(world, x, y, z);
    }

@@ -443,6 +443,7 @@ public class RenderItem3d extends Render {
 
                private static final String __OBFID = "CL_00001004";
 
+               @Override
                public String call() {
                   return String.valueOf(par3ItemStack.getItem());
                }
@@ -451,6 +452,7 @@ public class RenderItem3d extends Render {
 
                private static final String __OBFID = "CL_00001005";
 
+               @Override
                public String call() {
                   return String.valueOf(par3ItemStack.getItemDamage());
                }
@@ -459,6 +461,7 @@ public class RenderItem3d extends Render {
 
                private static final String __OBFID = "CL_00001006";
 
+               @Override
                public String call() {
                   return String.valueOf(par3ItemStack.getTagCompound());
                }
@@ -467,6 +470,7 @@ public class RenderItem3d extends Render {
 
                private static final String __OBFID = "CL_00001007";
 
+               @Override
                public String call() {
                   return String.valueOf(par3ItemStack.hasEffect());
                }
@@ -578,10 +582,12 @@ public class RenderItem3d extends Render {
       tessellator.draw();
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(Entity par1Entity) {
       return this.getEntityTexture((EntityItem)par1Entity);
    }
 
+   @Override
    public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9) {
       this.doRender((EntityItem)par1Entity, par2, par4, par6, par8, par9);
    }

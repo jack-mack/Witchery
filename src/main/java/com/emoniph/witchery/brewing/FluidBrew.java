@@ -10,6 +10,7 @@ public class FluidBrew extends Fluid {
       super(fluidName);
    }
 
+   @Override
    public int getColor(FluidStack stack) {
       int color = WitcheryBrewRegistry.INSTANCE.getBrewColor(stack.tag);
       return color;

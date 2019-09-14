@@ -31,19 +31,23 @@ public class ItemDiviner extends ItemBase {
       this.setMaxDamage(50);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack itemstack) {
       return EnumRarity.uncommon;
    }
 
+   @Override
    public EnumAction getItemUseAction(ItemStack itemstack) {
       return EnumAction.bow;
    }
 
+   @Override
    public int getMaxItemUseDuration(ItemStack itemstack) {
       return 400;
    }
 
+   @Override
    public void onUsingTick(ItemStack itemstack, EntityPlayer player, int countdown) {
       World world = player.worldObj;
       if(!world.isRemote) {
@@ -83,6 +87,7 @@ public class ItemDiviner extends ItemBase {
 
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
       player.setItemInUse(itemstack, this.getMaxItemUseDuration(itemstack));
       return itemstack;

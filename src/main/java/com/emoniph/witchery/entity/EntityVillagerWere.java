@@ -24,16 +24,19 @@ public class EntityVillagerWere extends EntityVillager {
       this.infectious = infectious;
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       super.writeEntityToNBT(nbtRoot);
       nbtRoot.setBoolean("Infectious", this.infectious);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       super.readEntityFromNBT(nbtRoot);
       this.infectious = nbtRoot.getBoolean("Infectious");
    }
 
+   @Override
    protected void updateAITasks() {
       super.updateAITasks();
       if(!super.worldObj.isRemote && super.ticksExisted % 100 == 3 && !this.isChild() && CreatureUtil.isFullMoon(super.worldObj) && !this.isPotionActive(Witchery.Potions.WOLFSBANE)) {

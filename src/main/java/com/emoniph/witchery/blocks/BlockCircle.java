@@ -52,11 +52,13 @@ public class BlockCircle extends BlockBaseContainer {
       this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.015625F, 1.0F);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int par1, int par2) {
       return super.blockIcon;
    }
 
+   @Override
    public void onBlockClicked(World world, int posX, int posY, int posZ, EntityPlayer player) {
       if(!world.isRemote) {
          ItemStack itemstack = player.getHeldItem();
@@ -67,26 +69,32 @@ public class BlockCircle extends BlockBaseContainer {
 
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
       return null;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public int quantityDropped(Random rand) {
       return 0;
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       return new ItemStack(Witchery.Items.CHALK_GOLDEN);
    }
 
+   @Override
    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, Block par5) {
       if(this.func_111046_k(par1World, par2, par3, par4)) {
          boolean flag = par1World.isBlockIndirectlyGettingPowered(par2, par3, par4);
@@ -111,16 +119,19 @@ public class BlockCircle extends BlockBaseContainer {
       }
    }
 
+   @Override
    public boolean canBlockStay(World world, int x, int y, int z) {
       Material material = world.getBlock(x, y - 1, z).getMaterial();
       return !world.isAirBlock(x, y - 1, z) && material != null && material.isOpaque() && material.isSolid();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
       return par5 == 1;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
       int metadata = world.getBlockMetadata(x, y, z);
@@ -133,6 +144,7 @@ public class BlockCircle extends BlockBaseContainer {
 
    }
 
+   @Override
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
       ItemStack stack = player.getHeldItem();
       this.activateBlock(world, x, y, z, player, stack != null && Witchery.Items.GENERIC.itemSeerStone.isMatch(stack));
@@ -274,6 +286,7 @@ public class BlockCircle extends BlockBaseContainer {
       private boolean abortNext = false;
 
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtTag) {
          super.writeToNBT(nbtTag);
          byte[] ritualIDs = new byte[this.upkeepRituals.size()];
@@ -297,6 +310,7 @@ public class BlockCircle extends BlockBaseContainer {
          nbtTag.setByteArray("RitualCovens", covenSizes);
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtTag) {
          super.readFromNBT(nbtTag);
          if(nbtTag.hasKey("Rituals") && nbtTag.hasKey("RitualStages")) {
@@ -341,6 +355,7 @@ public class BlockCircle extends BlockBaseContainer {
 
       }
 
+      @Override
       public void updateEntity() {
          super.updateEntity();
          if(!super.worldObj.isRemote) {
@@ -462,12 +477,14 @@ public class BlockCircle extends BlockBaseContainer {
 
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          this.readFromNBT(packet.func_148857_g());

@@ -17,6 +17,7 @@ public class CreaturePowerPigMan extends CreaturePower {
       super(powerID, EntityPigZombie.class);
    }
 
+   @Override
    public void onActivate(World world, EntityPlayer player, int elapsedTicks, MovingObjectPosition mop) {
       if(!world.isRemote) {
          player.addPotionEffect(new PotionEffect(Potion.resistance.id, 600, 2));
@@ -26,6 +27,7 @@ public class CreaturePowerPigMan extends CreaturePower {
 
    }
 
+   @Override
    public void onDamage(World world, EntityPlayer player, LivingHurtEvent event) {
       if(event.source.isFireDamage() && event.isCancelable()) {
          int currentEnergy = Infusion.getCurrentEnergy(player);

@@ -37,18 +37,22 @@ public class EntityAIFlyerFlyToWaypoint extends EntityAIBase {
       this.setMutexBits(7);
    }
 
+   @Override
    public boolean shouldExecute() {
       return this.flyer.waypoint != null && (this.flyer.getHeldItem() != null || this.carryRequirement != EntityAIFlyerFlyToWaypoint.CarryRequirement.HELD_ITEM);
    }
 
+   @Override
    public boolean continueExecuting() {
       boolean heldItem = this.flyer.getHeldItem() != null;
       boolean awayFromHome = this.flyer.getDistanceSq(this.flyer.homeX, this.flyer.posY, this.flyer.homeZ) > 1.0D || Math.abs(this.flyer.posY - this.flyer.homeY) > 1.0D;
       return heldItem && this.carryRequirement == EntityAIFlyerFlyToWaypoint.CarryRequirement.HELD_ITEM || this.flyer.waypoint != null || awayFromHome;
    }
 
+   @Override
    public void startExecuting() {}
 
+   @Override
    public void resetTask() {
       this.flyer.waypoint = null;
       this.flyer.setSitting(true);
@@ -59,6 +63,7 @@ public class EntityAIFlyerFlyToWaypoint extends EntityAIBase {
       this.courseTimer = 0;
    }
 
+   @Override
    public void updateTask() {
       if(!this.flyer.isSitting()) {
          Waypoint waypoint = this.flyer.getWaypoint();

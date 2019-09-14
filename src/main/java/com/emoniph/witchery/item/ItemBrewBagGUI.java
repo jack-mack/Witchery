@@ -27,11 +27,13 @@ public class ItemBrewBagGUI extends GuiContainer {
       super.ySize = 114 + this.inventoryRows * 18;
    }
 
+   @Override
    protected void drawGuiContainerForegroundLayer(int par1, int par2) {
       super.fontRendererObj.drawString(StatCollector.translateToLocal(this.upperInventory.getInventoryName()), 8, 6, 4210752);
       super.fontRendererObj.drawString(StatCollector.translateToLocal(this.lowerInventory.getInventoryName()), 8, super.ySize - 96 + 2, 4210752);
    }
 
+   @Override
    protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3) {
       GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
       super.mc.renderEngine.bindTexture(TEXTURE_LOCATION);

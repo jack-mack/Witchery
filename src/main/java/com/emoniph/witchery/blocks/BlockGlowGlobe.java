@@ -24,31 +24,38 @@ public class BlockGlowGlobe extends BlockBase {
       this.setBlockBounds(0.4F, 0.4F, 0.4F, 0.6F, 0.6F, 0.6F);
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
       return null;
    }
 
+   @Override
    public int getRenderType() {
       return 1;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getRenderBlockPass() {
       return 1;
    }
 
+   @Override
    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
       return true;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
       if(rand.nextInt(3) != 0) {
@@ -60,10 +67,12 @@ public class BlockGlowGlobe extends BlockBase {
 
    }
 
+   @Override
    public int quantityDropped(Random par1Random) {
       return 0;
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       return null;
    }

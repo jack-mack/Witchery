@@ -23,6 +23,7 @@ public abstract class EntityFlyingTameable extends EntityTameable {
       return new Waypoint(super.worldObj, this.waypoint, this.homeX, this.homeY, this.homeZ);
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       super.writeEntityToNBT(nbtRoot);
       if(this.waypoint != null) {
@@ -36,6 +37,7 @@ public abstract class EntityFlyingTameable extends EntityTameable {
       nbtRoot.setDouble("HomeZ", this.homeZ);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       super.readEntityFromNBT(nbtRoot);
       if(nbtRoot.hasKey("WITCWaypoint")) {
@@ -54,10 +56,13 @@ public abstract class EntityFlyingTameable extends EntityTameable {
       super(par1World);
    }
 
+   @Override
    protected void fall(float par1) {}
 
+   @Override
    protected void updateFallState(double par1, boolean par3) {}
 
+   @Override
    public void moveEntityWithHeading(float par1, float par2) {
       if(this.isInWater()) {
          this.moveFlying(par1, par2, 0.02F);
@@ -110,6 +115,7 @@ public abstract class EntityFlyingTameable extends EntityTameable {
       super.limbSwing += super.limbSwingAmount;
    }
 
+   @Override
    public boolean isOnLadder() {
       return false;
    }

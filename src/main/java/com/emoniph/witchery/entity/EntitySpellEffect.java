@@ -51,6 +51,7 @@ public class EntitySpellEffect extends Entity {
       return this;
    }
 
+   @Override
    protected void entityInit() {
       super.dataWatcher.addObject(6, Integer.valueOf(0));
       super.dataWatcher.addObject(15, Integer.valueOf(0));
@@ -87,6 +88,7 @@ public class EntitySpellEffect extends Entity {
       return this.effectLevel;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean isInRangeToRenderDist(double par1) {
       double d1 = super.boundingBox.getAverageEdgeLength() * 4.0D;
@@ -126,6 +128,7 @@ public class EntitySpellEffect extends Entity {
       this.setEffectID(effect.getEffectID());
    }
 
+   @Override
    public void onUpdate() {
       if(!super.worldObj.isRemote && (this.shootingEntity != null && this.shootingEntity.isDead || !super.worldObj.blockExists((int)super.posX, (int)super.posY, (int)super.posZ))) {
          this.setDead();
@@ -280,6 +283,7 @@ public class EntitySpellEffect extends Entity {
       this.setDead();
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       nbtRoot.setShort("xTile", (short)this.xTile);
       nbtRoot.setShort("yTile", (short)this.yTile);
@@ -292,6 +296,7 @@ public class EntitySpellEffect extends Entity {
       nbtRoot.setInteger("effectLevel", this.effectLevel);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       this.xTile = nbtRoot.getShort("xTile");
       this.yTile = nbtRoot.getShort("yTile");
@@ -318,14 +323,17 @@ public class EntitySpellEffect extends Entity {
       this.effectLevel = Math.max(nbtRoot.getInteger("effectLevel"), 1);
    }
 
+   @Override
    public boolean canBeCollidedWith() {
       return true;
    }
 
+   @Override
    public float getCollisionBorderSize() {
       return 1.0F;
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
       if(this.isEntityInvulnerable()) {
          return false;
@@ -355,15 +363,18 @@ public class EntitySpellEffect extends Entity {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public float getShadowSize() {
       return 0.0F;
    }
 
+   @Override
    public float getBrightness(float par1) {
       return 1.0F;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getBrightnessForRender(float par1) {
       return 15728880;

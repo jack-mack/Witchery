@@ -40,10 +40,12 @@ public class RenderParasyticLouse extends RenderLiving {
       this.renderLouse((EntityParasyticLouse)par1EntityLiving, par2, par4, par6, par8, par9);
    }
 
+   @Override
    protected float getDeathMaxRotation(EntityLivingBase par1EntityLivingBase) {
       return this.getLouseDeathRotation((EntityParasyticLouse)par1EntityLivingBase);
    }
 
+   @Override
    protected int shouldRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3) {
       return this.shouldLouseRenderPass((EntityParasyticLouse)par1EntityLivingBase, par2, par3);
    }
@@ -52,10 +54,12 @@ public class RenderParasyticLouse extends RenderLiving {
       this.renderLouse((EntityParasyticLouse)par1EntityLivingBase, par2, par4, par6, par8, par9);
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(Entity par1Entity) {
       return this.getLouseTextures((EntityParasyticLouse)par1Entity);
    }
 
+   @Override
    public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9) {
       this.renderLouse((EntityParasyticLouse)par1Entity, par2, par4, par6, par8, par9);
    }

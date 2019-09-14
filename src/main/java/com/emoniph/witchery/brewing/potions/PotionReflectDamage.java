@@ -12,10 +12,12 @@ public class PotionReflectDamage extends PotionBase implements IHandleLivingHurt
       super(id, color);
    }
 
+   @Override
    public boolean handleAllHurtEvents() {
       return false;
    }
 
+   @Override
    public void onLivingHurt(World world, EntityLivingBase entity, LivingHurtEvent event, int amplifier) {
       if(!world.isRemote) {
          EntityLivingBase attacker = event.source.getEntity() != null && event.source.getEntity() instanceof EntityLivingBase?(EntityLivingBase)event.source.getEntity():null;

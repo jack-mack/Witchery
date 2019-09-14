@@ -318,12 +318,14 @@ public final class WitcheryBlocks {
       this.CURSED_STONE_PRESSURE_PLATE = (BlockPressurePlateBase)(new BlockPressurePlateBase(Blocks.stone_pressure_plate, "stone", Sensitivity.mobs)).setBlockName("witchery:cstonepressureplate");
       this.CURSED_SNOW_PRESSURE_PLATE = (BlockPressurePlateBase)(new BlockPressurePlateBase(this.SNOW_PRESSURE_PLATE, "snow", Sensitivity.everything)).setBlockName("witchery:csnowpressureplate");
       this.CURSED_BUTTON_WOOD = (BlockButtonBase)(new BlockButtonBase(true) {
+         @Override
          @SideOnly(Side.CLIENT)
          public IIcon getIcon(int p_149691_1_, int p_149691_) {
             return Blocks.planks.getBlockTextureFromSide(1);
          }
       }).setBlockName("witchery:cbuttonwood");
       this.CURSED_BUTTON_STONE = (BlockButtonBase)(new BlockButtonBase(false) {
+         @Override
          @SideOnly(Side.CLIENT)
          public IIcon getIcon(int p_149691_1_, int p_149691_2_) {
             return Blocks.stone.getBlockTextureFromSide(1);

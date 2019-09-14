@@ -31,6 +31,7 @@ public class RiteSummonItem extends Rite {
       this.binding = binding;
    }
 
+   @Override
    public void addSteps(ArrayList steps, int intialStage) {
       steps.add(new RiteSummonItem.StepSummonItem(this));
    }
@@ -60,6 +61,7 @@ public class RiteSummonItem extends Rite {
          this.rite = rite;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(ticks % 20L != 0L) {
             return RitualStep.Result.STARTING;

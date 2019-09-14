@@ -27,6 +27,7 @@ public class PotionSpiked extends PotionBase implements IHandleLivingUpdate, IHa
       super(id, color);
    }
 
+   @Override
    public void onLivingUpdate(World world, EntityLivingBase entity, LivingUpdateEvent event, int amplifier, int duration) {
       if(!world.isRemote && world.getTotalWorldTime() % 5L == 3L) {
          List entities = world.getEntitiesWithinAABB(EntityLivingBase.class, entity.boundingBox.expand(0.2D + 0.1D * (double)amplifier, 0.0D, 0.2D + 0.1D * (double)amplifier));
@@ -42,6 +43,7 @@ public class PotionSpiked extends PotionBase implements IHandleLivingUpdate, IHa
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void onLivingRender(World world, EntityLivingBase entity, Post event, int amplifier) {
       if(TEXTURE == null) {

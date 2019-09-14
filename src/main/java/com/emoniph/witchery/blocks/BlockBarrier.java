@@ -46,6 +46,7 @@ public class BlockBarrier extends BlockBaseContainer {
       this.setLightOpacity(0);
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int posX, int posY, int posZ) {
       TileEntity te = world.getTileEntity(posX, posY, posZ);
       if(te != null && te instanceof BlockBarrier.TileEntityBarrier) {
@@ -66,31 +67,38 @@ public class BlockBarrier extends BlockBaseContainer {
       return AxisAlignedBB.getBoundingBox((double)((float)posX + 0.0625F), (double)((float)posY + 0.0625F), (double)((float)posZ + 0.0625F), (double)((float)(posX + 1) - 0.0625F), (double)((float)(posY + 1) - 0.0625F), (double)((float)(posZ + 1) - 0.0625F));
    }
 
+   @Override
    protected boolean canSilkHarvest() {
       return false;
    }
 
+   @Override
    public int quantityDropped(Random rand) {
       return 0;
    }
 
+   @Override
    public int getRenderBlockPass() {
       return 0;
    }
 
+   @Override
    public boolean shouldSideBeRendered(IBlockAccess blockAccess, int posX, int posY, int posZ, int side) {
       Block i1 = blockAccess.getBlock(posX, posY, posZ);
       return i1 == this?false:super.shouldSideBeRendered(blockAccess, posX, posY, posZ, side);
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       return null;
    }
@@ -105,6 +113,7 @@ public class BlockBarrier extends BlockBaseContainer {
       private static final String KEY_OWNER_NAME = "owner";
 
 
+      @Override
       public void updateEntity() {
          super.updateEntity();
          if(--this.ticksUntilExpiration <= 0 && !super.worldObj.isRemote) {
@@ -113,6 +122,7 @@ public class BlockBarrier extends BlockBaseContainer {
 
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtTag) {
          super.writeToNBT(nbtTag);
          nbtTag.setInteger("remainingTicks", this.ticksUntilExpiration);
@@ -120,6 +130,7 @@ public class BlockBarrier extends BlockBaseContainer {
          nbtTag.setString("owner", this.ownerName);
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtTag) {
          super.readFromNBT(nbtTag);
          this.ticksUntilExpiration = nbtTag.getInteger("remainingTicks");

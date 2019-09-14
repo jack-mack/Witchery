@@ -65,6 +65,7 @@ public class RenderAlluringSkull extends TileEntitySpecialRenderer {
       GL11.glPopMatrix();
    }
 
+   @Override
    public void renderTileEntityAt(TileEntity par1TileEntity, double par2, double par4, double par6, float par8) {
       this.renderTileEntityAlluringSkullAt((BlockAlluringSkull.TileEntityAlluringSkull)par1TileEntity, par2, par4, par6, par8);
    }

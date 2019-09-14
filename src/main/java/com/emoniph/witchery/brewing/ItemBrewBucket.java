@@ -20,6 +20,7 @@ public class ItemBrewBucket extends ItemBase {
       super.registerWithCreativeTab = false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getColorFromItemStack(ItemStack stack, int pass) {
       if(pass == 0) {
@@ -31,21 +32,25 @@ public class ItemBrewBucket extends ItemBase {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerIcons(IIconRegister iconRegister) {
       super.registerIcons(iconRegister);
       this.overlayIcon = iconRegister.registerIcon(this.getIconString() + "_overlay");
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean requiresMultipleRenderPasses() {
       return true;
    }
 
+   @Override
    public IIcon getIconFromDamageForRenderPass(int damage, int pass) {
       return pass == 0?this.overlayIcon:super.itemIcon;
    }
 
+   @Override
    public boolean hasEffect(ItemStack par1ItemStack, int pass) {
       return pass == 0;
    }

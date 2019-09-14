@@ -63,14 +63,17 @@ public class EntityGrenade extends EntityThrowableBase {
 
    }
 
+   @Override
    protected float getGravityVelocity() {
       return this.getImpact()?0.0F:0.05F;
    }
 
+   @Override
    protected float func_70182_d() {
       return 0.75F;
    }
 
+   @Override
    protected float func_70183_g() {
       return -20.0F;
    }
@@ -79,6 +82,7 @@ public class EntityGrenade extends EntityThrowableBase {
       this.owner = owner;
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(6, Byte.valueOf((byte)0));
@@ -101,14 +105,17 @@ public class EntityGrenade extends EntityThrowableBase {
       return this.getDataWatcher().getWatchableObjectByte(6) == 1;
    }
 
+   @Override
    protected int getMaxGroundTicks() {
       return super.getMaxGroundTicks();
    }
 
+   @Override
    protected int getMaxAirTicks() {
       return super.getMaxAirTicks();
    }
 
+   @Override
    protected void onImpact(MovingObjectPosition mop) {
       if(!super.worldObj.isRemote) {
          if(this.getMode() == 0) {
@@ -129,10 +136,12 @@ public class EntityGrenade extends EntityThrowableBase {
       super.motionZ = 0.0D;
    }
 
+   @Override
    public void onEntityUpdate() {
       super.onEntityUpdate();
    }
 
+   @Override
    public void onUpdate() {
       super.onUpdate();
       if(this.getMode() == 0) {
@@ -195,6 +204,7 @@ public class EntityGrenade extends EntityThrowableBase {
 
    }
 
+   @Override
    protected void onSetDead() {
       if(!super.worldObj.isRemote) {
          this.entityDropItem(Witchery.Items.GENERIC.itemQuartzSphere.createStack(), 0.5F);
@@ -247,6 +257,7 @@ public class EntityGrenade extends EntityThrowableBase {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    protected void onClientSetDead() {
       if(this.getMode() == 0) {
@@ -282,6 +293,7 @@ public class EntityGrenade extends EntityThrowableBase {
 
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       super.readEntityFromNBT(nbtRoot);
       this.setImpact(nbtRoot.getBoolean("Impacted"));
@@ -304,6 +316,7 @@ public class EntityGrenade extends EntityThrowableBase {
 
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       super.writeEntityToNBT(nbtRoot);
       nbtRoot.setBoolean("Impacted", this.getImpact());

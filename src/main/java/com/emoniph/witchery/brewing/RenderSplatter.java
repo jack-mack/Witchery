@@ -22,6 +22,7 @@ public class RenderSplatter extends RenderSnowball {
       super(item, damageValue);
    }
 
+   @Override
    public void doRender(Entity entity, double par2, double par4, double par6, float par8, float par9) {
       EntitySplatter brew = (EntitySplatter)entity;
       IIcon icon = Witchery.Items.GENERIC.getIconFromDamage(Witchery.Items.GENERIC.itemQuartzSphere.damageValue);

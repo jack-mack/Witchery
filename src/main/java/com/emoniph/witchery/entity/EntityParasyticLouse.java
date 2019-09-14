@@ -27,6 +27,7 @@ public class EntityParasyticLouse extends EntityMob {
       this.setSize(0.3F, 0.7F);
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(4.0D);
@@ -34,16 +35,19 @@ public class EntityParasyticLouse extends EntityMob {
       this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(0.0D);
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(20, new Integer(0));
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
       par1NBTTagCompound.setInteger("BitePotionEffect", this.getBitePotionEffect());
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
       if(par1NBTTagCompound.hasKey("BitePotionEffect")) {
@@ -60,35 +64,43 @@ public class EntityParasyticLouse extends EntityMob {
       super.dataWatcher.updateObject(20, Integer.valueOf(par1));
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.louse.name");
    }
 
+   @Override
    protected boolean canTriggerWalking() {
       return false;
    }
 
+   @Override
    protected Entity findPlayerToAttack() {
       double d0 = 8.0D;
       return super.worldObj.getClosestVulnerablePlayerToEntity(this, d0);
    }
 
+   @Override
    protected String getLivingSound() {
       return "mob.silverfish.say";
    }
 
+   @Override
    protected String getHurtSound() {
       return "mob.silverfish.hit";
    }
 
+   @Override
    protected String getDeathSound() {
       return "mob.silverfish.kill";
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
       return this.isEntityInvulnerable()?false:super.attackEntityFrom(par1DamageSource, par2);
    }
 
+   @Override
    protected void attackEntity(Entity par1Entity, float par2) {
       if(super.attackTime <= 0 && par2 < 1.2F && par1Entity.boundingBox.maxY > super.boundingBox.minY && par1Entity.boundingBox.minY < super.boundingBox.maxY) {
          super.attackTime = 20;
@@ -110,19 +122,23 @@ public class EntityParasyticLouse extends EntityMob {
 
    }
 
+   @Override
    protected void func_145780_a(int par1, int par2, int par3, Block par4) {
       this.playSound("mob.silverfish.step", 0.15F, 1.0F);
    }
 
+   @Override
    protected Item getDropItem() {
       return null;
    }
 
+   @Override
    public void onUpdate() {
       super.renderYawOffset = super.rotationYaw;
       super.onUpdate();
    }
 
+   @Override
    protected void updateEntityActionState() {
       super.updateEntityActionState();
       if(!super.worldObj.isRemote && super.entityToAttack != null && !this.hasPath()) {
@@ -131,14 +147,17 @@ public class EntityParasyticLouse extends EntityMob {
 
    }
 
+   @Override
    public float getBlockPathWeight(int par1, int par2, int par3) {
       return super.worldObj.getBlock(par1, par2 - 1, par3) == Blocks.stone?10.0F:super.getBlockPathWeight(par1, par2, par3);
    }
 
+   @Override
    protected boolean isValidLightLevel() {
       return true;
    }
 
+   @Override
    public boolean getCanSpawnHere() {
       if(super.getCanSpawnHere()) {
          EntityPlayer entityplayer = super.worldObj.getClosestPlayerToEntity(this, 5.0D);
@@ -148,10 +167,12 @@ public class EntityParasyticLouse extends EntityMob {
       }
    }
 
+   @Override
    public EnumCreatureAttribute getCreatureAttribute() {
       return EnumCreatureAttribute.ARTHROPOD;
    }
 
+   @Override
    protected boolean interact(EntityPlayer player) {
       this.setDead();
       if(!super.worldObj.isRemote) {

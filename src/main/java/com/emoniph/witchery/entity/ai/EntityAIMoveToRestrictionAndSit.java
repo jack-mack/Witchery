@@ -21,6 +21,7 @@ public class EntityAIMoveToRestrictionAndSit extends EntityAIBase {
       this.setMutexBits(1);
    }
 
+   @Override
    public boolean shouldExecute() {
       if(this.theEntity.isWithinHomeDistanceCurrentPosition()) {
          return false;
@@ -38,14 +39,17 @@ public class EntityAIMoveToRestrictionAndSit extends EntityAIBase {
       }
    }
 
+   @Override
    public boolean continueExecuting() {
       return !this.theEntity.getNavigator().noPath();
    }
 
+   @Override
    public void startExecuting() {
       this.theEntity.getNavigator().tryMoveToXYZ(this.movePosX, this.movePosY, this.movePosZ, this.movementSpeed);
    }
 
+   @Override
    public void resetTask() {
       super.resetTask();
       if(this.theEntity.isWithinHomeDistanceCurrentPosition()) {

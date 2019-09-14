@@ -23,6 +23,7 @@ public class BlockGlintWeed extends BlockBaseBush {
       this.setBlockBounds(0.050000012F, 0.0F, 0.050000012F, 0.95F, 1.0F, 0.95F);
    }
 
+   @Override
    public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
       if(!par1World.isRemote && par1World.rand.nextInt(6) == 0) {
          byte b0 = 4;
@@ -67,6 +68,7 @@ public class BlockGlintWeed extends BlockBaseBush {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
       double d0 = (double)((float)x + 0.4F + (float)rand.nextInt(3) * 0.1F);
@@ -75,10 +77,12 @@ public class BlockGlintWeed extends BlockBaseBush {
       world.spawnParticle(ParticleEffect.FLAME.toString(), d0, d1, d2, 0.0D, 0.0D, 0.0D);
    }
 
+   @Override
    public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
       return super.canPlaceBlockAt(par1World, par2, par3, par4) && this.canBlockStay(par1World, par2, par3, par4);
    }
 
+   @Override
    protected boolean canPlaceBlockOn(Block block) {
       return block != null && block.isOpaqueCube();
    }
@@ -88,6 +92,7 @@ public class BlockGlintWeed extends BlockBaseBush {
       return this.canBlockStay(world, posX, posY, posZ) && (block == Blocks.dirt || block == Blocks.grass || block == Blocks.mycelium || block == Blocks.sand || block == Blocks.farmland);
    }
 
+   @Override
    public boolean canBlockStay(World world, int posX, int posY, int posZ) {
       Material material = world.getBlock(posX, posY - 1, posZ).getMaterial();
       Material material2 = world.getBlock(posX, posY + 1, posZ).getMaterial();

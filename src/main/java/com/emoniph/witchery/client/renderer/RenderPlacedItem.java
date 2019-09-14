@@ -20,9 +20,11 @@ public class RenderPlacedItem extends TileEntitySpecialRenderer {
       public byte getMiniBlockCountForItemStack(ItemStack stack) {
          return (byte)1;
       }
+      @Override
       public boolean shouldBob() {
          return false;
       }
+      @Override
       public boolean shouldSpreadItems() {
          return false;
       }
@@ -33,6 +35,7 @@ public class RenderPlacedItem extends TileEntitySpecialRenderer {
       this.renderItems.setRenderManager(RenderManager.instance);
    }
 
+   @Override
    public void renderTileEntityAt(TileEntity tileEntity, double d0, double d1, double d2, float f) {
       GL11.glPushMatrix();
       GL11.glTranslatef((float)d0, (float)d1, (float)d2);

@@ -11,7 +11,9 @@ public class InfusedBrewSoaringEffect extends InfusedBrewEffect {
       super(id, durationMS, 16, 0);
    }
 
+   @Override
    public void immediateEffect(World world, EntityPlayer player, ItemStack stack) {}
 
+   @Override
    public void regularEffect(World world, EntityPlayer player) {}
 }

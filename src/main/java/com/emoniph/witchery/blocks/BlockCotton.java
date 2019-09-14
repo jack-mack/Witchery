@@ -19,6 +19,7 @@ public class BlockCotton extends BlockBaseBush {
       this.setStepSound(Block.soundTypeGrass).setTickRandomly(true);
    }
 
+   @Override
    public ArrayList getDrops(World world, int x, int y, int z, int metadata, int fortune) {
       if(world.provider.dimensionId == Config.instance().dimensionDreamID && world.provider instanceof WorldProviderDreamWorld && ((WorldProviderDreamWorld)world.provider).isNightmare()) {
          ArrayList ret = new ArrayList();
@@ -47,6 +48,7 @@ public class BlockCotton extends BlockBaseBush {
       return world.getBlock(x, y, z) == block && world.getBlockMetadata(x, y, z) == metadata;
    }
 
+   @Override
    public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
       if(!par1World.isRemote && par1World.rand.nextInt(6) == 0) {
          if(par1World.provider.dimensionId != Config.instance().dimensionDreamID || !this.isBlockMatch(par1World, par2 + 1, par3 - 1, par4, Witchery.Blocks.FLOWING_SPIRIT, 0) && !this.isBlockMatch(par1World, par2 - 1, par3 - 1, par4, Witchery.Blocks.FLOWING_SPIRIT, 0) && !this.isBlockMatch(par1World, par2, par3 - 1, par4 + 1, Witchery.Blocks.FLOWING_SPIRIT, 0) && !this.isBlockMatch(par1World, par2, par3 - 1, par4 - 1, Witchery.Blocks.FLOWING_SPIRIT, 0)) {

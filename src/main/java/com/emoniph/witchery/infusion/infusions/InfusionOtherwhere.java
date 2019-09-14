@@ -36,10 +36,12 @@ public class InfusionOtherwhere extends Infusion {
       super(infusionID);
    }
 
+   @Override
    public IIcon getPowerBarIcon(EntityPlayer player, int index) {
       return Blocks.portal.getIcon(0, 0);
    }
 
+   @Override
    public void onLeftClickEntity(ItemStack itemstack, World world, EntityPlayer player, Entity otherEntity) {
       if(!world.isRemote) {
          if(otherEntity instanceof EntityLivingBase) {
@@ -76,6 +78,7 @@ public class InfusionOtherwhere extends Infusion {
       }
    }
 
+   @Override
    public void onUsingItemTick(ItemStack itemstack, World world, EntityPlayer player, int countdown) {
       int elapsedTicks = this.getMaxItemUseDuration(itemstack) - countdown;
       if(player.isSneaking() && elapsedTicks == 60) {
@@ -99,6 +102,7 @@ public class InfusionOtherwhere extends Infusion {
 
    }
 
+   @Override
    public void onPlayerStoppedUsing(ItemStack itemstack, World world, EntityPlayer player, int countdown) {
       if(!world.isRemote) {
          int elapsedTicks = this.getMaxItemUseDuration(itemstack) - countdown;

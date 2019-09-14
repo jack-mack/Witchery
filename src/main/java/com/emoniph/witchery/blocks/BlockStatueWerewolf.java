@@ -38,6 +38,7 @@ public class BlockStatueWerewolf extends BlockBaseContainer {
       this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
    }
 
+   @Override
    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
       switch(MathHelper.floor_double((double)(entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3) {
       case 0:
@@ -55,6 +56,7 @@ public class BlockStatueWerewolf extends BlockBaseContainer {
 
    }
 
+   @Override
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
       if(world.isRemote) {
          return false;
@@ -272,36 +274,44 @@ public class BlockStatueWerewolf extends BlockBaseContainer {
       }
    }
 
+   @Override
    public int quantityDropped(Random rand) {
       return 1;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
       return false;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {}
 
    public static class TileEntityStatueWerewolf extends TileEntity {
 
+      @Override
       public boolean canUpdate() {
          return false;
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtRoot) {
          super.writeToNBT(nbtRoot);
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtRoot) {
          super.readFromNBT(nbtRoot);
       }

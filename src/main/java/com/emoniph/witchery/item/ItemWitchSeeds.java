@@ -29,11 +29,13 @@ public class ItemWitchSeeds extends ItemSeeds {
       plantedBlock.setCropItem(cropItemStack);
    }
 
+   @Override
    public Item setUnlocalizedName(String itemName) {
       ItemUtil.registerItem(this, itemName);
       return super.setUnlocalizedName(itemName);
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
       if(this.waterPlant) {
          MovingObjectPosition mop = this.getMovingObjectPositionFromPlayer(world, player, true);
@@ -48,6 +50,7 @@ public class ItemWitchSeeds extends ItemSeeds {
       return super.onItemRightClick(stack, world, player);
    }
 
+   @Override
    public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z) {
       return this.waterPlant?EnumPlantType.Water:super.getPlantType(world, x, y, z);
    }

@@ -31,20 +31,24 @@ public class ItemCaneSword extends ItemSword {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
    }
 
+   @Override
    public Item setUnlocalizedName(String itemName) {
       ItemUtil.registerItem(this, itemName);
       return super.setUnlocalizedName(itemName);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack stack) {
       return EnumRarity.rare;
    }
 
+   @Override
    public int getItemEnchantability() {
       return ToolMaterial.IRON.getEnchantability();
    }
 
+   @Override
    public Multimap getAttributeModifiers(ItemStack stack) {
       HashMultimap multimap = HashMultimap.create();
       float damage = this.isDrawn(stack)?4.0F + this.func_150931_i():1.0F;
@@ -52,6 +56,7 @@ public class ItemCaneSword extends ItemSword {
       return multimap;
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
       if(!stack.hasTagCompound()) {
          stack.setTagCompound(new NBTTagCompound());
@@ -83,6 +88,7 @@ public class ItemCaneSword extends ItemSword {
       return stack;
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean moreTips) {
       String localText = String.format(Witchery.resource(this.getUnlocalizedName() + ".tip"), new Object[]{Integer.valueOf(ExtendedPlayer.get(player).getBloodReserve())});
       if(localText != null) {

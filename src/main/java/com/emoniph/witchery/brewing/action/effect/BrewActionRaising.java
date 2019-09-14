@@ -33,6 +33,7 @@ public class BrewActionRaising extends BrewActionEffect {
       super(new BrewItemKey(axe, 32767), new BrewNamePart("witchery:brew.raising"), powerCost, new Probability(1.0D), effectLevel);
    }
 
+   @Override
    protected void doApplyToBlock(World world, int posX, int posY, int posZ, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack stack) {
       raiseDead(world, new Coord(posX, posY, posZ, side), modifiers.ritualised?0:modifiers.getStrength(), modifiers.caster, modifiers.ritualised?TimeUtil.secsToTicks(10 * (modifiers.getStrength() + 1)):0);
    }

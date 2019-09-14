@@ -355,6 +355,7 @@ public class WorldGenLargeWitchTree extends WorldGenerator {
       }
    }
 
+   @Override
    public void setScale(double heightFactor, double widthFactor, double leafDensity) {
       this.heightLimitLimit = (int)(heightFactor * 12.0D);
       if((double)this.height > 0.5D) {
@@ -365,6 +366,7 @@ public class WorldGenLargeWitchTree extends WorldGenerator {
       this.leafDensity = leafDensity;
    }
 
+   @Override
    public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5) {
       this.worldObj = par1World;
       long l = par2Random.nextLong();

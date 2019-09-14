@@ -50,18 +50,22 @@ public class BlockAlluringSkull extends BlockBaseContainer {
       this.setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 0.5F, 0.75F);
    }
 
+   @Override
    public int getRenderType() {
       return -1;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public boolean onBlockActivated(World world, int posX, int posY, int posZ, EntityPlayer player, int par6, float par7, float par8, float par9) {
       if(!world.isRemote) {
          BlockAlluringSkull.TileEntityAlluringSkull tileEntity = (BlockAlluringSkull.TileEntityAlluringSkull)world.getTileEntity(posX, posY, posZ);
@@ -84,6 +88,7 @@ public class BlockAlluringSkull extends BlockBaseContainer {
       return super.onBlockActivated(world, posX, posY, posZ, player, par6, par7, par8, par9);
    }
 
+   @Override
    public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {
       int l = par1IBlockAccess.getBlockMetadata(par2, par3, par4) & 7;
       switch(l) {
@@ -106,29 +111,35 @@ public class BlockAlluringSkull extends BlockBaseContainer {
 
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
       this.setBlockBoundsBasedOnState(par1World, par2, par3, par4);
       return super.getCollisionBoundingBoxFromPool(par1World, par2, par3, par4);
    }
 
+   @Override
    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
       int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
       par1World.setBlockMetadataWithNotify(par2, par3, par4, l, 2);
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       return new ItemStack(this);
    }
 
+   @Override
    public int getDamageValue(World par1World, int par2, int par3, int par4) {
       TileEntity tileentity = par1World.getTileEntity(par2, par3, par4);
       return tileentity != null && tileentity instanceof BlockAlluringSkull.TileEntityAlluringSkull?((BlockAlluringSkull.TileEntityAlluringSkull)tileentity).getSkullType():super.getDamageValue(par1World, par2, par3, par4);
    }
 
+   @Override
    public int damageDropped(int par1) {
       return par1;
    }
 
+   @Override
    public void onBlockHarvested(World par1World, int par2, int par3, int par4, int par5, EntityPlayer par6EntityPlayer) {
       if(par6EntityPlayer.capabilities.isCreativeMode) {
          par5 |= 8;
@@ -139,10 +150,12 @@ public class BlockAlluringSkull extends BlockBaseContainer {
       super.onBlockHarvested(par1World, par2, par3, par4, par5, par6EntityPlayer);
    }
 
+   @Override
    public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6) {
       super.breakBlock(par1World, par2, par3, par4, par5, par6);
    }
 
+   @Override
    public ArrayList getDrops(World world, int x, int y, int z, int metadata, int fortune) {
       ArrayList drops = new ArrayList();
       if((metadata & 8) == 0) {
@@ -158,6 +171,7 @@ public class BlockAlluringSkull extends BlockBaseContainer {
       return drops;
    }
 
+   @Override
    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
       return Item.getItemFromBlock(this);
    }
@@ -171,14 +185,17 @@ public class BlockAlluringSkull extends BlockBaseContainer {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister par1IconRegister) {}
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int par1, int par2) {
       return Blocks.soul_sand.getBlockTextureFromSide(par1);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public String getItemIconName() {
       return this.getTextureName();
@@ -244,6 +261,7 @@ public class BlockAlluringSkull extends BlockBaseContainer {
       private int quad = 0;
 
 
+      @Override
       public void updateEntity() {
          super.updateEntity();
          if(!super.worldObj.isRemote && this.skullType == 1 && super.ticks % 100L == 0L) {
@@ -256,24 +274,28 @@ public class BlockAlluringSkull extends BlockBaseContainer {
 
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
          super.writeToNBT(par1NBTTagCompound);
          par1NBTTagCompound.setByte("SkullType", (byte)(this.skullType & 255));
          par1NBTTagCompound.setByte("Rot", (byte)(this.skullRotation & 255));
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
          super.readFromNBT(par1NBTTagCompound);
          this.skullType = par1NBTTagCompound.getByte("SkullType");
          this.skullRotation = par1NBTTagCompound.getByte("Rot");
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          this.readFromNBT(packet.func_148857_g());

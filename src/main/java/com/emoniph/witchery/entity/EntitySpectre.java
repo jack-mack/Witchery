@@ -39,6 +39,7 @@ public class EntitySpectre extends EntitySummonedUndead {
       super.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40.0D);
@@ -46,10 +47,12 @@ public class EntitySpectre extends EntitySummonedUndead {
       this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0D);
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
    }
 
+   @Override
    public int getTotalArmorValue() {
       int i = super.getTotalArmorValue() + 2;
       if(i > 20) {
@@ -59,18 +62,22 @@ public class EntitySpectre extends EntitySummonedUndead {
       return i;
    }
 
+   @Override
    protected boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    public void onLivingUpdate() {
       super.onLivingUpdate();
    }
 
+   @Override
    public void onUpdate() {
       super.onUpdate();
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity par1Entity) {
       float f = (float)this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
       int i = 0;
@@ -102,18 +109,22 @@ public class EntitySpectre extends EntitySummonedUndead {
       return flag1;
    }
 
+   @Override
    protected String getLivingSound() {
       return "witchery:mob.spectre.spectre_say";
    }
 
+   @Override
    protected String getHurtSound() {
       return "witchery:mob.spectre.spectre_die";
    }
 
+   @Override
    protected String getDeathSound() {
       return "witchery:mob.spectre.spectre_die";
    }
 
+   @Override
    protected void addRandomArmor() {
       if(super.rand.nextFloat() < 0.15F * super.worldObj.func_147462_b(super.posX, super.posY, super.posZ)) {
          int i = super.rand.nextInt(2);
@@ -147,18 +158,22 @@ public class EntitySpectre extends EntitySummonedUndead {
 
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.spectre.name");
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
    }
 
+   @Override
    public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData) {
       IEntityLivingData par1EntityLivingData1 = super.onSpawnWithEgg(par1EntityLivingData);
       this.addRandomArmor();

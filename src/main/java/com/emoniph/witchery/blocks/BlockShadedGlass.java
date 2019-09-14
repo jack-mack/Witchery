@@ -43,28 +43,34 @@ public class BlockShadedGlass extends BlockBreakable {
 
    }
 
+   @Override
    public int onBlockPlaced(World p_149660_1_, int p_149660_2_, int p_149660_3_, int p_149660_4_, int p_149660_5_, float p_149660_6_, float p_149660_7_, float p_149660_8_, int p_149660_9_) {
       return super.onBlockPlaced(p_149660_1_, p_149660_2_, p_149660_3_, p_149660_4_, p_149660_5_, p_149660_6_, p_149660_7_, p_149660_8_, p_149660_9_);
    }
 
+   @Override
    public void onBlockAdded(World world, int x, int y, int z) {
       this.updatePoweredState(world, x, y, z);
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       BlockUtil.registerBlock(this, BlockShadedGlass.ClassItemBlock.class, blockName);
       return super.setBlockName(blockName);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int p_149691_1_, int meta) {
       return this.icons[meta % this.icons.length];
    }
 
+   @Override
    public int damageDropped(int meta) {
       return meta;
    }
 
+   @Override
    public int quantityDropped(Random rand) {
       return 0;
    }
@@ -74,6 +80,7 @@ public class BlockShadedGlass extends BlockBreakable {
       return ~meta & 15;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void getSubBlocks(Item item, CreativeTabs tabs, List list) {
       for(int i = 0; i < this.icons.length; ++i) {
@@ -82,11 +89,13 @@ public class BlockShadedGlass extends BlockBreakable {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getRenderBlockPass() {
       return 1;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {
       for(int i = 0; i < this.icons.length; ++i) {
@@ -95,14 +104,17 @@ public class BlockShadedGlass extends BlockBreakable {
 
    }
 
+   @Override
    protected boolean canSilkHarvest() {
       return true;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
       this.updatePoweredState(world, x, y, z);
    }
@@ -125,6 +137,7 @@ public class BlockShadedGlass extends BlockBreakable {
          super(block);
       }
 
+      @Override
       protected String[] getNames() {
          return BlockShadedGlass.colors;
       }

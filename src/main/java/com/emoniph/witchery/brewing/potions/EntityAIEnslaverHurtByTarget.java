@@ -21,6 +21,7 @@ public class EntityAIEnslaverHurtByTarget extends EntityAITarget {
       this.setMutexBits(1);
    }
 
+   @Override
    public boolean shouldExecute() {
       if(!this.enslavedEntity.isPotionActive(Witchery.Potions.ENSLAVED)) {
          return false;
@@ -41,6 +42,7 @@ public class EntityAIEnslaverHurtByTarget extends EntityAITarget {
       }
    }
 
+   @Override
    public void startExecuting() {
       EntityUtil.setTarget(super.taskOwner, this.enslaversAttacker);
       String enslaverName = PotionEnslaved.getMobEnslaverName(this.enslavedEntity);

@@ -49,6 +49,7 @@ public class EntityItemWaystone extends EntityItem {
       super.motionZ = entityItem.motionZ;
    }
 
+   @Override
    public void onCollideWithPlayer(EntityPlayer player) {
       double minPickupRange = 0.75D;
       double minPickupRangeSq = 0.5625D;
@@ -58,6 +59,7 @@ public class EntityItemWaystone extends EntityItem {
 
    }
 
+   @Override
    public void onUpdate() {
       super.onUpdate();
       if(!super.worldObj.isRemote && super.age > TimeUtil.secsToTicks(2) && super.age % 40 == 0) {
@@ -292,6 +294,7 @@ public class EntityItemWaystone extends EntityItem {
          this.entity = entity;
       }
 
+      @Override
       public boolean process() {
          if(!Witchery.Items.GENERIC.teleportToLocation(super.world, this.stone, this.entity, 0, true)) {
             ParticleEffect.SMOKE.send(SoundEffect.NOTE_SNARE, super.world, this.entity.posX, this.entity.posY, this.entity.posZ, 1.0D, 1.0D, 16);

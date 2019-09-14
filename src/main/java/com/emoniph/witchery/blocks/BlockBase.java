@@ -23,6 +23,7 @@ public class BlockBase extends Block {
       this(material, (Class)null);
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       if(this.registerWithCreateTab) {
          this.setCreativeTab(WitcheryCreativeTab.INSTANCE);

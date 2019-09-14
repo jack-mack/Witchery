@@ -32,6 +32,7 @@ public class ItemBrewBag extends ItemBase {
       this.setFull3D();
    }
 
+   @Override
    public int getColorFromItemStack(ItemStack stack, int parse) {
       return getColor(stack);
    }
@@ -60,10 +61,12 @@ public class ItemBrewBag extends ItemBase {
       return Dye.COCOA_BEANS.rgb;
    }
 
+   @Override
    public int getMaxItemUseDuration(ItemStack stack) {
       return '\u8ca0';
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
       if(!player.isSneaking()) {
          NBTTagCompound nbtTag = player.getEntityData();
@@ -79,6 +82,7 @@ public class ItemBrewBag extends ItemBase {
       return stack;
    }
 
+   @Override
    public void onUsingTick(ItemStack stack, EntityPlayer player, int countdown) {
       NBTTagCompound nbtTag;
       if(player.worldObj.isRemote) {
@@ -150,6 +154,7 @@ public class ItemBrewBag extends ItemBase {
       return newStrokes;
    }
 
+   @Override
    public void onPlayerStoppedUsing(ItemStack stack, World world, EntityPlayer player, int countdown) {
       NBTTagCompound nbtTag = player.getEntityData();
       if(nbtTag != null) {
@@ -226,6 +231,7 @@ public class ItemBrewBag extends ItemBase {
          this.bag = bag;
       }
 
+      @Override
       public boolean canInteractWith(EntityPlayer player) {
          ItemStack itemStack = null;
          if(player.getCurrentEquippedItem() != null) {
@@ -235,6 +241,7 @@ public class ItemBrewBag extends ItemBase {
          return itemStack != null && itemStack.getItem() == Witchery.Items.BREW_BAG;
       }
 
+      @Override
       public ItemStack transferStackInSlot(EntityPlayer player, int index) {
          ItemStack returnStack = null;
          Slot slot = (Slot)super.inventorySlots.get(index);
@@ -270,6 +277,7 @@ public class ItemBrewBag extends ItemBase {
          super(inventory, slot, x, y);
       }
 
+      @Override
       public boolean isItemValid(ItemStack stack) {
          return isBrew(stack);
       }
@@ -296,6 +304,7 @@ public class ItemBrewBag extends ItemBase {
          this.readFromNBT();
       }
 
+      @Override
       public void markDirty() {
          super.markDirty();
          if(!this.locked) {
@@ -304,14 +313,17 @@ public class ItemBrewBag extends ItemBase {
 
       }
 
+      @Override
       public void openInventory() {
          this.readFromNBT();
       }
 
+      @Override
       public void closeInventory() {
          this.writeToNBT();
       }
 
+      @Override
       public String getInventoryName() {
          return this.title;
       }

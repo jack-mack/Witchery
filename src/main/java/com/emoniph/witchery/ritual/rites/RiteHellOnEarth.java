@@ -32,6 +32,7 @@ public class RiteHellOnEarth extends RiteExpandingEffect {
       this.upkeepCost = upkeepCost;
    }
 
+   @Override
    public boolean isComplete(World world, int posX, int posY, int posZ, int radius, EntityPlayer player, long ticks, boolean fullyExpanded, boolean enhanced) {
       if(fullyExpanded && ticks % 40L == 0L) {
          IPowerSource powerSource = this.findNewPowerSource(world, posX, posY, posZ);
@@ -68,10 +69,12 @@ public class RiteHellOnEarth extends RiteExpandingEffect {
       return false;
    }
 
+   @Override
    public boolean doRadiusAction(World world, int posX, int posY, int posZ, int radius, EntityPlayer player, boolean enhanced) {
       return true;
    }
 
+   @Override
    public void doBlockAction(World world, int posX, int posY, int posZ, int currentRadius, EntityPlayer player, boolean enhanced) {
       if(!world.isRemote) {
          Block blockID = world.getBlock(posX, posY, posZ);

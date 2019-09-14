@@ -14,11 +14,13 @@ public class ItemWitchSlab extends ItemSlab {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
    }
 
+   @Override
    public ItemBlock setUnlocalizedName(String itemName) {
       ItemUtil.registerItem(this, itemName);
       return super.setUnlocalizedName(itemName);
    }
 
+   @Override
    public String getUnlocalizedName(ItemStack itemStack) {
       return super.getUnlocalizedName(itemStack);
    }

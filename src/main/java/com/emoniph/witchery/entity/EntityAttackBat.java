@@ -28,6 +28,7 @@ public class EntityAttackBat extends EntityBat {
       super(world);
    }
 
+   @Override
    protected void collideWithNearbyEntities() {
       List list = super.worldObj.getEntitiesWithinAABBExcludingEntity(this, super.boundingBox.expand(0.20000000298023224D, 0.0D, 0.20000000298023224D));
       if(list != null && !list.isEmpty()) {
@@ -41,6 +42,7 @@ public class EntityAttackBat extends EntityBat {
 
    }
 
+   @Override
    protected void collideWithEntity(Entity entity) {
       if(!super.worldObj.isRemote && entity instanceof EntityLivingBase) {
          EntityLivingBase target = (EntityLivingBase)entity;
@@ -57,6 +59,7 @@ public class EntityAttackBat extends EntityBat {
 
    }
 
+   @Override
    protected void updateAITasks() {
       if(!super.worldObj.isRemote) {
          boolean done = false;
@@ -123,6 +126,7 @@ public class EntityAttackBat extends EntityBat {
       return this.owner != null?super.worldObj.func_152378_a(this.owner.getId()):null;
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       super.writeEntityToNBT(nbtRoot);
       if(this.owner != null) {
@@ -133,6 +137,7 @@ public class EntityAttackBat extends EntityBat {
 
    }
 
+   @Override
    public void readFromNBT(NBTTagCompound nbtRoot) {
       super.readFromNBT(nbtRoot);
       if(nbtRoot.hasKey("Owner", 10)) {

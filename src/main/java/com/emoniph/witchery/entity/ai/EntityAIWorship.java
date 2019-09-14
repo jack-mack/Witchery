@@ -21,10 +21,12 @@ public class EntityAIWorship extends EntityAIBase {
       this.setMutexBits(15);
    }
 
+   @Override
    public boolean shouldExecute() {
       return this.shouldBegin || this.goblin.isWorshipping();
    }
 
+   @Override
    public void startExecuting() {
       this.currentTick = 0;
       this.shouldBegin = false;
@@ -32,14 +34,17 @@ public class EntityAIWorship extends EntityAIBase {
       this.goblin.getNavigator().tryMoveToXYZ((double)this.posX, (double)this.posY, (double)this.posZ, 0.4D);
    }
 
+   @Override
    public boolean continueExecuting() {
       return (double)this.currentTick <= this.maxDuration || this.goblin.worldObj.rand.nextInt(3) == 0;
    }
 
+   @Override
    public void resetTask() {
       this.goblin.setWorshipping(false);
    }
 
+   @Override
    public void updateTask() {
       ++this.currentTick;
    }

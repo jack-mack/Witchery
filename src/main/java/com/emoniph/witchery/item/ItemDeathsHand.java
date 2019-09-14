@@ -28,11 +28,13 @@ public class ItemDeathsHand extends ItemBase {
       this.setFull3D();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack stack) {
       return EnumRarity.epic;
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advancedTooltips) {
       String localText = Witchery.resource(this.getUnlocalizedName() + ".tip");
       if(localText != null) {
@@ -49,6 +51,7 @@ public class ItemDeathsHand extends ItemBase {
 
    }
 
+   @Override
    public void onUpdate(ItemStack stack, World world, Entity entity, int inventorySlot, boolean isHeldItem) {
       if(entity instanceof EntityPlayer && !world.isRemote) {
          EntityPlayer player = (EntityPlayer)entity;
@@ -66,6 +69,7 @@ public class ItemDeathsHand extends ItemBase {
 
    }
 
+   @Override
    public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity otherEntity) {
       if(!player.worldObj.isRemote && otherEntity instanceof EntityLivingBase) {
          EntityLivingBase victim = (EntityLivingBase)otherEntity;
@@ -137,6 +141,7 @@ public class ItemDeathsHand extends ItemBase {
       return true;
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
       if(!world.isRemote && ItemDeathsClothes.isFullSetWorn(player)) {
          if(!stack.hasTagCompound()) {

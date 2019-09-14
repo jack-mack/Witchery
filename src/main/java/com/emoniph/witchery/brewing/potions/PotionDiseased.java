@@ -27,19 +27,23 @@ public class PotionDiseased extends PotionBase implements IHandleRenderLiving {
       super(id, true, color);
    }
 
+   @Override
    public void postContructInitialize() {
       this.setIncurable();
       this.func_111184_a(SharedMonsterAttributes.attackDamage, "22653B89-116E-49DC-9B6B-9971489B5BE5", 2.0D, 0);
    }
 
+   @Override
    public double func_111183_a(int amplifier, AttributeModifier p_111183_2_) {
       return (double)(-0.5F * (float)(Math.min(amplifier, 1) + 1));
    }
 
+   @Override
    public boolean isReady(int duration, int amplifier) {
       return duration % 40 == 4;
    }
 
+   @Override
    public void performEffect(EntityLivingBase entity, int amplifier) {
       if(!entity.worldObj.isRemote && entity.worldObj.rand.nextInt(3) == 0) {
          Coord coord = new Coord(entity);
@@ -50,6 +54,7 @@ public class PotionDiseased extends PotionBase implements IHandleRenderLiving {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void onLivingRender(World world, EntityLivingBase entity, Post event, int amplifier) {
       if(TEXTURE == null) {

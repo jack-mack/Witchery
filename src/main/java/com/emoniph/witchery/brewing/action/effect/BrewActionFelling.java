@@ -29,6 +29,7 @@ public class BrewActionFelling extends BrewActionEffect {
       this.strengthReduction = strengthReduction;
    }
 
+   @Override
    protected void doApplyToBlock(World world, int posX, int posY, int posZ, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack stack) {
       int strength = Math.max(modifiers.getStrength() - this.strengthReduction, 0);
       int BLOCK_RADIUS = Math.max(radius - (this.strengthReduction - 1) - 1, 1);

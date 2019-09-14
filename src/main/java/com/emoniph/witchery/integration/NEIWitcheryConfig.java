@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 
 public class NEIWitcheryConfig implements IConfigureNEI {
 
+   @Override
    public void loadConfig() {
       if(Config.instance().allowModIntegration && Config.instance().allowNotEnoughItems) {
          API.hideItem(new ItemStack(Witchery.Blocks.OVEN_BURNING));
@@ -82,10 +83,12 @@ public class NEIWitcheryConfig implements IConfigureNEI {
 
    }
 
+   @Override
    public String getName() {
       return ((Mod)Witchery.class.getAnnotation(Mod.class)).name();
    }
 
+   @Override
    public String getVersion() {
       return ((Mod)Witchery.class.getAnnotation(Mod.class)).version();
    }

@@ -16,21 +16,26 @@ import net.minecraftforge.common.MinecraftForge;
 
 public class ModHookArsMagica2 extends ModHook {
 
+   @Override
    public String getModID() {
       return "arsmagica2";
    }
 
+   @Override
    protected void doInit() {}
 
+   @Override
    protected void doPostInit() {
       Witchery.modHooks.isAM2Present = true;
       MinecraftForge.EVENT_BUS.register(new ModHookArsMagica2.EventHooks());
    }
 
+   @Override
    protected void doReduceMagicPower(EntityLivingBase entity, float factor) {
       ModHookArsMagica2.IntegrateAM2.doReduceMagicPower(entity, factor);
    }
 
+   @Override
    protected void makeItemModProof(ItemStack stack) {
       ModHookArsMagica2.IntegrateAM2.makeItemModProof(stack);
    }

@@ -21,26 +21,32 @@ public class BlockSlurp extends BlockBaseContainer {
       super.registerWithCreateTab = false;
    }
 
+   @Override
    public int getRenderType() {
       return -1;
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
       return null;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean canCollideCheck(int p_149678_1_, boolean p_149678_2_) {
       return false;
    }
 
+   @Override
    public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l) {
       return false;
    }
 
+   @Override
    public void dropBlockAsItemWithChance(World world, int x, int y, int z, int metadata, float chance, int fortune) {}
 
    public void replaceBlockAt(World world, int x, int y, int z, int timeoutTicks) {
@@ -65,6 +71,7 @@ public class BlockSlurp extends BlockBaseContainer {
       private int timeout;
 
 
+      @Override
       public void updateEntity() {
          super.updateEntity();
          if(!super.worldObj.isRemote && super.ticks >= (long)this.timeout) {
@@ -87,6 +94,7 @@ public class BlockSlurp extends BlockBaseContainer {
          this.timeout = timeoutTicks;
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtRoot) {
          super.writeToNBT(nbtRoot);
          nbtRoot.setInteger("Timeout", Math.max(this.timeout, 0));
@@ -97,6 +105,7 @@ public class BlockSlurp extends BlockBaseContainer {
 
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtRoot) {
          super.readFromNBT(nbtRoot);
          this.timeout = Math.max(nbtRoot.getInteger("Timeout"), 0);

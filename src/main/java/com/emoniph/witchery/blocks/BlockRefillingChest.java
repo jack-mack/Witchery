@@ -23,6 +23,7 @@ public class BlockRefillingChest extends BlockChest {
       this.setBlockUnbreakable();
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
       BlockUtil.registerBlock(this, blockName);
@@ -30,6 +31,7 @@ public class BlockRefillingChest extends BlockChest {
       return super.setBlockName(blockName);
    }
 
+   @Override
    public TileEntity createNewTileEntity(World world, int metadata) {
       return new BlockRefillingChest.TileEntityRefillingChest();
    }
@@ -40,6 +42,7 @@ public class BlockRefillingChest extends BlockChest {
       private static final int MAX_ITEMS_FOR_REFILL = 0;
 
 
+      @Override
       public void updateEntity() {
          super.updateEntity();
          if(this.ticks == 0L) {
@@ -65,11 +68,13 @@ public class BlockRefillingChest extends BlockChest {
 
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtChest) {
          super.writeToNBT(nbtChest);
          nbtChest.setLong("WITCLifeTicks", this.ticks);
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtChest) {
          super.readFromNBT(nbtChest);
          this.ticks = nbtChest.getLong("WITCLifeTicks");

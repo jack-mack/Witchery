@@ -20,11 +20,13 @@ public class PacketSetClientPlayerFacing implements IMessage {
       this.yaw = player.rotationYaw;
    }
 
+   @Override
    public void toBytes(ByteBuf buffer) {
       buffer.writeFloat(this.pitch);
       buffer.writeFloat(this.yaw);
    }
 
+   @Override
    public void fromBytes(ByteBuf buffer) {
       this.pitch = buffer.readFloat();
       this.yaw = buffer.readFloat();
@@ -32,6 +34,7 @@ public class PacketSetClientPlayerFacing implements IMessage {
 
    public static class Handler implements IMessageHandler<PacketSetClientPlayerFacing, IMessage> {
 
+      @Override
       public IMessage onMessage(PacketSetClientPlayerFacing message, MessageContext ctx) {
          EntityPlayer player = Witchery.proxy.getPlayer(ctx);
          player.setPositionAndRotation(player.posX, player.posY, player.posZ, message.yaw, message.pitch);

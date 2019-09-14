@@ -45,19 +45,23 @@ public class BlockLeechChest extends BlockBaseContainer {
       this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
       return false;
    }
 
+   @Override
    public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {
       if(par1IBlockAccess.getBlock(par2, par3, par4 - 1) == this) {
          this.setBlockBounds(0.0625F, 0.0F, 0.0F, 0.9375F, 0.875F, 0.9375F);
@@ -73,10 +77,12 @@ public class BlockLeechChest extends BlockBaseContainer {
 
    }
 
+   @Override
    public void onBlockAdded(World par1World, int par2, int par3, int par4) {
       super.onBlockAdded(par1World, par2, par3, par4);
    }
 
+   @Override
    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
       Block l = par1World.getBlock(par2, par3, par4 - 1);
       Block i1 = par1World.getBlock(par2, par3, par4 + 1);
@@ -149,10 +155,12 @@ public class BlockLeechChest extends BlockBaseContainer {
 
    }
 
+   @Override
    public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
       return true;
    }
 
+   @Override
    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, Block par5) {
       super.onNeighborBlockChange(par1World, par2, par3, par4, par5);
       TileEntity tile = par1World.getTileEntity(par2, par3, par4);
@@ -163,6 +171,7 @@ public class BlockLeechChest extends BlockBaseContainer {
 
    }
 
+   @Override
    public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6) {
       TileEntity tileentity = par1World.getTileEntity(par2, par3, par4);
       if(tileentity != null && tileentity instanceof BlockLeechChest.TileEntityLeechChest) {
@@ -200,11 +209,13 @@ public class BlockLeechChest extends BlockBaseContainer {
       super.breakBlock(par1World, par2, par3, par4, par5, par6);
    }
 
+   @Override
    public ArrayList getDrops(World world, int x, int y, int z, int metadata, int fortune) {
       ArrayList drops = new ArrayList();
       return drops;
    }
 
+   @Override
    public void onBlockHarvested(World par1World, int par2, int par3, int par4, int par5, EntityPlayer par6EntityPlayer) {
       if(!par1World.isRemote) {
          ItemStack itemstack = new ItemStack(this);
@@ -230,6 +241,7 @@ public class BlockLeechChest extends BlockBaseContainer {
 
    }
 
+   @Override
    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer player, int par6, float par7, float par8, float par9) {
       if(par1World.isRemote) {
          return true;
@@ -254,10 +266,12 @@ public class BlockLeechChest extends BlockBaseContainer {
       return object == null?null:(par1World.isSideSolid(par2, par3 + 1, par4, ForgeDirection.DOWN)?null:(isOcelotBlockingChest(par1World, par2, par3, par4)?null:(par1World.getBlock(par2 - 1, par3, par4) == this && (par1World.isSideSolid(par2 - 1, par3 + 1, par4, ForgeDirection.DOWN) || isOcelotBlockingChest(par1World, par2 - 1, par3, par4))?null:(par1World.getBlock(par2 + 1, par3, par4) == this && (par1World.isSideSolid(par2 + 1, par3 + 1, par4, ForgeDirection.DOWN) || isOcelotBlockingChest(par1World, par2 + 1, par3, par4))?null:(par1World.getBlock(par2, par3, par4 - 1) == this && (par1World.isSideSolid(par2, par3 + 1, par4 - 1, ForgeDirection.DOWN) || isOcelotBlockingChest(par1World, par2, par3, par4 - 1))?null:(par1World.getBlock(par2, par3, par4 + 1) == this && (par1World.isSideSolid(par2, par3 + 1, par4 + 1, ForgeDirection.DOWN) || isOcelotBlockingChest(par1World, par2, par3, par4 + 1))?null:(IInventory)object))))));
    }
 
+   @Override
    public boolean canProvidePower() {
       return this.chestType == 1;
    }
 
+   @Override
    public int isProvidingWeakPower(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
       if(!this.canProvidePower()) {
          return 0;
@@ -272,6 +286,7 @@ public class BlockLeechChest extends BlockBaseContainer {
       }
    }
 
+   @Override
    public int isProvidingStrongPower(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
       return par5 == 1?this.isProvidingWeakPower(par1IBlockAccess, par2, par3, par4, par5):0;
    }
@@ -289,14 +304,17 @@ public class BlockLeechChest extends BlockBaseContainer {
       return false;
    }
 
+   @Override
    public boolean hasComparatorInputOverride() {
       return true;
    }
 
+   @Override
    public int getComparatorInputOverride(World par1World, int par2, int par3, int par4, int par5) {
       return Container.calcRedstoneFromInventory(this.getInventory(par1World, par2, par3, par4));
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister par1IconRegister) {
       super.blockIcon = par1IconRegister.registerIcon("planks_oak");
@@ -366,12 +384,14 @@ public class BlockLeechChest extends BlockBaseContainer {
          return null;
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          this.readFromNBT(packet.func_148857_g());
@@ -383,14 +403,17 @@ public class BlockLeechChest extends BlockBaseContainer {
          this.cachedChestType = par1;
       }
 
+      @Override
       public int getSizeInventory() {
          return 27;
       }
 
+      @Override
       public ItemStack getStackInSlot(int par1) {
          return this.chestContents[par1];
       }
 
+      @Override
       public ItemStack decrStackSize(int par1, int par2) {
          if(this.chestContents[par1] != null) {
             ItemStack itemstack;
@@ -413,6 +436,7 @@ public class BlockLeechChest extends BlockBaseContainer {
          }
       }
 
+      @Override
       public ItemStack getStackInSlotOnClosing(int par1) {
          if(this.chestContents[par1] != null) {
             ItemStack itemstack = this.chestContents[par1];
@@ -423,6 +447,7 @@ public class BlockLeechChest extends BlockBaseContainer {
          }
       }
 
+      @Override
       public void setInventorySlotContents(int par1, ItemStack par2ItemStack) {
          this.chestContents[par1] = par2ItemStack;
          if(par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit()) {
@@ -432,10 +457,12 @@ public class BlockLeechChest extends BlockBaseContainer {
          this.markDirty();
       }
 
+      @Override
       public String getInventoryName() {
          return this.hasCustomInventoryName()?this.customName:"container.chest";
       }
 
+      @Override
       public boolean hasCustomInventoryName() {
          return this.customName != null && this.customName.length() > 0;
       }
@@ -444,6 +471,7 @@ public class BlockLeechChest extends BlockBaseContainer {
          this.customName = par1Str;
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
          super.readFromNBT(par1NBTTagCompound);
          NBTTagList nbtItemsList = par1NBTTagCompound.getTagList("Items", 10);
@@ -473,6 +501,7 @@ public class BlockLeechChest extends BlockBaseContainer {
 
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtTag) {
          super.writeToNBT(nbtTag);
          NBTTagList nbtItemsList = new NBTTagList();
@@ -502,19 +531,23 @@ public class BlockLeechChest extends BlockBaseContainer {
          nbtTag.setTag("WITCPlayers", var6);
       }
 
+      @Override
       public int getInventoryStackLimit() {
          return 64;
       }
 
+      @Override
       public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer) {
          return super.worldObj.getTileEntity(super.xCoord, super.yCoord, super.zCoord) != this?false:par1EntityPlayer.getDistanceSq((double)super.xCoord + 0.5D, (double)super.yCoord + 0.5D, (double)super.zCoord + 0.5D) <= 64.0D;
       }
 
+      @Override
       public void updateContainingBlockInfo() {
          super.updateContainingBlockInfo();
          this.adjacentChestChecked = false;
       }
 
+      @Override
       public void updateEntity() {
          super.updateEntity();
          ++this.ticksSinceSync;
@@ -571,6 +604,7 @@ public class BlockLeechChest extends BlockBaseContainer {
 
       }
 
+      @Override
       public boolean receiveClientEvent(int par1, int par2) {
          if(par1 == 1) {
             this.numUsingPlayers = par2;
@@ -580,6 +614,7 @@ public class BlockLeechChest extends BlockBaseContainer {
          }
       }
 
+      @Override
       public void openInventory() {
          if(this.numUsingPlayers < 0) {
             this.numUsingPlayers = 0;
@@ -591,6 +626,7 @@ public class BlockLeechChest extends BlockBaseContainer {
          super.worldObj.notifyBlocksOfNeighborChange(super.xCoord, super.yCoord - 1, super.zCoord, this.getBlockType());
       }
 
+      @Override
       public void closeInventory() {
          if(this.getBlockType() != null && this.getBlockType() instanceof BlockLeechChest) {
             --this.numUsingPlayers;
@@ -601,10 +637,12 @@ public class BlockLeechChest extends BlockBaseContainer {
 
       }
 
+      @Override
       public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack) {
          return true;
       }
 
+      @Override
       public void invalidate() {
          super.invalidate();
          this.updateContainingBlockInfo();

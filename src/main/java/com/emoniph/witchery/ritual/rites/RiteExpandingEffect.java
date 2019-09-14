@@ -25,6 +25,7 @@ public abstract class RiteExpandingEffect extends Rite {
       this.curse = curse;
    }
 
+   @Override
    public void addSteps(ArrayList steps, int intialStage) {
       steps.add(new RiteExpandingEffect.StepExpansion(this, intialStage));
    }
@@ -50,10 +51,12 @@ public abstract class RiteExpandingEffect extends Rite {
          this.stage = initialStage;
       }
 
+      @Override
       public int getCurrentStage() {
          return (byte)this.stage;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(!this.activated) {
             if(ticks % 20L != 0L) {

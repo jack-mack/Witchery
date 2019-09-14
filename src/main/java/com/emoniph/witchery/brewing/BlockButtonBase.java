@@ -48,39 +48,48 @@ public abstract class BlockButtonBase extends BlockBaseContainer {
 
    }
 
+   @Override
    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
       return Item.getItemFromBlock(this.isWood?Blocks.wooden_button:Blocks.stone_button);
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       return new ItemStack(this.isWood?Blocks.wooden_button:Blocks.stone_button);
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
       return null;
    }
 
+   @Override
    public int tickRate(World world) {
       return this.isWood?30:20;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public boolean canPlaceBlockOnSide(World world, int x, int y, int z, int side) {
       ForgeDirection dir = ForgeDirection.getOrientation(side);
       return dir == ForgeDirection.NORTH && world.isSideSolid(x, y, z + 1, ForgeDirection.NORTH) || dir == ForgeDirection.SOUTH && world.isSideSolid(x, y, z - 1, ForgeDirection.SOUTH) || dir == ForgeDirection.WEST && world.isSideSolid(x + 1, y, z, ForgeDirection.WEST) || dir == ForgeDirection.EAST && world.isSideSolid(x - 1, y, z, ForgeDirection.EAST);
    }
 
+   @Override
    public boolean canPlaceBlockAt(World world, int x, int y, int z) {
       return world.isSideSolid(x - 1, y, z, ForgeDirection.EAST) || world.isSideSolid(x + 1, y, z, ForgeDirection.WEST) || world.isSideSolid(x, y, z - 1, ForgeDirection.SOUTH) || world.isSideSolid(x, y, z + 1, ForgeDirection.NORTH);
    }
 
+   @Override
    public int onBlockPlaced(World world, int x, int y, int z, int side, float p_149660_6_, float p_149660_7_, float p_149660_8_, int p_149660_9_) {
       int j1 = world.getBlockMetadata(x, y, z);
       int k1 = j1 & 8;
@@ -105,6 +114,7 @@ public abstract class BlockButtonBase extends BlockBaseContainer {
       return world.isSideSolid(x - 1, y, z, ForgeDirection.EAST)?1:(world.isSideSolid(x + 1, y, z, ForgeDirection.WEST)?2:(world.isSideSolid(x, y, z - 1, ForgeDirection.SOUTH)?3:(world.isSideSolid(x, y, z + 1, ForgeDirection.NORTH)?4:1)));
    }
 
+   @Override
    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
       if(this.func_150044_m(world, x, y, z)) {
          int l = world.getBlockMetadata(x, y, z) & 7;
@@ -143,6 +153,7 @@ public abstract class BlockButtonBase extends BlockBaseContainer {
       }
    }
 
+   @Override
    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
       int l = world.getBlockMetadata(x, y, z);
       this.func_150043_b(l);
@@ -171,8 +182,10 @@ public abstract class BlockButtonBase extends BlockBaseContainer {
 
    }
 
+   @Override
    public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player) {}
 
+   @Override
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
       int i1 = world.getBlockMetadata(x, y, z);
       int j1 = i1 & 7;
@@ -203,6 +216,7 @@ public abstract class BlockButtonBase extends BlockBaseContainer {
       }
    }
 
+   @Override
    public void breakBlock(World world, int x, int y, int z, Block block, int p_149749_6_) {
       if((p_149749_6_ & 8) > 0) {
          int i1 = p_149749_6_ & 7;
@@ -212,10 +226,12 @@ public abstract class BlockButtonBase extends BlockBaseContainer {
       super.breakBlock(world, x, y, z, block, p_149749_6_);
    }
 
+   @Override
    public int isProvidingWeakPower(IBlockAccess world, int x, int y, int z, int p_149709_5_) {
       return (world.getBlockMetadata(x, y, z) & 8) > 0?15:0;
    }
 
+   @Override
    public int isProvidingStrongPower(IBlockAccess world, int x, int y, int z, int p_149748_5_) {
       int i1 = world.getBlockMetadata(x, y, z);
       if((i1 & 8) == 0) {
@@ -226,10 +242,12 @@ public abstract class BlockButtonBase extends BlockBaseContainer {
       }
    }
 
+   @Override
    public boolean canProvidePower() {
       return true;
    }
 
+   @Override
    public void updateTick(World world, int x, int y, int z, Random rand) {
       if(!world.isRemote) {
          int l = world.getBlockMetadata(x, y, z);
@@ -248,6 +266,7 @@ public abstract class BlockButtonBase extends BlockBaseContainer {
 
    }
 
+   @Override
    public void setBlockBoundsForItemRender() {
       float f = 0.1875F;
       float f1 = 0.125F;
@@ -255,6 +274,7 @@ public abstract class BlockButtonBase extends BlockBaseContainer {
       this.setBlockBounds(0.5F - f, 0.5F - f1, 0.5F - f2, 0.5F + f, 0.5F + f1, 0.5F + f2);
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
       if(!world.isRemote && this.isWood && (world.getBlockMetadata(x, y, z) & 8) == 0) {
          this.func_150046_n(world, x, y, z);
@@ -305,6 +325,7 @@ public abstract class BlockButtonBase extends BlockBaseContainer {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {}
 }

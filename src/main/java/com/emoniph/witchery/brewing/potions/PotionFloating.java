@@ -11,10 +11,12 @@ public class PotionFloating extends PotionBase {
       super(id, color);
    }
 
+   @Override
    public boolean isReady(int duration, int amplifier) {
       return true;
    }
 
+   @Override
    public void performEffect(EntityLivingBase entity, int amplifier) {
       int height = 3 + amplifier;
       int x = MathHelper.floor_double(entity.posX);

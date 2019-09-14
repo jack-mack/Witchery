@@ -25,31 +25,38 @@ public class BlockGarlicGarland extends BlockBaseContainer {
       this.setHardness(0.2F);
    }
 
+   @Override
    public int getRenderType() {
       return -1;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean canBlockStay(World world, int x, int y, int z) {
       return super.canBlockStay(world, x, y, z);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
       return false;
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
       return null;
    }
 
+   @Override
    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
       int side = world.getBlockMetadata(x, y, z);
       float minY = 0.8F;
@@ -72,6 +79,7 @@ public class BlockGarlicGarland extends BlockBaseContainer {
 
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
       if(!world.isRemote && entity instanceof EntityVampire) {
          RiteProtectionCircleRepulsive.push(world, entity, 0.5D + (double)x, 0.5D + (double)y, 0.5D + (double)z);
@@ -84,10 +92,12 @@ public class BlockGarlicGarland extends BlockBaseContainer {
 
    }
 
+   @Override
    public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z) {
       return super.getSelectedBoundingBoxFromPool(world, x, y, z);
    }
 
+   @Override
    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
       int facing = MathHelper.floor_double((double)(entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
       if(facing == 0) {
@@ -104,6 +114,7 @@ public class BlockGarlicGarland extends BlockBaseContainer {
 
    public static class TileEntityGarlicGarland extends TileEntity {
 
+      @Override
       public boolean canUpdate() {
          return false;
       }

@@ -21,12 +21,14 @@ public class BlockSpinningWheelGUI extends GuiContainer {
       this.spinningWheel = spinningWheel;
    }
 
+   @Override
    protected void drawGuiContainerForegroundLayer(int par1, int par2) {
       String s = this.spinningWheel.hasCustomInventoryName()?this.spinningWheel.getInventoryName():I18n.format(this.spinningWheel.getInventoryName(), new Object[0]);
       super.fontRendererObj.drawString(s, super.xSize / 2 - super.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
       super.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, super.ySize - 96 + 2, 4210752);
    }
 
+   @Override
    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
       GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
       super.mc.getTextureManager().bindTexture(TEXTURE_LOCATION);

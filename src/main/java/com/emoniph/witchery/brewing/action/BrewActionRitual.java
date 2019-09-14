@@ -30,14 +30,17 @@ public class BrewActionRitual extends BrewAction {
       this.aoeOnly = aoeOnly;
    }
 
+   @Override
    public final boolean triggersRitual() {
       return true;
    }
 
+   @Override
    public final boolean canAdd(BrewActionList actionList, boolean isCauldronFull, boolean hasEffects) {
       return isCauldronFull && hasEffects && (!this.aoeOnly || WitcheryBrewRegistry.INSTANCE.isSplash(actionList.getTagCompound()));
    }
 
+   @Override
    public RitualStatus updateRitual(MinecraftServer server, BrewActionList actionList, World world, int x, int y, int z, ModifiersRitual modifiers, ModifiersImpact impactModifiers) {
       BlockPosition target = modifiers.getTarget();
       return !isDistanceAllowed(world, x, y, z, (double)target.x, (double)target.y, (double)target.z, target.dimension, modifiers.covenSize, modifiers.leonard)?RitualStatus.FAILED_DISTANCE:(!actionList.isTargetLocationValid(server, world, x, y, z, target, modifiers)?RitualStatus.FAILED_INVALID_CIRCLES:impactModifiers.getDispersal().onUpdateRitual(world, x, y, z, actionList.getTagCompound(), modifiers, impactModifiers));
@@ -62,17 +65,23 @@ public class BrewActionRitual extends BrewAction {
       }
    }
 
+   @Override
    public final boolean augmentEffectLevels(EffectLevelCounter totalEffects) {
       return true;
    }
 
+   @Override
    public final void augmentEffectModifiers(ModifiersEffect modifiers) {}
 
+   @Override
    public final void prepareRitual(World world, int x, int y, int z, ModifiersRitual modifiers, ItemStack stack) {}
 
+   @Override
    public final void applyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {}
 
+   @Override
    public final void applyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect effectModifiers, ItemStack stack) {}
 
+   @Override
    public final void prepareSplashPotion(World world, BrewActionList actionList, ModifiersImpact modifiers) {}
 }

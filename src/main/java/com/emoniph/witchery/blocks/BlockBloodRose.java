@@ -40,40 +40,49 @@ public class BlockBloodRose extends BlockBaseContainer implements IPlantable {
       this.setBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 0.6F, 0.7F);
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public int getRenderType() {
       return 1;
    }
 
+   @Override
    public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z) {
       return EnumPlantType.Plains;
    }
 
+   @Override
    public Block getPlant(IBlockAccess world, int x, int y, int z) {
       return this;
    }
 
+   @Override
    public int getPlantMetadata(IBlockAccess world, int x, int y, int z) {
       return world.getBlockMetadata(x, y, z);
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
       return null;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public AxisAlignedBB getSelectedBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
       float f = 0.0625F;
       return AxisAlignedBB.getBoundingBox((double)((float)par2 + 0.5F - 0.2F + 0.0625F), (double)par3, (double)((float)par4 + 0.5F - 0.2F + 0.0625F), (double)((float)par2 + 0.5F + 0.2F - 0.0625F), (double)((float)par3 + 0.6F - 0.0625F), (double)((float)par4 + 0.5F + 0.2F - 0.0625F));
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int posX, int posY, int posZ, Entity entity) {
       if(!world.isRemote && entity instanceof EntityPlayer) {
          TileEntity tileentity = world.getTileEntity(posX, posY, posZ);
@@ -85,25 +94,30 @@ public class BlockBloodRose extends BlockBaseContainer implements IPlantable {
 
    }
 
+   @Override
    public int damageDropped(int par1) {
       return 0;
    }
 
+   @Override
    public Item getItemDropped(int par1, Random rand, int fortune) {
       return null;
    }
 
+   @Override
    public TileEntity createNewTileEntity(World world, int metadata) {
       BlockBloodRose.TileEntityBloodRose tileentitychest = new BlockBloodRose.TileEntityBloodRose();
       return tileentitychest;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister par1IconRegister) {
       super.blockIcon = par1IconRegister.registerIcon(this.getTextureName());
       this.fullIcon = par1IconRegister.registerIcon(this.getTextureName() + "_full");
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int side, int meta) {
       return meta == 0?super.getIcon(side, meta):this.fullIcon;
@@ -115,6 +129,7 @@ public class BlockBloodRose extends BlockBaseContainer implements IPlantable {
       public ArrayList players = new ArrayList();
 
 
+      @Override
       public boolean canUpdate() {
          return false;
       }
@@ -171,18 +186,21 @@ public class BlockBloodRose extends BlockBaseContainer implements IPlantable {
          return null;
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          this.readFromNBT(packet.func_148857_g());
          super.worldObj.func_147479_m(super.xCoord, super.yCoord, super.zCoord);
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
          super.readFromNBT(par1NBTTagCompound);
          this.players.clear();
@@ -198,6 +216,7 @@ public class BlockBloodRose extends BlockBaseContainer implements IPlantable {
 
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtTag) {
          super.writeToNBT(nbtTag);
          new NBTTagList();

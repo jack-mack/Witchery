@@ -157,6 +157,7 @@ public class ModelGarlicGarland extends ModelBase {
       this.garlicA.addChild(this.garlic3_1);
    }
 
+   @Override
    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
       double SCALE = 0.21D;
       GL11.glPushMatrix();

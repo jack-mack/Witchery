@@ -49,19 +49,23 @@ public class ItemHunterClothes extends ItemArmor implements ISpecialArmor {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
    }
 
+   @Override
    public Item setUnlocalizedName(String itemName) {
       ItemUtil.registerItem(this, itemName);
       return super.setUnlocalizedName(itemName);
    }
 
+   @Override
    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
       return stack != null && super.armorType == 2?"witchery:textures/entities/hunterclothes2" + (type == null?"":"_overlay") + ".png":(stack != null?"witchery:textures/entities/hunterclothes" + (type == null?"":"_overlay") + ".png":null);
    }
 
+   @Override
    public boolean hasColor(ItemStack stack) {
       return true;
    }
 
+   @Override
    public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
       if(!world.isRemote && player.ticksExisted % 20 == 2) {
          ExtendedPlayer playerEx = ExtendedPlayer.get(player);
@@ -72,6 +76,7 @@ public class ItemHunterClothes extends ItemArmor implements ISpecialArmor {
 
    }
 
+   @Override
    public int getColor(ItemStack stack) {
       if(!this.hasColor(stack)) {
          return super.getColor(stack);
@@ -91,21 +96,25 @@ public class ItemHunterClothes extends ItemArmor implements ISpecialArmor {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getColorFromItemStack(ItemStack stack, int par2) {
       return super.getColorFromItemStack(stack, par2);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean requiresMultipleRenderPasses() {
       return this.silvered || this.garlicked;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIconFromDamageForRenderPass(int damage, int renderPass) {
       return renderPass == 1?(this.garlicked?this.iconOverlaySilverGarlic:this.iconOverlaySilver):this.getIconFromDamage(damage);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerIcons(IIconRegister iconRegister) {
       super.registerIcons(iconRegister);
@@ -113,6 +122,7 @@ public class ItemHunterClothes extends ItemArmor implements ISpecialArmor {
       this.iconOverlaySilverGarlic = iconRegister.registerIcon(this.getIconString() + "_garlicked");
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack stack, int armorSlot) {
       if(this.modelClothesChest == null) {
@@ -168,16 +178,19 @@ public class ItemHunterClothes extends ItemArmor implements ISpecialArmor {
       return null;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack stack) {
       return EnumRarity.uncommon;
    }
 
+   @Override
    public String getItemStackDisplayName(ItemStack stack) {
       String baseName = super.getItemStackDisplayName(stack);
       return baseName;
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advancedTooltips) {
       String localText = Witchery.resource(this.getUnlocalizedName() + ".tip");
       if(localText != null) {
@@ -222,6 +235,7 @@ public class ItemHunterClothes extends ItemArmor implements ISpecialArmor {
       return entity != null && isFullSetWorn(entity, false) && entity.worldObj != null && entity.worldObj.rand.nextDouble() < 0.9D;
    }
 
+   @Override
    public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
       if(this.silvered && source != null && CreatureUtil.isWerewolf(source.getEntity())) {
          source.getEntity().attackEntityFrom(DamageSource.inFire, 1.0F);
@@ -231,10 +245,12 @@ public class ItemHunterClothes extends ItemArmor implements ISpecialArmor {
       }
    }
 
+   @Override
    public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) {
       return super.damageReduceAmount;
    }
 
+   @Override
    public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
       if(!this.silvered || source == null || !CreatureUtil.isWerewolf(source.getEntity())) {
          if(!this.garlicked || source == null || !CreatureUtil.isVampire(source.getEntity())) {

@@ -42,21 +42,25 @@ public class BlockDreamCatcher extends BlockBaseContainer {
       this.setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 1.0F, 0.75F);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int par1, int par2) {
       return Blocks.planks.getBlockTextureFromSide(par1);
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
       return null;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public AxisAlignedBB getSelectedBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
       this.setBlockBoundsBasedOnState(par1World, par2, par3, par4);
       return super.getSelectedBoundingBoxFromPool(par1World, par2, par3, par4);
    }
 
+   @Override
    public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int posX, int posY, int posZ) {
       int side = par1IBlockAccess.getBlockMetadata(posX, posY, posZ);
       float bottom = 0.28125F;
@@ -83,22 +87,27 @@ public class BlockDreamCatcher extends BlockBaseContainer {
 
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public boolean getBlocksMovement(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {
       return true;
    }
 
+   @Override
    public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l) {
       return false;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public void breakBlock(World world, int posX, int posY, int posZ, Block par5, int par6) {
       if(!world.isRemote) {
          TileEntity tileEntity = world.getTileEntity(posX, posY, posZ);
@@ -114,11 +123,13 @@ public class BlockDreamCatcher extends BlockBaseContainer {
       super.breakBlock(world, posX, posY, posZ, par5, par6);
    }
 
+   @Override
    public ArrayList getDrops(World world, int posX, int posY, int posZ, int metadata, int fortune) {
       ArrayList ret = new ArrayList();
       return ret;
    }
 
+   @Override
    public void onNeighborBlockChange(World world, int posX, int posY, int posZ, Block par5) {
       int metadata = world.getBlockMetadata(posX, posY, posZ);
       boolean flag = true;
@@ -146,6 +157,7 @@ public class BlockDreamCatcher extends BlockBaseContainer {
       super.onNeighborBlockChange(world, posX, posY, posZ, par5);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {}
 
@@ -169,6 +181,7 @@ public class BlockDreamCatcher extends BlockBaseContainer {
       }
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       TileEntity tileEntity = world.getTileEntity(x, y, z);
       if(tileEntity != null && tileEntity instanceof BlockDreamCatcher.TileEntityDreamCatcher) {
@@ -201,6 +214,7 @@ public class BlockDreamCatcher extends BlockBaseContainer {
          return this.dreamWeave;
       }
 
+      @Override
       public void updateEntity() {
          super.updateEntity();
          if(!super.worldObj.isRemote && this.dreamWeave != null) {
@@ -269,6 +283,7 @@ public class BlockDreamCatcher extends BlockBaseContainer {
          return false;
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtTag) {
          super.writeToNBT(nbtTag);
          if(this.dreamWeave != null) {
@@ -277,6 +292,7 @@ public class BlockDreamCatcher extends BlockBaseContainer {
 
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtTag) {
          super.readFromNBT(nbtTag);
          if(nbtTag.hasKey("WITCWeaveID")) {
@@ -286,12 +302,14 @@ public class BlockDreamCatcher extends BlockBaseContainer {
 
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          this.readFromNBT(packet.func_148857_g());

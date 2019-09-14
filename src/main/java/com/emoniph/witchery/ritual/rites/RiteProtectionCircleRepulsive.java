@@ -17,6 +17,7 @@ public class RiteProtectionCircleRepulsive extends RiteProtectionCircle {
       super(radius, upkeepPowerCost, ticksTolive);
    }
 
+   @Override
    protected void update(World world, int posX, int posY, int posZ, int radius, long ticks) {
       this.repulse(world, posX, posY, posZ, (float)radius);
    }

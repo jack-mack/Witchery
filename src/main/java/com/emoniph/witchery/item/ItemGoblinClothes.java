@@ -55,11 +55,13 @@ public class ItemGoblinClothes extends ItemArmor {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
    }
 
+   @Override
    public Item setUnlocalizedName(String itemName) {
       ItemUtil.registerItem(this, itemName);
       return super.setUnlocalizedName(itemName);
    }
 
+   @Override
    public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
       double R2;
       AxisAlignedBB bb2;
@@ -131,33 +133,40 @@ public class ItemGoblinClothes extends ItemArmor {
       }
    }
 
+   @Override
    public boolean hasEffect(ItemStack stack, int pass) {
       return super.hasEffect(stack, pass) || stack.getItem() != Witchery.Items.KOBOLDITE_HELM;
    }
 
+   @Override
    public boolean hasColor(ItemStack stack) {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getColorFromItemStack(ItemStack stack, int par2) {
       return super.getColorFromItemStack(stack, par2);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean requiresMultipleRenderPasses() {
       return false;
    }
 
+   @Override
    public int getColor(ItemStack stack) {
       return !this.hasColor(stack)?16777215:super.getColor(stack);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack itemstack) {
       return super.armorType != 0?EnumRarity.epic:EnumRarity.rare;
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advancedTooltips) {
       if(stack != null) {
          String localText = Witchery.resource(this.getUnlocalizedName() + ".tip");
@@ -176,10 +185,12 @@ public class ItemGoblinClothes extends ItemArmor {
 
    }
 
+   @Override
    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
       return stack != null?(slot == 0?"witchery:textures/entities/goblinclothes_head" + (type == null?"":"_overlay") + ".png":(slot == 2?"witchery:textures/entities/goblinclothes_legs" + (type == null?"":"_overlay") + ".png":"witchery:textures/entities/goblinclothes" + (type == null?"":"_overlay") + ".png")):null;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack stack, int armorSlot) {
       if(this.modelClothesChest == null) {
@@ -281,6 +292,7 @@ public class ItemGoblinClothes extends ItemArmor {
                         Witchery.packetPipeline.sendTo((IMessage)(new PacketPushTarget(entity.motionX, 1.0D, entity.motionZ)), (EntityPlayer)entity);
                      } else {
                         ServerTickEvents.TASKS.add(new ServerTickEvents.ServerTickTask(player.worldObj) {
+                           @Override
                            public boolean process() {
                               if(entity != null && !entity.isDead) {
                                  entity.motionY = 1.0D;

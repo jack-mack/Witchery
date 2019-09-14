@@ -31,6 +31,7 @@ public abstract class BlockBaseContainer extends BlockContainer {
       this.clazzItem = clazzItem;
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       if(this.registerWithCreateTab) {
          this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
@@ -51,6 +52,7 @@ public abstract class BlockBaseContainer extends BlockContainer {
       return super.setBlockName(blockName);
    }
 
+   @Override
    public TileEntity createNewTileEntity(World world, int metadata) {
       try {
          return (TileEntity)this.clazzTile.newInstance();

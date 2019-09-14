@@ -25,12 +25,14 @@ public class PacketItemUpdate implements IMessage {
       this.page = page;
    }
 
+   @Override
    public void toBytes(ByteBuf buffer) {
       buffer.writeInt(this.slot);
       buffer.writeInt(this.damage);
       buffer.writeInt(this.page);
    }
 
+   @Override
    public void fromBytes(ByteBuf buffer) {
       this.slot = buffer.readInt();
       this.damage = buffer.readInt();
@@ -39,6 +41,7 @@ public class PacketItemUpdate implements IMessage {
 
    public static class Handler implements IMessageHandler<PacketItemUpdate, IMessage> {
 
+      @Override
       public IMessage onMessage(PacketItemUpdate message, MessageContext ctx) {
          EntityPlayer player = Witchery.proxy.getPlayer(ctx);
          if(message.slot >= 0 && message.slot < player.inventory.getSizeInventory()) {

@@ -38,6 +38,7 @@ public class ComponentVillageApothecary extends House1 {
       return canVillageGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(list, structureboundingbox) == null?new ComponentVillageApothecary(startPiece, par7, random, structureboundingbox, par6):null;
    }
 
+   @Override
    public boolean addComponentParts(World par1World, Random par2Random, StructureBoundingBox par3StructureBoundingBox) {
       if(this.averageGroundLevel < 0) {
          this.averageGroundLevel = this.getAverageGroundLevel(par1World, par3StructureBoundingBox);
@@ -170,16 +171,19 @@ public class ComponentVillageApothecary extends House1 {
       }
    }
 
+   @Override
    protected void func_143012_a(NBTTagCompound par1NBTTagCompound) {
       super.func_143012_a(par1NBTTagCompound);
       par1NBTTagCompound.setBoolean("WITCApocChest", this.hasMadeChest);
    }
 
+   @Override
    protected void func_143011_b(NBTTagCompound par1NBTTagCompound) {
       super.func_143011_b(par1NBTTagCompound);
       this.hasMadeChest = par1NBTTagCompound.getBoolean("WITCApocChest");
    }
 
+   @Override
    protected int getVillagerType(int par1) {
       return Config.instance().apothecaryID;
    }

@@ -77,12 +77,14 @@ public class EntityImp extends EntityTameable implements IMob, IEntitySelector, 
       this.setTamed(false);
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.30000001192092896D);
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(50.0D);
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(18, Integer.valueOf(0));
@@ -108,18 +110,22 @@ public class EntityImp extends EntityTameable implements IMob, IEntitySelector, 
       return super.dataWatcher.getWatchableObjectInt(19) == 1;
    }
 
+   @Override
    public boolean isEntityApplicable(Entity target) {
       return !this.isTamed()?target instanceof EntityPlayer:target == this.getAttackTarget();
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.imp.name");
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
       par1NBTTagCompound.setInteger("Affection", this.getAffection());
@@ -131,6 +137,7 @@ public class EntityImp extends EntityTameable implements IMob, IEntitySelector, 
       par1NBTTagCompound.setInteger("HomeLocZ", this.homeZ);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
       this.setAffection(par1NBTTagCompound.getInteger("Affection"));
@@ -155,30 +162,37 @@ public class EntityImp extends EntityTameable implements IMob, IEntitySelector, 
       this.homeZ = par1NBTTagCompound.getInteger("HomeLocZ");
    }
 
+   @Override
    protected String getLivingSound() {
       return "witchery:mob.imp.laugh";
    }
 
+   @Override
    protected float getSoundPitch() {
       return this.isPowered()?(super.rand.nextFloat() - super.rand.nextFloat()) * 0.2F + 0.7F:(super.rand.nextFloat() - super.rand.nextFloat()) * 0.2F + 1.1F;
    }
 
+   @Override
    protected String getHurtSound() {
       return "witchery:mob.imp.hit";
    }
 
+   @Override
    protected String getDeathSound() {
       return "witchery:mob.imp.death";
    }
 
+   @Override
    protected float getSoundVolume() {
       return 0.5F;
    }
 
+   @Override
    public int getTalkInterval() {
       return TimeUtil.secsToTicks(40);
    }
 
+   @Override
    public void onLivingUpdate() {
       super.onLivingUpdate();
       if(!super.worldObj.isRemote && TimeUtil.secondsElapsed(300, (long)super.ticksExisted) && TameableUtil.hasOwner(this)) {
@@ -223,6 +237,7 @@ public class EntityImp extends EntityTameable implements IMob, IEntitySelector, 
       return TimeUtil.getServerTimeInTicks() >= this.powerUpExpiry;
    }
 
+   @Override
    public void onUpdate() {
       super.onUpdate();
       if(super.worldObj.isRemote && this.isPowered()) {
@@ -231,14 +246,17 @@ public class EntityImp extends EntityTameable implements IMob, IEntitySelector, 
 
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource source, float damage) {
       return super.attackEntityFrom(source, Math.min(damage, this.isPowered()?5.0F:15.0F));
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity par1Entity) {
       return par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), this.isPowered()?8.0F:4.0F);
    }
 
+   @Override
    public boolean interact(EntityPlayer player) {
       ItemStack stack = player.inventory.getCurrentItem();
       if(stack == null) {
@@ -419,14 +437,17 @@ public class EntityImp extends EntityTameable implements IMob, IEntitySelector, 
       }
    }
 
+   @Override
    public EntityImp createChild(EntityAgeable par1EntityAgeable) {
       return null;
    }
 
+   @Override
    public boolean canMateWith(EntityAnimal par1EntityAnimal) {
       return false;
    }
 
+   @Override
    protected boolean canDespawn() {
       return true;
    }
@@ -435,18 +456,22 @@ public class EntityImp extends EntityTameable implements IMob, IEntitySelector, 
       return rand.nextInt(5) == 0?DEMON_NAMES[rand.nextInt(DEMON_NAMES.length)]:DEMON_NAMES[rand.nextInt(DEMON_NAMES.length)] + " " + DEMON_NAMES[rand.nextInt(DEMON_NAMES.length)];
    }
 
+   @Override
    public double getHomeX() {
       return (double)this.homeX;
    }
 
+   @Override
    public double getHomeY() {
       return (double)this.homeY;
    }
 
+   @Override
    public double getHomeZ() {
       return (double)this.homeZ;
    }
 
+   @Override
    public double getHomeRange() {
       return 16.0D;
    }

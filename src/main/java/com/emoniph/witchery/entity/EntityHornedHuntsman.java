@@ -64,6 +64,7 @@ public class EntityHornedHuntsman extends EntityMob implements IBossDisplayData,
       super.experienceValue = 70;
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(16, Byte.valueOf((byte)0));
@@ -75,20 +76,25 @@ public class EntityHornedHuntsman extends EntityMob implements IBossDisplayData,
       this.explosiveEntrance = true;
    }
 
+   @Override
    public int getTotalArmorValue() {
       return 4;
    }
 
+   @Override
    public void setInWeb() {}
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.hornedHuntsman.name");
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    protected void updateAITick() {
       super.updateAITick();
    }
@@ -106,6 +112,7 @@ public class EntityHornedHuntsman extends EntityMob implements IBossDisplayData,
       this.setHealth(this.getMaxHealth() / 4.0F);
    }
 
+   @Override
    protected void updateAITasks() {
       if(this.func_82212_n() > 0) {
          int i = this.func_82212_n() - 1;
@@ -227,6 +234,7 @@ public class EntityHornedHuntsman extends EntityMob implements IBossDisplayData,
       }
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(400.0D);
@@ -235,14 +243,17 @@ public class EntityHornedHuntsman extends EntityMob implements IBossDisplayData,
       this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0D);
    }
 
+   @Override
    protected int decreaseAirSupply(int par1) {
       return par1;
    }
 
+   @Override
    protected void collideWithEntity(Entity par1Entity) {
       super.collideWithEntity(par1Entity);
    }
 
+   @Override
    public void onLivingUpdate() {
       super.onLivingUpdate();
       if(this.attackTimer > 0) {
@@ -251,18 +262,22 @@ public class EntityHornedHuntsman extends EntityMob implements IBossDisplayData,
 
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
       return super.attackEntityFrom(par1DamageSource, Math.min(par2, 15.0F));
    }
 
+   @Override
    public float getCapDT(DamageSource source, float damage) {
       return 15.0F;
    }
 
+   @Override
    public boolean canAttackClass(Class par1Class) {
       return super.canAttackClass(par1Class);
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
       par1NBTTagCompound.setBoolean("PlayerCreated", this.isPlayerCreated());
@@ -270,6 +285,7 @@ public class EntityHornedHuntsman extends EntityMob implements IBossDisplayData,
       par1NBTTagCompound.setBoolean("explosiveEntrance", this.explosiveEntrance);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
       this.setPlayerCreated(par1NBTTagCompound.getBoolean("PlayerCreated"));
@@ -282,6 +298,7 @@ public class EntityHornedHuntsman extends EntityMob implements IBossDisplayData,
 
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity par1Entity) {
       this.attackTimer = 10;
       super.worldObj.setEntityState(this, (byte)4);
@@ -294,6 +311,7 @@ public class EntityHornedHuntsman extends EntityMob implements IBossDisplayData,
       return flag;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void handleHealthUpdate(byte par1) {
       if(par1 == 4) {
@@ -310,26 +328,32 @@ public class EntityHornedHuntsman extends EntityMob implements IBossDisplayData,
       return this.attackTimer;
    }
 
+   @Override
    public float getBrightness(float par1) {
       return 1.0F;
    }
 
+   @Override
    protected String getLivingSound() {
       return "mob.enderdragon.growl";
    }
 
+   @Override
    protected String getHurtSound() {
       return "mob.horse.zombie.hit";
    }
 
+   @Override
    protected String getDeathSound() {
       return "mob.wither.death";
    }
 
+   @Override
    protected void func_145780_a(int par1, int par2, int par3, Block par4) {
       this.playSound("mob.irongolem.walk", 1.0F, 1.0F);
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {
       this.entityDropItem(new ItemStack(Items.skull, super.worldObj.rand.nextInt(3) == 0?3:2, 1), 0.0F);
       Enchantment enchantment = Enchantment.enchantmentsBookList[super.rand.nextInt(Enchantment.enchantmentsBookList.length)];
@@ -343,6 +367,7 @@ public class EntityHornedHuntsman extends EntityMob implements IBossDisplayData,
 
    }
 
+   @Override
    protected Item getDropItem() {
       return null;
    }
@@ -362,10 +387,12 @@ public class EntityHornedHuntsman extends EntityMob implements IBossDisplayData,
 
    }
 
+   @Override
    protected boolean canDespawn() {
       return false;
    }
 
+   @Override
    public void attackEntityWithRangedAttack(EntityLivingBase targetEntity, float par2) {
       EntityArrow entityarrow = new EntityArrow(super.worldObj, this, targetEntity, 1.6F, (float)(14 - super.worldObj.difficultySetting.getDifficultyId() * 4));
       entityarrow.setDamage((double)(par2 * 8.0F) + super.rand.nextGaussian() * 0.25D + (double)((float)super.worldObj.difficultySetting.getDifficultyId() * 0.11F));

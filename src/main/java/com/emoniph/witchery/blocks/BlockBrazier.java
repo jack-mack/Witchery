@@ -43,22 +43,27 @@ public class BlockBrazier extends BlockBaseContainer {
       this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.95F, 0.8F);
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l) {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public void onBlockAdded(World world, int x, int y, int z) {
       super.onBlockAdded(world, x, y, z);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
       TileEntity tile = world.getTileEntity(x, y, z);
@@ -74,6 +79,7 @@ public class BlockBrazier extends BlockBaseContainer {
 
    }
 
+   @Override
    public void breakBlock(World world, int x, int y, int z, Block oldBlockID, int oldBlockMetadata) {
       TileEntity tile = world.getTileEntity(x, y, z);
       if(tile != null && tile instanceof BlockBrazier.TileEntityBrazier) {
@@ -121,14 +127,17 @@ public class BlockBrazier extends BlockBaseContainer {
 
    }
 
+   @Override
    public boolean hasComparatorInputOverride() {
       return true;
    }
 
+   @Override
    public int getComparatorInputOverride(World world, int x, int y, int z, int side) {
       return Container.calcRedstoneFromInventory((IInventory)world.getTileEntity(x, y, z));
    }
 
+   @Override
    public boolean onBlockActivated(World world, int posX, int posY, int posZ, EntityPlayer player, int par6, float par7, float par8, float par9) {
       if(world.isRemote) {
          return true;
@@ -210,6 +219,7 @@ public class BlockBrazier extends BlockBaseContainer {
 
    }
 
+   @Override
    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, Block par5) {
       boolean flag = par1World.isBlockIndirectlyGettingPowered(par2, par3, par4);
       TileEntity tile = par1World.getTileEntity(par2, par3, par4);
@@ -243,6 +253,7 @@ public class BlockBrazier extends BlockBaseContainer {
       private static final int[] slots_sides = new int[]{0, 1, 2};
 
 
+      @Override
       public int getSizeInventory() {
          return this.slots.length;
       }
@@ -251,6 +262,7 @@ public class BlockBrazier extends BlockBaseContainer {
          this.setInventorySlotContents(3, Witchery.Items.GENERIC.itemAshWood.createStack());
       }
 
+      @Override
       public ItemStack getStackInSlot(int slot) {
          return this.slots[slot];
       }
@@ -265,6 +277,7 @@ public class BlockBrazier extends BlockBaseContainer {
          return true;
       }
 
+      @Override
       public ItemStack decrStackSize(int slot, int quantity) {
          if(this.slots[slot] != null) {
             ItemStack itemstack;
@@ -328,6 +341,7 @@ public class BlockBrazier extends BlockBaseContainer {
 
       }
 
+      @Override
       public ItemStack getStackInSlotOnClosing(int slot) {
          if(this.slots[slot] != null) {
             ItemStack itemstack = this.slots[slot];
@@ -338,6 +352,7 @@ public class BlockBrazier extends BlockBaseContainer {
          }
       }
 
+      @Override
       public void setInventorySlotContents(int slot, ItemStack stack) {
          this.slots[slot] = stack;
          if(stack != null && stack.stackSize > this.getInventoryStackLimit()) {
@@ -347,14 +362,17 @@ public class BlockBrazier extends BlockBaseContainer {
          this.markDirty();
       }
 
+      @Override
       public String getInventoryName() {
          return this.getBlockType().getLocalizedName();
       }
 
+      @Override
       public boolean hasCustomInventoryName() {
          return true;
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtRoot) {
          super.readFromNBT(nbtRoot);
          NBTTagList nbtSlotList = nbtRoot.getTagList("Items", 10);
@@ -373,6 +391,7 @@ public class BlockBrazier extends BlockBaseContainer {
          this.storage = nbtRoot.getLong("PowerStorage");
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtRoot) {
          super.writeToNBT(nbtRoot);
          nbtRoot.setShort("CookTime", (short)this.furnaceCookTime);
@@ -392,6 +411,7 @@ public class BlockBrazier extends BlockBaseContainer {
          nbtRoot.setTag("Items", nbtSlotList);
       }
 
+      @Override
       public int getInventoryStackLimit() {
          return 64;
       }
@@ -415,6 +435,7 @@ public class BlockBrazier extends BlockBaseContainer {
          return sources != null && sources.size() > 0?((PowerSources.RelativePowerSource)sources.get(0)).source():null;
       }
 
+      @Override
       public void updateEntity() {
          super.updateEntity();
          boolean update = false;
@@ -485,6 +506,7 @@ public class BlockBrazier extends BlockBaseContainer {
 
       }
 
+      @Override
       public void markDirty() {
          super.markDirty();
          if(!super.worldObj.isRemote) {
@@ -493,38 +515,47 @@ public class BlockBrazier extends BlockBaseContainer {
 
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          this.readFromNBT(packet.func_148857_g());
          super.worldObj.func_147479_m(super.xCoord, super.yCoord, super.zCoord);
       }
 
+      @Override
       public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer) {
          return super.worldObj.getTileEntity(super.xCoord, super.yCoord, super.zCoord) != this?false:par1EntityPlayer.getDistanceSq((double)super.xCoord + 0.5D, (double)super.yCoord + 0.5D, (double)super.zCoord + 0.5D) <= 64.0D;
       }
 
+      @Override
       public void openInventory() {}
 
+      @Override
       public void closeInventory() {}
 
+      @Override
       public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
          return slot != 3 && itemstack != null?(itemstack.stackSize != 1?false:(slot >= 0 && slot < this.slots.length?this.slots[slot] == null:false)):false;
       }
 
+      @Override
       public int[] getAccessibleSlotsFromSide(int side) {
          return BlockSide.BOTTOM.isEqual(side)?slots_bottom:(BlockSide.TOP.isEqual(side)?slots_top:slots_sides);
       }
 
+      @Override
       public boolean canInsertItem(int slot, ItemStack itemstack, int par3) {
          return this.isItemValidForSlot(slot, itemstack);
       }
 
+      @Override
       public boolean canExtractItem(int slot, ItemStack stack, int side) {
          return false;
       }

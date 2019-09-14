@@ -24,16 +24,19 @@ public class PacketExtendedEntityRequestSyncToClient implements IMessage {
       this.entityId = villager.getEntityId();
    }
 
+   @Override
    public void toBytes(ByteBuf buffer) {
       buffer.writeInt(this.entityId);
    }
 
+   @Override
    public void fromBytes(ByteBuf buffer) {
       this.entityId = buffer.readInt();
    }
 
    public static class Handler implements IMessageHandler<PacketExtendedEntityRequestSyncToClient, IMessage> {
 
+      @Override
       public IMessage onMessage(PacketExtendedEntityRequestSyncToClient message, MessageContext ctx) {
          EntityPlayer player = Witchery.proxy.getPlayer(ctx);
          if(player != null) {

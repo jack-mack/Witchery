@@ -63,16 +63,19 @@ public class EntityWingedMonkey extends EntityFlyingTameable {
       super.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
    }
 
+   @Override
    public int getTotalArmorValue() {
       return super.getTotalArmorValue() + 5;
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       super.writeEntityToNBT(nbtRoot);
       nbtRoot.setByte("FeatherColor", (byte)this.getFeatherColor());
       nbtRoot.setInteger("SuicideIn", this.timeToLive);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       super.readEntityFromNBT(nbtRoot);
       if(nbtRoot.hasKey("FeatherColor")) {
@@ -87,20 +90,24 @@ public class EntityWingedMonkey extends EntityFlyingTameable {
 
    }
 
+   @Override
    public void onUpdate() {
       super.onUpdate();
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(18, Byte.valueOf((byte)0));
       super.dataWatcher.addObject(21, Byte.valueOf((byte)(super.worldObj.rand.nextInt(100) == 0?0:super.worldObj.rand.nextInt(15) + 1)));
    }
 
+   @Override
    protected int decreaseAirSupply(int par1) {
       return par1;
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
@@ -109,14 +116,17 @@ public class EntityWingedMonkey extends EntityFlyingTameable {
       this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0D);
    }
 
+   @Override
    protected boolean canDespawn() {
       return false;
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    public void updateAITick() {
       this.getNavigator().clearPathEntity();
       super.updateAITick();
@@ -127,6 +137,7 @@ public class EntityWingedMonkey extends EntityFlyingTameable {
 
    }
 
+   @Override
    public void onLivingUpdate() {
       super.onLivingUpdate();
       if(this.attackTimer > 0) {
@@ -135,6 +146,7 @@ public class EntityWingedMonkey extends EntityFlyingTameable {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void handleHealthUpdate(byte par1) {
       if(par1 == 4) {
@@ -150,6 +162,7 @@ public class EntityWingedMonkey extends EntityFlyingTameable {
       return this.attackTimer;
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {
       if(!this.isTemp()) {
          int var3 = super.rand.nextInt(3) + super.rand.nextInt(1 + par2);
@@ -161,28 +174,34 @@ public class EntityWingedMonkey extends EntityFlyingTameable {
 
    }
 
+   @Override
    public int getTalkInterval() {
       return super.getTalkInterval() * 2;
    }
 
+   @Override
    protected String getLivingSound() {
       return "witchery:mob.monkey.say";
    }
 
+   @Override
    protected String getHurtSound() {
       return "witchery:mob.monkey.hit";
    }
 
+   @Override
    protected String getDeathSound() {
       return "witchery:mob.monkey.death";
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity par1Entity) {
       this.attackTimer = 10;
       super.worldObj.setEntityState(this, (byte)4);
       return par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), 2.0F);
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
       if(this.isEntityInvulnerable()) {
          return false;
@@ -192,14 +211,17 @@ public class EntityWingedMonkey extends EntityFlyingTameable {
       }
    }
 
+   @Override
    public double getMountedYOffset() {
       return super.riddenByEntity != null?(double)(-super.riddenByEntity.height) * 0.6D:0.0D;
    }
 
+   @Override
    public boolean shouldRiderSit() {
       return false;
    }
 
+   @Override
    public boolean interact(EntityPlayer player) {
       if(this.isTemp()) {
          return true;
@@ -304,6 +326,7 @@ public class EntityWingedMonkey extends EntityFlyingTameable {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getItemIcon(ItemStack stack, int pass) {
       return stack.getItem().requiresMultipleRenderPasses()?stack.getItem().getIcon(stack, pass):stack.getIconIndex();
@@ -320,10 +343,12 @@ public class EntityWingedMonkey extends EntityFlyingTameable {
       return entityocelot;
    }
 
+   @Override
    public boolean isBreedingItem(ItemStack itemstack) {
       return itemstack != null && (itemstack.getItem() == Items.porkchop || itemstack.getItem() == Items.beef);
    }
 
+   @Override
    public boolean canMateWith(EntityAnimal par1EntityAnimal) {
       if(par1EntityAnimal == this) {
          return false;
@@ -354,6 +379,7 @@ public class EntityWingedMonkey extends EntityFlyingTameable {
       super.dataWatcher.updateObject(18, Byte.valueOf((byte)par1));
    }
 
+   @Override
    public boolean getCanSpawnHere() {
       if(super.worldObj.rand.nextInt(3) == 0) {
          return false;
@@ -376,10 +402,12 @@ public class EntityWingedMonkey extends EntityFlyingTameable {
       }
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.wingedmonkey.name");
    }
 
+   @Override
    public EntityAgeable createChild(EntityAgeable par1EntityAgeable) {
       return this.spawnBabyAnimal(par1EntityAgeable);
    }

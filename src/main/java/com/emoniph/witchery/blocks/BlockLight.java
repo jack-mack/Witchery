@@ -13,21 +13,26 @@ public class BlockLight extends BlockBase {
       super.registerWithCreateTab = false;
    }
 
+   @Override
    public int getRenderType() {
       return -1;
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
       return null;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean canCollideCheck(int p_149678_1_, boolean p_149678_2_) {
       return false;
    }
 
+   @Override
    public void dropBlockAsItemWithChance(World world, int x, int y, int z, int side, float p_149690_6_, int p_149690_7_) {}
 }

@@ -65,6 +65,7 @@ public class EntityGoblinGulg extends EntityMob implements IBossDisplayData, IHa
       super.experienceValue = 35;
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(16, Byte.valueOf((byte)0));
@@ -72,6 +73,7 @@ public class EntityGoblinGulg extends EntityMob implements IBossDisplayData, IHa
       super.dataWatcher.addObject(20, new Integer(0));
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(400.0D);
@@ -80,20 +82,25 @@ public class EntityGoblinGulg extends EntityMob implements IBossDisplayData, IHa
       this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0D);
    }
 
+   @Override
    public int getTotalArmorValue() {
       return 8;
    }
 
+   @Override
    public void setInWeb() {}
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.goblingulg.name");
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    public void setRevengeTarget(EntityLivingBase entity) {
       if(!(entity instanceof EntityGoblinMog) && !(entity instanceof EntityGoblin) && !(entity instanceof EntityGoblinGulg)) {
          super.setRevengeTarget(entity);
@@ -101,6 +108,7 @@ public class EntityGoblinGulg extends EntityMob implements IBossDisplayData, IHa
 
    }
 
+   @Override
    protected void updateAITick() {
       super.updateAITick();
    }
@@ -118,6 +126,7 @@ public class EntityGoblinGulg extends EntityMob implements IBossDisplayData, IHa
       this.setHealth(this.getMaxHealth() / 4.0F);
    }
 
+   @Override
    protected void updateAITasks() {
       if(this.func_82212_n() > 0) {
          int i = this.func_82212_n() - 1;
@@ -208,14 +217,17 @@ public class EntityGoblinGulg extends EntityMob implements IBossDisplayData, IHa
       }
    }
 
+   @Override
    protected int decreaseAirSupply(int par1) {
       return par1;
    }
 
+   @Override
    protected void collideWithEntity(Entity par1Entity) {
       super.collideWithEntity(par1Entity);
    }
 
+   @Override
    public void onLivingUpdate() {
       super.onLivingUpdate();
       if(this.attackTimer > 0) {
@@ -224,6 +236,7 @@ public class EntityGoblinGulg extends EntityMob implements IBossDisplayData, IHa
 
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource source, float damage) {
       double distance = this.getDistanceSqToPartner();
       double scale = 1.0D;
@@ -242,10 +255,12 @@ public class EntityGoblinGulg extends EntityMob implements IBossDisplayData, IHa
       }
    }
 
+   @Override
    public float getCapDT(DamageSource source, float damage) {
       return 15.0F;
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity par1Entity) {
       this.attackTimer = 10;
       double distance = this.getDistanceSqToPartner();
@@ -294,20 +309,24 @@ public class EntityGoblinGulg extends EntityMob implements IBossDisplayData, IHa
       return minDistance;
    }
 
+   @Override
    public boolean canAttackClass(Class par1Class) {
       return super.canAttackClass(par1Class);
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
       par1NBTTagCompound.setInteger("Invul", this.func_82212_n());
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
       this.func_82215_s(par1NBTTagCompound.getInteger("Invul"));
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void handleHealthUpdate(byte par1) {
       if(par1 == 4) {
@@ -324,26 +343,32 @@ public class EntityGoblinGulg extends EntityMob implements IBossDisplayData, IHa
       return this.attackTimer;
    }
 
+   @Override
    public float getBrightness(float par1) {
       return 1.0F;
    }
 
+   @Override
    protected String getLivingSound() {
       return "witchery:mob.goblin.gulg_idle";
    }
 
+   @Override
    protected String getHurtSound() {
       return "mob.horse.zombie.hit";
    }
 
+   @Override
    protected String getDeathSound() {
       return "mob.wither.death";
    }
 
+   @Override
    protected void func_145780_a(int par1, int par2, int par3, Block par4) {
       this.playSound("mob.irongolem.walk", 1.0F, 1.0F);
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {
       this.entityDropItem(Witchery.Items.GENERIC.itemKobolditeNugget.createStack(super.rand.nextInt(3) + 1), 0.0F);
       ItemStack armor = null;
@@ -372,15 +397,18 @@ public class EntityGoblinGulg extends EntityMob implements IBossDisplayData, IHa
 
    }
 
+   @Override
    protected Item getDropItem() {
       return null;
    }
 
+   @Override
    public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData) {
       this.func_110163_bv();
       return super.onSpawnWithEgg(par1EntityLivingData);
    }
 
+   @Override
    protected boolean canDespawn() {
       return false;
    }

@@ -52,26 +52,32 @@ public class RenderOwl extends RenderLiving {
       super.rotateCorpse(entity, par2, par3, par4);
    }
 
+   @Override
    public void doRender(EntityLiving entity, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderOwl((EntityOwl)entity, par2, par4, par6, par8, par9);
    }
 
+   @Override
    protected void rotateCorpse(EntityLivingBase par1EntityLivingBase, float par2, float par3, float par4) {
       this.rotateOwlCorpse((EntityOwl)par1EntityLivingBase, par2, par3, par4);
    }
 
+   @Override
    public void doRender(EntityLivingBase par1, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderOwl((EntityOwl)par1, par2, par4, par6, par8, par9);
    }
 
+   @Override
    public void doRender(Entity entity, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderOwl((EntityOwl)entity, par2, par4, par6, par8, par9);
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(Entity par1Entity) {
       return TEXTURE_URL;
    }
 
+   @Override
    protected void renderEquippedItems(EntityLivingBase par1EntityLiving, float par2) {
       GL11.glColor3f(1.0F, 1.0F, 1.0F);
       super.renderEquippedItems(par1EntityLiving, par2);

@@ -28,6 +28,7 @@ public class ItemBucketSpirit extends ItemBase {
       return this;
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer player) {
       MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, true);
       if(movingobjectposition == null) {

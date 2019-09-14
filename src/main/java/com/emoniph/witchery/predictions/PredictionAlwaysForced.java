@@ -16,6 +16,7 @@ public abstract class PredictionAlwaysForced extends Prediction {
       this.regularFulfillmentProbability = regularFulfillmentProbability;
    }
 
+   @Override
    public boolean isPredictionPastDue(long predictionTime, long currentTime) {
       return currentTime - predictionTime > (long)this.regularFulfillmentDurationInTicks;
    }

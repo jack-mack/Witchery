@@ -31,16 +31,19 @@ public class BlockPerpetualIcePressurePlate extends BlockPressurePlate {
 
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       BlockUtil.registerBlock(this, blockName);
       return super.setBlockName(blockName);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getRenderBlockPass() {
       return super.blockMaterial == Material.ice?1:0;
    }
 
+   @Override
    protected int func_150065_e(World world, int x, int y, int z) {
       if(super.blockMaterial == Material.ice) {
          List list = world.getEntitiesWithinAABB(EntityLivingBase.class, this.func_150061_a(x, y, z));
@@ -62,10 +65,12 @@ public class BlockPerpetualIcePressurePlate extends BlockPressurePlate {
       }
    }
 
+   @Override
    public boolean canPlaceBlockAt(World world, int x, int y, int z) {
       return super.canPlaceBlockAt(world, x, y, z) || world.getBlock(x, y - 1, z) == Witchery.Blocks.PERPETUAL_ICE_FENCE;
    }
 
+   @Override
    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
       if(!this.canPlaceBlockAt(world, x, y, z)) {
          this.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);

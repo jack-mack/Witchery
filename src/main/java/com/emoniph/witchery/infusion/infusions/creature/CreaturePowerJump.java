@@ -20,11 +20,13 @@ public class CreaturePowerJump extends CreaturePower {
       super(powerID, creatureType);
    }
 
+   @Override
    public void onActivate(World world, EntityPlayer player, int elapsedTicks, MovingObjectPosition mop) {
       player.addPotionEffect(new PotionEffect(Potion.jump.id, 400, 3));
       SoundEffect.RANDOM_FIZZ.playAtPlayer(world, player);
    }
 
+   @Override
    public void onUpdate(World world, EntityPlayer player) {
       Minecraft minecraft = Minecraft.getMinecraft();
       if(KeyBindHelper.isKeyBindDown(minecraft.gameSettings.keyBindJump) && player.motionY > 0.0D) {
@@ -33,6 +35,7 @@ public class CreaturePowerJump extends CreaturePower {
 
    }
 
+   @Override
    public void onFalling(World world, EntityPlayer player, LivingFallEvent event) {
       if(!world.isRemote) {
          Witchery.packetPipeline.sendToAllAround(new PacketSound(SoundEffect.MOB_SLIME_BIG, player), TargetPointUtil.from(player, 8.0D));

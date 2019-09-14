@@ -12,6 +12,7 @@ public class ItemBiomeNote extends ItemBase {
       this.setMaxDamage(0);
    }
 
+   @Override
    public String getItemStackDisplayName(ItemStack stack) {
       String name = super.getItemStackDisplayName(stack);
       BiomeGenBase biome = ItemBook.getSelectedBiome(stack.getItemDamage());

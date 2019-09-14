@@ -62,10 +62,12 @@ public class EntityFollower extends EntityTameable {
       super.experienceValue = 0;
    }
 
+   @Override
    protected int getExperiencePoints(EntityPlayer p_70693_1_) {
       return 0;
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3D);
@@ -75,10 +77,12 @@ public class EntityFollower extends EntityTameable {
       this.ticksToLive = ticks;
    }
 
+   @Override
    public EntityAgeable createChild(EntityAgeable lover) {
       return null;
    }
 
+   @Override
    public String getCommandSenderName() {
       switch(this.getFollowerType()) {
       case 0:
@@ -88,6 +92,7 @@ public class EntityFollower extends EntityTameable {
       }
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(18, Integer.valueOf(0));
@@ -106,6 +111,7 @@ public class EntityFollower extends EntityTameable {
       return super.dataWatcher.getWatchableObjectInt(18);
    }
 
+   @Override
    public void onEntityUpdate() {
       super.onEntityUpdate();
       if(!super.worldObj.isRemote && super.ticksExisted == 1 && this.getFollowerType() == 5) {
@@ -131,6 +137,7 @@ public class EntityFollower extends EntityTameable {
 
    }
 
+   @Override
    public void onLivingUpdate() {
       super.onLivingUpdate();
       if(!super.worldObj.isRemote && this.isEntityAlive() && this.ticksToLive >= 0 && --this.ticksToLive == 0) {
@@ -149,16 +156,20 @@ public class EntityFollower extends EntityTameable {
 
    }
 
+   @Override
    protected int decreaseAirSupply(int par1) {
       return this.getFollowerType() == 0?par1:super.decreaseAirSupply(par1);
    }
 
+   @Override
    protected boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    protected void dropEquipment(boolean p_82160_1_, int p_82160_2_) {}
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {
       if(this.getFollowerType() >= 1 && this.getFollowerType() <= 4) {
          this.entityDropItem(Witchery.Items.GENERIC.itemHeartOfGold.createStack(), 0.1F);
@@ -182,6 +193,7 @@ public class EntityFollower extends EntityTameable {
       return true;
    }
 
+   @Override
    protected void updateAITasks() {
       super.updateAITasks();
       if(!super.worldObj.isRemote && super.ticksExisted % 10 == 1 && this.getFollowerType() == 0) {
@@ -294,6 +306,7 @@ public class EntityFollower extends EntityTameable {
       super.worldObj.setEntityState(this, (byte)7);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       super.readEntityFromNBT(nbtRoot);
       this.setFollowerType(nbtRoot.getInteger("FollowerType"));
@@ -309,6 +322,7 @@ public class EntityFollower extends EntityTameable {
 
    }
 
+   @Override
    public void writeToNBT(NBTTagCompound nbtRoot) {
       super.writeToNBT(nbtRoot);
       nbtRoot.setInteger("FollowerType", this.getFollowerType());

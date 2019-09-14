@@ -23,6 +23,7 @@ public class RenderReflection extends RenderBiped {
       super(new ModelBiped(), 0.5F);
    }
 
+   @Override
    public void doRender(Entity entity, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_) {
       if(((EntityReflection)entity).getModel() == 0) {
          super.doRender(entity, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
@@ -33,6 +34,7 @@ public class RenderReflection extends RenderBiped {
 
    }
 
+   @Override
    public void doRender(EntityLiving entity, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_) {
       if(((EntityReflection)entity).getModel() == 0) {
          super.doRender(entity, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
@@ -43,6 +45,7 @@ public class RenderReflection extends RenderBiped {
 
    }
 
+   @Override
    public void doRender(EntityLivingBase entity, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_) {
       if(((EntityReflection)entity).getModel() == 0) {
          super.doRender(entity, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
@@ -53,6 +56,7 @@ public class RenderReflection extends RenderBiped {
 
    }
 
+   @Override
    public void doRenderShadowAndFire(Entity entity, double p_76979_2_, double p_76979_4_, double p_76979_6_, float p_76979_8_, float p_76979_9_) {
       if(((EntityReflection)entity).getModel() == 0) {
          super.doRenderShadowAndFire(entity, p_76979_2_, p_76979_4_, p_76979_6_, p_76979_8_, p_76979_9_);
@@ -63,6 +67,7 @@ public class RenderReflection extends RenderBiped {
 
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(Entity entity) {
       return this.getEntityTexture((EntityReflection)entity);
    }

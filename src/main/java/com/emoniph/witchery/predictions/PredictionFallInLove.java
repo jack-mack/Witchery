@@ -17,6 +17,7 @@ public class PredictionFallInLove extends PredictionAlwaysForced {
       super(id, itemWeight, selfFulfillmentProbabilityPerSec, translationKey, regularFulfillmentDurationInTicks, regularFulfillmentProbability);
    }
 
+   @Override
    public boolean checkIfFulfilled(World world, EntityPlayer player, LivingUpdateEvent event, boolean isPastDue, boolean veryOld) {
       if(!this.shouldWeActivate(world, player, isPastDue)) {
          return false;

@@ -59,6 +59,7 @@ public class ItemGlassGoblet extends ItemBase {
       this.setHasSubtypes(true);
    }
 
+   @Override
    public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
       if(!world.isRemote) {
          ExtendedPlayer playerEx = ExtendedPlayer.get(player);
@@ -104,10 +105,12 @@ public class ItemGlassGoblet extends ItemBase {
       return stack;
    }
 
+   @Override
    public String getItemStackDisplayName(ItemStack stack) {
       return this.hasBlood(stack)?("" + StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(stack) + ".full")).trim():super.getItemStackDisplayName(stack);
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advTooltips) {
       super.addInformation(stack, player, list, advTooltips);
       if(this.hasBlood(stack)) {
@@ -116,14 +119,17 @@ public class ItemGlassGoblet extends ItemBase {
 
    }
 
+   @Override
    public int getMaxItemUseDuration(ItemStack stack) {
       return 32;
    }
 
+   @Override
    public EnumAction getItemUseAction(ItemStack stack) {
       return this.hasBlood(stack)?EnumAction.drink:EnumAction.block;
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
       MovingObjectPosition mop = InfusionOtherwhere.raytraceBlocks(world, player, true, 2.0D);
       if(mop != null && mop.typeOfHit == MovingObjectType.BLOCK && world.getBlock(mop.blockX, mop.blockY, mop.blockZ) == Blocks.skull) {
@@ -347,10 +353,12 @@ public class ItemGlassGoblet extends ItemBase {
       entity.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1017, (int)vampire.posX, (int)vampire.posY, (int)vampire.posZ, 0);
    }
 
+   @Override
    public IIcon getIconFromDamage(int meta) {
       return meta == 0?super.getIconFromDamage(meta):this.iconFull;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerIcons(IIconRegister iconRegister) {
       super.registerIcons(iconRegister);

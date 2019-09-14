@@ -8,6 +8,7 @@ public class PotionKeepEffectsOnDeath extends PotionBase {
       super(id, color);
    }
 
+   @Override
    public void postContructInitialize() {
       this.setPermenant();
    }

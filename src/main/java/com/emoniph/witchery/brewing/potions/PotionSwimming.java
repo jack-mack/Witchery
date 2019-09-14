@@ -16,6 +16,7 @@ public class PotionSwimming extends PotionBase implements IHandleLivingUpdate {
       super(id, color);
    }
 
+   @Override
    public void onLivingUpdate(World world, EntityLivingBase entity, LivingUpdateEvent event, int amplifier, int duration) {
       if(entity instanceof EntityPlayer) {
          EntityPlayer player = (EntityPlayer)entity;

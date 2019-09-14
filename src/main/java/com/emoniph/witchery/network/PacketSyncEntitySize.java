@@ -34,6 +34,7 @@ public class PacketSyncEntitySize implements IMessage {
 
    }
 
+   @Override
    public void toBytes(ByteBuf buffer) {
       buffer.writeInt(this.entityID);
       buffer.writeFloat(this.width);
@@ -42,6 +43,7 @@ public class PacketSyncEntitySize implements IMessage {
       buffer.writeFloat(this.eyeHeight);
    }
 
+   @Override
    public void fromBytes(ByteBuf buffer) {
       this.entityID = buffer.readInt();
       this.width = buffer.readFloat();
@@ -52,6 +54,7 @@ public class PacketSyncEntitySize implements IMessage {
 
    public static class Handler implements IMessageHandler<PacketSyncEntitySize, IMessage> {
 
+      @Override
       public IMessage onMessage(PacketSyncEntitySize message, MessageContext ctx) {
          EntityPlayer player = Witchery.proxy.getPlayer(ctx);
          Iterator i$ = player.worldObj.loadedEntityList.iterator();

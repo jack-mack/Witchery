@@ -28,6 +28,7 @@ public class RenderFetish extends TileEntitySpecialRenderer {
    private final ModelFetishTrent modelTrent = new ModelFetishTrent();
 
 
+   @Override
    public void renderTileEntityAt(TileEntity te, double d, double d1, double d2, float f) {
       GL11.glPushMatrix();
       GL11.glTranslatef((float)d, (float)d1, (float)d2);
@@ -95,6 +96,7 @@ public class RenderFetish extends TileEntitySpecialRenderer {
          this.tileFetish = dummy;
       }
 
+      @Override
       public void renderItem(ItemRenderType type, ItemStack item, Object ... data) {
          this.tileFetish.setExpectedBlock(this.block);
          NBTTagCompound nbtRoot = item.getTagCompound();

@@ -22,6 +22,7 @@ public class RenderBrew extends RenderSnowball {
       super(item, damageValue);
    }
 
+   @Override
    public void doRender(Entity entity, double par2, double par4, double par6, float par8, float par9) {
       EntityBrew brew = (EntityBrew)entity;
       IIcon icon = Witchery.Items.BREW.getIcon(brew.getBrew(), 1);

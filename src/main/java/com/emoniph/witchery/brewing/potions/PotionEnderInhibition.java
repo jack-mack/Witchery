@@ -14,6 +14,7 @@ public class PotionEnderInhibition extends PotionBase implements IHandleEnderTel
       super(id, true, color);
    }
 
+   @Override
    public void onEnderTeleport(World world, EntityLivingBase entity, EnderTeleportEvent event, int amplifier) {
       event.setCanceled(true);
    }

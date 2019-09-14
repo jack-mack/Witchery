@@ -36,6 +36,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 
 public class DispersalTriggered extends Dispersal {
 
+   @Override
    public void onImpactSplashPotion(World world, NBTTagCompound nbtBrew, MovingObjectPosition mop, ModifiersImpact modifiers) {
       Coord coord = new Coord(mop, modifiers.impactPosition, true);
       boolean replaceable = BlockProtect.checkModsForBreakOK(world, coord.x, coord.y, coord.z, modifiers.thrower);
@@ -91,10 +92,12 @@ public class DispersalTriggered extends Dispersal {
 
    }
 
+   @Override
    public String getUnlocalizedName() {
       return "witchery:brew.dispersal.triggered";
    }
 
+   @Override
    public RitualStatus onUpdateRitual(World world, int x, int y, int z, NBTTagCompound nbtBrew, ModifiersRitual modifiers, ModifiersImpact impactModifiers) {
       AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox((double)x, (double)(y + 1), (double)z, (double)(x + 1), (double)(y + 2), (double)(z + 1));
       List items = world.getEntitiesWithinAABB(EntityItem.class, bounds);

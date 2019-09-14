@@ -52,6 +52,7 @@ public class ItemSpectralStone extends ItemBase {
       this.setHasSubtypes(true);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void getSubItems(Item item, CreativeTabs tab, List itemList) {
       itemList.add(new ItemStack(item, 1, 0));
@@ -60,6 +61,7 @@ public class ItemSpectralStone extends ItemBase {
       itemList.add(new ItemStack(item, 1, 19));
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerIcons(IIconRegister iconRegister) {
       super.registerIcons(iconRegister);
@@ -69,6 +71,7 @@ public class ItemSpectralStone extends ItemBase {
       this.item3 = iconRegister.registerIcon(this.getIconString() + ".poltergeist");
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIconFromDamage(int damage) {
       switch(this.getBeingFromMeta(damage)) {
@@ -84,6 +87,7 @@ public class ItemSpectralStone extends ItemBase {
       }
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean extraTip) {
       int creature = this.getBeingFromMeta(stack.getItemDamage());
       int quantity = Math.min(this.getQuantityFromMeta(stack.getItemDamage()), 4);
@@ -100,6 +104,7 @@ public class ItemSpectralStone extends ItemBase {
 
    }
 
+   @Override
    public boolean hasEffect(ItemStack stack) {
       return true;
    }
@@ -126,19 +131,23 @@ public class ItemSpectralStone extends ItemBase {
       return quantity;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack stack) {
       return EnumRarity.rare;
    }
 
+   @Override
    public EnumAction getItemUseAction(ItemStack stack) {
       return EnumAction.bow;
    }
 
+   @Override
    public int getMaxItemUseDuration(ItemStack stack) {
       return TimeUtil.secsToTicks(20);
    }
 
+   @Override
    public void onUsingTick(ItemStack stack, EntityPlayer player, int countdown) {
       World world = player.worldObj;
       int elapsedTicks = this.getMaxItemUseDuration(stack) - countdown;
@@ -148,6 +157,7 @@ public class ItemSpectralStone extends ItemBase {
 
    }
 
+   @Override
    public void onPlayerStoppedUsing(ItemStack stack, World world, EntityPlayer player, int countdown) {
       int elapsedTicks = this.getMaxItemUseDuration(stack) - countdown;
       int creature = this.getBeingFromMeta(stack.getItemDamage());
@@ -205,6 +215,7 @@ public class ItemSpectralStone extends ItemBase {
 
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
       player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
       return stack;

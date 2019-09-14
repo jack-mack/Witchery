@@ -21,6 +21,7 @@ public class RenderBloodCrucible extends TileEntitySpecialRenderer {
    private static final ResourceLocation TEXTURE_URL = new ResourceLocation("witchery", "textures/blocks/bloodcrucible.png");
 
 
+   @Override
    public void renderTileEntityAt(TileEntity tileEntity, double d, double d1, double d2, float f) {
       BlockBloodCrucible.TileEntityBloodCrucible crucible = (BlockBloodCrucible.TileEntityBloodCrucible)tileEntity;
       GL11.glPushMatrix();

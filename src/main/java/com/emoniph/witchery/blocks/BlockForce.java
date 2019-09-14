@@ -23,26 +23,32 @@ public class BlockForce extends BlockBase {
       this.setStepSound(transparent?Block.soundTypeGlass:Block.soundTypeStone);
    }
 
+   @Override
    public int getRenderType() {
       return this.transparent?-1:super.getRenderType();
    }
 
+   @Override
    protected boolean canSilkHarvest() {
       return false;
    }
 
+   @Override
    public int quantityDropped(Random rand) {
       return 0;
    }
 
+   @Override
    public int getRenderBlockPass() {
       return 0;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return this.transparent?false:super.isOpaqueCube();
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       return null;
    }

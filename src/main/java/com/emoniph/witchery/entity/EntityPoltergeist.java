@@ -51,6 +51,7 @@ public class EntityPoltergeist extends EntitySummonedUndead {
       super.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(20.0D);
@@ -58,10 +59,12 @@ public class EntityPoltergeist extends EntitySummonedUndead {
       this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(3.0D);
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
    }
 
+   @Override
    protected boolean isAIEnabled() {
       return true;
    }
@@ -71,6 +74,7 @@ public class EntityPoltergeist extends EntitySummonedUndead {
       return this.attackTimer;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void handleHealthUpdate(byte par1) {
       if(par1 == 4) {
@@ -81,6 +85,7 @@ public class EntityPoltergeist extends EntitySummonedUndead {
 
    }
 
+   @Override
    public void onLivingUpdate() {
       super.onLivingUpdate();
       if(this.attackTimer > 0) {
@@ -217,39 +222,48 @@ public class EntityPoltergeist extends EntitySummonedUndead {
 
    }
 
+   @Override
    public void onUpdate() {
       super.onUpdate();
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity par1Entity) {
       boolean flag = super.attackEntityAsMob(par1Entity);
       return flag;
    }
 
+   @Override
    protected String getLivingSound() {
       return null;
    }
 
+   @Override
    protected String getHurtSound() {
       return "witchery:mob.spectre.spectre_die";
    }
 
+   @Override
    protected String getDeathSound() {
       return "witchery:mob.spectre.spectre_die";
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.poltergeist.name");
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
    }
 
+   @Override
    public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData) {
       IEntityLivingData par1EntityLivingData1 = super.onSpawnWithEgg(par1EntityLivingData);
       this.addPotionEffect(new PotionEffect(Potion.invisibility.id, Integer.MAX_VALUE));

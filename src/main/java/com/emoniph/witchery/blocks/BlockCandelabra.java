@@ -26,26 +26,32 @@ public class BlockCandelabra extends BlockBaseContainer {
       this.setBlockBounds(0.1F, 0.0F, 0.1F, 0.9F, 1.0F, 0.9F);
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public int quantityDropped(Random rand) {
       return 1;
    }
 
+   @Override
    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
       return Witchery.Items.GENERIC;
    }
 
+   @Override
    public int damageDropped(int par1) {
       return Witchery.Items.GENERIC.itemCandelabra.damageValue;
    }
 
+   @Override
    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, Block par5) {
       this.func_111046_k(par1World, par2, par3, par4);
    }
@@ -63,20 +69,24 @@ public class BlockCandelabra extends BlockBaseContainer {
       }
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       return Witchery.Items.GENERIC.itemCandelabra.createStack();
    }
 
+   @Override
    public boolean canBlockStay(World world, int x, int y, int z) {
       Material material = world.getBlock(x, y - 1, z).getMaterial();
       return !world.isAirBlock(x, y - 1, z) && material != null && material.isOpaque() && material.isSolid();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
       double yMid = (double)y + 1.05D;
@@ -113,6 +123,7 @@ public class BlockCandelabra extends BlockBaseContainer {
 
    public static class TileEntityCandelabra extends TileEntity {
 
+      @Override
       public boolean canUpdate() {
          return false;
       }

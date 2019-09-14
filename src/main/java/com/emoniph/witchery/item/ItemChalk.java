@@ -27,10 +27,12 @@ public class ItemChalk extends ItemBase {
       this.setNoRepair();
    }
 
+   @Override
    public int getItemStackLimit(ItemStack stack) {
       return stack.isItemDamaged()?1:super.maxStackSize;
    }
 
+   @Override
    public void setDamage(ItemStack stack, int damage) {
       super.setDamage(stack, damage);
    }
@@ -66,6 +68,7 @@ public class ItemChalk extends ItemBase {
       return chalkUsed;
    }
 
+   @Override
    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int posX, int posY, int posZ, int side, float hitX, float hitY, float hitZ) {
       if(!world.isRemote) {
          boolean chalkUsed = drawGlyph(world, posX, posY, posZ, side, this.block, player);

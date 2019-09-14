@@ -29,6 +29,7 @@ public class DispenseBehaviourItemBrew implements IBehaviorDispenseItem {
    private final BehaviorDefaultDispenseItem defaultDispenserItemBehavior = new BehaviorDefaultDispenseItem();
 
 
+   @Override
    public ItemStack dispense(IBlockSource block, ItemStack stack) {
       if(stack.getItem() == Witchery.Items.BREW && WitcheryBrewRegistry.INSTANCE.isSplash(stack.getTagCompound())) {
          return (new DispenseBehaviourItemBrew.DispenserBehaviorBrew(this, stack)).dispense(block, stack);
@@ -105,6 +106,7 @@ public class DispenseBehaviourItemBrew implements IBehaviorDispenseItem {
          this.potionItemStack = brewStack;
       }
 
+      @Override
       public ItemStack dispenseStack(IBlockSource dispenserBlock, ItemStack stack) {
          World world = dispenserBlock.getWorld();
          IPosition iposition = BlockDispenser.func_149939_a(dispenserBlock);
@@ -116,6 +118,7 @@ public class DispenseBehaviourItemBrew implements IBehaviorDispenseItem {
          return stack;
       }
 
+      @Override
       protected void playDispenseSound(IBlockSource dispenserBlock) {
          dispenserBlock.getWorld().playAuxSFX(1002, dispenserBlock.getXInt(), dispenserBlock.getYInt(), dispenserBlock.getZInt(), 0);
       }
@@ -144,6 +147,7 @@ public class DispenseBehaviourItemBrew implements IBehaviorDispenseItem {
          this.potionItemStack = brewStack;
       }
 
+      @Override
       public ItemStack dispenseStack(IBlockSource dispenserBlock, ItemStack stack) {
          World world = dispenserBlock.getWorld();
          IPosition iposition = BlockDispenser.func_149939_a(dispenserBlock);
@@ -155,6 +159,7 @@ public class DispenseBehaviourItemBrew implements IBehaviorDispenseItem {
          return stack;
       }
 
+      @Override
       protected void playDispenseSound(IBlockSource dispenserBlock) {
          dispenserBlock.getWorld().playAuxSFX(1002, dispenserBlock.getXInt(), dispenserBlock.getYInt(), dispenserBlock.getZInt(), 0);
       }

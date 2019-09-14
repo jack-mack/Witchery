@@ -14,6 +14,7 @@ public class CreaturePowerSpider extends CreaturePower {
       super(powerID, creatureType);
    }
 
+   @Override
    public void onActivate(World world, EntityPlayer player, int elapsedTicks, MovingObjectPosition mop) {
       if(!world.isRemote) {
          world.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (world.rand.nextFloat() * 0.4F + 0.8F));
@@ -22,6 +23,7 @@ public class CreaturePowerSpider extends CreaturePower {
 
    }
 
+   @Override
    public void onUpdate(World world, EntityPlayer player) {
       int blockX = MathHelper.floor_double(player.posX);
       int blockY = MathHelper.floor_double(player.posY + 1.0D);

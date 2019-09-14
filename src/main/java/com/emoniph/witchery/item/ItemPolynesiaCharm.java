@@ -56,6 +56,7 @@ public class ItemPolynesiaCharm extends ItemBase {
       this.setMaxStackSize(1);
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
       if(!world.isRemote) {
          boolean success = false;
@@ -95,11 +96,13 @@ public class ItemPolynesiaCharm extends ItemBase {
       return this.charmDemons;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack itemstack) {
       return EnumRarity.uncommon;
    }
 
+   @Override
    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4) {
       String localText = Witchery.resource(this.getUnlocalizedName() + ".tip");
       if(localText != null) {
@@ -150,14 +153,17 @@ public class ItemPolynesiaCharm extends ItemBase {
          this.playGreeting(this.animal, player);
       }
 
+      @Override
       public void setCustomer(EntityPlayer player) {
          this.customer = player;
       }
 
+      @Override
       public EntityPlayer getCustomer() {
          return this.customer;
       }
 
+      @Override
       public MerchantRecipeList getRecipes(EntityPlayer player) {
          NBTTagCompound nbtTag = this.animal.getEntityData();
          if(this.currentList != null) {
@@ -179,6 +185,7 @@ public class ItemPolynesiaCharm extends ItemBase {
          }
       }
 
+      @Override
       public void useRecipe(MerchantRecipe recipe) {
          if(this.animal != null && this.animal.isEntityAlive() && !this.animal.worldObj.isRemote) {
             recipe.incrementToolUses();
@@ -191,10 +198,12 @@ public class ItemPolynesiaCharm extends ItemBase {
          this.animal.playLivingSound();
       }
 
+      @Override
       public void func_110297_a_(ItemStack itemstack) {
          this.animal.playLivingSound();
       }
 
+      @Override
       @SideOnly(Side.CLIENT)
       public void setRecipes(MerchantRecipeList list) {}
 

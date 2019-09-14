@@ -30,22 +30,27 @@ public class RenderLeonard extends RenderLiving {
       super.rotateCorpse(entity, x, y, z);
    }
 
+   @Override
    public void doRender(EntityLiving entity, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderLeonard((EntityLeonard)entity, par2, par4, par6, par8, par9);
    }
 
+   @Override
    protected void rotateCorpse(EntityLivingBase par1EntityLivingBase, float par2, float par3, float par4) {
       this.rotateLeonardCorpse((EntityLeonard)par1EntityLivingBase, par2, par3, par4);
    }
 
+   @Override
    public void doRender(EntityLivingBase entity, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderLeonard((EntityLeonard)entity, par2, par4, par6, par8, par9);
    }
 
+   @Override
    public void doRender(Entity entity, double par2, double par4, double par6, float par8, float par9) {
       this.doRenderLeonard((EntityLeonard)entity, par2, par4, par6, par8, par9);
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(Entity entity) {
       return TEXTURE_URL;
    }

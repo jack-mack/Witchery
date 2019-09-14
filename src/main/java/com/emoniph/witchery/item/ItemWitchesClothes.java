@@ -58,11 +58,13 @@ public class ItemWitchesClothes extends ItemArmor {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
    }
 
+   @Override
    public Item setUnlocalizedName(String itemName) {
       ItemUtil.registerItem(this, itemName);
       return super.setUnlocalizedName(itemName);
    }
 
+   @Override
    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
       return stack != null && (stack.getItem() == Witchery.Items.WITCH_HAT || stack.getItem() == Witchery.Items.WITCH_ROBES || stack.getItem() == Witchery.Items.NECROMANCERS_ROBES || stack.getItem() == Witchery.Items.ICY_SLIPPERS || stack.getItem() == Witchery.Items.RUBY_SLIPPERS || stack.getItem() == Witchery.Items.SEEPING_SHOES || stack.getItem() == Witchery.Items.BABAS_HAT)?"witchery:textures/entities/witchclothes" + (type == null?"":"_overlay") + ".png":(stack != null && stack.getItem() == Witchery.Items.BITING_BELT?"witchery:textures/entities/witchclothes_legs" + (type == null?"":"_overlay") + ".png":(stack != null && stack.getItem() == Witchery.Items.BARK_BELT?"witchery:textures/entities/witchclothes" + (type == null?"2_legs":"_legs_overlay") + ".png":null));
    }
@@ -100,10 +102,12 @@ public class ItemWitchesClothes extends ItemArmor {
       return 0;
    }
 
+   @Override
    public boolean hasColor(ItemStack stack) {
       return stack == null || stack.getItem() != Witchery.Items.BABAS_HAT;
    }
 
+   @Override
    public int getColor(ItemStack stack) {
       if(!this.hasColor(stack)) {
          return super.getColor(stack);
@@ -127,16 +131,19 @@ public class ItemWitchesClothes extends ItemArmor {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getColorFromItemStack(ItemStack stack, int par2) {
       return super.getColorFromItemStack(stack, par2);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean requiresMultipleRenderPasses() {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIconFromDamageForRenderPass(int par1, int par2) {
       return this.getIconFromDamage(par1);
@@ -154,6 +161,7 @@ public class ItemWitchesClothes extends ItemArmor {
       return player.inventory.armorItemInSlot(1) != null && player.inventory.armorItemInSlot(1).getItem() == this;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack stack, int armorSlot) {
       if(this.modelClothesChest == null) {
@@ -213,16 +221,19 @@ public class ItemWitchesClothes extends ItemArmor {
       return null;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack stack) {
       return stack == null?EnumRarity.common:(stack.getItem() == Witchery.Items.BABAS_HAT?EnumRarity.epic:(stack.getItem() == Witchery.Items.BARK_BELT?EnumRarity.rare:EnumRarity.uncommon));
    }
 
+   @Override
    public String getItemStackDisplayName(ItemStack stack) {
       String baseName = super.getItemStackDisplayName(stack);
       return baseName;
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advancedTooltips) {
       String localText = Witchery.resource(this.getUnlocalizedName() + ".tip");
       String s1;

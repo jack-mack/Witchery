@@ -29,6 +29,7 @@ public class BlockDemonHeart extends BlockBaseContainer {
       this.setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 0.8F, 0.75F);
    }
 
+   @Override
    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
       int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
       if(l == 0) {
@@ -49,39 +50,48 @@ public class BlockDemonHeart extends BlockBaseContainer {
 
    }
 
+   @Override
    public TileEntity createNewTileEntity(World world, int metadata) {
       return new BlockDemonHeart.TileEntityDemonHeart();
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public int quantityDropped(Random rand) {
       return 1;
    }
 
+   @Override
    public Item getItemDropped(int par1, Random rand, int fortune) {
       return Witchery.Items.GENERIC;
    }
 
+   @Override
    public int damageDropped(int par1) {
       return Witchery.Items.GENERIC.itemDemonHeart.damageValue;
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       return Witchery.Items.GENERIC.itemDemonHeart.createStack();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
       double yMid = (double)y + 0.8D;
@@ -100,6 +110,7 @@ public class BlockDemonHeart extends BlockBaseContainer {
          return super.ticks;
       }
 
+      @Override
       public void updateEntity() {
          super.updateEntity();
          if(super.worldObj.isRemote && super.ticks % 25L == 0L) {

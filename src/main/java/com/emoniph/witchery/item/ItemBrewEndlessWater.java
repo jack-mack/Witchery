@@ -27,27 +27,32 @@ public class ItemBrewEndlessWater extends ItemBase {
       this.setMaxDamage(99);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean hasEffect(ItemStack stack, int pass) {
       return pass == 0;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean requiresMultipleRenderPasses() {
       return true;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(ItemStack stack, int pass) {
       return pass == 0?this.itemIconOverlay:super.itemIcon;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerIcons(IIconRegister iconRegister) {
       super.registerIcons(iconRegister);
       this.itemIconOverlay = iconRegister.registerIcon("witchery:brew_overlay");
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getColorFromItemStack(ItemStack stack, int pass) {
       if(pass == 0) {
@@ -58,6 +63,7 @@ public class ItemBrewEndlessWater extends ItemBase {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean expanded) {
       String localText = String.format(Witchery.resource("item.witchery:brew.water.tip"), new Object[]{Integer.valueOf(stack.getMaxDamage() - stack.getItemDamage() + 1).toString(), Integer.valueOf(stack.getMaxDamage() + 1).toString()});
@@ -75,6 +81,7 @@ public class ItemBrewEndlessWater extends ItemBase {
 
    }
 
+   @Override
    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
       if(!world.isRemote && stack.getItemDamage() <= stack.getMaxDamage()) {
          Block block = world.getBlock(x, y, z);

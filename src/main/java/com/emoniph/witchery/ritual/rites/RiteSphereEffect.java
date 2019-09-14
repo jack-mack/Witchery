@@ -24,6 +24,7 @@ public class RiteSphereEffect extends Rite {
       this.block = block;
    }
 
+   @Override
    public void addSteps(ArrayList steps, int intialStage) {
       steps.add(new RiteSphereEffect.StepExpansion(this, intialStage));
    }
@@ -41,10 +42,12 @@ public class RiteSphereEffect extends Rite {
          this.stage = initialStage;
       }
 
+      @Override
       public int getCurrentStage() {
          return (byte)this.stage;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(!this.activated) {
             if(ticks % 20L != 0L) {

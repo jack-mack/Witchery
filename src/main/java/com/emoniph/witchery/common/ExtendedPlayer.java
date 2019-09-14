@@ -126,8 +126,10 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
       this.player = player;
    }
 
+   @Override
    public void init(Entity entity, World world) {}
 
+   @Override
    public void saveNBTData(NBTTagCompound compound) {
       NBTTagCompound props = new NBTTagCompound();
       props.setInteger("PotionBottling", this.skillLevelPotionBottling);
@@ -187,6 +189,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
       compound.setTag("WitcheryExtendedPlayer", props);
    }
 
+   @Override
    public void loadNBTData(NBTTagCompound compound) {
       if(compound.hasKey("WitcheryExtendedPlayer")) {
          NBTTagCompound props = (NBTTagCompound)compound.getTag("WitcheryExtendedPlayer");

@@ -30,11 +30,13 @@ public class EntityWitchCat extends EntityOcelot implements IFamiliar {
       super.tasks.addTask(5, new EntityAIDimensionalFollowOwner(this, 1.0D, 10.0F, 5.0F));
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
       par1NBTTagCompound.setByte("Familiar", (byte)(this.isFamiliar()?1:0));
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
       if(par1NBTTagCompound.hasKey("Familiar")) {
@@ -43,24 +45,29 @@ public class EntityWitchCat extends EntityOcelot implements IFamiliar {
 
    }
 
+   @Override
    public void onUpdate() {
       super.isImmuneToFire = this.isFamiliar();
       super.onUpdate();
    }
 
+   @Override
    public int getTotalArmorValue() {
       return super.getTotalArmorValue() + (this.isFamiliar()?5:0);
    }
 
+   @Override
    public EntityLivingBase getOwner() {
       return this.isFamiliar() && !super.worldObj.isRemote?TameableUtil.getOwnerAccrossDimensions(this):super.getOwner();
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(26, Byte.valueOf((byte)0));
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
       boolean sitting = this.isSitting();
       boolean result = super.attackEntityFrom(par1DamageSource, par2);
@@ -71,6 +78,7 @@ public class EntityWitchCat extends EntityOcelot implements IFamiliar {
       return result;
    }
 
+   @Override
    public boolean isFamiliar() {
       return super.dataWatcher.getWatchableObjectByte(26) > 0;
    }
@@ -79,14 +87,17 @@ public class EntityWitchCat extends EntityOcelot implements IFamiliar {
       super.dataWatcher.updateObject(26, Byte.valueOf((byte)(familiar?1:0)));
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.cat.name");
    }
 
+   @Override
    protected int decreaseAirSupply(int par1) {
       return par1;
    }
 
+   @Override
    public boolean interact(EntityPlayer par1EntityPlayer) {
       ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
       if(this.isTamed()) {
@@ -152,6 +163,7 @@ public class EntityWitchCat extends EntityOcelot implements IFamiliar {
       return super.interact(par1EntityPlayer);
    }
 
+   @Override
    public void setMaxHealth(float maxHealth) {
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue((double)maxHealth);
       this.setHealth(maxHealth);
@@ -172,6 +184,7 @@ public class EntityWitchCat extends EntityOcelot implements IFamiliar {
       this.setHealth(oldCat.getHealth());
    }
 
+   @Override
    public void clearFamiliar() {
       this.setFamiliar(false);
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);

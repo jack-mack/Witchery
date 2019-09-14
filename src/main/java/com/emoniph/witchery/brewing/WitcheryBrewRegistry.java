@@ -150,6 +150,7 @@ public class WitcheryBrewRegistry {
       this.register((new BrewActionDispersal(Witchery.Items.GENERIC.itemWormwood.getBrewItemKey(), new AltarPower(0), new DispersalLiquid())).addNullifier(new BrewItemKey(Items.gunpowder), false).addNullifier(Witchery.Items.GENERIC.itemBatWool.getBrewItemKey(), false).addNullifier(Witchery.Items.GENERIC.itemArtichoke.getBrewItemKey(), false).addNullifier(Witchery.Items.GENERIC.itemWormwood.getBrewItemKey(), false).addNullifier(triggeredKey, false).addNullifier(new BrewItemKey(Items.wheat), false));
       this.register((new BrewActionDispersal(triggeredKey, new AltarPower(0), new DispersalTriggered())).addNullifier(new BrewItemKey(Items.gunpowder), false).addNullifier(Witchery.Items.GENERIC.itemBatWool.getBrewItemKey(), false).addNullifier(Witchery.Items.GENERIC.itemArtichoke.getBrewItemKey(), false).addNullifier(Witchery.Items.GENERIC.itemWormwood.getBrewItemKey(), false).addNullifier(triggeredKey, false).addNullifier(new BrewItemKey(Items.wheat), false));
       this.register(new BrewActionImpactModifier(Witchery.Items.GENERIC.itemAshWood.getBrewItemKey(), new BrewNamePartModifier(0, 0, false, 1, 0), new AltarPower(50)) {
+         @Override
          protected void onPrepareSplashPotion(World world, ModifiersImpact modifiers) {
             if(modifiers.extent < 1) {
                ++modifiers.extent;
@@ -158,6 +159,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionImpactModifier(Dye.COCOA_BEANS.getBrewItemKey(), new BrewNamePartModifier(0, 0, false, 1, 0), new AltarPower(100)) {
+         @Override
          protected void onPrepareSplashPotion(World world, ModifiersImpact modifiers) {
             if(modifiers.extent < 2) {
                ++modifiers.extent;
@@ -166,6 +168,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionImpactModifier(new BrewItemKey(Witchery.Blocks.WISPY_COTTON), new BrewNamePartModifier(0, 0, false, 1, 0), new AltarPower(150)) {
+         @Override
          protected void onPrepareSplashPotion(World world, ModifiersImpact modifiers) {
             if(modifiers.extent < 3) {
                ++modifiers.extent;
@@ -174,6 +177,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionImpactModifier(Witchery.Items.GENERIC.itemBelladonnaFlower.getBrewItemKey(), new BrewNamePartModifier(0, 0, false, 0, 1), new AltarPower(50)) {
+         @Override
          protected void onPrepareSplashPotion(World world, ModifiersImpact modifiers) {
             if(modifiers.lifetime < 1) {
                ++modifiers.lifetime;
@@ -182,6 +186,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionImpactModifier(Dye.LAPIS_LAZULI.getBrewItemKey(), new BrewNamePartModifier(0, 0, false, 0, 1), new AltarPower(100)) {
+         @Override
          protected void onPrepareSplashPotion(World world, ModifiersImpact modifiers) {
             if(modifiers.lifetime < 2) {
                ++modifiers.lifetime;
@@ -190,6 +195,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionImpactModifier(new BrewItemKey(Blocks.end_stone), new BrewNamePartModifier(0, 0, false, 0, 1), new AltarPower(150)) {
+         @Override
          protected void onPrepareSplashPotion(World world, ModifiersImpact modifiers) {
             if(modifiers.lifetime < 3) {
                ++modifiers.lifetime;
@@ -208,71 +214,84 @@ public class WitcheryBrewRegistry {
       }
 
       this.register(new BrewActionModifier(new BrewItemKey(Items.gold_nugget), (BrewNamePart)null, new AltarPower(50)) {
+         @Override
          public void augmentEffectModifiers(ModifiersEffect modifiers) {
             modifiers.noParticles = true;
          }
       });
       this.register(new BrewActionModifier(Witchery.Items.GENERIC.itemRowanBerries.getBrewItemKey(), (BrewNamePart)null, new AltarPower(50)) {
+         @Override
          public int getDrinkSpeedModifiers() {
             return -8;
          }
       });
       this.register(new BrewActionModifier(Witchery.Items.GENERIC.itemExhaleOfTheHornedOne.getBrewItemKey(), (BrewNamePart)null, new AltarPower(0)) {
+         @Override
          public int getDrinkSpeedModifiers() {
             return -4;
          }
       });
       this.register(new BrewActionModifier(new BrewItemKey(Witchery.Blocks.SPANISH_MOSS), (BrewNamePart)null, new AltarPower(50)) {
+         @Override
          public int getDrinkSpeedModifiers() {
             return -4;
          }
       });
       this.register(new BrewActionModifier(Witchery.Items.GENERIC.itemMandrakeRoot.getBrewItemKey(), (BrewNamePart)null, new AltarPower(0)) {
+         @Override
          public boolean augmentEffectLevels(EffectLevelCounter totalEffects) {
             totalEffects.increaseAvailableLevelIf(new EffectLevel(1), new EffectLevel(1));
             return true;
          }
       });
       this.register(new BrewActionModifier(new BrewItemKey(Items.nether_wart), (BrewNamePart)null, new AltarPower(50)) {
+         @Override
          public boolean augmentEffectLevels(EffectLevelCounter totalEffects) {
             totalEffects.increaseAvailableLevelIf(new EffectLevel(2), new EffectLevel(2));
             return true;
          }
       });
       this.register(new BrewActionModifier(Witchery.Items.GENERIC.itemTearOfTheGoddess.getBrewItemKey(), (BrewNamePart)null, new AltarPower(100)) {
+         @Override
          public boolean augmentEffectLevels(EffectLevelCounter totalEffects) {
             totalEffects.increaseAvailableLevelIf(new EffectLevel(2), new EffectLevel(4));
             return true;
          }
       });
       this.register(new BrewActionModifier(Witchery.Items.GENERIC.itemDiamondVapour.getBrewItemKey(), (BrewNamePart)null, new AltarPower(150)) {
+         @Override
          public boolean augmentEffectLevels(EffectLevelCounter totalEffects) {
             totalEffects.increaseAvailableLevelIf(new EffectLevel(2), new EffectLevel(6));
             return true;
          }
       });
       this.register(new BrewActionModifier(new BrewItemKey(Items.diamond), (BrewNamePart)null, new AltarPower(150)) {
+         @Override
          public boolean augmentEffectLevels(EffectLevelCounter totalEffects) {
             totalEffects.increaseAvailableLevelIf(new EffectLevel(2), new EffectLevel(8));
             return true;
          }
       }).setYieldModifier(new ModifierYield(-2));
       this.register(new BrewActionModifier(new BrewItemKey(Items.nether_star), new BrewNamePartModifier(0, 0, false, 0, 0, true), new AltarPower(150)) {
+         @Override
          public boolean augmentEffectLevels(EffectLevelCounter totalEffects) {
             totalEffects.increaseAvailableLevelIf(new EffectLevel(4), new EffectLevel(10));
             return true;
          }
+         @Override
          public void augmentEffectModifiers(ModifiersEffect modifiers) {
             modifiers.powerhCeilingDisabled = true;
          }
       });
       this.register(new BrewActionModifier(Witchery.Items.GENERIC.itemKobolditePentacle.getBrewItemKey(), (BrewNamePart)null, new AltarPower(1000)) {
+         @Override
          public boolean augmentEffectLevels(EffectLevelCounter totalEffects) {
             totalEffects.increaseAvailableLevelIf(new EffectLevel(6), new EffectLevel(16));
             return true;
          }
       });
       this.register(new BrewActionModifier(new BrewItemKey(Items.glowstone_dust), new BrewNamePartModifier(1, 0, false, 0, 0), new AltarPower(50)) {
+         @Override
          public void augmentEffectModifiers(ModifiersEffect modifiers) {
             if(modifiers.strength < 1) {
                modifiers.increaseStrength(1);
@@ -281,6 +300,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionModifier(new BrewItemKey(Items.blaze_rod), new BrewNamePartModifier(1, 0, false, 0, 0), new AltarPower(100)) {
+         @Override
          public void augmentEffectModifiers(ModifiersEffect modifiers) {
             if(modifiers.strength < 2) {
                modifiers.increaseStrength(1);
@@ -289,6 +309,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionModifier(Witchery.Items.GENERIC.itemAttunedStoneCharged.getBrewItemKey(), new BrewNamePartModifier(1, 0, false, 0, 0), new AltarPower(150)) {
+         @Override
          public void augmentEffectModifiers(ModifiersEffect modifiers) {
             if(modifiers.strength < 3) {
                modifiers.increaseStrength(1);
@@ -297,6 +318,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionModifier(new BrewItemKey(Items.redstone), new BrewNamePartModifier(0, 1, false, 0, 0), new AltarPower(50)) {
+         @Override
          public void augmentEffectModifiers(ModifiersEffect modifiers) {
             if(modifiers.duration < 1) {
                modifiers.increaseDuration(1);
@@ -305,6 +327,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionModifier(new BrewItemKey(Blocks.obsidian), new BrewNamePartModifier(0, 1, false, 0, 0), new AltarPower(100)) {
+         @Override
          public void augmentEffectModifiers(ModifiersEffect modifiers) {
             if(modifiers.duration < 2) {
                modifiers.increaseDuration(1);
@@ -313,6 +336,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionModifier(new BrewItemKey(Witchery.Items.SEEDS_MINDRAKE), new BrewNamePartModifier(0, 1, false, 0, 0), new AltarPower(150)) {
+         @Override
          public void augmentEffectModifiers(ModifiersEffect modifiers) {
             if(modifiers.duration < 3) {
                modifiers.increaseDuration(1);
@@ -321,29 +345,35 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionModifier(new BrewItemKey(Items.fermented_spider_eye), new BrewNamePartModifier(0, 0, true, 0, 0), new AltarPower(25)) {
+         @Override
          public void augmentEffectModifiers(ModifiersEffect modifiers) {
             modifiers.inverted = true;
          }
       });
       this.register(new BrewActionModifier(new BrewItemKey(Items.netherbrick), (BrewNamePart)null, new AltarPower(50)) {
+         @Override
          public void augmentEffectModifiers(ModifiersEffect modifiers) {
             modifiers.disableBlockTarget = true;
          }
       });
       this.register(new BrewActionModifier(new BrewItemKey(Items.brick), (BrewNamePart)null, new AltarPower(50)) {
+         @Override
          public void augmentEffectModifiers(ModifiersEffect modifiers) {
             modifiers.disableEntityTarget = true;
          }
       });
       this.register(new BrewActionModifier(new BrewItemKey(Items.fish, 2), (BrewNamePart)null, new AltarPower(200)) {
+         @Override
          public void augmentEffectModifiers(ModifiersEffect modifiers) {
             modifiers.strengthCeilingDisabled = true;
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Items.snowball), (new BrewNamePart("witchery:brew.snow")).setBaseDuration(TimeUtil.minsToTicks(3)), new AltarPower(0), new Probability(1.0D), new EffectLevel(1)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {
             PotionSnowTrail.createSnowCovering(world, x, y, z, 2 + 2 * modifiers.getStrength(), modifiers.caster);
          }
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
             BrewPotionEffect.applyPotionEffect(targetEntity, modifiers, Witchery.Potions.SNOW_TRAIL, TimeUtil.minsToTicks(3), modifiers.noParticles, modifiers.caster);
          }
@@ -355,6 +385,7 @@ public class WitcheryBrewRegistry {
       for(i$ = 0; i$ < len$; ++i$) {
          final Dye dye0 = arr$[i$];
          this.register(new BrewCurseEffect(dye0.getBrewItemKey(), new BrewNamePart("witchery:potion.colorful." + dye0.unlocalizedName), new AltarPower(0), new Probability(1.0D), Witchery.Potions.COLORFUL, (long)TimeUtil.secsToTicks(90), new EffectLevel(1), false) {
+            @Override
             public void applyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {
                if(!modifiers.disableEntityTarget) {
                   if(!modifiers.protectedFromNegativePotions) {
@@ -371,6 +402,7 @@ public class WitcheryBrewRegistry {
       this.register(new BrewPotionEffect(Witchery.Items.GENERIC.itemEnderDew.getBrewItemKey(), new BrewNamePart("witchery:potion.enderinhibition"), new AltarPower(200), new Probability(1.0D), Witchery.Potions.ENDER_INHIBITION, (long)TimeUtil.secsToTicks(90), new EffectLevel(1)));
       this.register(new BrewPotionEffect(new BrewItemKey(Items.wheat), new BrewNamePart("witchery:brew.moonshine"), new AltarPower(0), new Probability(1.0D), Witchery.Potions.FEEL_NO_PAIN, (long)TimeUtil.secsToTicks(90), new EffectLevel(1)));
       this.register(new BrewActionEffect(new BrewItemKey(Items.coal), new BrewNamePart("witchery:brew.extinguish"), new AltarPower(0), new Probability(1.0D), new EffectLevel(1)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {
             if(modifiers.getStrength() > 1 || !world.provider.isHellWorld) {
                if(modifiers.getStrength() > 0 && targetEntity instanceof EntityBlaze) {
@@ -383,9 +415,11 @@ public class WitcheryBrewRegistry {
             }
 
          }
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, final int radius, final ModifiersEffect modifiers, ItemStack stack) {
             if(modifiers.getStrength() > 1 || !world.provider.isHellWorld) {
                (new BlockActionCircle() {
+                  @Override
                   public void onBlock(World world, int x, int y, int z) {
                      for(int dy = y - radius; dy <= y + radius; ++dy) {
                         Block block = world.getBlock(x, dy, z);
@@ -402,14 +436,17 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Blocks.stone), new BrewNamePart("witchery:brew.dissipate"), new AltarPower(0), new Probability(1.0D), new EffectLevel(1)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {
             if(targetEntity instanceof EntitySummonedUndead) {
                targetEntity.attackEntityFrom(DamageSource.causeIndirectMagicDamage(modifiers.caster, modifiers.caster), (float)(modifiers.getStrength() + 1) * 5.0F);
             }
 
          }
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, final int radius, final ModifiersEffect modifiers, ItemStack stack) {
             (new BlockActionCircle() {
+               @Override
                public void onBlock(World world, int x, int y, int z) {
                   for(int dy = y - radius; dy <= y + radius; ++dy) {
                      Block block = world.getBlock(x, dy, z);
@@ -438,6 +475,7 @@ public class WitcheryBrewRegistry {
          {
             this.BLOCKS = new Block[]{Blocks.yellow_flower, Blocks.red_flower, Blocks.red_flower, Blocks.red_flower, Blocks.red_flower, Blocks.red_flower, Blocks.red_flower, Blocks.red_flower, Blocks.red_flower, Blocks.red_flower};
          }
+         @Override
          protected void onCircleBlock(World world, int x, int y, int z, ModifiersEffect modifiers, Count counter) {
             for(int dy = y - 1; dy <= y + 1; ++dy) {
                if(BlockUtil.isReplaceableBlock(world, x, dy, z, modifiers.caster) && !world.getBlock(x, dy, z).getMaterial().isLiquid() && Blocks.yellow_flower.canPlaceBlockAt(world, x, dy, z) && world.rand.nextInt(8 - modifiers.getStrength()) == 0) {
@@ -456,6 +494,7 @@ public class WitcheryBrewRegistry {
          {
             this.BONEMEAL = Dye.BONE_MEAL.createStack();
          }
+         @Override
          protected void onCircleBlock(World world, int x, int y, int z, ModifiersEffect modifiers, Count counter) {
             for(int dy = y + 1; dy >= y - 1; --dy) {
                Block block = world.getBlock(x, dy, z);
@@ -471,6 +510,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionBlockCircle(new BrewItemKey(Items.apple), new BrewNamePart("witchery:brew.harvesting"), new AltarPower(0), new EffectLevel(1)) {
+         @Override
          protected void onCircleBlock(World world, int x, int y, int z, ModifiersEffect modifiers, Count counter) {
             for(int dy = y - 1; dy <= y + 1; ++dy) {
                Block block = world.getBlock(x, dy, z);
@@ -496,6 +536,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionBlockCircle(new BrewItemKey(Blocks.dirt), new BrewNamePart("witchery:brew.tilling"), new AltarPower(0), new EffectLevel(1)) {
+         @Override
          protected void onCircleBlock(World world, int x, int y, int z, ModifiersEffect modifiers, Count counter) {
             for(int dy = y - 1; dy <= y + 1; ++dy) {
                Block block = world.getBlock(x, dy, z);
@@ -512,6 +553,7 @@ public class WitcheryBrewRegistry {
       });
       this.register(new BrewActionPlanting(new BrewItemKey(Items.wheat_seeds), new BrewNamePart("witchery:brew.planting"), new AltarPower(0), new EffectLevel(1)));
       this.register(new BrewActionEffect(new BrewItemKey(Blocks.brown_mushroom), new BrewNamePart("witchery:brew.pruning"), new AltarPower(0), new Probability(1.0D), new EffectLevel(1)) {
+         @Override
          protected void doApplyToBlock(World world, int posX, int posY, int posZ, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack stack) {
             int BLOCK_RADIUS = radius - 1;
             int BLOCK_RADIUS_SQ = BLOCK_RADIUS * BLOCK_RADIUS;
@@ -540,9 +582,11 @@ public class WitcheryBrewRegistry {
       });
       this.register(new BrewActionFelling(Items.string, 0, new AltarPower(0), new EffectLevel(1)));
       this.register(new BrewActionEffect(new BrewItemKey(Items.flint), new BrewNamePart("witchery:brew.pulverisation"), new AltarPower(250), new Probability(1.0D), new EffectLevel(1)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, final ModifiersEffect modifiers, ItemStack actionStack) {
             if(!world.isRemote) {
                (new BlockActionSphere() {
+                  @Override
                   public void onBlock(World world, int x, int y, int z) {
                      Block block = world.getBlock(x, y, z);
                      if(BlockProtect.checkModsForBreakOK(world, x, y, z, block, world.getBlockMetadata(x, y, z), modifiers.caster) && BlockProtect.canBreak(block, world)) {
@@ -572,9 +616,11 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Blocks.sand), new BrewNamePart("witchery:brew.tidehold"), new AltarPower(0), new Probability(1.0D), new EffectLevel(1)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, final ModifiersEffect modifiers, ItemStack actionStack) {
             if(!world.isRemote) {
                (new BlockActionSphere() {
+                  @Override
                   public void onBlock(World world, int x, int y, int z) {
                      Block block = world.getBlock(x, y, z);
                      if(block == Blocks.water || block == Blocks.flowing_water) {
@@ -590,6 +636,7 @@ public class WitcheryBrewRegistry {
       this.register(new BrewActionLilify(new BrewItemKey(Blocks.waterlily), new BrewNamePart("witchery:brew.lilify"), new AltarPower(200), new EffectLevel(1)));
       this.register(new BrewPotionEffect(Witchery.Items.GENERIC.itemWolfsbane.getBrewItemKey(), new BrewNamePart("witchery:potion.wolfsbane"), new AltarPower(0), new Probability(1.0D), Witchery.Potions.WOLFSBANE, (long)TimeUtil.secsToTicks(60), new EffectLevel(1)));
       this.register(new BrewActionEffect(Witchery.Items.GENERIC.itemPurifiedMilk.getBrewItemKey(), new BrewNamePart("witchery:brew.removedebuffs"), new AltarPower(200), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {
             ArrayList effectsToRemove = new ArrayList();
             Collection effects = targetEntity.getActivePotionEffects();
@@ -640,6 +687,7 @@ public class WitcheryBrewRegistry {
             }
 
          }
+         @Override
          protected void doApplyRitualToEntity(World world, EntityLivingBase targetEntity, ModifiersRitual ritualModifiers, ModifiersEffect modifiers, ItemStack stack) {
             ArrayList effectsToRemove = new ArrayList();
             ArrayList effectsToAdd = new ArrayList();
@@ -701,6 +749,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(Witchery.Items.GENERIC.itemReekOfMisfortune.getBrewItemKey(), new BrewNamePart("witchery:brew.removebuffs"), new AltarPower(250), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {
             ArrayList effectsToRemove = new ArrayList();
             Collection effects = targetEntity.getActivePotionEffects();
@@ -724,9 +773,11 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Blocks.cobblestone), new BrewNamePart("witchery:brew.lavahold"), new AltarPower(100), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, final ModifiersEffect modifiers, ItemStack actionStack) {
             if(!world.isRemote) {
                (new BlockActionSphere() {
+                  @Override
                   public void onBlock(World world, int x, int y, int z) {
                      Block block = world.getBlock(x, y, z);
                      if(block == Blocks.lava || block == Blocks.flowing_lava) {
@@ -755,10 +806,12 @@ public class WitcheryBrewRegistry {
       this.register(new BrewPotionEffect(new BrewItemKey(Blocks.red_mushroom), new BrewNamePart("witchery:potion.poisonweapons"), new AltarPower(200), new Probability(1.0D), Witchery.Potions.POISON_WEAPONS, (long)TimeUtil.secsToTicks(90), new EffectLevel(2)));
       this.register(new BrewPotionEffect(new BrewItemKey(Blocks.web), new BrewNamePart("witchery:potion.reflectprojectiles", "witchery:potion.attractprojectiles"), new AltarPower(250), new Probability(1.0D), Witchery.Potions.REFLECT_PROJECTILES, (long)TimeUtil.secsToTicks(90), Witchery.Potions.ATTRACT_PROJECTILES, (long)TimeUtil.secsToTicks(45), new EffectLevel(2)));
       this.register(new BrewActionEffect(Witchery.Items.GENERIC.itemBatBall.getBrewItemKey(), new BrewNamePart("witchery:brew.batburst"), new AltarPower(1000), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {
             int BAT_COUNT = (modifiers.powerScalingFactor == 1.0D && !modifiers.isGlancing && modifiers.strengthPenalty <= 0?10:1) + modifiers.getStrength();
             this.explodeBats(world, new Coord(x, y, z), side, BAT_COUNT);
          }
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
             if(!(targetEntity instanceof EntityOwl) && !(targetEntity instanceof EntityBat)) {
                int BAT_COUNT = (modifiers.powerScalingFactor == 1.0D && !modifiers.isGlancing?10:1) + modifiers.getStrength();
@@ -785,6 +838,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(Witchery.Items.GENERIC.itemOwletsWing.getBrewItemKey(), new BrewNamePart("witchery:brew.bodega"), new AltarPower(1000), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
             if(modifiers.caster != null && Familiar.hasActiveBroomMasteryFamiliar(modifiers.caster) && !(targetEntity instanceof EntityOwl) && !(targetEntity instanceof EntityBat)) {
                int BIRD_COUNT = (modifiers.powerScalingFactor == 1.0D && !modifiers.isGlancing?3 + world.rand.nextInt(2):1) + modifiers.getStrength();
@@ -807,6 +861,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(Witchery.Items.GENERIC.itemBreathOfTheGoddess.getBrewItemKey(), new BrewNamePart("witchery:brew.airhike"), new AltarPower(750), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
             double motionY = 0.6D + 0.2D * (double)modifiers.getStrength();
             targetEntity.fallDistance = 0.0F;
@@ -819,6 +874,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Items.slime_ball), new BrewNamePart("witchery:brew.frogtongue"), new AltarPower(150), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
             if(modifiers.getStrength() > 0 && !(modifiers.caster instanceof FakePlayer)) {
                EntityUtil.pullTowards(world, targetEntity, new EntityPosition(modifiers.caster), 0.05D, 0.0D);
@@ -827,6 +883,7 @@ public class WitcheryBrewRegistry {
             }
 
          }
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack stack) {
             double R = (double)radius;
             double R_SQ = R * R;
@@ -852,6 +909,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Blocks.pumpkin), new BrewNamePart("witchery:brew.harmundead"), new AltarPower(200), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
             int strength = Math.min(modifiers.getStrength(), modifiers.strengthCeilingDisabled?3:1);
             if(CreatureUtil.isUndead(targetEntity)) {
@@ -863,6 +921,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Blocks.red_flower, 1), new BrewNamePart("witchery:brew.harminsects"), new AltarPower(200), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
             int strength = Math.min(modifiers.getStrength(), modifiers.strengthCeilingDisabled?3:1);
             if(CreatureUtil.isInsect(targetEntity)) {
@@ -874,12 +933,14 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(Witchery.Items.GENERIC.itemOilOfVitriol.getBrewItemKey(), new BrewNamePart("witchery:brew.erosion"), new AltarPower(200), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, final ModifiersEffect modifiers, ItemStack actionStack) {
             final Count obsidianCount = new Count();
 
             for(int r = radius; r > 0; --r) {
                int var10000 = radius - r;
                (new BlockActionCircle() {
+                  @Override
                   public void onBlock(World world, int x, int y, int z) {
                      Block block = world.getBlock(x, y, z);
                      if(BlockProtect.checkModsForBreakOK(world, x, y, z, block, world.getBlockMetadata(x, y, z), modifiers.caster) && BlockProtect.canBreak(block, world)) {
@@ -895,6 +956,7 @@ public class WitcheryBrewRegistry {
             SoundEffect.RANDOM_FIZZ.playAt(world, (double)x, (double)y, (double)z, 1.0F, 2.0F);
             SpawnUtil.spawnEntityItem(world, (double)x, (double)y, (double)z, Blocks.obsidian, obsidianCount.get());
          }
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
             if(world.rand.nextInt(MathHelper.ceiling_double_int(5.0D / modifiers.powerScalingFactor)) == 0) {
                targetEntity.attackEntityFrom(DamageSource.causeThrownDamage(targetEntity, modifiers.caster), (float)MathHelper.ceiling_double_int(8.0D * modifiers.powerScalingFactor));
@@ -913,6 +975,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Blocks.netherrack), new BrewNamePart("witchery:brew.levelling"), new AltarPower(200), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int r, final ModifiersEffect modifiers, ItemStack actionStack) {
             final int y0 = modifiers.ritualised?y - 1:y;
             int radius = modifiers.ritualised?r + (modifiers.getStrength() + 1) * 3:r;
@@ -940,6 +1003,7 @@ public class WitcheryBrewRegistry {
             }
 
             (new BlockActionCircle() {
+               @Override
                public void onBlock(World world, int x, int y, int z) {
                   for(int dy = y0 + 1; dy < y0 + 4 + s; ++dy) {
                      Block block = world.getBlock(x, dy, z);
@@ -969,6 +1033,7 @@ public class WitcheryBrewRegistry {
             for(int dy = y0; dy >= y0 - (4 + s); --dy) {
                final int newy = dy;
                (new BlockActionCircle() {
+                  @Override
                   public void onBlock(World world, int x, int y, int z) {
                      world.getBlock(x, newy, z);
                      if(BlockUtil.isReplaceableBlock(world, x, newy, z, modifiers.caster)) {
@@ -1007,9 +1072,11 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(Witchery.Items.GENERIC.itemWeb.getBrewItemKey(), new BrewNamePart("witchery:brew.webs"), new AltarPower(200), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {
             this.placeWeb(world, new Coord(x, y, z), modifiers, side, modifiers.caster);
          }
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
             this.placeWeb(world, new Coord(targetEntity), modifiers, ForgeDirection.UNKNOWN, modifiers.caster);
          }
@@ -1046,6 +1113,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Blocks.vine), (new BrewNamePart("witchery:brew.vines")).setBaseDuration(TimeUtil.secsToTicks(90)), new AltarPower(150), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {
             boolean meta = false;
             byte var14;
@@ -1080,11 +1148,13 @@ public class WitcheryBrewRegistry {
             }
 
          }
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
             BrewPotionEffect.applyPotionEffect(targetEntity, modifiers, Witchery.Potions.WRAPPED_IN_VINE, TimeUtil.secsToTicks(90), modifiers.noParticles, modifiers.caster);
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Blocks.cactus), (new BrewNamePart("witchery:brew.thorns")).setBaseDuration(TimeUtil.secsToTicks(90)), new AltarPower(150), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {
             Coord coord = null;
             if(world.getBlock(x, y, z) == Witchery.Blocks.CACTUS) {
@@ -1110,18 +1180,22 @@ public class WitcheryBrewRegistry {
             }
 
          }
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
             BrewPotionEffect.applyPotionEffect(targetEntity, modifiers, Witchery.Potions.SPIKED, TimeUtil.secsToTicks(90), modifiers.noParticles, modifiers.caster);
          }
       });
       this.register(new BrewActionSprouting(Witchery.Items.GENERIC.itemBranchEnt.getBrewItemKey(), (new BrewNamePart("witchery:brew.sprouting")).setBaseDuration(TimeUtil.secsToTicks(15)), new AltarPower(350), new Probability(1.0D), new EffectLevel(2)));
       this.register(new BrewActionEffect(Witchery.Items.GENERIC.itemIcyNeedle.getBrewItemKey(), (new BrewNamePart("witchery:brew.cold")).setBaseDuration(TimeUtil.minsToTicks(3)), new AltarPower(200), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {
             if(BlockProtect.checkModsForBreakOK(world, x, y, z, modifiers.caster)) {
                (new BlockActionReplaceSphere() {
+                  @Override
                   protected boolean onShouldReplace(World world, int x, int y, int z, Block block) {
                      return block.getMaterial() == Material.water;
                   }
+                  @Override
                   protected void onReplaceBlock(World world, int x, int y, int z, Block block) {
                      world.setBlock(x, y, z, Blocks.ice);
                   }
@@ -1129,11 +1203,13 @@ public class WitcheryBrewRegistry {
             }
 
          }
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
             BrewPotionEffect.applyPotionEffect(targetEntity, modifiers, Witchery.Potions.CHILLED, TimeUtil.minsToTicks(3), modifiers.noParticles, modifiers.caster);
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Items.stick), new BrewNamePart("witchery:brew.knockback"), new AltarPower(200), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
             if(modifiers.impactLocation != null) {
                EntityUtil.pushback(world, targetEntity, modifiers.impactLocation, 1.0D + (double)modifiers.getStrength() * modifiers.powerScalingFactor, 0.5D + (double)modifiers.getStrength() * 0.2D);
@@ -1155,6 +1231,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Blocks.sapling, 0), new BrewNamePart("witchery:brew.treeoak"), new AltarPower(200), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {
             Coord location = BlockUtil.getClosestPlantableBlock(world, x, y, z, side, modifiers.caster);
             if(location != null) {
@@ -1164,6 +1241,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Blocks.sapling, 1), new BrewNamePart("witchery:brew.treespruce"), new AltarPower(200), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {
             Coord location = BlockUtil.getClosestPlantableBlock(world, x, y, z, side, modifiers.caster);
             if(location != null) {
@@ -1173,6 +1251,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Blocks.sapling, 2), new BrewNamePart("witchery:brew.treebirch"), new AltarPower(200), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {
             Coord location = BlockUtil.getClosestPlantableBlock(world, x, y, z, side, modifiers.caster);
             if(location != null) {
@@ -1182,6 +1261,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Blocks.sapling, 3), new BrewNamePart("witchery:brew.treejungle"), new AltarPower(200), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {
             Coord location = BlockUtil.getClosestPlantableBlock(world, x, y, z, side, modifiers.caster);
             if(location != null) {
@@ -1191,6 +1271,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Blocks.sapling, 4), new BrewNamePart("witchery:brew.treeacacia"), new AltarPower(200), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {
             Coord location = BlockUtil.getClosestPlantableBlock(world, x, y, z, side, modifiers.caster);
             if(location != null) {
@@ -1200,6 +1281,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Blocks.sapling, 5), new BrewNamePart("witchery:brew.treedarkoak"), new AltarPower(200), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {
             Coord location = BlockUtil.getClosestPlantableBlock(world, x, y, z, side, modifiers.caster);
             if(location != null) {
@@ -1209,6 +1291,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Witchery.Blocks.SAPLING, 0), new BrewNamePart("witchery:brew.treerowan"), new AltarPower(200), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {
             Coord location = BlockUtil.getClosestPlantableBlock(world, x, y, z, side, modifiers.caster);
             if(location != null) {
@@ -1218,6 +1301,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Witchery.Blocks.SAPLING, 1), new BrewNamePart("witchery:brew.treealder"), new AltarPower(200), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {
             Coord location = BlockUtil.getClosestPlantableBlock(world, x, y, z, side, modifiers.caster);
             if(location != null) {
@@ -1229,6 +1313,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Witchery.Blocks.SAPLING, 2), new BrewNamePart("witchery:brew.treehawthorn"), new AltarPower(200), new Probability(1.0D), new EffectLevel(2)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {
             Coord location = BlockUtil.getClosestPlantableBlock(world, x, y, z, side, modifiers.caster);
             if(location != null) {
@@ -1240,6 +1325,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(Witchery.Items.GENERIC.itemHeartOfGold.getBrewItemKey(), new BrewNamePart("witchery:brew.animalattraction", "witchery:brew.animalrepulsion"), new AltarPower(500), new Probability(1.0D), new EffectLevel(4)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
             double radius = (double)((modifiers.getStrength() + 1) * 16);
             double radiusSq = radius * radius;
@@ -1308,6 +1394,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(Witchery.Items.GENERIC.itemSilverDust.getBrewItemKey(), new BrewNamePart("witchery:brew.harmwerewolves"), new AltarPower(1000), new Probability(1.0D), new EffectLevel(4)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
             int strength = Math.min(modifiers.getStrength(), modifiers.strengthCeilingDisabled?3:1);
             if(CreatureUtil.isWerewolf(targetEntity)) {
@@ -1317,6 +1404,7 @@ public class WitcheryBrewRegistry {
             }
 
          }
+         @Override
          protected void doApplyRitualToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersRitual ritualModifiers, ModifiersEffect modifiers, ItemStack stack) {
             if(!world.isRemote) {
                WorldInfo worldinfo = ((WorldServer)world).getWorldInfo();
@@ -1335,6 +1423,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Witchery.Items.SEEDS_GARLIC), new BrewNamePart("witchery:brew.weakenvampires"), new AltarPower(500), new Probability(1.0D), new EffectLevel(4)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
             if(CreatureUtil.isVampire(targetEntity)) {
                if(targetEntity instanceof EntityPlayer) {
@@ -1349,12 +1438,14 @@ public class WitcheryBrewRegistry {
       });
       this.register(new BrewPotionEffect(new BrewItemKey(Items.skull, 1), new BrewNamePart("witchery:brew.wither"), new AltarPower(200), new Probability(1.0D), Potion.wither, (long)TimeUtil.secsToTicks(15), new EffectLevel(4)));
       this.register(new BrewActionEffect(new BrewItemKey(Witchery.Blocks.GLINT_WEED), new BrewNamePart("witchery:brew.inferno"), new AltarPower(750), new Probability(1.0D), new EffectLevel(3)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack stack) {
             if(!world.isRemote && !modifiers.isGlancing) {
                EntitySplatter.splatter(world, new Coord(x, y, z, side), modifiers.getStrength());
             }
 
          }
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {
             if(!world.isRemote && !modifiers.isGlancing && targetEntity instanceof EntityLivingBase) {
                new Coord(targetEntity);
@@ -1379,6 +1470,7 @@ public class WitcheryBrewRegistry {
       this.register(new BrewPotionEffect(new BrewItemKey(Items.golden_apple), new BrewNamePart("witchery:brew.absorbsion"), new AltarPower(1000), new Probability(1.0D), Potion.field_76444_x, (long)TimeUtil.secsToTicks(30), new EffectLevel(4)));
       this.register(new BrewPotionEffect(new BrewItemKey(Items.golden_apple, 1), new BrewNamePart("witchery:brew.healthboost"), new AltarPower(1000), new Probability(1.0D), Potion.field_76434_w, (long)TimeUtil.minsToTicks(2), new EffectLevel(4)));
       this.register(new BrewActionEffect(Witchery.Items.GENERIC.itemSubduedSpirit.getBrewItemKey(), new BrewNamePart("witchery:brew.wasting", "witchery:brew.fullness"), new AltarPower(500), new Probability(1.0D), new EffectLevel(4)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {
             int hungerTicks = modifiers.getModifiedDuration(TimeUtil.secsToTicks(20));
             int poisonTicks = Math.max(modifiers.getModifiedDuration(TimeUtil.secsToTicks(3)), 40);
@@ -1408,6 +1500,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(Witchery.Items.GENERIC.itemOdourOfPurity.getBrewItemKey(), new BrewNamePart("witchery:brew.revealing"), new AltarPower(100), new Probability(1.0D), new EffectLevel(4)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {
             boolean doDamage = false;
             if(targetEntity.isPotionActive(Potion.invisibility)) {
@@ -1442,11 +1535,13 @@ public class WitcheryBrewRegistry {
       this.register(new BrewActionBlight(new BrewItemKey(Items.poisonous_potato), new BrewNamePart("witchery:brew.blight"), new AltarPower(2000), new Probability(1.0D), new EffectLevel(4)));
       this.register(new BrewActionTranspose(new BrewItemKey(Items.ender_pearl), new BrewNamePart("witchery:brew.transpose"), new AltarPower(1000), new Probability(1.0D), new EffectLevel(4)));
       this.register(new BrewActionEffect(new BrewItemKey(Items.iron_ingot), new BrewNamePart("witchery:brew.transposeore"), new AltarPower(2000), new Probability(1.0D), new EffectLevel(4)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack stack) {
             int depth = radius + modifiers.strength;
             Block[] blockTypes = new Block[]{Blocks.iron_ore, Blocks.gold_ore, Blocks.lapis_ore, Blocks.emerald_ore};
             this.slurpOres(world, x, y, z, radius, depth, blockTypes, modifiers, y + 2);
          }
+         @Override
          protected void doApplyRitualToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersRitual ritualModifiers, ModifiersEffect modifiers, ItemStack stack) {
             int r = ritualModifiers.covenSize + radius;
             int maxDepth = 4 * ritualModifiers.covenSize * (1 + modifiers.getStrength());
@@ -1488,6 +1583,7 @@ public class WitcheryBrewRegistry {
       this.register(new BrewActionRaising(Items.bone, new AltarPower(2000), new EffectLevel(4)));
       this.register(new BrewActionRaiseLand(new BrewItemKey(Items.quartz), new BrewNamePart("witchery:brew.raiseland"), new AltarPower(2000), new EffectLevel(4)));
       this.register(new BrewActionEffect(new BrewItemKey(Blocks.ice), new BrewNamePart("witchery:brew.harmdemons"), new AltarPower(500), new Probability(1.0D), new EffectLevel(5)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
             int strength = Math.min(modifiers.getStrength(), modifiers.strengthCeilingDisabled?3:1);
             if(targetEntity instanceof EntityLeonard) {
@@ -1501,9 +1597,11 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(Witchery.Items.GENERIC.itemFrozenHeart.getBrewItemKey(), new BrewNamePart("witchery:brew.iceshell"), new AltarPower(500), new Probability(1.0D), new EffectLevel(5)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {
             this.createSphere(world, modifiers, BlockUtil.getClosestPlantableBlock(world, x, y, z, side, modifiers.caster));
          }
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
             boolean resistent = targetEntity instanceof EntityDemon || targetEntity instanceof EntityBlaze || targetEntity instanceof IBossDisplayData || targetEntity instanceof EntityEnt || targetEntity instanceof EntityIronGolem;
             if(!resistent) {
@@ -1521,9 +1619,11 @@ public class WitcheryBrewRegistry {
             if(coord != null) {
                final int iceRadius = modifiers.getStrength() + (modifiers.getStrength() > 3?2:1);
                (new BlockActionSphere() {
+                  @Override
                   protected void onBlock(World worldx, int x, int y, int z) {
                      BlockUtil.setBlockIfReplaceable(worldx, x, y, z, Witchery.Blocks.PERPETUAL_ICE);
                   }
+                  @Override
                   protected void onComplete() {
                      this.fillWith(world, coord.x, coord.y, coord.z, iceRadius, Blocks.air, Witchery.Blocks.PERPETUAL_ICE);
                   }
@@ -1534,29 +1634,36 @@ public class WitcheryBrewRegistry {
       });
       this.register(new BrewPotionEffect(Witchery.Items.GENERIC.itemSpectralDust.getBrewItemKey(), new BrewNamePart("witchery:potion.reflectdamage"), new AltarPower(2000), new Probability(1.0D), Witchery.Potions.REFLECT_DAMAGE, (long)TimeUtil.secsToTicks(90), new EffectLevel(5)));
       this.register(new BrewActionEffect(Witchery.Items.GENERIC.itemRefinedEvil.getBrewItemKey(), new BrewNamePart("witchery:brew.hellgate"), new AltarPower(3000), new Probability(1.0D), new EffectLevel(5)) {
+         @Override
          public boolean isRitualTargetLocationValid(MinecraftServer server, World world, int x, int y, int z, BlockPosition target, ModifiersRitual modifiers) {
             return CircleUtil.isMediumCircle(target.getWorld(server), target.x, target.y, target.z, Witchery.Blocks.GLYPH_INFERNAL);
          }
+         @Override
          protected void doApplyRitualToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersRitual ritualModifiers, ModifiersEffect modifiers, ItemStack stack) {
             InfusionInfernal.spawnCreature(world, EntityDemon.class, x, y, z, (EntityLivingBase)null, 0, 2, ParticleEffect.FLAME, SoundEffect.MOB_ENDERDRAGON_GROWL);
          }
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {}
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
             BrewPotionEffect.applyPotionEffect(targetEntity, modifiers, Witchery.Potions.NETHER_BOUND, TimeUtil.minsToTicks(3), modifiers.noParticles, modifiers.caster);
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Items.gold_ingot), new BrewNamePart("witchery:brew.blast"), new AltarPower(500), new Probability(1.0D), new EffectLevel(5)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {
             if(modifiers.powerScalingFactor == 1.0D || world.rand.nextDouble() < modifiers.powerScalingFactor * 0.2D) {
                world.createExplosion(modifiers.caster, targetEntity.posX, targetEntity.posY, targetEntity.posZ, (float)modifiers.getStrength(), true);
             }
 
          }
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack stack) {
             world.createExplosion(modifiers.caster, (double)(x + side.offsetX) + 0.5D, (double)(y + side.offsetY) + 0.5D, (double)(z + side.offsetZ) + 0.5D, (float)modifiers.getStrength(), true);
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Blocks.double_plant), new BrewNamePart("witchery:brew.poisontoad"), new AltarPower(500), new Probability(1.0D), new EffectLevel(5)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {
             if(!(targetEntity instanceof EntityToad) && modifiers.powerScalingFactor == 1.0D || world.rand.nextDouble() < modifiers.powerScalingFactor * 0.2D) {
                EntityToad toad = new EntityToad(world);
@@ -1566,6 +1673,7 @@ public class WitcheryBrewRegistry {
             }
 
          }
+         @Override
          protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack stack) {
             EntityToad toad = new EntityToad(world);
             toad.setLocationAndAngles(0.5D + (double)x, 2.5D + (double)y, 0.5D + (double)z, 0.0F, 0.0F);
@@ -1574,9 +1682,11 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(new BrewItemKey(Items.ender_eye), new BrewNamePart("witchery:brew.iceworld"), new AltarPower(2000), new Probability(1.0D), new EffectLevel(5)) {
+         @Override
          protected void doApplyToBlock(World world, int x, int y0, int z, ForgeDirection side, int radius, final ModifiersEffect modifiers, ItemStack actionStack) {
             if(!world.isRemote) {
                (new BlockActionSphere() {
+                  @Override
                   public void onBlock(World world, int x, int y, int z) {
                      Block block = world.getBlock(x, y, z);
                      if(BlockProtect.checkModsForBreakOK(world, x, y, z, block, world.getBlockMetadata(x, y, z), modifiers.caster) && BlockProtect.canBreak(block, world)) {
@@ -1599,6 +1709,7 @@ public class WitcheryBrewRegistry {
                   }
                }).drawFilledSphere(world, x, y0, z, (int)Math.ceil(Math.max((double)radius * 1.5D, 1.0D)));
                (new BlockActionSphere() {
+                  @Override
                   public void onBlock(World world, int x, int y, int z) {
                      Block block = world.getBlock(x, y, z);
                      if(BlockProtect.checkModsForBreakOK(world, x, y, z, block, world.getBlockMetadata(x, y, z), modifiers.caster) && BlockProtect.canBreak(block, world)) {
@@ -1656,6 +1767,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionEffect(Witchery.Items.GENERIC.itemCondensedFear.getBrewItemKey(), new BrewNamePart("witchery:brew.drainmagic"), new AltarPower(1000), new Probability(1.0D), new EffectLevel(6)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
             Witchery.modHooks.reducePowerLevels(targetEntity, 0.25F * (1.0F + (float)modifiers.getStrength()) * (float)modifiers.powerScalingFactor);
          }
@@ -1665,6 +1777,7 @@ public class WitcheryBrewRegistry {
       this.register(new BrewPotionEffect(new BrewItemKey(Witchery.Blocks.BRAMBLE, 1), (new BrewNamePart("witchery:potion.illfitting")).setBaseDuration(TimeUtil.secsToTicks(6)), new AltarPower(8000), new Probability(1.0D), Witchery.Potions.ILL_FITTING, (long)TimeUtil.secsToTicks(6), new EffectLevel(6)));
       this.register(new BrewPotionEffect(Witchery.Items.GENERIC.itemHintOfRebirth.getBrewItemKey(), new BrewNamePart("witchery:brew.reincarnate"), new AltarPower(2500), new Probability(1.0D), Witchery.Potions.REINCARNATE, (long)TimeUtil.minsToTicks(3), new EffectLevel(6)));
       this.register(new BrewActionEffect(Witchery.Items.GENERIC.itemCreeperHeart.getBrewItemKey(), new BrewNamePart("witchery:brew.durationboost"), new AltarPower(5000), new Probability(1.0D), new EffectLevel(6)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase target, ModifiersEffect modifiers, ItemStack actionStack) {
             if(target.isPotionActive(Witchery.Potions.QUEASY)) {
                if(target.worldObj.rand.nextInt(3) == 0) {
@@ -1706,6 +1819,7 @@ public class WitcheryBrewRegistry {
       });
       this.register(new BrewPotionEffect(new BrewItemKey(Items.emerald), new BrewNamePart("witchery:brew.resizing"), new AltarPower(2500), new Probability(1.0D), Witchery.Potions.RESIZING, (long)TimeUtil.secsToTicks(20), new EffectLevel(6)));
       this.register(new BrewActionEffect(new BrewItemKey(Items.skull, 0), new BrewNamePart("witchery:brew.stealbuffs"), new AltarPower(100), new Probability(1.0D), new EffectLevel(6)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {
             double radius = (double)((modifiers.getStrength() + 1) * 8);
             double radiusSq = radius * radius;
@@ -1763,6 +1877,7 @@ public class WitcheryBrewRegistry {
       this.register(new BrewPotionEffect(Witchery.Items.GENERIC.itemRedstoneSoup.getBrewItemKey(), new BrewNamePart("witchery:potion.keepeffects"), new AltarPower(10000), new Probability(1.0D), Witchery.Potions.KEEP_EFFECTS, (long)TimeUtil.minsToTicks(6), new EffectLevel(8)));
       this.register(new BrewActionBiomeChange(new BrewItemKey(Witchery.Items.BIOME_NOTE, 32767), new BrewNamePart("witchery:brew.seasons"), new AltarPower(5000), new Probability(1.0D), new EffectLevel(8)));
       this.register(new BrewActionEffect(new BrewItemKey(Items.skull, 4), new BrewNamePart("witchery:brew.spreaddebuffs"), new AltarPower(2000), new Probability(1.0D), new EffectLevel(8)) {
+         @Override
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {
             int strength = modifiers.getStrength();
             double radius = (double)((strength + 1) * 4);
@@ -1814,6 +1929,7 @@ public class WitcheryBrewRegistry {
       });
       this.register(new BrewActionRitualSummonMob(new BrewItemKey(Witchery.Items.WITCH_HAT), new AltarPower(10000), new BrewActionRitualSummonMob.Recipe[]{new BrewActionRitualSummonMob.Recipe(EntityLeonard.class, new ItemStack[]{new ItemStack(Items.nether_wart), Witchery.Items.GENERIC.itemTearOfTheGoddess.createStack(), Witchery.Items.GENERIC.itemDiamondVapour.createStack(), new ItemStack(Items.diamond), new ItemStack(Items.nether_star)})}));
       this.register(new BrewActionModifier(Witchery.Items.GENERIC.itemWaystoneBound.getBrewItemKey(), (BrewNamePart)null, new AltarPower(100)) {
+         @Override
          public void prepareRitual(World world, int x, int y, int z, ModifiersRitual modifiers, ItemStack stack) {
             modifiers.setTarget(stack);
          }

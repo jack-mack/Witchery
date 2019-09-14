@@ -22,6 +22,7 @@ public class RiteTransposeOres extends Rite {
       this.blocks = blocks;
    }
 
+   @Override
    public void addSteps(ArrayList steps, int initialStep) {
       steps.add(new RiteTransposeOres.StepTeleportation(this, initialStep));
    }
@@ -38,10 +39,12 @@ public class RiteTransposeOres extends Rite {
          this.step = initialStep;
       }
 
+      @Override
       public int getCurrentStage() {
          return this.step;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(ticks % 10L != 0L) {
             return RitualStep.Result.STARTING;

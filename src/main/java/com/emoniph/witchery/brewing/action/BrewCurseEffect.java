@@ -28,6 +28,7 @@ public class BrewCurseEffect extends BrewPotionEffect {
       this.onlyCurseInverted = onlyCurseInverted;
    }
 
+   @Override
    public void applyRitualToEntity(World world, EntityLivingBase targetEntity, ModifiersRitual ritualModifiers, ModifiersEffect modifiers, ItemStack stack) {
       int oldDuration = modifiers.duration;
       boolean oldNoParticles = modifiers.noParticles;

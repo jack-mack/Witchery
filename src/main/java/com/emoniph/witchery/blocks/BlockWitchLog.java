@@ -40,12 +40,14 @@ public class BlockWitchLog extends BlockBaseRotatedPillar implements IFuelHandle
       GameRegistry.registerFuelHandler(this);
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       super.setBlockName(blockName);
       Blocks.fire.setFireInfo(this, 5, 5);
       return this;
    }
 
+   @Override
    public void dropBlockAsItemWithChance(World world, int x, int y, int z, int par5, float par6, int par7) {
       if(!world.isRemote) {
          double chance = 0.01D;
@@ -103,14 +105,17 @@ public class BlockWitchLog extends BlockBaseRotatedPillar implements IFuelHandle
       super.dropBlockAsItemWithChance(world, x, y, z, par5, par6, par7);
    }
 
+   @Override
    public int quantityDropped(Random par1Random) {
       return 1;
    }
 
+   @Override
    public Item getItemDropped(int metadata, Random rand, int fortune) {
       return Item.getItemFromBlock(this);
    }
 
+   @Override
    public void breakBlock(World world, int x, int y, int z, Block origBlock, int par6) {
       byte b0 = 4;
       int i1 = b0 + 1;
@@ -129,6 +134,7 @@ public class BlockWitchLog extends BlockBaseRotatedPillar implements IFuelHandle
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    protected IIcon getSideIcon(int par1) {
       if(par1 < 0 || par1 >= WOOD_TYPES.length) {
@@ -138,6 +144,7 @@ public class BlockWitchLog extends BlockBaseRotatedPillar implements IFuelHandle
       return this.field_111052_c[par1];
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    protected IIcon getTopIcon(int par1) {
       if(par1 < 0 || par1 >= WOOD_TYPES.length) {
@@ -151,6 +158,7 @@ public class BlockWitchLog extends BlockBaseRotatedPillar implements IFuelHandle
       return par0 & WOOD_TYPES.length - 1;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void getSubBlocks(Item block, CreativeTabs creativeTabs, List list) {
       for(int i = 0; i < WOOD_TYPES.length; ++i) {
@@ -159,6 +167,7 @@ public class BlockWitchLog extends BlockBaseRotatedPillar implements IFuelHandle
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {
       this.field_111052_c = new IIcon[WOOD_TYPES.length];
@@ -171,22 +180,27 @@ public class BlockWitchLog extends BlockBaseRotatedPillar implements IFuelHandle
 
    }
 
+   @Override
    public boolean canSustainLeaves(IBlockAccess world, int x, int y, int z) {
       return true;
    }
 
+   @Override
    public boolean isWood(IBlockAccess world, int x, int y, int z) {
       return true;
    }
 
+   @Override
    public int getBurnTime(ItemStack fuel) {
       return Item.getItemFromBlock(this) == fuel.getItem()?300:0;
    }
 
+   @Override
    public int getFlammability(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
       return world.getBlockMetadata(x, y, z) == 2?1:super.getFlammability(world, x, y, z, face);
    }
 
+   @Override
    public int getFireSpreadSpeed(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
       return world.getBlockMetadata(x, y, z) == 2?1:super.getFireSpreadSpeed(world, x, y, z, face);
    }
@@ -198,6 +212,7 @@ public class BlockWitchLog extends BlockBaseRotatedPillar implements IFuelHandle
          super(block);
       }
 
+      @Override
       protected String[] getNames() {
          return BlockWitchLog.WOOD_TYPES;
       }

@@ -11,10 +11,12 @@ public class PotionMortalCoil extends PotionBase {
       this.setIncurable();
    }
 
+   @Override
    public boolean isReady(int duration, int amplifier) {
       return duration == 1;
    }
 
+   @Override
    public void performEffect(EntityLivingBase entity, int amplifier) {
       EntityUtil.instantDeath(entity, (EntityLivingBase)null);
    }

@@ -19,38 +19,47 @@ public class BlockWitchWeb extends BlockBase {
       super.registerWithCreateTab = false;
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
       entity.setInWeb();
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
       return null;
    }
 
+   @Override
    public int getRenderType() {
       return 1;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public int quantityDropped(Random rand) {
       return 0;
    }
 
+   @Override
    public Item getItemDropped(int metadata, Random rand, int fortune) {
       return null;
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       return null;
    }
 
+   @Override
    protected boolean canSilkHarvest() {
       return false;
    }

@@ -14,11 +14,13 @@ public class PotionOverheating extends PotionBase implements IHandleLivingUpdate
       super(id, true, color);
    }
 
+   @Override
    public void postContructInitialize() {
       this.setPermenant();
       this.setIncurable();
    }
 
+   @Override
    public void onLivingUpdate(World world, EntityLivingBase entity, LivingUpdateEvent event, int amplifier, int duration) {
       if(!world.isRemote && world.getTotalWorldTime() % 5L == 3L && !entity.isBurning() && world.rand.nextInt(amplifier > 1?20:(amplifier > 0?25:30)) == 0) {
          int x = MathHelper.floor_double(entity.posX);

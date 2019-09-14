@@ -18,6 +18,7 @@ public class EntityAITradePlayerGeneric extends EntityAIBase {
       this.setMutexBits(5);
    }
 
+   @Override
    public boolean shouldExecute() {
       if(!this.entity.isEntityAlive()) {
          return false;
@@ -33,10 +34,12 @@ public class EntityAITradePlayerGeneric extends EntityAIBase {
       }
    }
 
+   @Override
    public void startExecuting() {
       this.entity.getNavigator().clearPathEntity();
    }
 
+   @Override
    public void resetTask() {
       this.merchant.setCustomer((EntityPlayer)null);
    }

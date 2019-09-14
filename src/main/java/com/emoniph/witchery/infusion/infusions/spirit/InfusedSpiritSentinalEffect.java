@@ -21,14 +21,17 @@ public class InfusedSpiritSentinalEffect extends InfusedSpiritEffect {
       super(id, "sentinal", spirits, spectres, banshees, poltergeists);
    }
 
+   @Override
    public int getCooldownTicks() {
       return TimeUtil.secsToTicks(30);
    }
 
+   @Override
    public double getRadius() {
       return 8.0D;
    }
 
+   @Override
    public boolean doUpdateEffect(TileEntity tile, boolean triggered, ArrayList foundEntities) {
       if(triggered) {
          int number = foundEntities.size() > 1?1:2;

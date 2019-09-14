@@ -217,6 +217,7 @@ public final class WitcheryItems {
       this.BLOOD_GOBLET = (ItemGlassGoblet)(new ItemGlassGoblet()).setUnlocalizedName("witchery:glassgoblet").setTextureName("witchery:glassgoblet");
       this.SUN_GRENADE = (new ItemSunGrenade(0)).setUnlocalizedName("witchery:sungrenade").setTextureName("witchery:sungrenade");
       this.VAMPIRE_BOOK = (new ItemMarkupBook(7, new int[]{0, 9}) {
+         @Override
          public void onBookRead(ItemStack stack, World world, EntityPlayer player) {
             ExtendedPlayer.get(player).increaseVampireLevelCap(stack.getItemDamage() + 1);
          }

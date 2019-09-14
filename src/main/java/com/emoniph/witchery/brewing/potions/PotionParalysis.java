@@ -31,10 +31,12 @@ public class PotionParalysis extends PotionBase implements IHandleLivingUpdate, 
       this.setIncurable();
    }
 
+   @Override
    public void postContructInitialize() {
       this.func_111184_a(SharedMonsterAttributes.movementSpeed, "E69059D5-CAE6-4695-9BE3-C6F0F22151E8", -40.0D, 2);
    }
 
+   @Override
    public void applyAttributesModifiersToEntity(EntityLivingBase entity, BaseAttributeMap attributes, int amplifier) {
       if(this.canApplyToEntity(entity, amplifier)) {
          super.applyAttributesModifiersToEntity(entity, attributes, amplifier);
@@ -48,6 +50,7 @@ public class PotionParalysis extends PotionBase implements IHandleLivingUpdate, 
 
    }
 
+   @Override
    public void removeAttributesModifiersFromEntity(EntityLivingBase entity, BaseAttributeMap attributes, int amplifier) {
       if(this.canApplyToEntity(entity, amplifier)) {
          super.removeAttributesModifiersFromEntity(entity, attributes, amplifier);
@@ -72,6 +75,7 @@ public class PotionParalysis extends PotionBase implements IHandleLivingUpdate, 
 
    }
 
+   @Override
    public void onLivingUpdate(World world, EntityLivingBase entity, LivingUpdateEvent event, int amplifier, int duration) {
       if(this.canApplyToEntity(entity, amplifier)) {
          if(!world.isRemote) {
@@ -100,6 +104,7 @@ public class PotionParalysis extends PotionBase implements IHandleLivingUpdate, 
       return entity instanceof EntityVillager || entity instanceof EntityVillageGuard;
    }
 
+   @Override
    public void onLivingHurt(World world, EntityLivingBase entity, LivingHurtEvent event, int amplifier) {
       if(!world.isRemote && amplifier >= 4 && event.ammount >= 1.0F) {
          entity.removePotionEffect(super.id);
@@ -107,6 +112,7 @@ public class PotionParalysis extends PotionBase implements IHandleLivingUpdate, 
 
    }
 
+   @Override
    public boolean handleAllHurtEvents() {
       return false;
    }

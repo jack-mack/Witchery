@@ -39,10 +39,12 @@ public class InfusionLight extends Infusion {
       super(infusionID);
    }
 
+   @Override
    public IIcon getPowerBarIcon(EntityPlayer player, int index) {
       return Blocks.snow.getIcon(0, 0);
    }
 
+   @Override
    public void onLeftClickEntity(ItemStack itemstack, World world, EntityPlayer player, Entity otherEntity) {
       if(!world.isRemote) {
          if(otherEntity instanceof EntityLivingBase) {
@@ -66,6 +68,7 @@ public class InfusionLight extends Infusion {
       }
    }
 
+   @Override
    public void onUsingItemTick(ItemStack itemstack, World world, EntityPlayer player, int countdown) {
       int elapsedTicks;
       if(world.isRemote) {
@@ -122,6 +125,7 @@ public class InfusionLight extends Infusion {
 
    }
 
+   @Override
    public void onPlayerStoppedUsing(ItemStack itemstack, World world, EntityPlayer player, int countdown) {
       if(!world.isRemote) {
          this.bendLightAroundPlayer(world, player, false);

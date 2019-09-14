@@ -18,11 +18,13 @@ public class CreaturePowerSpeed extends CreaturePower {
       super(powerID, creatureType);
    }
 
+   @Override
    public void onActivate(World world, EntityPlayer player, int elapsedTicks, MovingObjectPosition mop) {
       player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 400, 3));
       SoundEffect.RANDOM_FIZZ.playAtPlayer(world, player);
    }
 
+   @Override
    public void onUpdate(World world, EntityPlayer player) {
       Minecraft minecraft = Minecraft.getMinecraft();
       int var5 = MathHelper.floor_double(player.posX);

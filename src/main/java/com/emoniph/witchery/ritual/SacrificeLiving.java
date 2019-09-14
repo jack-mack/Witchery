@@ -24,6 +24,7 @@ public class SacrificeLiving extends Sacrifice {
       this.entityLivingClass = entityLivingClass;
    }
 
+   @Override
    public void addDescription(StringBuffer sb) {
       String s = (String)EntityList.classToStringMapping.get(this.entityLivingClass);
       if(s == null) {
@@ -35,10 +36,12 @@ public class SacrificeLiving extends Sacrifice {
       sb.append(Const.BOOK_NEWLINE);
    }
 
+   @Override
    public boolean isMatch(World world, int posX, int posY, int posZ, int maxDistance, ArrayList entities, ArrayList grassperStacks) {
       return true;
    }
 
+   @Override
    public void addSteps(ArrayList steps, AxisAlignedBB bounds, int maxDistance) {
       steps.add(new SacrificeLiving.StepSacrificeLiving(this, bounds, maxDistance));
    }
@@ -57,6 +60,7 @@ public class SacrificeLiving extends Sacrifice {
          this.maxDistance = maxDistance + 1;
       }
 
+      @Override
       public RitualStep.Result process(World worldObj, int xCoord, int yCoord, int zCoord, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(ticks % 20L != 0L) {
             return RitualStep.Result.STARTING;

@@ -55,31 +55,38 @@ public class BlockBeartrap extends BlockBaseContainer {
       this.setBlockBounds(0.19999999F, 0.01F, 0.19999999F, 0.8F, 0.1F, 0.8F);
    }
 
+   @Override
    public TileEntity createNewTileEntity(World world, int metadata) {
       BlockBeartrap.TileEntityBeartrap tile = new BlockBeartrap.TileEntityBeartrap(this.silvered);
       return tile;
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
       return null;
    }
 
+   @Override
    public int getRenderType() {
       return -1;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
       switch(MathHelper.floor_double((double)(entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3) {
       case 0:
@@ -107,10 +114,12 @@ public class BlockBeartrap extends BlockBaseContainer {
 
    }
 
+   @Override
    public ArrayList getDrops(World world, int x, int y, int z, int metadata, int fortune) {
       return this.silvered?new ArrayList():super.getDrops(world, x, y, z, metadata, fortune);
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
       if(!world.isRemote && entity instanceof EntityLivingBase) {
          EntityLivingBase living = (EntityLivingBase)entity;
@@ -133,6 +142,7 @@ public class BlockBeartrap extends BlockBaseContainer {
 
    }
 
+   @Override
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
       if(!world.isRemote) {
          BlockBeartrap.TileEntityBeartrap tile = (BlockBeartrap.TileEntityBeartrap)BlockUtil.getTileEntity(world, x, y, z, BlockBeartrap.TileEntityBeartrap.class);
@@ -199,10 +209,12 @@ public class BlockBeartrap extends BlockBaseContainer {
          return this.sprung;
       }
 
+      @Override
       public boolean canUpdate() {
          return this.silvered;
       }
 
+      @Override
       public void updateEntity() {
          super.updateEntity();
          if(!super.worldObj.isRemote && this.silvered && !this.sprung && this.spawnedWolfID == null && TimeUtil.secondsElapsed(10, super.ticks)) {
@@ -251,6 +263,7 @@ public class BlockBeartrap extends BlockBaseContainer {
          return !this.sprung && this.owner != null && !this.silvered?(player == null?false:player.getGameProfile().equals(this.owner)):true;
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtRoot) {
          super.writeToNBT(nbtRoot);
          nbtRoot.setBoolean("Sprung", this.sprung);
@@ -268,6 +281,7 @@ public class BlockBeartrap extends BlockBaseContainer {
 
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtRoot) {
          super.readFromNBT(nbtRoot);
          this.sprung = nbtRoot.getBoolean("Sprung");
@@ -286,12 +300,14 @@ public class BlockBeartrap extends BlockBaseContainer {
 
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          this.readFromNBT(packet.func_148857_g());

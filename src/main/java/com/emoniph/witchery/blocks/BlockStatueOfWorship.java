@@ -51,22 +51,27 @@ public class BlockStatueOfWorship extends BlockBaseContainer {
       this.setStepSound(Block.soundTypeStone);
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public String getLocalizedName() {
       return super.getLocalizedName();
    }
 
+   @Override
    public void onBlockPlacedBy(World world, int posX, int posY, int posZ, EntityLivingBase player, ItemStack stack) {
       int l = MathHelper.floor_double((double)(player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
       if(l == 0) {
@@ -94,11 +99,13 @@ public class BlockStatueOfWorship extends BlockBaseContainer {
 
    }
 
+   @Override
    public void onBlockAdded(World world, int posX, int posY, int posZ) {
       super.onBlockAdded(world, posX, posY, posZ);
       BlockUtil.setBlockDefaultDirection(world, posX, posY, posZ);
    }
 
+   @Override
    public void onBlockHarvested(World world, int posX, int posY, int posZ, int par5, EntityPlayer par6EntityPlayer) {
       if(par6EntityPlayer.capabilities.isCreativeMode) {
          par5 |= 8;
@@ -109,6 +116,7 @@ public class BlockStatueOfWorship extends BlockBaseContainer {
       super.onBlockHarvested(world, posX, posY, posZ, par5, par6EntityPlayer);
    }
 
+   @Override
    public ArrayList getDrops(World world, int x, int y, int z, int metadata, int fortune) {
       ArrayList drops = new ArrayList();
       if((metadata & 8) == 0) {
@@ -130,6 +138,7 @@ public class BlockStatueOfWorship extends BlockBaseContainer {
       return nbtRoot != null?nbtRoot.getString("WITCBoundPlayer"):"";
    }
 
+   @Override
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hiyY, float hitZ) {
       if(!world.isRemote) {
          ItemStack item = player.getHeldItem();
@@ -174,6 +183,7 @@ public class BlockStatueOfWorship extends BlockBaseContainer {
          super(block);
       }
 
+      @Override
       public String getItemStackDisplayName(ItemStack stack) {
          String s = super.getItemStackDisplayName(stack);
          String player = BlockStatueOfWorship.getBoundPlayerName(stack);
@@ -210,22 +220,26 @@ public class BlockStatueOfWorship extends BlockBaseContainer {
          return this.owner != null && !this.owner.isEmpty();
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtRoot) {
          super.writeToNBT(nbtRoot);
          nbtRoot.setString("Owner", this.owner != null?this.owner:"");
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtRoot) {
          super.readFromNBT(nbtRoot);
          this.owner = nbtRoot.getString("Owner");
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          this.readFromNBT(packet.func_148857_g());
@@ -272,6 +286,7 @@ public class BlockStatueOfWorship extends BlockBaseContainer {
          return worshipCount;
       }
 
+      @Override
       public void updateEntity() {
          super.updateEntity();
          if(!super.worldObj.isRemote && this.hasOwner()) {

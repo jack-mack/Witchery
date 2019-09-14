@@ -14,6 +14,7 @@ public class SacrificeMultiple extends Sacrifice {
       this.sacrifices = sacrifices;
    }
 
+   @Override
    public void addDescription(StringBuffer sb) {
       Sacrifice[] arr$ = this.sacrifices;
       int len$ = arr$.length;
@@ -25,6 +26,7 @@ public class SacrificeMultiple extends Sacrifice {
 
    }
 
+   @Override
    public boolean isMatch(World world, int posX, int posY, int posZ, int maxDistance, ArrayList entities, ArrayList grassperStacks) {
       Sacrifice[] arr$ = this.sacrifices;
       int len$ = arr$.length;
@@ -39,6 +41,7 @@ public class SacrificeMultiple extends Sacrifice {
       return true;
    }
 
+   @Override
    public void addSteps(ArrayList steps, AxisAlignedBB bounds, int maxDistance) {
       Sacrifice[] arr$ = this.sacrifices;
       int len$ = arr$.length;

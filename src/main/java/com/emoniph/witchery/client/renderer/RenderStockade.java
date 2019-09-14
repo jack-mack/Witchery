@@ -14,10 +14,12 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderStockade implements ISimpleBlockRenderingHandler {
 
+   @Override
    public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
       this.drawPost(0.3D, 0.3D, 0.7D, 0.7D, renderer, block, metadata, false, false);
    }
 
+   @Override
    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
       BlockStockade blockStockade = (BlockStockade)block;
       boolean flag = true;
@@ -157,10 +159,12 @@ public class RenderStockade implements ISimpleBlockRenderingHandler {
       return (IIcon)(icon != null?icon:((TextureMap)Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture)).getAtlasSprite("missingno"));
    }
 
+   @Override
    public boolean shouldRender3DInInventory(int modelId) {
       return true;
    }
 
+   @Override
    public int getRenderId() {
       return Witchery.proxy.getStockageRenderId();
    }

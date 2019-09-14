@@ -31,18 +31,22 @@ public class BlockDaylightCollector extends BlockBase {
       this.setStepSound(Block.soundTypeMetal);
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public int getRenderType() {
       return 1;
    }
 
+   @Override
    public void onNeighborChange(IBlockAccess world, int x, int y, int z, int tileX, int tileY, int tileZ) {
       if(y == tileY && (x == tileX || z == tileZ) && world.getBlock(tileX, tileY, tileZ) == Blocks.daylight_detector) {
          ForgeDirection direction = ForgeDirection.UNKNOWN;
@@ -61,6 +65,7 @@ public class BlockDaylightCollector extends BlockBase {
 
    }
 
+   @Override
    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
       if(!world.isRemote) {
          ForgeDirection[] directions = new ForgeDirection[]{ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST};
@@ -87,6 +92,7 @@ public class BlockDaylightCollector extends BlockBase {
 
    }
 
+   @Override
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
       if(!world.isRemote) {
          int meta = world.getBlockMetadata(x, y, z);
@@ -110,6 +116,7 @@ public class BlockDaylightCollector extends BlockBase {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int side, int meta) {
       switch(meta) {
@@ -122,6 +129,7 @@ public class BlockDaylightCollector extends BlockBase {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {
       super.registerBlockIcons(iconRegister);

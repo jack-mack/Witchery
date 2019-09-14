@@ -27,32 +27,38 @@ public class ItemBrewFuel extends ItemBase implements IFuelHandler {
       this.setHasSubtypes(true);
    }
 
+   @Override
    public Item setUnlocalizedName(String itemName) {
       GameRegistry.registerFuelHandler(this);
       return super.setUnlocalizedName(itemName);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean hasEffect(ItemStack stack, int pass) {
       return pass == 0;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean requiresMultipleRenderPasses() {
       return true;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(ItemStack stack, int pass) {
       return pass == 0?this.itemIconOverlay:super.itemIcon;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerIcons(IIconRegister iconRegister) {
       super.registerIcons(iconRegister);
       this.itemIconOverlay = iconRegister.registerIcon("witchery:brew_overlay");
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getColorFromItemStack(ItemStack stack, int pass) {
       if(pass == 0) {
@@ -63,6 +69,7 @@ public class ItemBrewFuel extends ItemBase implements IFuelHandler {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean expanded) {
       String localText = Witchery.resource("item.witchery:brew.fuel." + Math.min(stack.getItemDamage(), BURN_TIMES.length));
@@ -80,6 +87,7 @@ public class ItemBrewFuel extends ItemBase implements IFuelHandler {
 
    }
 
+   @Override
    public int getBurnTime(ItemStack fuel) {
       if(fuel.getItem() == this) {
          int burnTime = BURN_TIMES[Math.min(fuel.getItemDamage(), BURN_TIMES.length)];

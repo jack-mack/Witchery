@@ -20,17 +20,21 @@ public class BlockPerpetualIce extends BlockIce {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       BlockUtil.registerBlock(this, blockName);
       return super.setBlockName(blockName);
    }
 
+   @Override
    public void updateTick(World world, int x, int y, int z, Random rand) {}
 
+   @Override
    public boolean isSideSolid(IBlockAccess world, int x, int y, int z, ForgeDirection side) {
       return true;
    }
 
+   @Override
    public boolean func_149730_j() {
       return true;
    }

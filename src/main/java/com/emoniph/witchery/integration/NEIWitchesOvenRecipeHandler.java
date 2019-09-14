@@ -33,14 +33,17 @@ public class NEIWitchesOvenRecipeHandler extends TemplateRecipeHandler {
    public static TreeSet efuels;
 
 
+   @Override
    public Class getGuiClass() {
       return BlockWitchesOvenGUI.class;
    }
 
+   @Override
    public String getRecipeName() {
       return StatCollector.translateToLocal("tile.witchery:witchesovenidle.name");
    }
 
+   @Override
    public void loadCraftingRecipes(String outputId, Object ... results) {
       if(outputId.equals("witchery_cooking") && this.getClass() == NEIWitchesOvenRecipeHandler.class) {
          Map recipes = FurnaceRecipes.smelting().getSmeltingList();
@@ -74,6 +77,7 @@ public class NEIWitchesOvenRecipeHandler extends TemplateRecipeHandler {
 
    }
 
+   @Override
    public void loadCraftingRecipes(ItemStack result2) {
       Map recipes = FurnaceRecipes.smelting().getSmeltingList();
       Iterator i$ = recipes.entrySet().iterator();
@@ -114,6 +118,7 @@ public class NEIWitchesOvenRecipeHandler extends TemplateRecipeHandler {
 
    }
 
+   @Override
    public void loadUsageRecipes(String inputId, Object ... ingredients) {
       if(inputId.equals("fuel") && this.getClass() == NEIWitchesOvenRecipeHandler.class) {
          this.loadCraftingRecipes("witchery_cooking", new Object[0]);
@@ -123,6 +128,7 @@ public class NEIWitchesOvenRecipeHandler extends TemplateRecipeHandler {
 
    }
 
+   @Override
    public void loadUsageRecipes(ItemStack ingred) {
       Map recipes = FurnaceRecipes.smelting().getSmeltingList();
       Iterator i$ = recipes.entrySet().iterator();
@@ -157,15 +163,18 @@ public class NEIWitchesOvenRecipeHandler extends TemplateRecipeHandler {
 
    }
 
+   @Override
    public String getGuiTexture() {
       return "witchery:textures/gui/witchesOven.png";
    }
 
+   @Override
    public void loadTransferRects() {
       this.transferRects.add(new RecipeTransferRect(new Rectangle(50, 23, 18, 18), "fuel", new Object[0]));
       this.transferRects.add(new RecipeTransferRect(new Rectangle(74, 9, 24, 18), "witchery_cooking", new Object[0]));
    }
 
+   @Override
    public void drawExtras(int recipe) {
       this.drawProgressBar(51, 25, 176, 0, 14, 14, 48, 7);
       this.drawProgressBar(74, 9, 176, 14, 24, 16, 48, 0);
@@ -206,10 +215,12 @@ public class NEIWitchesOvenRecipeHandler extends TemplateRecipeHandler {
 
    }
 
+   @Override
    public String getOverlayIdentifier() {
       return "witchery_cooking";
    }
 
+   @Override
    public TemplateRecipeHandler newInstance() {
       findFuelsOnce();
       return super.newInstance();
@@ -245,19 +256,23 @@ public class NEIWitchesOvenRecipeHandler extends TemplateRecipeHandler {
          this.jar = new PositionedStack(Witchery.Items.GENERIC.itemEmptyClayJar.createStack(), 78, 42);
       }
 
+      @Override
       public List getIngredients() {
          return this.getCycledIngredients(NEIWitchesOvenRecipeHandler.this.cycleticks / 48, Arrays.asList(new PositionedStack[]{this.ingred}));
       }
 
+      @Override
       public PositionedStack getResult() {
          return this.result;
       }
 
+      @Override
       public PositionedStack getOtherStack() {
          NEIWitchesOvenRecipeHandler.findFuelsOnce();
          return NEIWitchesOvenRecipeHandler.afuels != null && NEIWitchesOvenRecipeHandler.afuels.size() > 0?((NEIWitchesOvenRecipeHandler.FuelPair)NEIWitchesOvenRecipeHandler.afuels.get(NEIWitchesOvenRecipeHandler.this.cycleticks / 48 % NEIWitchesOvenRecipeHandler.afuels.size())).stack:null;
       }
 
+      @Override
       public List getOtherStacks() {
          ArrayList stacks = new ArrayList();
          PositionedStack stack = this.getOtherStack();

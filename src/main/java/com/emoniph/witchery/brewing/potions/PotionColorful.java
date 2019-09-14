@@ -24,6 +24,7 @@ public class PotionColorful extends PotionBase implements IHandlePreRenderLiving
       this.hideInventoryText();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void onLivingRender(World world, EntityLivingBase entity, Pre event, int amplifier) {
       GL11.glPushMatrix();
@@ -34,10 +35,12 @@ public class PotionColorful extends PotionBase implements IHandlePreRenderLiving
       GL11.glColor3f(red, green, blue);
    }
 
+   @Override
    public void onLivingRender(World world, EntityLivingBase entity, Post event, int amplifier) {
       GL11.glPopMatrix();
    }
 
+   @Override
    public void renderInventoryEffect(int x, int y, PotionEffect effect, Minecraft mc) {
       Dye dye = Dye.DYES[Math.min(effect.getAmplifier(), Dye.DYES.length - 1)];
       String label = Witchery.resource("witchery:color." + dye.unlocalizedName);

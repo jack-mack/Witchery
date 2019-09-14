@@ -11,10 +11,12 @@ public class SlotClayJar extends Slot {
       super(par2IInventory, par3, par4, par5);
    }
 
+   @Override
    public boolean isItemValid(ItemStack itemstack) {
       return itemstack != null && Witchery.Items.GENERIC.itemEmptyClayJar.isMatch(itemstack);
    }
 
+   @Override
    public int getSlotStackLimit() {
       return 64;
    }

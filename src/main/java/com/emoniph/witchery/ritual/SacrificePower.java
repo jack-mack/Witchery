@@ -24,14 +24,17 @@ public class SacrificePower extends Sacrifice {
       this.powerFrequencyInTicks = powerFrequencyInTicks;
    }
 
+   @Override
    public void addDescription(StringBuffer sb) {
       sb.append(String.format("\n§8%s§0 %s\n", new Object[]{Witchery.resource("witchery.book.altarpower"), Integer.valueOf(MathHelper.floor_float(this.powerRequired))}));
    }
 
+   @Override
    public boolean isMatch(World world, int posX, int posY, int posZ, int maxDistance, ArrayList entities, ArrayList grassperStacks) {
       return true;
    }
 
+   @Override
    public void addSteps(ArrayList steps, AxisAlignedBB bounds, int maxDistance) {
       steps.add(new SacrificePower.SacrificePowerStep(this));
    }
@@ -47,6 +50,7 @@ public class SacrificePower extends Sacrifice {
          this.sacrifice = sacrifice;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(ticks % (long)this.sacrifice.powerFrequencyInTicks != 0L) {
             return RitualStep.Result.STARTING;

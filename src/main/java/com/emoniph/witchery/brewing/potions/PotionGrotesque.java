@@ -35,6 +35,7 @@ public class PotionGrotesque extends PotionBase implements IHandleLivingUpdate, 
       super(id, color);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void onLivingRender(World world, EntityLivingBase entity, Post event, int amplifier) {
       if(DEMON_HEAD_MODEL == null) {
@@ -51,6 +52,7 @@ public class PotionGrotesque extends PotionBase implements IHandleLivingUpdate, 
       GL11.glPopMatrix();
    }
 
+   @Override
    public void onLivingUpdate(World world, EntityLivingBase entity, LivingUpdateEvent event, int amplifier, int duration) {
       if(!world.isRemote && world.getTotalWorldTime() % 5L == 3L) {
          float radius = 4.0F;

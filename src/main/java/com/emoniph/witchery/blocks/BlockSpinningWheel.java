@@ -46,23 +46,28 @@ public class BlockSpinningWheel extends BlockBaseContainer {
       this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l) {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public void onBlockAdded(World world, int x, int y, int z) {
       super.onBlockAdded(world, x, y, z);
       BlockUtil.setBlockDefaultDirection(world, x, y, z);
    }
 
+   @Override
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
       if(world.isRemote) {
          return true;
@@ -77,9 +82,11 @@ public class BlockSpinningWheel extends BlockBaseContainer {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {}
 
+   @Override
    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
       int l = MathHelper.floor_double((double)(entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
       switch(l) {
@@ -99,6 +106,7 @@ public class BlockSpinningWheel extends BlockBaseContainer {
 
    }
 
+   @Override
    public void breakBlock(World world, int x, int y, int z, Block oldBlockID, int oldBlockMetadata) {
       TileEntity tile = world.getTileEntity(x, y, z);
       if(tile != null && tile instanceof BlockSpinningWheel.TileEntitySpinningWheel) {
@@ -139,10 +147,12 @@ public class BlockSpinningWheel extends BlockBaseContainer {
       super.breakBlock(world, x, y, z, oldBlockID, oldBlockMetadata);
    }
 
+   @Override
    public boolean hasComparatorInputOverride() {
       return true;
    }
 
+   @Override
    public int getComparatorInputOverride(World world, int x, int y, int z, int side) {
       return Container.calcRedstoneFromInventory((IInventory)world.getTileEntity(x, y, z));
    }
@@ -175,12 +185,14 @@ public class BlockSpinningWheel extends BlockBaseContainer {
 
       }
 
+      @Override
       public void addCraftingToCrafters(ICrafting par1ICrafting) {
          super.addCraftingToCrafters(par1ICrafting);
          par1ICrafting.sendProgressBarUpdate(this, 0, this.furnace.furnaceCookTime);
          par1ICrafting.sendProgressBarUpdate(this, 1, this.furnace.powerLevel);
       }
 
+      @Override
       public void detectAndSendChanges() {
          super.detectAndSendChanges();
 
@@ -199,6 +211,7 @@ public class BlockSpinningWheel extends BlockBaseContainer {
          this.lastPowerLevel = this.furnace.powerLevel;
       }
 
+      @Override
       @SideOnly(Side.CLIENT)
       public void updateProgressBar(int par1, int par2) {
          if(par1 == 0) {
@@ -211,10 +224,12 @@ public class BlockSpinningWheel extends BlockBaseContainer {
 
       }
 
+      @Override
       public boolean canInteractWith(EntityPlayer par1EntityPlayer) {
          return this.furnace.isUseableByPlayer(par1EntityPlayer);
       }
 
+      @Override
       public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex) {
          ItemStack itemstack = null;
          Slot slot = (Slot)super.inventorySlots.get(slotIndex);
@@ -285,14 +300,17 @@ public class BlockSpinningWheel extends BlockBaseContainer {
       private static final int[] slots_sides = new int[]{3, 2, 4, 1};
 
 
+      @Override
       public int getSizeInventory() {
          return this.slots.length;
       }
 
+      @Override
       public ItemStack getStackInSlot(int slot) {
          return this.slots[slot];
       }
 
+      @Override
       public ItemStack decrStackSize(int slot, int quantity) {
          if(this.slots[slot] != null) {
             ItemStack itemstack;
@@ -313,6 +331,7 @@ public class BlockSpinningWheel extends BlockBaseContainer {
          }
       }
 
+      @Override
       public ItemStack getStackInSlotOnClosing(int slot) {
          if(this.slots[slot] != null) {
             ItemStack itemstack = this.slots[slot];
@@ -323,6 +342,7 @@ public class BlockSpinningWheel extends BlockBaseContainer {
          }
       }
 
+      @Override
       public void setInventorySlotContents(int slot, ItemStack stack) {
          this.slots[slot] = stack;
          if(stack != null && stack.stackSize > this.getInventoryStackLimit()) {
@@ -331,14 +351,17 @@ public class BlockSpinningWheel extends BlockBaseContainer {
 
       }
 
+      @Override
       public String getInventoryName() {
          return this.getBlockType().getLocalizedName();
       }
 
+      @Override
       public boolean hasCustomInventoryName() {
          return true;
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtRoot) {
          super.readFromNBT(nbtRoot);
          NBTTagList nbtSlotList = nbtRoot.getTagList("Items", 10);
@@ -356,6 +379,7 @@ public class BlockSpinningWheel extends BlockBaseContainer {
          this.powerLevel = nbtRoot.getShort("PowerLevel");
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtRoot) {
          super.writeToNBT(nbtRoot);
          nbtRoot.setShort("CookTime", (short)this.furnaceCookTime);
@@ -374,6 +398,7 @@ public class BlockSpinningWheel extends BlockBaseContainer {
          nbtRoot.setTag("Items", nbtSlotList);
       }
 
+      @Override
       public int getInventoryStackLimit() {
          return 64;
       }
@@ -411,6 +436,7 @@ public class BlockSpinningWheel extends BlockBaseContainer {
          return sources != null && sources.size() > 0?((PowerSources.RelativePowerSource)sources.get(0)).source():null;
       }
 
+      @Override
       public void updateEntity() {
          super.updateEntity();
          boolean update = false;
@@ -466,6 +492,7 @@ public class BlockSpinningWheel extends BlockBaseContainer {
 
       }
 
+      @Override
       public void markDirty() {
          super.markDirty();
          if(!super.worldObj.isRemote) {
@@ -474,12 +501,14 @@ public class BlockSpinningWheel extends BlockBaseContainer {
 
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          this.readFromNBT(packet.func_148857_g());
@@ -547,26 +576,33 @@ public class BlockSpinningWheel extends BlockBaseContainer {
 
       }
 
+      @Override
       public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer) {
          return super.worldObj.getTileEntity(super.xCoord, super.yCoord, super.zCoord) != this?false:par1EntityPlayer.getDistanceSq((double)super.xCoord + 0.5D, (double)super.yCoord + 0.5D, (double)super.zCoord + 0.5D) <= 64.0D;
       }
 
+      @Override
       public void openInventory() {}
 
+      @Override
       public void closeInventory() {}
 
+      @Override
       public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
          return slot != 2;
       }
 
+      @Override
       public int[] getAccessibleSlotsFromSide(int side) {
          return BlockSide.BOTTOM.isEqual(side)?slots_bottom:(BlockSide.TOP.isEqual(side)?slots_top:slots_sides);
       }
 
+      @Override
       public boolean canInsertItem(int slot, ItemStack itemstack, int par3) {
          return this.isItemValidForSlot(slot, itemstack);
       }
 
+      @Override
       public boolean canExtractItem(int slot, ItemStack stack, int side) {
          return BlockSide.TOP.isEqual(side)?false:(BlockSide.BOTTOM.isEqual(side)?false:slot == 2);
       }

@@ -65,6 +65,7 @@ public class CommonProxy implements IGuiHandler {
 
    public void postInit() {}
 
+   @Override
    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
       switch(ID) {
       case 0:
@@ -87,6 +88,7 @@ public class CommonProxy implements IGuiHandler {
       }
    }
 
+   @Override
    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
       return null;
    }

@@ -72,6 +72,7 @@ public class BlockBrewLiquidEffect extends BlockBaseContainer implements IFluidB
       this.displacements.putAll(defaultDisplacements);
    }
 
+   @Override
    public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
       TileEntityBrewFluid fluid = (TileEntityBrewFluid)BlockUtil.getTileEntity(world, x, y, z, TileEntityBrewFluid.class);
       return fluid != null?fluid.color:68;
@@ -87,11 +88,13 @@ public class BlockBrewLiquidEffect extends BlockBaseContainer implements IFluidB
       return this;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int side, int meta) {
       return side != 0 && side != 1?this.icons[1]:this.icons[0];
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {
       this.icons = new IIcon[]{iconRegister.registerIcon(this.getTextureName() + "_still"), iconRegister.registerIcon(this.getTextureName() + "_flow")};
@@ -197,42 +200,52 @@ public class BlockBrewLiquidEffect extends BlockBaseContainer implements IFluidB
       }
    }
 
+   @Override
    public void onBlockAdded(World world, int x, int y, int z) {
       world.scheduleBlockUpdate(x, y, z, this, this.tickRate);
    }
 
+   @Override
    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
       world.scheduleBlockUpdate(x, y, z, this, this.tickRate);
    }
 
+   @Override
    public boolean func_149698_L() {
       return false;
    }
 
+   @Override
    public boolean getBlocksMovement(IBlockAccess world, int x, int y, int z) {
       return true;
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
       return null;
    }
 
+   @Override
    public Item getItemDropped(int par1, Random par2Random, int par3) {
       return null;
    }
 
+   @Override
    public int quantityDropped(Random par1Random) {
       return 0;
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       return null;
    }
 
+   @Override
    public int tickRate(World world) {
       return this.tickRate;
    }
 
+   @Override
    public void velocityToAddToEntity(World world, int x, int y, int z, Entity entity, Vec3 vec) {
       if(this.densityDir <= 0) {
          Vec3 vec_flow = this.getFlowVector(world, x, y, z);
@@ -242,18 +255,22 @@ public class BlockBrewLiquidEffect extends BlockBaseContainer implements IFluidB
       }
    }
 
+   @Override
    public int getRenderType() {
       return Witchery.proxy.getBrewLiquidRenderId();
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public int getMixedBrightnessForBlock(IBlockAccess world, int x, int y, int z) {
       int lightThis = world.getLightBrightnessForSkyBlocks(x, y, z, 0);
       int lightUp = world.getLightBrightnessForSkyBlocks(x, y + 1, z, 0);
@@ -264,10 +281,12 @@ public class BlockBrewLiquidEffect extends BlockBaseContainer implements IFluidB
       return (lightThisBase > lightUpBase?lightThisBase:lightUpBase) | (lightThisExt > lightUpExt?lightThisExt:lightUpExt) << 16;
    }
 
+   @Override
    public int getRenderBlockPass() {
       return this.renderPass;
    }
 
+   @Override
    public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
       Block block = world.getBlock(x, y, z);
       return block != this?!block.isOpaqueCube():(block.getMaterial() == this.getMaterial()?false:super.shouldSideBeRendered(world, x, y, z, side));
@@ -356,10 +375,12 @@ public class BlockBrewLiquidEffect extends BlockBaseContainer implements IFluidB
       return vec;
    }
 
+   @Override
    public Fluid getFluid() {
       return FluidRegistry.getFluid(this.fluidName);
    }
 
+   @Override
    public float getFilledPercentage(World world, int x, int y, int z) {
       int quantaRemaining = this.getQuantaValue(world, x, y, z) + 1;
       float remaining = (float)quantaRemaining / this.quantaPerBlockFloat;
@@ -381,6 +402,7 @@ public class BlockBrewLiquidEffect extends BlockBaseContainer implements IFluidB
       }
    }
 
+   @Override
    public boolean canCollideCheck(int meta, boolean fullHit) {
       return fullHit && meta == 0;
    }
@@ -389,6 +411,7 @@ public class BlockBrewLiquidEffect extends BlockBaseContainer implements IFluidB
       return 0;
    }
 
+   @Override
    public int getLightValue(IBlockAccess world, int x, int y, int z) {
       if(this.maxScaledLight == 0) {
          return super.getLightValue(world, x, y, z);
@@ -537,14 +560,17 @@ public class BlockBrewLiquidEffect extends BlockBaseContainer implements IFluidB
       return quantaRemaining <= 0?compare:(quantaRemaining >= compare?quantaRemaining:compare);
    }
 
+   @Override
    public FluidStack drain(World world, int x, int y, int z, boolean doDrain) {
       return null;
    }
 
+   @Override
    public boolean canDrain(World world, int x, int y, int z) {
       return false;
    }
 
+   @Override
    public void updateTick(World world, int x, int y, int z, Random rand) {
       if(!world.isRemote) {
          boolean evaporated = false;
@@ -646,6 +672,7 @@ public class BlockBrewLiquidEffect extends BlockBaseContainer implements IFluidB
       }
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
       if(entity != null && entity instanceof EntityLivingBase && !world.isRemote && world.rand.nextInt(10) == 4) {
          TileEntityBrewFluid liquid = (TileEntityBrewFluid)BlockUtil.getTileEntity(world, x, y, z, TileEntityBrewFluid.class);

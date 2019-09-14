@@ -13,6 +13,7 @@ public class PotionFortune extends PotionBase implements IHandleHarvestDrops {
       super(id, color);
    }
 
+   @Override
    public void onHarvestDrops(World world, EntityPlayer player, HarvestDropsEvent event, int amplifier) {
       if(!event.world.isRemote && !event.isSilkTouching && event.block != null && !event.block.hasTileEntity(event.blockMetadata) && event.drops.size() > 0) {
          ArrayList drops = event.block.getDrops(event.world, event.x, event.y, event.z, event.blockMetadata, event.fortuneLevel + (amplifier > 2?2:1));

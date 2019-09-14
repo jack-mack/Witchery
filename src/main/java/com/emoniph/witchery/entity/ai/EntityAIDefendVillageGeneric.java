@@ -17,6 +17,7 @@ public class EntityAIDefendVillageGeneric extends EntityAITarget {
       this.setMutexBits(1);
    }
 
+   @Override
    public boolean shouldExecute() {
       Village village = this.defender.getVillage();
       if(village == null) {
@@ -36,6 +37,7 @@ public class EntityAIDefendVillageGeneric extends EntityAITarget {
       }
    }
 
+   @Override
    public void startExecuting() {
       this.defender.getCreature().setAttackTarget(this.villageAgressorTarget);
       super.startExecuting();

@@ -52,6 +52,7 @@ public class BlockPlantMine extends BlockBase implements IPlantable {
       this.setBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 0.6F, 0.7F);
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int posX, int posY, int posZ, Entity entity) {
       if(!world.isRemote) {
          int metadata = world.getBlockMetadata(posX, posY, posZ);
@@ -75,18 +76,22 @@ public class BlockPlantMine extends BlockBase implements IPlantable {
 
    }
 
+   @Override
    public Item getItemDropped(int par1, Random rand, int fortune) {
       return null;
    }
 
+   @Override
    public int damageDropped(int metadata) {
       return 0;
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       return new ItemStack(this, 1, world.getBlockMetadata(x, y, z));
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list) {
       list.add(new ItemStack(item, 1, 0));
@@ -103,6 +108,7 @@ public class BlockPlantMine extends BlockBase implements IPlantable {
       list.add(new ItemStack(item, 1, 11));
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int par1, int metadata) {
       metadata = metadata >>> 2 & 3;
@@ -121,6 +127,7 @@ public class BlockPlantMine extends BlockBase implements IPlantable {
       }
    }
 
+   @Override
    public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
       return super.canPlaceBlockAt(par1World, par2, par3, par4) && this.canBlockStay(par1World, par2, par3, par4);
    }
@@ -129,11 +136,13 @@ public class BlockPlantMine extends BlockBase implements IPlantable {
       return block == Blocks.grass || block == Blocks.dirt || block == Blocks.farmland || block == Blocks.sand || block == Blocks.mycelium;
    }
 
+   @Override
    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, Block par5) {
       super.onNeighborBlockChange(par1World, par2, par3, par4, par5);
       this.checkFlowerChange(par1World, par2, par3, par4);
    }
 
+   @Override
    public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
       this.checkFlowerChange(par1World, par2, par3, par4);
    }
@@ -146,42 +155,51 @@ public class BlockPlantMine extends BlockBase implements IPlantable {
 
    }
 
+   @Override
    public boolean canBlockStay(World par1World, int par2, int par3, int par4) {
       Block soil = par1World.getBlock(par2, par3 - 1, par4);
       return (par1World.getFullBlockLightValue(par2, par3, par4) >= 8 || par1World.canBlockSeeTheSky(par2, par3, par4)) && soil != null && (soil.canSustainPlant(par1World, par2, par3 - 1, par4, ForgeDirection.UP, this) || soil == Blocks.sand || soil == Blocks.mycelium);
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
       float f = 0.0625F;
       return AxisAlignedBB.getBoundingBox((double)((float)par2 + 0.5F - 0.2F + f), (double)par3, (double)((float)par4 + 0.5F - 0.2F + f), (double)((float)par2 + 0.5F + 0.2F - f), (double)((float)par3 + 0.6F - f), (double)((float)par4 + 0.5F + 0.2F - f));
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public AxisAlignedBB getSelectedBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
       float f = 0.0625F;
       return AxisAlignedBB.getBoundingBox((double)((float)par2 + 0.5F - 0.2F + f), (double)par3, (double)((float)par4 + 0.5F - 0.2F + f), (double)((float)par2 + 0.5F + 0.2F - f), (double)((float)par3 + 0.6F - f), (double)((float)par4 + 0.5F + 0.2F - f));
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public int getRenderType() {
       return 1;
    }
 
+   @Override
    public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z) {
       return EnumPlantType.Plains;
    }
 
+   @Override
    public Block getPlant(IBlockAccess world, int x, int y, int z) {
       return this;
    }
 
+   @Override
    public int getPlantMetadata(IBlockAccess world, int x, int y, int z) {
       return world.getBlockMetadata(x, y, z);
    }
@@ -193,10 +211,12 @@ public class BlockPlantMine extends BlockBase implements IPlantable {
          super(block);
       }
 
+      @Override
       protected String[] getNames() {
          return BlockPlantMine.woodType;
       }
 
+      @Override
       @SideOnly(Side.CLIENT)
       public IIcon getIconFromDamage(int par1) {
          return super.field_150939_a.getIcon(0, par1);

@@ -35,6 +35,7 @@ public class BlockFumeFunnel extends BlockBaseContainer {
       return this.filtered;
    }
 
+   @Override
    public boolean onBlockActivated(World world, int posX, int posY, int posZ, EntityPlayer player, int par6, float par7, float par8, float par9) {
       if(world.isRemote) {
          return true;
@@ -70,18 +71,22 @@ public class BlockFumeFunnel extends BlockBaseContainer {
       }
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public int quantityDropped(Random rand) {
       return 1;
    }
 
+   @Override
    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
       int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
       if(l == 0) {
@@ -102,11 +107,13 @@ public class BlockFumeFunnel extends BlockBaseContainer {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
       int metadata = world.getBlockMetadata(x, y, z);
@@ -121,6 +128,7 @@ public class BlockFumeFunnel extends BlockBaseContainer {
 
    public static class TileEntityFumeFunnel extends TileEntity {
 
+      @Override
       public boolean canUpdate() {
          return false;
       }

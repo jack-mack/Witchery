@@ -22,10 +22,12 @@ public class RecipeShapelessAddColor implements IRecipe {
       this.pattern = pattern;
    }
 
+   @Override
    public ItemStack getRecipeOutput() {
       return null;
    }
 
+   @Override
    public boolean matches(InventoryCrafting par1InventoryCrafting, World par2World) {
       ArrayList arraylist = new ArrayList(Arrays.asList(this.pattern));
 
@@ -55,6 +57,7 @@ public class RecipeShapelessAddColor implements IRecipe {
       return arraylist.isEmpty();
    }
 
+   @Override
    public ItemStack getCraftingResult(InventoryCrafting inv) {
       ItemStack item = this.findRecipeItemStack(inv, this.prototype.getItem());
       ItemStack potion = this.findRecipeItemStack(inv, this.pattern[1].getItem());
@@ -78,6 +81,7 @@ public class RecipeShapelessAddColor implements IRecipe {
       return null;
    }
 
+   @Override
    public int getRecipeSize() {
       return this.pattern.length;
    }

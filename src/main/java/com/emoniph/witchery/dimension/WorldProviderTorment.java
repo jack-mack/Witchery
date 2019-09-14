@@ -39,47 +39,58 @@ public class WorldProviderTorment extends WorldProvider {
    public static final int TORMENT_END = 3;
 
 
+   @Override
    public String getDimensionName() {
       return "Torment";
    }
 
+   @Override
    public IChunkProvider createChunkGenerator() {
       return new WorldChunkManagerTorment(super.worldObj);
    }
 
+   @Override
    public boolean canRespawnHere() {
       return false;
    }
 
+   @Override
    public boolean isSurfaceWorld() {
       return false;
    }
 
+   @Override
    public boolean canDoLightning(Chunk chunk) {
       return false;
    }
 
+   @Override
    public boolean isBlockHighHumidity(int x, int y, int z) {
       return false;
    }
 
+   @Override
    public boolean isDaytime() {
       return false;
    }
 
+   @Override
    public ChunkCoordinates getSpawnPoint() {
       return new ChunkCoordinates(8, 14, 8);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean isSkyColored() {
       return true;
    }
 
+   @Override
    public float calculateCelestialAngle(long par1, float par3) {
       return 1.0F;
    }
 
+   @Override
    public Vec3 getSkyColor(Entity cameraEntity, float partialTicks) {
       float f1 = super.worldObj.getCelestialAngle(partialTicks);
       float f2 = MathHelper.cos(f1 * 3.1415927F * 2.0F) * 2.0F + 0.5F;

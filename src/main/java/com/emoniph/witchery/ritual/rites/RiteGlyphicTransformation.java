@@ -18,6 +18,7 @@ import net.minecraft.world.World;
 
 public class RiteGlyphicTransformation extends Rite {
 
+   @Override
    public void addSteps(ArrayList steps, int intialStage) {
       steps.add(new RiteGlyphicTransformation.StepGlyphicTransformation(this));
    }
@@ -32,6 +33,7 @@ public class RiteGlyphicTransformation extends Rite {
          this.rite = rite;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(ticks % 30L != 0L) {
             return RitualStep.Result.STARTING;

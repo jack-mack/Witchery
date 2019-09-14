@@ -51,6 +51,7 @@ public class EntityAIMoveTowardsVampire extends EntityAIBase {
       return target;
    }
 
+   @Override
    public boolean shouldExecute() {
       this.targetEntity = this.getDistanceSqToPartner();
       if(this.targetEntity == null) {
@@ -61,6 +62,7 @@ public class EntityAIMoveTowardsVampire extends EntityAIBase {
       }
    }
 
+   @Override
    public boolean continueExecuting() {
       if(this.theEntity.ticksExisted % 20 == 0) {
          this.theEntity.getNavigator().tryMoveToXYZ(this.targetEntity.posX, this.targetEntity.posY, this.targetEntity.posZ, this.speed);
@@ -69,10 +71,12 @@ public class EntityAIMoveTowardsVampire extends EntityAIBase {
       return true;
    }
 
+   @Override
    public void resetTask() {
       this.targetEntity = null;
    }
 
+   @Override
    public void startExecuting() {
       this.theEntity.getNavigator().tryMoveToXYZ(this.targetEntity.posX, this.targetEntity.posY, this.targetEntity.posZ, this.speed);
    }

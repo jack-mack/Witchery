@@ -21,11 +21,13 @@ public class PacketSelectPlayerAbility implements IMessage {
       this.trigger = trigger;
    }
 
+   @Override
    public void toBytes(ByteBuf buffer) {
       buffer.writeByte(this.vampirePower);
       buffer.writeBoolean(this.trigger);
    }
 
+   @Override
    public void fromBytes(ByteBuf buffer) {
       this.vampirePower = buffer.readByte();
       this.trigger = buffer.readBoolean();
@@ -33,6 +35,7 @@ public class PacketSelectPlayerAbility implements IMessage {
 
    public static class Handler implements IMessageHandler<PacketSelectPlayerAbility, IMessage> {
 
+      @Override
       public IMessage onMessage(PacketSelectPlayerAbility message, MessageContext ctx) {
          EntityPlayer player = Witchery.proxy.getPlayer(ctx);
          ExtendedPlayer playerEx = ExtendedPlayer.get(player);

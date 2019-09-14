@@ -702,6 +702,7 @@ public class WitcheryRecipes {
          for(int i$ = 0; i$ < len$; ++i$) {
             Item[] hunterItem = arr$[i$];
             ShapedOreRecipe recipe = new ShapedOreRecipe(new ItemStack(hunterItem[1]), new Object[]{"dwd", "w#w", "dsd", Character.valueOf('#'), new ItemStack(hunterItem[0]), Character.valueOf('s'), new ItemStack(Items.string), Character.valueOf('w'), Witchery.Items.GENERIC.itemWolfsbane.createStack(), Character.valueOf('d'), "ingotSilver"}) {
+               @Override
                public ItemStack getCraftingResult(InventoryCrafting inv) {
                   ItemStack result = this.getRecipeOutput().copy();
 

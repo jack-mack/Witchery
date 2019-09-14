@@ -10,6 +10,7 @@ public class EntityIllusionSpider extends EntityIllusion {
       super(world);
    }
 
+   @Override
    protected SoundEffect getFakeLivingSound() {
       return SoundEffect.MOB_SPIDER_SAY;
    }

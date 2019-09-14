@@ -27,18 +27,22 @@ public class WorldHandlerClonedStructure implements IWorldGenHandler {
       this.depth = depth;
    }
 
+   @Override
    public int getExtentX() {
       return this.width;
    }
 
+   @Override
    public int getExtentZ() {
       return this.depth;
    }
 
+   @Override
    public int getRange() {
       return this.range;
    }
 
+   @Override
    public boolean generate(World world, Random random, int x, int z) {
       if(Config.instance().generateGoblinHuts && random.nextDouble() < this.chance) {
          int direction = random.nextInt(4);
@@ -63,5 +67,6 @@ public class WorldHandlerClonedStructure implements IWorldGenHandler {
       }
    }
 
+   @Override
    public void initiate() {}
 }

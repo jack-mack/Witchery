@@ -18,6 +18,7 @@ class GuiButtonUrl extends GuiButton {
       this.nextPage = !page.isEmpty()?page.toLowerCase(Locale.ROOT).replace(" ", ""):label.toLowerCase(Locale.ROOT).replace(" ", "");
    }
 
+   @Override
    public void drawButton(Minecraft mc, int mouseX, int mouseY) {
       if(super.visible) {
          String FORMAT_CHAR = "§";

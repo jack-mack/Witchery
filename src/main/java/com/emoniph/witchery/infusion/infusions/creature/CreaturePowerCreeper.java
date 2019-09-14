@@ -18,11 +18,13 @@ public class CreaturePowerCreeper extends CreaturePower {
       super(powerID, EntityCreeper.class);
    }
 
+   @Override
    public int activateCost(World world, EntityPlayer player, int elapsedTicks, MovingObjectPosition mop) {
       int baseCost = super.activateCost(world, player, elapsedTicks, mop);
       return elapsedTicks >= 60?baseCost * 2:baseCost;
    }
 
+   @Override
    public void onActivate(World world, EntityPlayer player, int elapsedTicks, MovingObjectPosition mop) {
       if(!world.isRemote) {
          double var10002 = player.posX;
@@ -42,6 +44,7 @@ public class CreaturePowerCreeper extends CreaturePower {
 
    }
 
+   @Override
    public void onDamage(World world, EntityPlayer player, LivingHurtEvent event) {
       if(event.source.isFireDamage()) {
          StackTraceElement[] stack = Thread.currentThread().getStackTrace();

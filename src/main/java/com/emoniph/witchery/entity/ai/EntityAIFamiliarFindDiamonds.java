@@ -30,16 +30,19 @@ public class EntityAIFamiliarFindDiamonds extends EntityAIBase {
       this.setMutexBits(5);
    }
 
+   @Override
    public boolean shouldExecute() {
       EntityLivingBase entitylivingbase = this.theFamiliar.getOwner();
       return this.theFamiliar.isTamed() && !this.theFamiliar.isSitting() && this.theFamiliar.getBlockIDToFind() != null && entitylivingbase != null && this.theFamiliar.getDistanceSqToEntity(entitylivingbase) < 100.0D && this.theFamiliar.getRNG().nextDouble() <= 0.1D && this.getNearbySitableBlockDistance();
    }
 
+   @Override
    public boolean continueExecuting() {
       EntityLivingBase entitylivingbase = this.theFamiliar.getOwner();
       return this.currentTick <= this.maxSittingTicks && this.field_75402_d <= 60 && entitylivingbase != null && this.theFamiliar.getDistanceSqToEntity(entitylivingbase) < 100.0D && this.isSittableBlock(this.theFamiliar.worldObj, this.sitableBlockX, this.sitableBlockY, this.sitableBlockZ);
    }
 
+   @Override
    public void startExecuting() {
       if(!this.theFamiliar.getNavigator().tryMoveToXYZ((double)this.sitableBlockX + 0.5D, (double)(this.sitableBlockY + 1), (double)this.sitableBlockZ + 0.5D, this.field_75404_b)) {
          this.theFamiliar.getNavigator().tryMoveToXYZ((double)this.sitableBlockX + 0.5D, this.theFamiliar.posY + 1.0D, (double)this.sitableBlockZ + 0.5D, this.field_75404_b);
@@ -51,10 +54,12 @@ public class EntityAIFamiliarFindDiamonds extends EntityAIBase {
       this.theFamiliar.func_70907_r().setSitting(false);
    }
 
+   @Override
    public void resetTask() {
       this.theFamiliar.setSitting(false);
    }
 
+   @Override
    public void updateTask() {
       ++this.currentTick;
       this.theFamiliar.func_70907_r().setSitting(false);

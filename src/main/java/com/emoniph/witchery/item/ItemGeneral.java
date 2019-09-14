@@ -409,6 +409,7 @@ public class ItemGeneral extends ItemBase {
       this.itemBrewOfSoaring = ItemGeneral.SubItem.register(new InfusedBrew(122, "brewSoaring", InfusedBrewEffect.Soaring), this.subItems);
       this.itemBrewGrave = ItemGeneral.SubItem.register(new InfusedBrew(123, "brewGrave", InfusedBrewEffect.Grave), this.subItems);
       this.itemBrewRevealing = ItemGeneral.SubItem.register(new ItemGeneral.Brew(124, "brewRevealing") {
+         @Override
          public ItemGeneral.Brew.BrewResult onImpact(World world, EntityLivingBase thrower, MovingObjectPosition mop, boolean enhanced, double brewX, double brewY, double brewZ, AxisAlignedBB brewBounds) {
             double RADIUS = enhanced?8.0D:5.0D;
             double RADIUS_SQ = RADIUS * RADIUS;
@@ -454,6 +455,7 @@ public class ItemGeneral extends ItemBase {
          }
       }, this.subItems);
       this.itemBrewSubstitution = ItemGeneral.SubItem.register(new ItemGeneral.Brew(125, "brewSubstitution") {
+         @Override
          public ItemGeneral.Brew.BrewResult onImpact(World world, EntityLivingBase thrower, final MovingObjectPosition mop, boolean enhanced, double brewX, double brewY, double brewZ, AxisAlignedBB brewBounds) {
             if(mop != null && mop.typeOfHit != MovingObjectType.ENTITY) {
                int RADIUS = enhanced?6:4;
@@ -483,7 +485,9 @@ public class ItemGeneral extends ItemBase {
                         int stackIndex = 0;
                         int subCount = 0;
 
+                        @Override
                         public void onSpiralActionStart(World world, int posX, int posY, int posZ) {}
+                        @Override
                         public boolean onSpiralBlockAction(World world, int posX, int posY, int posZ) {
                            if(Coord.distanceSq((double)mop.blockX, (double)mop.blockY, (double)mop.blockZ, (double)posX, (double)posY, (double)posZ) < RADIUS_SQ) {
                               boolean found = false;
@@ -517,6 +521,7 @@ public class ItemGeneral extends ItemBase {
 
                            return this.stackIndex < items.size();
                         }
+                        @Override
                         public void onSpiralActionStop(World world, int posX, int posY, int posZ) {
                            while(this.subCount > 0) {
                               int quantity = this.subCount > 64?64:this.subCount;
@@ -553,6 +558,7 @@ public class ItemGeneral extends ItemBase {
       this.itemContractOwnership = ItemGeneral.SubItem.register(new ItemGeneral.SubItem(140, "contract"), this.subItems);
       this.itemContractTorment = ItemGeneral.SubItem.register(new ItemGeneral.SubItem(141, "contractTorment"), this.subItems);
       this.itemContractBlaze = ItemGeneral.SubItem.register(new ItemGeneralContract(142, "contractBlaze") {
+         @Override
          public boolean activate(ItemStack stack, EntityLivingBase targetEntity) {
             EntityCreature blaze = InfusionInfernal.spawnCreature(targetEntity.worldObj, EntityBlaze.class, targetEntity, 1, 2, ParticleEffect.FLAME, SoundEffect.RANDOM_FIZZ);
             if(blaze != null) {
@@ -565,12 +571,14 @@ public class ItemGeneral extends ItemBase {
          }
       }, this.subItems);
       this.itemContractResistFire = ItemGeneral.SubItem.register(new ItemGeneralContract(143, "contractResistFire") {
+         @Override
          public boolean activate(ItemStack stack, EntityLivingBase targetEntity) {
             targetEntity.addPotionEffect(new PotionEffect(Potion.fireResistance.id, TimeUtil.minsToTicks(15)));
             return true;
          }
       }, this.subItems);
       this.itemContractEvaporate = ItemGeneral.SubItem.register(new ItemGeneralContract(144, "contractEvaporate") {
+         @Override
          public boolean activate(ItemStack stack, EntityLivingBase targetEntity) {
             if(targetEntity instanceof EntityPlayer) {
                PlayerEffects.IMP_EVAPORATION.applyTo((EntityPlayer)targetEntity, TimeUtil.minsToTicks(10));
@@ -581,6 +589,7 @@ public class ItemGeneral extends ItemBase {
          }
       }, this.subItems);
       this.itemContractFieryTouch = ItemGeneral.SubItem.register(new ItemGeneralContract(145, "contractFieryTouch") {
+         @Override
          public boolean activate(ItemStack stack, EntityLivingBase targetEntity) {
             if(targetEntity instanceof EntityPlayer) {
                PlayerEffects.IMP_FIRE_TOUCH.applyTo((EntityPlayer)targetEntity, TimeUtil.minsToTicks(10));
@@ -591,6 +600,7 @@ public class ItemGeneral extends ItemBase {
          }
       }, this.subItems);
       this.itemContractSmelting = ItemGeneral.SubItem.register(new ItemGeneralContract(146, "contractSmelting") {
+         @Override
          public boolean activate(ItemStack stack, EntityLivingBase targetEntity) {
             if(targetEntity instanceof EntityPlayer) {
                PlayerEffects.IMP_METLING_TOUCH.applyTo((EntityPlayer)targetEntity, TimeUtil.minsToTicks(10));
@@ -617,6 +627,7 @@ public class ItemGeneral extends ItemBase {
       this.itemDarkCloth = ItemGeneral.SubItem.register(new ItemGeneral.SubItem(161, "darkCloth"), this.subItems);
       this.itemWoodenStake = ItemGeneral.SubItem.register(new ItemGeneral.SubItem(162, "stake"), this.subItems);
       this.itemBloodWarm = ItemGeneral.SubItem.register(new ItemGeneral.Drinkable(163, "warmBlood", 1, new PotionEffect[0]) {
+         @Override
          public void onDrunk(World world, EntityPlayer player, ItemStack itemstack) {
             if(!world.isRemote) {
                ExtendedPlayer playerEx = ExtendedPlayer.get(player);
@@ -630,6 +641,7 @@ public class ItemGeneral extends ItemBase {
          }
       }, this.subItems);
       this.itemBloodLiliths = ItemGeneral.SubItem.register(new ItemGeneral.Drinkable(164, "lilithsBlood", 2, new PotionEffect[0]) {
+         @Override
          public void onDrunk(World world, EntityPlayer player, ItemStack itemstack) {
             if(!world.isRemote) {
                ExtendedPlayer playerEx = ExtendedPlayer.get(player);
@@ -657,10 +669,12 @@ public class ItemGeneral extends ItemBase {
       return stack != null && stack.getItem() == this && this.isBrew(stack.getItemDamage());
    }
 
+   @Override
    public String getUnlocalizedName(ItemStack itemStack) {
       return this.getUnlocalizedName() + "." + ((ItemGeneral.SubItem)this.subItems.get(itemStack.getItemDamage())).unlocalizedName;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerIcons(IIconRegister iconRegister) {
       String defaultIconName = this.getIconString();
@@ -679,16 +693,19 @@ public class ItemGeneral extends ItemBase {
       this.overlayInfusedBrewIcon = iconRegister.registerIcon(defaultIconName + ".brewInfusedOverlay");
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIconFromDamage(int damage) {
       return ((ItemGeneral.SubItem)this.subItems.get(Math.max(damage, 0))).icon;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIconFromDamageForRenderPass(int damage, int pass) {
       return pass == 0?super.getIconFromDamageForRenderPass(damage, pass):(((ItemGeneral.SubItem)this.subItems.get(damage)).isSolidifier()?this.overlaySolidifierIcon:(((ItemGeneral.SubItem)this.subItems.get(damage)).isInfused()?this.overlayInfusedBrewIcon:(((ItemGeneral.SubItem)this.subItems.get(damage)).isPotion()?Items.potionitem.getIconFromDamageForRenderPass(this.subItems.get(damage) instanceof ItemGeneral.Brew?16384:0, pass):(this.itemBroomEnchanted.damageValue == damage?this.overlayBroomIcon:this.overlayGenericIcon))));
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getColorFromItemStack(ItemStack stack, int pass) {
       if(this.itemBroomEnchanted.isMatch(stack) && pass != 0) {
@@ -707,15 +724,18 @@ public class ItemGeneral extends ItemBase {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean requiresMultipleRenderPasses() {
       return true;
    }
 
+   @Override
    public boolean hasEffect(ItemStack stack, int pass) {
       return pass == 0 && ((ItemGeneral.SubItem)this.subItems.get(stack.getItemDamage())).isEnchanted() || this.itemBroomEnchanted.isMatch(stack) || this.itemSubduedSpirit.isMatch(stack) || this.itemSubduedSpiritVillage.isMatch(stack);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void getSubItems(Item item, CreativeTabs tab, List itemList) {
       Iterator i$ = this.subItems.iterator();
@@ -729,11 +749,13 @@ public class ItemGeneral extends ItemBase {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack itemstack) {
       return EnumRarity.values()[((ItemGeneral.SubItem)this.subItems.get(itemstack.getItemDamage())).rarity];
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean includeHandlers) {
       String location = this.getBoundDisplayName(stack);
@@ -861,6 +883,7 @@ public class ItemGeneral extends ItemBase {
       }
    }
 
+   @Override
    public ItemStack onEaten(ItemStack itemstack, World world, EntityPlayer player) {
       ItemGeneral.SubItem subItem = (ItemGeneral.SubItem)this.subItems.get(itemstack.getItemDamage());
       if(this.itemWaystoneBound.isMatch(itemstack)) {
@@ -974,16 +997,19 @@ public class ItemGeneral extends ItemBase {
       }
    }
 
+   @Override
    public int getMaxItemUseDuration(ItemStack itemstack) {
       ItemGeneral.SubItem subItem = (ItemGeneral.SubItem)this.subItems.get(itemstack.getItemDamage());
       return !(subItem instanceof ItemGeneral.Edible) && !(subItem instanceof ItemGeneral.Drinkable)?(this.itemWaystoneBound.isMatch(itemstack)?1200:(this.itemContractTorment.isMatch(itemstack)?1200:(this.itemSeerStone.isMatch(itemstack)?1200:super.getMaxItemUseDuration(itemstack)))):32;
    }
 
+   @Override
    public EnumAction getItemUseAction(ItemStack itemstack) {
       ItemGeneral.SubItem subItem = (ItemGeneral.SubItem)this.subItems.get(itemstack.getItemDamage());
       return subItem instanceof ItemGeneral.Edible?EnumAction.eat:(subItem instanceof ItemGeneral.Drinkable?((ItemGeneral.Drinkable)subItem).useAction:(this.itemContractTorment.isMatch(itemstack)?EnumAction.bow:(this.itemSeerStone.isMatch(itemstack)?EnumAction.bow:super.getItemUseAction(itemstack))));
    }
 
+   @Override
    public void onUsingTick(ItemStack stack, EntityPlayer player, int countdown) {
       World world = player.worldObj;
       int elapsedTicks = this.getMaxItemUseDuration(stack) - countdown;
@@ -1120,6 +1146,7 @@ public class ItemGeneral extends ItemBase {
       }
    }
 
+   @Override
    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
       Block block = BlockUtil.getBlock(world, x, y, z);
       if(this.itemWaystoneBound.isMatch(stack) && block == Witchery.Blocks.CRYSTAL_BALL) {
@@ -1149,6 +1176,7 @@ public class ItemGeneral extends ItemBase {
       }
    }
 
+   @Override
    public void onPlayerStoppedUsing(ItemStack stack, World world, EntityPlayer player, int countdown) {
       if(!world.isRemote && this.itemWaystoneBound.isMatch(stack) && player instanceof EntityPlayerMP) {
          Witchery.packetPipeline.sendTo((IMessage)(new PacketCamPos(false, false, (Entity)null)), (EntityPlayerMP)player);
@@ -1160,6 +1188,7 @@ public class ItemGeneral extends ItemBase {
       return this.itemBookOven.isMatch(itemstack) || this.itemBookDistilling.isMatch(itemstack) || this.itemBookCircleMagic.isMatch(itemstack) || this.itemBookInfusions.isMatch(itemstack) || this.itemBookHerbology.isMatch(itemstack) || this.itemBookBiomes.isMatch(itemstack) || this.itemBookWands.isMatch(itemstack) || this.itemBookBurning.isMatch(itemstack);
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
       ItemGeneral.SubItem subItem = (ItemGeneral.SubItem)this.subItems.get(itemstack.getItemDamage());
       if(this.isBook(itemstack)) {
@@ -1294,6 +1323,7 @@ public class ItemGeneral extends ItemBase {
       player.openGui(Witchery.instance, 1, world, posX, posY, posZ);
    }
 
+   @Override
    public boolean onItemUse(ItemStack itemstack, EntityPlayer player, World world, int posX, int posY, int posZ, int side, float par8, float par9, float par10) {
       if(this.itemMutandis.isMatch(itemstack)) {
          return this.useMutandis(false, itemstack, player, world, posX, posY, posZ);
@@ -2464,16 +2494,20 @@ public class ItemGeneral extends ItemBase {
          super(server);
       }
 
+      @Override
       public boolean makePortal(Entity par1Entity) {
          return false;
       }
 
+      @Override
       public boolean placeInExistingPortal(Entity par1Entity, double par2, double par4, double par6, float par8) {
          return false;
       }
 
+      @Override
       public void placeInPortal(Entity par1Entity, double par2, double par4, double par6, float par8) {}
 
+      @Override
       public void removeStalePortalLocations(long par1) {}
    }
 }

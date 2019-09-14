@@ -22,6 +22,7 @@ public class RiteFertility extends RiteExpandingEffect {
       super(radius, height, false);
    }
 
+   @Override
    public void doBlockAction(World world, int posX, int posY, int posZ, int currentRadius, EntityPlayer player, boolean enhanced) {
       Block blockID = world.getBlock(posX, posY, posZ);
       if((blockID != Blocks.dirt || blockID != Blocks.grass || blockID != Blocks.mycelium || blockID != Blocks.farmland || world.rand.nextInt(5) == 0) && player != null) {
@@ -30,6 +31,7 @@ public class RiteFertility extends RiteExpandingEffect {
 
    }
 
+   @Override
    public boolean doRadiusAction(World world, int posX, int posY, int posZ, int radius, EntityPlayer player, boolean enhanced) {
       double radiusSq = (double)(radius * radius);
       double minSq = (double)Math.max(0, (radius - 1) * (radius - 1));

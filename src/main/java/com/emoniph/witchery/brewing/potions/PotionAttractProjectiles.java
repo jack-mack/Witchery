@@ -16,10 +16,12 @@ public class PotionAttractProjectiles extends PotionBase {
       super(id, true, color);
    }
 
+   @Override
    public boolean isReady(int duration, int amplifier) {
       return true;
    }
 
+   @Override
    public void performEffect(EntityLivingBase target, int amplifier) {
       World world = target.worldObj;
       double RADIUS = (1.0D + (double)amplifier) * 3.0D;

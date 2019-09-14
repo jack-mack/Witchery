@@ -23,22 +23,27 @@ public class MFRHarvestable implements IFactoryHarvestable {
       this.stages = stages;
    }
 
+   @Override
    public Block getPlant() {
       return this.source;
    }
 
+   @Override
    public HarvestType getHarvestType() {
       return this.harvestType;
    }
 
+   @Override
    public boolean breakBlock() {
       return this.stages == 0;
    }
 
+   @Override
    public boolean canBeHarvested(World world, Map harvesterSettings, int x, int y, int z) {
       return this.stages == 0 || this.stages > 0 && world.getBlockMetadata(x, y, z) == this.stages;
    }
 
+   @Override
    public List getDrops(World world, Random rand, Map harvesterSettings, int x, int y, int z) {
       if(harvesterSettings.get("silkTouch") != null && ((Boolean)harvesterSettings.get("silkTouch")).booleanValue() && this.harvestType == HarvestType.TreeLeaf) {
          ArrayList drops = new ArrayList();
@@ -49,8 +54,10 @@ public class MFRHarvestable implements IFactoryHarvestable {
       }
    }
 
+   @Override
    public void preHarvest(World world, int x, int y, int z) {}
 
+   @Override
    public void postHarvest(World world, int x, int y, int z) {
       if(this.stages > 0 && world.getBlockMetadata(x, y, z) == this.stages) {
          world.setBlockToAir(x, y, z);

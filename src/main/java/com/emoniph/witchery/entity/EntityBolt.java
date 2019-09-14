@@ -108,6 +108,7 @@ public class EntityBolt extends Entity {
       this.setThrowableHeading(super.motionX, super.motionY, super.motionZ, par3 * 1.5F, 1.0F);
    }
 
+   @Override
    protected void entityInit() {
       super.dataWatcher.addObject(15, "");
       super.dataWatcher.addObject(16, Byte.valueOf((byte)0));
@@ -146,12 +147,14 @@ public class EntityBolt extends Entity {
       this.ticksInGround = 0;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void setPositionAndRotation2(double par1, double par3, double par5, float par7, float par8, int par9) {
       this.setPosition(par1, par3, par5);
       this.setRotation(par7, par8);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void setVelocity(double par1, double par3, double par5) {
       super.motionX = par1;
@@ -169,6 +172,7 @@ public class EntityBolt extends Entity {
 
    }
 
+   @Override
    public void onUpdate() {
       this.onEntityUpdate();
       if(super.prevRotationPitch == 0.0F && super.prevRotationYaw == 0.0F) {
@@ -407,6 +411,7 @@ public class EntityBolt extends Entity {
 
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       par1NBTTagCompound.setShort("xTile", (short)this.xTile);
       par1NBTTagCompound.setShort("yTile", (short)this.yTile);
@@ -420,6 +425,7 @@ public class EntityBolt extends Entity {
       par1NBTTagCompound.setInteger("boltType", this.getBoltType());
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       this.xTile = par1NBTTagCompound.getShort("xTile");
       this.yTile = par1NBTTagCompound.getShort("yTile");
@@ -441,6 +447,7 @@ public class EntityBolt extends Entity {
       this.setBoltType(par1NBTTagCompound.getInteger("boltType"));
    }
 
+   @Override
    public void onCollideWithPlayer(EntityPlayer par1EntityPlayer) {
       if(!super.worldObj.isRemote && this.inGround && this.arrowShake <= 0) {
          boolean flag = this.canBePickedUp == 1 || this.canBePickedUp == 2 && par1EntityPlayer.capabilities.isCreativeMode;
@@ -468,10 +475,12 @@ public class EntityBolt extends Entity {
 
    }
 
+   @Override
    protected boolean canTriggerWalking() {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public float getShadowSize() {
       return 0.0F;
@@ -524,6 +533,7 @@ public class EntityBolt extends Entity {
       return boltType == 4;
    }
 
+   @Override
    public boolean canAttackWithItem() {
       return false;
    }

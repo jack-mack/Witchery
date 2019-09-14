@@ -12,10 +12,13 @@ public abstract class EntityFlyingMob extends EntityMob {
       super(par1World);
    }
 
+   @Override
    protected void fall(float par1) {}
 
+   @Override
    protected void updateFallState(double par1, boolean par3) {}
 
+   @Override
    public void moveEntityWithHeading(float par1, float par2) {
       if(this.isInWater()) {
          this.moveFlying(par1, par2, 0.02F);
@@ -68,6 +71,7 @@ public abstract class EntityFlyingMob extends EntityMob {
       super.limbSwing += super.limbSwingAmount;
    }
 
+   @Override
    public boolean isOnLadder() {
       return false;
    }

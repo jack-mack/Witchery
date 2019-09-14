@@ -62,20 +62,25 @@ public class BlockPlacedItem extends BlockBaseContainer {
       this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.05F, 0.8F);
    }
 
+   @Override
    public void registerBlockIcons(IIconRegister p_149651_1_) {}
 
+   @Override
    protected String getTextureName() {
       return null;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public void onBlockHarvested(World par1World, int par2, int par3, int par4, int par5, EntityPlayer par6EntityPlayer) {
       if(par6EntityPlayer.capabilities.isCreativeMode) {
          par5 |= 8;
@@ -86,6 +91,7 @@ public class BlockPlacedItem extends BlockBaseContainer {
       super.onBlockHarvested(par1World, par2, par3, par4, par5, par6EntityPlayer);
    }
 
+   @Override
    public ArrayList getDrops(World world, int x, int y, int z, int metadata, int fortune) {
       ArrayList drops = new ArrayList();
       if((metadata & 8) == 0) {
@@ -98,6 +104,7 @@ public class BlockPlacedItem extends BlockBaseContainer {
       return drops;
    }
 
+   @Override
    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, Block par5) {
       this.func_111046_k(par1World, par2, par3, par4);
    }
@@ -115,29 +122,35 @@ public class BlockPlacedItem extends BlockBaseContainer {
       }
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       TileEntity tile = world.getTileEntity(x, y, z);
       return tile != null && tile instanceof BlockPlacedItem.TileEntityPlacedItem && ((BlockPlacedItem.TileEntityPlacedItem)tile).getStack() != null?((BlockPlacedItem.TileEntityPlacedItem)tile).getStack().copy():new ItemStack(Witchery.Items.ARTHANA);
    }
 
+   @Override
    public boolean canBlockStay(World world, int x, int y, int z) {
       Material material = world.getBlock(x, y - 1, z).getMaterial();
       return !world.isAirBlock(x, y - 1, z) && material != null && material.isOpaque() && material.isSolid();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {}
 
+   @Override
    @SideOnly(Side.CLIENT)
    public String getItemIconName() {
       return this.getTextureName();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int par1, int par2) {
       return Blocks.iron_block.getBlockTextureFromSide(0);
@@ -149,10 +162,12 @@ public class BlockPlacedItem extends BlockBaseContainer {
       private ItemStack stack;
 
 
+      @Override
       public boolean canUpdate() {
          return false;
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtRoot) {
          super.writeToNBT(nbtRoot);
          if(this.stack != null) {
@@ -163,6 +178,7 @@ public class BlockPlacedItem extends BlockBaseContainer {
 
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtRoot) {
          super.readFromNBT(nbtRoot);
          if(nbtRoot.hasKey("WITCPlacedItem")) {
@@ -185,12 +201,14 @@ public class BlockPlacedItem extends BlockBaseContainer {
          return this.stack;
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          this.readFromNBT(packet.func_148857_g());

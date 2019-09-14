@@ -30,9 +30,11 @@ public class RenderGrassper extends TileEntitySpecialRenderer {
       public byte getMiniBlockCountForItemStack(ItemStack stack) {
          return (byte)1;
       }
+      @Override
       public boolean shouldBob() {
          return false;
       }
+      @Override
       public boolean shouldSpreadItems() {
          return false;
       }
@@ -44,6 +46,7 @@ public class RenderGrassper extends TileEntitySpecialRenderer {
       this.renderItems.setRenderManager(RenderManager.instance);
    }
 
+   @Override
    public void renderTileEntityAt(TileEntity tileEntity, double d, double d1, double d2, float f) {
       GL11.glPushMatrix();
       GL11.glTranslatef((float)d, (float)d1, (float)d2);

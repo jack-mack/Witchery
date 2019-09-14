@@ -44,6 +44,7 @@ public class PacketParticles implements IMessage {
       this(particleEffect, soundEffect, targetEntity.posX, targetEntity.posY, targetEntity.posZ, width, height, color);
    }
 
+   @Override
    public void toBytes(ByteBuf buffer) {
       buffer.writeInt(this.particleEffect.ordinal());
       buffer.writeInt(this.soundEffect.ordinal());
@@ -55,6 +56,7 @@ public class PacketParticles implements IMessage {
       buffer.writeInt(this.color);
    }
 
+   @Override
    public void fromBytes(ByteBuf buffer) {
       int ordinalParticle = buffer.readInt();
       this.particleEffect = ParticleEffect.values()[ordinalParticle];
@@ -70,6 +72,7 @@ public class PacketParticles implements IMessage {
 
    public static class Handler implements IMessageHandler<PacketParticles, IMessage> {
 
+      @Override
       public IMessage onMessage(PacketParticles message, MessageContext ctx) {
          EntityPlayer player = Witchery.proxy.getPlayer(ctx);
          World world = player.worldObj;

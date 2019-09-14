@@ -24,14 +24,17 @@ public class PotionWrappedInVine extends PotionBase implements IHandleLivingHurt
       super(id, true, color);
    }
 
+   @Override
    public void postContructInitialize() {
       this.setIncurable();
    }
 
+   @Override
    public boolean handleAllHurtEvents() {
       return false;
    }
 
+   @Override
    public void onLivingHurt(World world, EntityLivingBase entity, LivingHurtEvent event, int amplifier) {
       if(!event.entity.worldObj.isRemote && event.source.isFireDamage()) {
          event.ammount *= (float)Math.min(amplifier + 1, 4);
@@ -39,6 +42,7 @@ public class PotionWrappedInVine extends PotionBase implements IHandleLivingHurt
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void onLivingRender(World world, EntityLivingBase entity, Post event, int amplifier) {
       if(TEXTURE == null) {

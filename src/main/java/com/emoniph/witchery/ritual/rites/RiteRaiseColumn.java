@@ -28,6 +28,7 @@ public class RiteRaiseColumn extends Rite {
       this.height = height;
    }
 
+   @Override
    public void addSteps(ArrayList steps, int intialStage) {
       steps.add(new RiteRaiseColumn.StepRaiseColumn(this, intialStage));
    }
@@ -44,10 +45,12 @@ public class RiteRaiseColumn extends Rite {
          this.stage = initialStage;
       }
 
+      @Override
       public int getCurrentStage() {
          return (byte)this.stage;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(!world.isRemote) {
             if(ticks % 5L != 0L) {

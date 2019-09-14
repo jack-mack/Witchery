@@ -34,34 +34,42 @@ public class ItemMysticBranch extends ItemBase {
       this.setFull3D();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack stack) {
       return EnumRarity.rare;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean isFull3D() {
       return true;
    }
 
+   @Override
    public EnumAction getItemUseAction(ItemStack stack) {
       return EnumAction.block;
    }
 
+   @Override
    public boolean onDroppedByPlayer(ItemStack item, EntityPlayer player) {
       return super.onDroppedByPlayer(item, player);
    }
 
+   @Override
    public int getMaxItemUseDuration(ItemStack stack) {
       return '\u8ca0';
    }
 
+   @Override
    public boolean hasEffect(ItemStack par1ItemStack, int pass) {
       return true;
    }
 
+   @Override
    public void onUpdate(ItemStack stack, World world, Entity entity, int invSlot, boolean isHeld) {}
 
+   @Override
    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
       NBTTagCompound nbtTag = player.getEntityData();
       if(!player.worldObj.isRemote) {
@@ -76,6 +84,7 @@ public class ItemMysticBranch extends ItemBase {
       return stack;
    }
 
+   @Override
    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
       if(world.getBlock(x, y, z) == Witchery.Blocks.ALTAR && side == 1 && world.getBlock(x, y + 1, z) == Blocks.air) {
          BlockPlacedItem.placeItemInWorld(stack, player, world, x, y + 1, z);
@@ -86,6 +95,7 @@ public class ItemMysticBranch extends ItemBase {
       }
    }
 
+   @Override
    public void onUsingTick(ItemStack stack, EntityPlayer player, int countdown) {
       if(player.worldObj.isRemote) {
          NBTTagCompound nbtTag = player.getEntityData();
@@ -131,6 +141,7 @@ public class ItemMysticBranch extends ItemBase {
       return newStrokes;
    }
 
+   @Override
    public void onPlayerStoppedUsing(ItemStack stack, World world, EntityPlayer player, int countdown) {
       NBTTagCompound nbtTag = player.getEntityData();
       if(nbtTag != null) {

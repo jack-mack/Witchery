@@ -44,6 +44,7 @@ public class BlockAreaMarker extends BlockBaseContainer {
       this.setBlockBounds(0.15F, 0.0F, 0.15F, 0.85F, 0.5F, 0.85F);
    }
 
+   @Override
    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
       int l = MathHelper.floor_double((double)(entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
       if(l == 0) {
@@ -73,6 +74,7 @@ public class BlockAreaMarker extends BlockBaseContainer {
 
    }
 
+   @Override
    public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player) {
       if(!world.isRemote & player != null) {
          TileEntity tile = world.getTileEntity(x, y, z);
@@ -89,6 +91,7 @@ public class BlockAreaMarker extends BlockBaseContainer {
 
    }
 
+   @Override
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
       TileEntity tile = world.getTileEntity(x, y, z);
       if(tile != null && tile instanceof BlockAreaMarker.TileEntityAreaMarker) {
@@ -99,30 +102,37 @@ public class BlockAreaMarker extends BlockBaseContainer {
       }
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public int getRenderType() {
       return 0;
    }
 
+   @Override
    public int quantityDropped(Random rand) {
       return 1;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {}
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister par1IconRegister) {
       super.blockIcon = par1IconRegister.registerIcon("stone");
@@ -156,6 +166,7 @@ public class BlockAreaMarker extends BlockBaseContainer {
       private ArrayList killers = new ArrayList();
 
 
+      @Override
       protected void initiate() {
          super.initiate();
          if(!super.worldObj.isRemote) {
@@ -168,6 +179,7 @@ public class BlockAreaMarker extends BlockBaseContainer {
 
       }
 
+      @Override
       public void invalidate() {
          super.invalidate();
          if(!super.worldObj.isRemote) {
@@ -201,6 +213,7 @@ public class BlockAreaMarker extends BlockBaseContainer {
          }
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtTag) {
          super.writeToNBT(nbtTag);
          nbtTag.setString("WITCPlacer", this.getOwner());
@@ -215,6 +228,7 @@ public class BlockAreaMarker extends BlockBaseContainer {
          nbtTag.setTag("Killers", nbtKillers);
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtTag) {
          super.readFromNBT(nbtTag);
          if(nbtTag.hasKey("WITCPlacer")) {
@@ -243,14 +257,17 @@ public class BlockAreaMarker extends BlockBaseContainer {
 
    public static class TileEntityAreaTeleportPullProtect extends BlockAreaMarker.TileEntityAreaMarker {
 
+      @Override
       public boolean activateBlock(World world, int x, int y, int z, EntityPlayer player, int side) {
          return false;
       }
 
+      @Override
       protected boolean isProtected(EntityLivingBase entity, boolean killer, Rite rite) {
          return !killer && Config.instance().allowDecurseTeleport && (rite == null || rite instanceof RiteTeleportEntity);
       }
 
+      @Override
       protected boolean isNear(EntityLivingBase entity) {
          int RADIUS = Config.instance().decurseTeleportPullRadius;
          int RADIUS_SQ = RADIUS * RADIUS;
@@ -258,6 +275,7 @@ public class BlockAreaMarker extends BlockBaseContainer {
          return inRange && super.worldObj.provider.dimensionId == entity.dimension;
       }
 
+      @Override
       protected Block getExpectedBlockType() {
          return Witchery.Blocks.DECURSE_TELEPORT;
       }
@@ -265,14 +283,17 @@ public class BlockAreaMarker extends BlockBaseContainer {
 
    public static class TileEntityAreaCurseProtect extends BlockAreaMarker.TileEntityAreaMarker {
 
+      @Override
       public boolean activateBlock(World world, int x, int y, int z, EntityPlayer player, int side) {
          return false;
       }
 
+      @Override
       protected boolean isProtected(EntityLivingBase entity, boolean killer, Rite rite) {
          return !killer && Config.instance().allowDecurseDirected && (rite == null || rite instanceof RiteCurseCreature);
       }
 
+      @Override
       protected boolean isNear(EntityLivingBase entity) {
          int RADIUS = Config.instance().decurseDirectedRadius;
          int RADIUS_SQ = RADIUS * RADIUS;
@@ -280,6 +301,7 @@ public class BlockAreaMarker extends BlockBaseContainer {
          return inRange && super.worldObj.provider.dimensionId == entity.dimension;
       }
 
+      @Override
       protected Block getExpectedBlockType() {
          return Witchery.Blocks.DECURSE_DIRECTED;
       }

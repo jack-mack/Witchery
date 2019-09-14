@@ -31,6 +31,7 @@ public class BlockEmberMoss extends BlockBaseBush implements IShearable {
       this.setBlockBounds(0.099999994F, 0.0F, 0.099999994F, 0.9F, 0.4F, 0.9F);
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int posX, int posY, int posZ, Entity entity) {
       if(!world.isRemote && entity instanceof EntityLivingBase && !entity.isBurning() && !entity.isImmuneToFire() && (!(entity instanceof EntityPlayer) || !((EntityPlayer)entity).capabilities.isCreativeMode)) {
          entity.setFire(3);
@@ -39,6 +40,7 @@ public class BlockEmberMoss extends BlockBaseBush implements IShearable {
 
    }
 
+   @Override
    public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
       if(!par1World.isRemote && par1World.rand.nextInt(6) == 0) {
          byte b0 = 4;
@@ -83,6 +85,7 @@ public class BlockEmberMoss extends BlockBaseBush implements IShearable {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
       if(rand.nextInt(100) == 0) {
@@ -94,10 +97,12 @@ public class BlockEmberMoss extends BlockBaseBush implements IShearable {
 
    }
 
+   @Override
    public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
       return super.canPlaceBlockAt(par1World, par2, par3, par4) && this.canBlockStay(par1World, par2, par3, par4);
    }
 
+   @Override
    protected boolean canPlaceBlockOn(Block block) {
       return block != null && block.isOpaqueCube();
    }
@@ -107,27 +112,33 @@ public class BlockEmberMoss extends BlockBaseBush implements IShearable {
       return this.canBlockStay(world, posX, posY, posZ) && (block == Blocks.dirt || block == Blocks.grass || block == Blocks.mycelium || block == Blocks.sand || block == Blocks.farmland);
    }
 
+   @Override
    public boolean canBlockStay(World world, int posX, int posY, int posZ) {
       Material material = world.getBlock(posX, posY - 1, posZ).getMaterial();
       return material != null && material.isSolid();
    }
 
+   @Override
    public Item getItemDropped(int par1, Random rand, int fortune) {
       return null;
    }
 
+   @Override
    public int quantityDropped(Random par1Random) {
       return 0;
    }
 
+   @Override
    public void harvestBlock(World par3World, EntityPlayer player, int par4, int par5, int par6, int damageValue) {
       super.harvestBlock(par3World, player, par4, par5, par6, damageValue);
    }
 
+   @Override
    public boolean isShearable(ItemStack item, IBlockAccess world, int x, int y, int z) {
       return true;
    }
 
+   @Override
    public ArrayList onSheared(ItemStack item, IBlockAccess world, int x, int y, int z, int fortune) {
       ArrayList ret = new ArrayList();
       ret.add(new ItemStack(this, 1, 0));

@@ -31,14 +31,17 @@ public class RenderHellhound extends RenderLiving {
       return anrgyWolfTextures;
    }
 
+   @Override
    protected int shouldRenderPass(EntityLivingBase entity, int p_77032_2_, float p_77032_3_) {
       return this.shouldRenderPass((EntityHellhound)entity, p_77032_2_, p_77032_3_);
    }
 
+   @Override
    protected float handleRotationFloat(EntityLivingBase entity, float p_77044_2_) {
       return this.handleRotationFloat((EntityHellhound)entity, p_77044_2_);
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(Entity entity) {
       return this.getEntityTexture((EntityHellhound)entity);
    }

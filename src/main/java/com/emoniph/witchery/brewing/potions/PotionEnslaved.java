@@ -32,6 +32,7 @@ public class PotionEnslaved extends PotionBase implements IHandleLivingSetAttack
       super(id, true, color);
    }
 
+   @Override
    public void onLivingSetAttackTarget(World world, EntityLiving entity, LivingSetAttackTargetEvent event, int amplifier) {
       if(event.target != null && event.target instanceof EntityPlayer && entity instanceof EntityLiving) {
          String enslaverName = getMobEnslaverName(entity);
@@ -85,6 +86,7 @@ public class PotionEnslaved extends PotionBase implements IHandleLivingSetAttack
       }
    }
 
+   @Override
    public void onLivingUpdate(World world, EntityLivingBase entity, LivingUpdateEvent event, int amplifier, int duration) {
       if(!world.isRemote && world.getTotalWorldTime() % 20L == 3L && entity instanceof EntityCreature) {
          EntityCreature creature = (EntityCreature)entity;

@@ -13,12 +13,15 @@ import net.minecraftforge.common.MinecraftForge;
 
 public class ModHookBloodMagic extends ModHook {
 
+   @Override
    public String getModID() {
       return "AWWayofTime";
    }
 
+   @Override
    protected void doInit() {}
 
+   @Override
    protected void doPostInit() {
       try {
          MinecraftForge.EVENT_BUS.register(new ModHookBloodMagic.EventHooks());
@@ -28,10 +31,12 @@ public class ModHookBloodMagic extends ModHook {
 
    }
 
+   @Override
    protected void doReduceMagicPower(EntityLivingBase entity, float factor) {
       ModHookBloodMagic.IntegrateBloodMagic.reduceMagicPower(entity, factor);
    }
 
+   @Override
    public void boostBloodPowers(EntityPlayer player, float health) {
       ModHookBloodMagic.IntegrateBloodMagic.boostBloodPowers(player, health);
    }

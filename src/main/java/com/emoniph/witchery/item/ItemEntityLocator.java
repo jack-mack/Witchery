@@ -25,6 +25,7 @@ public class ItemEntityLocator extends ItemBase {
       this.setMaxStackSize(1);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerIcons(IIconRegister iconRegister) {
       this.icons = new IIcon[33];
@@ -36,6 +37,7 @@ public class ItemEntityLocator extends ItemBase {
       super.itemIcon = this.icons[0];
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advTooltips) {
       super.addInformation(stack, player, list, advTooltips);
       String entityID = Witchery.Items.TAGLOCK_KIT.getBoundEntityDisplayName(stack, Integer.valueOf(1));
@@ -47,15 +49,18 @@ public class ItemEntityLocator extends ItemBase {
 
    }
 
+   @Override
    public IIcon getIconFromDamage(int damageValue) {
       return damageValue > 0 && damageValue < this.icons.length?this.icons[damageValue]:this.icons[0];
    }
 
+   @Override
    public boolean onDroppedByPlayer(ItemStack item, EntityPlayer player) {
       item.setItemDamage(0);
       return super.onDroppedByPlayer(item, player);
    }
 
+   @Override
    public void onUpdate(ItemStack stack, World world, Entity player, int inventorySlot, boolean isHeldItem) {
       if(world != null && world.isRemote && world.getWorldTime() % 10L == 2L) {
          if(Witchery.Items.TAGLOCK_KIT.isTaglockPresent(stack, Integer.valueOf(1))) {

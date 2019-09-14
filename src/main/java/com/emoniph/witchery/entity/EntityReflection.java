@@ -93,6 +93,7 @@ public class EntityReflection extends EntityMob implements IBossDisplayData, IRa
       super.experienceValue = 50;
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(17, "");
@@ -132,6 +133,7 @@ public class EntityReflection extends EntityMob implements IBossDisplayData, IRa
       this.livingTicks = ticks;
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(100.0D);
@@ -141,8 +143,10 @@ public class EntityReflection extends EntityMob implements IBossDisplayData, IRa
       this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.0D);
    }
 
+   @Override
    public void setInWeb() {}
 
+   @Override
    public String getCommandSenderName() {
       if(this.hasCustomNameTag()) {
          return this.getCustomNameTag();
@@ -152,22 +156,27 @@ public class EntityReflection extends EntityMob implements IBossDisplayData, IRa
       }
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    protected void updateAITick() {
       super.updateAITick();
    }
 
+   @Override
    protected int decreaseAirSupply(int par1) {
       return par1;
    }
 
+   @Override
    protected void collideWithEntity(Entity par1Entity) {
       super.collideWithEntity(par1Entity);
    }
 
+   @Override
    public void onLivingUpdate() {
       super.onLivingUpdate();
       if(this.attackTimer > 0) {
@@ -344,23 +353,28 @@ public class EntityReflection extends EntityMob implements IBossDisplayData, IRa
 
    }
 
+   @Override
    public void onDeath(DamageSource p_70645_1_) {
       super.onDeath(p_70645_1_);
       Witchery.Blocks.MIRROR.demonSlain(super.worldObj, super.posX, super.posY, super.posZ);
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource source, float damage) {
       return super.attackEntityFrom(source, Math.min(damage, 6.0F));
    }
 
+   @Override
    public float getCapDT(DamageSource source, float damage) {
       return 2.0F;
    }
 
+   @Override
    public boolean canAttackClass(Class par1Class) {
       return super.canAttackClass(par1Class);
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       super.writeEntityToNBT(nbtRoot);
       nbtRoot.setString("Owner", this.getOwnerName());
@@ -371,6 +385,7 @@ public class EntityReflection extends EntityMob implements IBossDisplayData, IRa
       nbtRoot.setInteger("LivingTicks", this.livingTicks);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       super.readEntityFromNBT(nbtRoot);
       this.setOwner(nbtRoot.getString("Owner"));
@@ -381,12 +396,14 @@ public class EntityReflection extends EntityMob implements IBossDisplayData, IRa
       this.setModel(nbtRoot.getInteger("Model"));
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity par1Entity) {
       this.attackTimer = 10;
       boolean flag = super.attackEntityAsMob(par1Entity);
       return flag;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void handleHealthUpdate(byte par1) {
       if(par1 == 4) {
@@ -402,36 +419,45 @@ public class EntityReflection extends EntityMob implements IBossDisplayData, IRa
       return this.attackTimer;
    }
 
+   @Override
    public float getBrightness(float par1) {
       return 1.0F;
    }
 
+   @Override
    protected String getLivingSound() {
       return "witchery:mob.reflection.say";
    }
 
+   @Override
    protected String getHurtSound() {
       return "witchery:mob.reflection.hit";
    }
 
+   @Override
    protected String getDeathSound() {
       return "witchery:mob.reflection.death";
    }
 
+   @Override
    protected void func_145780_a(int par1, int par2, int par3, Block par4) {
       super.func_145780_a(par1, par2, par3, par4);
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {
       this.entityDropItem(Witchery.Items.GENERIC.itemDemonHeart.createStack(), 0.0F);
    }
 
+   @Override
    protected void dropEquipment(boolean p_82160_1_, int p_82160_2_) {}
 
+   @Override
    protected Item getDropItem() {
       return null;
    }
 
+   @Override
    protected boolean canDespawn() {
       return false;
    }
@@ -451,6 +477,7 @@ public class EntityReflection extends EntityMob implements IBossDisplayData, IRa
       return spells;
    }
 
+   @Override
    public void attackEntityWithRangedAttack(EntityLivingBase targetEntity, float par2) {
       ItemStack held = this.getHeldItem();
       if(held != null) {
@@ -572,6 +599,7 @@ public class EntityReflection extends EntityMob implements IBossDisplayData, IRa
       return (ThreadDownloadImageData)object;
    }
 
+   @Override
    public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
       this.freeSpawn = true;
       return super.onSpawnWithEgg(data);

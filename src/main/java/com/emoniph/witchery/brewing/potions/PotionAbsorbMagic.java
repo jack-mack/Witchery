@@ -14,6 +14,7 @@ public class PotionAbsorbMagic extends PotionBase implements IHandleLivingHurt {
       super(id, color);
    }
 
+   @Override
    public void onLivingHurt(World world, EntityLivingBase entity, LivingHurtEvent event, int amplifier) {
       if(!world.isRemote && event.source.isMagicDamage()) {
          float damageAbsorbed = event.ammount * 0.2F * (float)(amplifier + 1);
@@ -30,6 +31,7 @@ public class PotionAbsorbMagic extends PotionBase implements IHandleLivingHurt {
 
    }
 
+   @Override
    public boolean handleAllHurtEvents() {
       return false;
    }

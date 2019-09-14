@@ -119,26 +119,31 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
       super.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityVillager.class, 0, true, true, this));
    }
 
+   @Override
    public boolean isEntityApplicable(Entity entity) {
       double R = 8.0D;
       return entity instanceof EntityVillager?super.worldObj.getEntitiesWithinAABB(EntityGoblin.class, AxisAlignedBB.getBoundingBox(super.posX - 8.0D, super.posY - 8.0D, super.posZ - 8.0D, super.posX + 8.0D, super.posY + 8.0D, super.posZ + 8.0D)).size() >= 3:true;
    }
 
+   @Override
    public boolean shouldAvoid() {
       double R = 8.0D;
       return super.worldObj.getEntitiesWithinAABB(EntityGoblin.class, AxisAlignedBB.getBoundingBox(super.posX - 8.0D, super.posY - 8.0D, super.posZ - 8.0D, super.posX + 8.0D, super.posY + 8.0D, super.posZ + 8.0D)).size() >= 3;
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.goblin.name");
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.4D);
       this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.0D);
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity targetEntity) {
       float f = (float)this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
       int i = 0;
@@ -170,10 +175,12 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
       return flag;
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    protected void updateAITick() {
       if(--this.randomTickDivider <= 0) {
          super.worldObj.villageCollectionObj.addVillagerPosition(MathHelper.floor_double(super.posX), MathHelper.floor_double(super.posY), MathHelper.floor_double(super.posZ));
@@ -222,6 +229,7 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
       super.updateAITick();
    }
 
+   @Override
    protected void updateLeashedState() {
       try {
          this.testingLeashRange = true;
@@ -236,6 +244,7 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
 
    }
 
+   @Override
    public float getDistanceToEntity(Entity par1Entity) {
       float distance = super.getDistanceToEntity(par1Entity);
       if(this.testingLeashRange && distance < 9.0F) {
@@ -245,6 +254,7 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
       return distance;
    }
 
+   @Override
    public void onUpdate() {
       super.onUpdate();
       if(!super.worldObj.isRemote) {
@@ -253,6 +263,7 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
 
    }
 
+   @Override
    public boolean isOnLadder() {
       return super.isOnLadder();
    }
@@ -300,6 +311,7 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
       super.dataWatcher.updateObject(17, Byte.valueOf(b0));
    }
 
+   @Override
    public boolean interact(EntityPlayer player) {
       ItemStack stack = player.inventory.getCurrentItem();
       boolean heldSpawnEgg = stack != null && stack.getItem() == Items.spawn_egg;
@@ -333,6 +345,7 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
       }
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(16, Integer.valueOf(0));
@@ -341,6 +354,7 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
       super.dataWatcher.addObject(19, Byte.valueOf((byte)0));
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       super.writeEntityToNBT(nbtRoot);
       nbtRoot.setInteger("Profession", this.getProfession());
@@ -353,6 +367,7 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
       nbtRoot.setBoolean("PreventDespawn", this.preventDespawn);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       super.readEntityFromNBT(nbtRoot);
       this.setProfession(nbtRoot.getInteger("Profession"));
@@ -369,22 +384,27 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
       this.preventDespawn = nbtRoot.getBoolean("PreventDespawn");
    }
 
+   @Override
    protected float getSoundPitch() {
       return 1.2F;
    }
 
+   @Override
    protected boolean canDespawn() {
       return !Config.instance().goblinDespawnBlock && this.villageObj == null && !this.preventDespawn && !this.isWorshipping();
    }
 
+   @Override
    protected String getLivingSound() {
       return this.isTrading()?"witchery:mob.goblin.haggle":"witchery:mob.goblin.idle";
    }
 
+   @Override
    protected String getHurtSound() {
       return "witchery:mob.goblin.hit";
    }
 
+   @Override
    protected String getDeathSound() {
       return "witchery:mob.goblin.death";
    }
@@ -405,6 +425,7 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
       this.isMating = par1;
    }
 
+   @Override
    public void setRevengeTarget(EntityLivingBase par1EntityLivingBase) {
       super.setRevengeTarget(par1EntityLivingBase);
       if(this.villageObj != null && par1EntityLivingBase != null) {
@@ -422,6 +443,7 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
 
    }
 
+   @Override
    public void onDeath(DamageSource par1DamageSource) {
       if(this.villageObj != null) {
          Entity entity = par1DamageSource.getEntity();
@@ -440,6 +462,7 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
       super.onDeath(par1DamageSource);
    }
 
+   @Override
    public boolean getCanSpawnHere() {
       int i = MathHelper.floor_double(super.posX);
       int j = MathHelper.floor_double(super.boundingBox.minY);
@@ -447,10 +470,12 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
       return super.worldObj.getBlock(i, j - 1, k) == Blocks.grass && super.worldObj.getFullBlockLightValue(i, j, k) > 8 && super.getCanSpawnHere();
    }
 
+   @Override
    public void setCustomer(EntityPlayer par1EntityPlayer) {
       this.buyingPlayer = par1EntityPlayer;
    }
 
+   @Override
    public EntityPlayer getCustomer() {
       return this.buyingPlayer;
    }
@@ -459,6 +484,7 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
       return this.buyingPlayer != null;
    }
 
+   @Override
    public void useRecipe(MerchantRecipe par1MerchantRecipe) {
       par1MerchantRecipe.incrementToolUses();
       super.livingSoundTime = -this.getTalkInterval();
@@ -479,6 +505,7 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
 
    }
 
+   @Override
    public void func_110297_a_(ItemStack par1ItemStack) {
       if(!super.worldObj.isRemote && super.livingSoundTime > -this.getTalkInterval() + 20) {
          super.livingSoundTime = -this.getTalkInterval();
@@ -491,6 +518,7 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
 
    }
 
+   @Override
    public MerchantRecipeList getRecipes(EntityPlayer par1EntityPlayer) {
       if(this.buyingList == null) {
          this.addDefaultEquipmentAndRecipies(1);
@@ -601,6 +629,7 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void setRecipes(MerchantRecipeList par1MerchantRecipeList) {}
 
@@ -647,6 +676,7 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
       return tuple == null?1:(((Integer)tuple.getFirst()).intValue() >= ((Integer)tuple.getSecond()).intValue()?((Integer)tuple.getFirst()).intValue():((Integer)tuple.getFirst()).intValue() + rand.nextInt(((Integer)tuple.getSecond()).intValue() - ((Integer)tuple.getFirst()).intValue()));
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void handleHealthUpdate(byte par1) {
       if(par1 == 12) {
@@ -661,6 +691,7 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
 
    }
 
+   @Override
    public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData) {
       par1EntityLivingData = super.onSpawnWithEgg(par1EntityLivingData);
       int trade = super.rand.nextInt(5);
@@ -683,6 +714,7 @@ public class EntityGoblin extends EntityAgeable implements IMerchant, INpc, IEnt
       this.isLookingForHome = true;
    }
 
+   @Override
    public EntityGoblin createChild(EntityAgeable par1EntityAgeable) {
       EntityGoblin entityvillager = new EntityGoblin(super.worldObj);
       entityvillager.onSpawnWithEgg((IEntityLivingData)null);

@@ -50,18 +50,22 @@ public class EntityDeath extends EntityMob implements IBossDisplayData, IHandleD
       super.experienceValue = 80;
    }
 
+   @Override
    protected int decreaseAirSupply(int par1) {
       return par1;
    }
 
+   @Override
    protected boolean canDespawn() {
       return false;
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.death.name");
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1000.0D);
@@ -69,6 +73,7 @@ public class EntityDeath extends EntityMob implements IBossDisplayData, IHandleD
       this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(7.0D);
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(16, new Byte((byte)0));
@@ -76,14 +81,17 @@ public class EntityDeath extends EntityMob implements IBossDisplayData, IHandleD
       super.dataWatcher.addObject(18, new Byte((byte)0));
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
    }
 
+   @Override
    protected Entity findPlayerToAttack() {
       EntityPlayer entityplayer = super.worldObj.getClosestVulnerablePlayerToEntity(this, 64.0D);
       if(entityplayer != null) {
@@ -116,6 +124,7 @@ public class EntityDeath extends EntityMob implements IBossDisplayData, IHandleD
       return d1 > 1.0D - 0.025D / d0;
    }
 
+   @Override
    public void onLivingUpdate() {
       if(super.ticksExisted % 20 == 0) {
          this.heal(1.0F);
@@ -242,22 +251,27 @@ public class EntityDeath extends EntityMob implements IBossDisplayData, IHandleD
       }
    }
 
+   @Override
    protected String getLivingSound() {
       return null;
    }
 
+   @Override
    protected String getHurtSound() {
       return "mob.skeleton.hurt";
    }
 
+   @Override
    protected String getDeathSound() {
       return "mob.skeleton.death";
    }
 
+   @Override
    protected Item getDropItem() {
       return Items.bone;
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {
       this.entityDropItem(new ItemStack(Items.skull, 1, 0), 0.0F);
       this.entityDropItem(new ItemStack(Items.bone, 5, 0), 0.0F);
@@ -292,10 +306,12 @@ public class EntityDeath extends EntityMob implements IBossDisplayData, IHandleD
 
    }
 
+   @Override
    public float getCapDT(DamageSource source, float damage) {
       return 15.0F;
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
       if(this.isEntityInvulnerable()) {
          return false;
@@ -321,6 +337,7 @@ public class EntityDeath extends EntityMob implements IBossDisplayData, IHandleD
       }
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity par1Entity) {
       float f = (float)this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
       int i = 0;
@@ -352,6 +369,7 @@ public class EntityDeath extends EntityMob implements IBossDisplayData, IHandleD
       return flag1;
    }
 
+   @Override
    public void onDeath(DamageSource par1DamageSource) {
       super.onDeath(par1DamageSource);
       if(!super.worldObj.isRemote) {

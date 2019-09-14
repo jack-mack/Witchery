@@ -27,6 +27,7 @@ public class BrewNamePartModifier extends BrewNamePart {
       this.removePowerCeiling = removeCeiling;
    }
 
+   @Override
    public void applyTo(BrewNameBuilder nameBuilder) {
       nameBuilder.dispersalExtent += this.dispersalExtent;
       nameBuilder.dispersalDuration += this.dispersalDuration;

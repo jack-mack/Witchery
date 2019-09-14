@@ -23,6 +23,7 @@ public class EntityAIGoblinMate extends EntityAIBase {
       this.setMutexBits(3);
    }
 
+   @Override
    public boolean shouldExecute() {
       if(this.goblinObj.getGrowingAge() != 0) {
          return false;
@@ -46,21 +47,25 @@ public class EntityAIGoblinMate extends EntityAIBase {
       }
    }
 
+   @Override
    public void startExecuting() {
       this.matingTimeout = 300;
       this.goblinObj.setMating(true);
    }
 
+   @Override
    public void resetTask() {
       this.villageObj = null;
       this.mate = null;
       this.goblinObj.setMating(false);
    }
 
+   @Override
    public boolean continueExecuting() {
       return this.matingTimeout >= 0 && this.checkSufficientDoorsPresentForNewVillager() && this.goblinObj.getGrowingAge() == 0;
    }
 
+   @Override
    public void updateTask() {
       --this.matingTimeout;
       this.goblinObj.getLookHelper().setLookPositionWithEntity(this.mate, 10.0F, 30.0F);

@@ -27,6 +27,7 @@ public class RiteRainOfToads extends Rite {
       this.bolts = bolts;
    }
 
+   @Override
    public void addSteps(ArrayList steps, int initialStage) {
       steps.add(new RiteRainOfToads.StepRainOfToads(this, initialStage));
    }
@@ -43,10 +44,12 @@ public class RiteRainOfToads extends Rite {
          this.stage = initialStage;
       }
 
+      @Override
       public int getCurrentStage() {
          return this.stage;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(ticks % 30L != 0L) {
             return RitualStep.Result.STARTING;

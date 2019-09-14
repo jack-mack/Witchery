@@ -23,21 +23,28 @@ public abstract class BrewActionModifier extends BrewAction {
       super(itemKey, namePart, powerCost, Probability.CERTAIN, false);
    }
 
+   @Override
    public boolean augmentEffectLevels(EffectLevelCounter totalEffects) {
       return true;
    }
 
+   @Override
    public void augmentEffectModifiers(ModifiersEffect modifiers) {}
 
+   @Override
    public void prepareRitual(World world, int x, int y, int z, ModifiersRitual modifiers, ItemStack stack) {}
 
+   @Override
    public final void applyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {}
 
+   @Override
    public final RitualStatus updateRitual(MinecraftServer server, BrewActionList actionList, World world, int x, int y, int z, ModifiersRitual modifiers, ModifiersImpact impactModifiers) {
       return RitualStatus.COMPLETE;
    }
 
+   @Override
    public final void prepareSplashPotion(World world, BrewActionList actionList, ModifiersImpact modifiers) {}
 
+   @Override
    public final void applyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack stack) {}
 }

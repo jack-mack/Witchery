@@ -44,11 +44,13 @@ public class ItemHandBow extends ItemBow {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
    }
 
+   @Override
    public Item setUnlocalizedName(String itemName) {
       ItemUtil.registerItem(this, itemName);
       return super.setUnlocalizedName(itemName);
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
       ItemGeneral.SubItem loadedBoltType = getBoltType("WITCBoltTypeCurrent", stack);
       ExtendedPlayer playerEx = ExtendedPlayer.get(player);
@@ -59,6 +61,7 @@ public class ItemHandBow extends ItemBow {
       return stack;
    }
 
+   @Override
    public void onUsingTick(ItemStack stack, EntityPlayer player, int count) {
       int elapsed = this.getMaxItemUseDuration(stack) - count;
       ItemGeneral.SubItem loadedBoltType = getBoltType("WITCBoltTypeCurrent", stack);
@@ -86,6 +89,7 @@ public class ItemHandBow extends ItemBow {
       return typesFound.size();
    }
 
+   @Override
    public void onPlayerStoppedUsing(ItemStack stack, World world, EntityPlayer player, int count) {
       int elapsed = this.getMaxItemUseDuration(stack) - count;
       ItemGeneral.SubItem loadedBoltType = getBoltType("WITCBoltTypeCurrent", stack);
@@ -235,18 +239,22 @@ public class ItemHandBow extends ItemBow {
       return true;
    }
 
+   @Override
    public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
       return par1ItemStack;
    }
 
+   @Override
    public int getMaxItemUseDuration(ItemStack par1ItemStack) {
       return 72000;
    }
 
+   @Override
    public EnumAction getItemUseAction(ItemStack par1ItemStack) {
       return EnumAction.bow;
    }
 
+   @Override
    public int getItemEnchantability() {
       return 1;
    }
@@ -311,11 +319,13 @@ public class ItemHandBow extends ItemBow {
       return boltID;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerIcons(IIconRegister par1IconRegister) {
       super.itemIcon = par1IconRegister.registerIcon(this.getIconString());
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getItemIconForUseDuration(int par1) {
       return super.itemIcon;

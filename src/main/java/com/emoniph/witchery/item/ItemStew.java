@@ -17,12 +17,14 @@ public class ItemStew extends ItemFood {
       super(hunger, saturation, false);
    }
 
+   @Override
    public Item setUnlocalizedName(String itemName) {
       ItemUtil.registerItem(this, itemName);
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
       return super.setUnlocalizedName(itemName);
    }
 
+   @Override
    public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
       super.onEaten(stack, world, player);
       ItemStack bowlStack = new ItemStack(Items.bowl);

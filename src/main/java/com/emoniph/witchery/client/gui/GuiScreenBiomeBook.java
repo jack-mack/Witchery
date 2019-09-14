@@ -80,11 +80,13 @@ public class GuiScreenBiomeBook extends GuiScreen {
       ItemBook.setSelectedBiome(this.itemstack, this.pageIndex);
    }
 
+   @Override
    public void updateScreen() {
       super.updateScreen();
       ++this.updateCount;
    }
 
+   @Override
    public void initGui() {
       super.buttonList.clear();
       Keyboard.enableRepeatEvents(true);
@@ -102,6 +104,7 @@ public class GuiScreenBiomeBook extends GuiScreen {
       this.updateButtons();
    }
 
+   @Override
    public void onGuiClosed() {
       Keyboard.enableRepeatEvents(false);
       this.sendBookToServer(false);
@@ -119,6 +122,7 @@ public class GuiScreenBiomeBook extends GuiScreen {
 
    }
 
+   @Override
    protected void actionPerformed(GuiButton button) {
       if(button.enabled) {
          if(button.id == 0) {
@@ -144,10 +148,12 @@ public class GuiScreenBiomeBook extends GuiScreen {
 
    }
 
+   @Override
    protected void keyTyped(char par1, int par2) {
       super.keyTyped(par1, par2);
    }
 
+   @Override
    public void drawScreen(int par1, int par2, float par3) {
       GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
       super.mc.getTextureManager().bindTexture(field_110405_a);

@@ -53,6 +53,7 @@ public class EntityAIMoveTowardsEntityClass extends EntityAIBase {
       return target;
    }
 
+   @Override
    public boolean shouldExecute() {
       if(this.theEntity.worldObj.rand.nextInt(20) != 0) {
          return false;
@@ -81,14 +82,17 @@ public class EntityAIMoveTowardsEntityClass extends EntityAIBase {
       }
    }
 
+   @Override
    public boolean continueExecuting() {
       return !this.theEntity.getNavigator().noPath() && this.targetEntity.isEntityAlive() && this.targetEntity.getDistanceSqToEntity(this.theEntity) < (double)(this.maxTargetDistance * this.maxTargetDistance);
    }
 
+   @Override
    public void resetTask() {
       this.targetEntity = null;
    }
 
+   @Override
    public void startExecuting() {
       this.theEntity.getNavigator().tryMoveToXYZ(this.movePosX, this.movePosY, this.movePosZ, this.speed);
    }

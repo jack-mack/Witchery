@@ -22,10 +22,12 @@ public class DemonicDamageSource extends DamageSource {
       this.setDamageIsAbsolute();
    }
 
+   @Override
    public Entity getEntity() {
       return this.damageSourceEntity;
    }
 
+   @Override
    public IChatComponent func_151519_b(EntityLivingBase p_151519_1_) {
       ItemStack itemstack = this.damageSourceEntity instanceof EntityLivingBase?((EntityLivingBase)this.damageSourceEntity).getHeldItem():null;
       String s = "death.attack." + super.damageType;
@@ -33,6 +35,7 @@ public class DemonicDamageSource extends DamageSource {
       return itemstack != null && itemstack.hasDisplayName() && StatCollector.canTranslate(s1)?new ChatComponentTranslation(s1, new Object[]{p_151519_1_.func_145748_c_(), this.damageSourceEntity.func_145748_c_(), itemstack.func_151000_E()}):new ChatComponentTranslation(s, new Object[]{p_151519_1_.func_145748_c_(), this.damageSourceEntity.func_145748_c_()});
    }
 
+   @Override
    public boolean isDifficultyScaled() {
       return this.damageSourceEntity != null && this.damageSourceEntity instanceof EntityLivingBase && !(this.damageSourceEntity instanceof EntityPlayer);
    }

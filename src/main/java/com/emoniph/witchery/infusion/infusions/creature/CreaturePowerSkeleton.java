@@ -19,6 +19,7 @@ public class CreaturePowerSkeleton extends CreaturePower {
       super(powerID, EntitySkeleton.class);
    }
 
+   @Override
    public void onActivate(World world, EntityPlayer player, int elapsedTicks, MovingObjectPosition mop) {
       if(!world.isRemote) {
          float f = (float)elapsedTicks / 20.0F;
@@ -42,6 +43,7 @@ public class CreaturePowerSkeleton extends CreaturePower {
 
    }
 
+   @Override
    public void onDamage(World world, EntityPlayer player, LivingHurtEvent event) {
       if(!world.isRemote && event.source == DamageSource.drown) {
          int currentEnergy = Infusion.getCurrentEnergy(player);

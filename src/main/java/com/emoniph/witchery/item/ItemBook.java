@@ -19,6 +19,7 @@ public class ItemBook extends ItemBase {
    public static final Type[] BIOME_TYPES = new Type[]{Type.BEACH, Type.FOREST, Type.HILLS, Type.MESA, Type.MOUNTAIN, Type.PLAINS, Type.SANDY, Type.SNOWY, Type.SWAMP, Type.WASTELAND, Type.RIVER, Type.OCEAN, Type.SPOOKY, Type.MAGICAL};
 
 
+   @Override
    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
       int posX = MathHelper.floor_double(player.posX);
       int posY = MathHelper.floor_double(player.posY);
@@ -27,6 +28,7 @@ public class ItemBook extends ItemBase {
       return stack;
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean expandedTooltip) {
       list.add(String.format(Witchery.resource("witchery.biomebook.currentpage"), new Object[]{getSelectedBiome(getSelectedBiome(stack, 1000)).biomeName}));
       list.add("");
@@ -67,6 +69,7 @@ public class ItemBook extends ItemBase {
       return BiomeGenBase.plains;
    }
 
+   @Override
    public ItemStack getContainerItem(ItemStack stack) {
       return !this.hasContainerItem(stack)?null:stack.copy();
    }

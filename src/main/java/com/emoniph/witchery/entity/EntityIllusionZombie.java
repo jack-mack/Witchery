@@ -10,6 +10,7 @@ public class EntityIllusionZombie extends EntityIllusion {
       super(world);
    }
 
+   @Override
    protected SoundEffect getFakeLivingSound() {
       return SoundEffect.MOB_ZOMBIE_SAY;
    }

@@ -34,22 +34,26 @@ public class BrewActionBiomeChange extends BrewActionEffect {
       super(itemKey, namePart, powerCost, baseProbability, effectLevel);
    }
 
+   @Override
    public void prepareSplashPotion(World world, BrewActionList actionList, ModifiersImpact modifiers) {
       super.prepareSplashPotion(world, actionList, modifiers);
       modifiers.setOnlyInstant();
    }
 
+   @Override
    protected void doApplyRitualToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersRitual ritualModifiers, ModifiersEffect modifiers, ItemStack stack) {
       BiomeGenBase biome = ItemBook.getSelectedBiome(stack.getItemDamage());
       int maxRadius = 16 + modifiers.getStrength() * 16;
       this.changeBiome(world, new Coord(x, y, z), maxRadius, biome);
    }
 
+   @Override
    protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {
       BiomeGenBase biome = ItemBook.getSelectedBiome(actionStack.getItemDamage());
       this.changeBiome(world, new Coord(x, y, z), 1 + modifiers.getStrength(), biome);
    }
 
+   @Override
    protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {}
 
    protected void changeBiome(World world, Coord coord, int radius, BiomeGenBase biome) {

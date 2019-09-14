@@ -29,6 +29,7 @@ public class RiteRaiseVolcano extends Rite {
       this.height = height;
    }
 
+   @Override
    public void addSteps(ArrayList steps, int intialStage) {
       steps.add(new RiteRaiseVolcano.StepRaiseVolcano(this, intialStage));
    }
@@ -45,10 +46,12 @@ public class RiteRaiseVolcano extends Rite {
          this.stage = initialStage;
       }
 
+      @Override
       public int getCurrentStage() {
          return (byte)this.stage;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(ticks % 15L != 0L) {
             return RitualStep.Result.STARTING;

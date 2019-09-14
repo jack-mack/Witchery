@@ -18,6 +18,7 @@ public class CreaturePowerEnderman extends CreaturePower {
       super(powerID, EntityEnderman.class);
    }
 
+   @Override
    public void onActivate(World world, EntityPlayer player, int elapsedTicks, MovingObjectPosition mop) {
       if(!world.isRemote) {
          if(mop != null) {

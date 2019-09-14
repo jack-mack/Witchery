@@ -18,6 +18,7 @@ public class RenderVampire extends RenderBiped {
       super(new ModelVampire(), 0.5F);
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(Entity entity) {
       return TEXTURE_URL;
    }

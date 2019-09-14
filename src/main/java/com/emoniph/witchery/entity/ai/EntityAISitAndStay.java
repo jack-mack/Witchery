@@ -13,13 +13,16 @@ public class EntityAISitAndStay extends EntityAIBase {
       this.setMutexBits(5);
    }
 
+   @Override
    public boolean shouldExecute() {
       return this.theEntity.isSitting();
    }
 
+   @Override
    public void startExecuting() {
       this.theEntity.getNavigator().clearPathEntity();
    }
 
+   @Override
    public void resetTask() {}
 }

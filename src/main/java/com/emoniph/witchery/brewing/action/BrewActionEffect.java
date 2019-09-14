@@ -28,10 +28,13 @@ public abstract class BrewActionEffect extends BrewAction {
       this.effectLevel = effectLevel;
    }
 
+   @Override
    public void prepareSplashPotion(World world, BrewActionList actionList, ModifiersImpact modifiers) {}
 
+   @Override
    public void prepareRitual(World world, int x, int y, int z, ModifiersRitual modifiers, ItemStack stack) {}
 
+   @Override
    public final void applyRitualToEntity(World world, EntityLivingBase targetEntity, ModifiersRitual ritualModifiers, ModifiersEffect modifiers, ItemStack stack) {
       if(!modifiers.disableEntityTarget) {
          this.doApplyRitualToEntity(world, targetEntity, ritualModifiers, modifiers, stack);
@@ -40,6 +43,7 @@ public abstract class BrewActionEffect extends BrewAction {
 
    }
 
+   @Override
    public final void applyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {
       if(!modifiers.disableEntityTarget) {
          this.doApplyToEntity(world, targetEntity, modifiers, stack);
@@ -54,6 +58,7 @@ public abstract class BrewActionEffect extends BrewAction {
 
    protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {}
 
+   @Override
    public final void applyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack stack) {
       if(!modifiers.disableBlockTarget) {
          this.doApplyToBlock(world, x, y, z, side, radius, modifiers, stack);
@@ -62,6 +67,7 @@ public abstract class BrewActionEffect extends BrewAction {
 
    }
 
+   @Override
    public final void applyRitualToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersRitual ritualModifiers, ModifiersEffect modifiers, ItemStack stack) {
       if(!modifiers.disableBlockTarget) {
          this.doApplyRitualToBlock(world, x, y, z, side, radius, ritualModifiers, modifiers, stack);
@@ -76,12 +82,15 @@ public abstract class BrewActionEffect extends BrewAction {
 
    protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack stack) {}
 
+   @Override
    public final boolean augmentEffectLevels(EffectLevelCounter totalEffects) {
       return totalEffects.tryConsumeLevel(this.effectLevel);
    }
 
+   @Override
    public final void augmentEffectModifiers(ModifiersEffect modifiers) {}
 
+   @Override
    public final RitualStatus updateRitual(MinecraftServer server, BrewActionList actionList, World world, int x, int y, int z, ModifiersRitual modifiers, ModifiersImpact impactModifiers) {
       return RitualStatus.COMPLETE;
    }

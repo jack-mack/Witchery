@@ -46,10 +46,12 @@ public class BlockCoffin extends BlockBaseContainer {
       return meta & 3;
    }
 
+   @Override
    public boolean isBed(IBlockAccess world, int x, int y, int z, EntityLivingBase player) {
       return true;
    }
 
+   @Override
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
       if(world.isRemote) {
          return true;
@@ -194,22 +196,27 @@ public class BlockCoffin extends BlockBaseContainer {
       }
    }
 
+   @Override
    public int getRenderType() {
       return -1;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
       super.setBlockBoundsBasedOnState(world, x, y, z);
    }
 
+   @Override
    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
       int l = world.getBlockMetadata(x, y, z);
       int i1 = getDirection(l);
@@ -226,12 +233,14 @@ public class BlockCoffin extends BlockBaseContainer {
 
    }
 
+   @Override
    public Item getItemDropped(int meta, Random rand, int p_149650_3_) {
       return isBlockHeadOfBed(meta)?Item.getItemById(0):Witchery.Items.COFFIN;
    }
 
    private void setupBounds() {}
 
+   @Override
    public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB mask, List boxes, Entity entity) {
       BlockCoffin.TileEntityCoffin tile = (BlockCoffin.TileEntityCoffin)BlockUtil.getTileEntity(world, x, y, z, BlockCoffin.TileEntityCoffin.class);
       if(tile != null && !tile.open) {
@@ -300,6 +309,7 @@ public class BlockCoffin extends BlockBaseContainer {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z) {
       return AxisAlignedBB.getBoundingBox((double)x + super.minX, (double)y + super.minY, (double)z + super.minZ, (double)x + super.maxX, (double)y + 1.0D, (double)z + super.maxZ);
@@ -350,6 +360,7 @@ public class BlockCoffin extends BlockBaseContainer {
       return null;
    }
 
+   @Override
    public void dropBlockAsItemWithChance(World world, int x, int y, int z, int p_149690_5_, float p_149690_6_, int p_149690_7_) {
       if(!isBlockHeadOfBed(p_149690_5_)) {
          super.dropBlockAsItemWithChance(world, x, y, z, p_149690_5_, p_149690_6_, 0);
@@ -357,15 +368,18 @@ public class BlockCoffin extends BlockBaseContainer {
 
    }
 
+   @Override
    public int getMobilityFlag() {
       return 1;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public Item getItem(World world, int x, int y, int z) {
       return Witchery.Items.COFFIN;
    }
 
+   @Override
    public void onBlockHarvested(World world, int x, int y, int z, int meta, EntityPlayer player) {
       if(player.capabilities.isCreativeMode && isBlockHeadOfBed(meta)) {
          int i1 = getDirection(meta);
@@ -386,6 +400,7 @@ public class BlockCoffin extends BlockBaseContainer {
       public float prevLidAngle;
 
 
+      @Override
       public void updateEntity() {
          this.prevLidAngle = this.lidAngle;
          if(this.open && this.lidAngle == 0.0F) {
@@ -421,6 +436,7 @@ public class BlockCoffin extends BlockBaseContainer {
 
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
@@ -429,6 +445,7 @@ public class BlockCoffin extends BlockBaseContainer {
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          NBTTagCompound nbtTag = packet.func_148857_g();
@@ -438,11 +455,13 @@ public class BlockCoffin extends BlockBaseContainer {
          super.worldObj.func_147479_m(super.xCoord, super.yCoord, super.zCoord);
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtRoot) {
          super.writeToNBT(nbtRoot);
          nbtRoot.setBoolean("Opened", this.open);
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtRoot) {
          super.readFromNBT(nbtRoot);
          this.open = nbtRoot.getBoolean("Opened");

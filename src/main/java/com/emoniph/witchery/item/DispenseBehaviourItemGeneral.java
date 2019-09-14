@@ -17,6 +17,7 @@ public class DispenseBehaviourItemGeneral implements IBehaviorDispenseItem {
    private final BehaviorDefaultDispenseItem defaultDispenserItemBehavior = new BehaviorDefaultDispenseItem();
 
 
+   @Override
    public ItemStack dispense(IBlockSource block, ItemStack stack) {
       return Witchery.Items.GENERIC.isBrew(stack.getItemDamage())?(new DispenseBehaviourItemGeneral.DispenserBehaviorBrew(this, stack)).dispense(block, stack):this.defaultDispenserItemBehavior.dispense(block, stack);
    }
@@ -32,14 +33,17 @@ public class DispenseBehaviourItemGeneral implements IBehaviorDispenseItem {
          this.potionItemStack = par2ItemStack;
       }
 
+      @Override
       protected IProjectile getProjectileEntity(World par1World, IPosition par2IPosition) {
          return new EntityWitchProjectile(par1World, par2IPosition.getX(), par2IPosition.getY(), par2IPosition.getZ(), (ItemGeneral.SubItem)Witchery.Items.GENERIC.subItems.get(this.potionItemStack.getItemDamage()));
       }
 
+      @Override
       protected float func_82498_a() {
          return super.func_82498_a() * 0.5F;
       }
 
+      @Override
       protected float func_82500_b() {
          return super.func_82500_b() * 1.25F;
       }

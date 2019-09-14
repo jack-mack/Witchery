@@ -30,11 +30,13 @@ public class BrewActionSprouting extends BrewActionEffect {
       super(itemKey, namePart, powerCost, baseProbability, effectLevel);
    }
 
+   @Override
    protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack actionStack) {
       AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox((double)x, (double)y, (double)z, (double)(x + 1), (double)(y + 1), (double)(z + 1));
       growBranch(x, y, z, world, side.ordinal(), 8 + 2 * modifiers.getStrength(), bounds);
    }
 
+   @Override
    protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
       targetEntity.addPotionEffect(new PotionEffect(Witchery.Potions.SPROUTING.id, modifiers.getModifiedDuration(TimeUtil.secsToTicks(15)), modifiers.getStrength()));
    }

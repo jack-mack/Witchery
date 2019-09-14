@@ -31,12 +31,14 @@ public class BrewActionBlight extends BrewActionEffect {
       super(itemKey, namePart, powerCost, baseProbability, effectLevel);
    }
 
+   @Override
    protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, final ModifiersEffect modifiers, ItemStack stack) {
       if(BlockUtil.isReplaceableBlock(world, x, y, z)) {
          --y;
       }
 
       (new BlockActionCircle() {
+         @Override
          public void onBlock(World world, int x, int y, int z) {
             if(BlockProtect.checkModsForBreakOK(world, x, y, z, modifiers.caster)) {
                Block blockID = world.getBlock(x, y, z);
@@ -62,6 +64,7 @@ public class BrewActionBlight extends BrewActionEffect {
       }).processFilledCircle(world, x, y + 1, z, radius);
    }
 
+   @Override
    protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack actionStack) {
       if(targetEntity instanceof EntityVillager && world.rand.nextInt(10 - modifiers.getStrength() * 2) == 0) {
          EntityZombie entityzombie1 = new EntityZombie(world);

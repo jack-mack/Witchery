@@ -21,6 +21,7 @@ public class RenderCauldron extends TileEntitySpecialRenderer {
    private static final ResourceLocation TEXTURE_URL = new ResourceLocation("witchery", "textures/blocks/cauldron.png");
 
 
+   @Override
    public void renderTileEntityAt(TileEntity tileEntity, double d, double d1, double d2, float f) {
       TileEntityCauldron cauldron = (TileEntityCauldron)tileEntity;
       GL11.glPushMatrix();

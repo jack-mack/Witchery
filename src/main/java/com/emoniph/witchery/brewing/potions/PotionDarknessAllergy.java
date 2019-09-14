@@ -12,10 +12,12 @@ public class PotionDarknessAllergy extends PotionBase {
       this.setIncurable();
    }
 
+   @Override
    public boolean isReady(int duration, int amplifier) {
       return duration % 20 == 4;
    }
 
+   @Override
    public void performEffect(EntityLivingBase entity, int amplifier) {
       int x = MathHelper.floor_double(entity.posX);
       int y = MathHelper.floor_double(entity.posY);

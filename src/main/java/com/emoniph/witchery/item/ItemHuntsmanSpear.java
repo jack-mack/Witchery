@@ -35,24 +35,29 @@ public class ItemHuntsmanSpear extends ItemSword {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
    }
 
+   @Override
    public Item setUnlocalizedName(String itemName) {
       ItemUtil.registerItem(this, itemName);
       return super.setUnlocalizedName(itemName);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack stack) {
       return EnumRarity.epic;
    }
 
+   @Override
    public boolean hasEffect(ItemStack stack) {
       return true;
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean moreTips) {
       list.add(Witchery.resource("item.witchery:huntsmanspear.tip"));
    }
 
+   @Override
    public Multimap getItemAttributeModifiers() {
       HashMultimap multimap = HashMultimap.create();
       multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(Item.field_111210_e, "Weapon modifier", (double)this.effectiveWeaponDamage, 0));
@@ -60,10 +65,12 @@ public class ItemHuntsmanSpear extends ItemSword {
       return multimap;
    }
 
+   @Override
    public boolean canHarvestBlock(Block par1Block, ItemStack stack) {
       return false;
    }
 
+   @Override
    public float func_150931_i() {
       return this.effectiveMaterial.getDamageVsEntity();
    }

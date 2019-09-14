@@ -63,11 +63,13 @@ public class EntityHellhound extends EntityMob implements IEntitySelector {
       super.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityFollower.class, 0, true, true, this));
    }
 
+   @Override
    public boolean isEntityApplicable(Entity entity) {
       double AGGRO_RANGE = 5.0D;
       return entity != null && entity.getDistanceSqToEntity(this) < 25.0D;
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.30000001192092896D);
@@ -75,6 +77,7 @@ public class EntityHellhound extends EntityMob implements IEntitySelector {
       this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0D);
    }
 
+   @Override
    public int getTotalArmorValue() {
       int i = super.getTotalArmorValue() + 2;
       if(i > 20) {
@@ -84,14 +87,17 @@ public class EntityHellhound extends EntityMob implements IEntitySelector {
       return i;
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    protected void updateAITick() {
       super.dataWatcher.updateObject(18, Float.valueOf(this.getHealth()));
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(18, new Float(this.getHealth()));
@@ -109,6 +115,7 @@ public class EntityHellhound extends EntityMob implements IEntitySelector {
       super.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1017, (int)super.posX, (int)super.posY, (int)super.posZ, 0);
    }
 
+   @Override
    public boolean interact(EntityPlayer p_70085_1_) {
       ItemStack itemstack = p_70085_1_.getCurrentEquippedItem();
       if(itemstack != null && itemstack.getItem() == Items.golden_apple && itemstack.getItemDamage() == 0 && this.isPotionActive(Potion.weakness)) {
@@ -130,15 +137,18 @@ public class EntityHellhound extends EntityMob implements IEntitySelector {
       }
    }
 
+   @Override
    protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_) {
       this.playSound("mob.wolf.step", 0.15F, 1.0F);
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       super.writeEntityToNBT(nbtRoot);
       nbtRoot.setInteger("ConversionTime", this.isConverting()?this.conversionTime:-1);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       super.readEntityFromNBT(nbtRoot);
       if(nbtRoot.hasKey("ConversionTime", 99) && nbtRoot.getInteger("ConversionTime") > -1) {
@@ -179,26 +189,32 @@ public class EntityHellhound extends EntityMob implements IEntitySelector {
       return i;
    }
 
+   @Override
    protected String getLivingSound() {
       return "mob.wolf.growl";
    }
 
+   @Override
    protected String getHurtSound() {
       return "mob.wolf.hurt";
    }
 
+   @Override
    protected String getDeathSound() {
       return "mob.wolf.death";
    }
 
+   @Override
    protected float getSoundVolume() {
       return 0.4F;
    }
 
+   @Override
    protected Item getDropItem() {
       return Item.getItemById(-1);
    }
 
+   @Override
    protected void dropFewItems(boolean recentlyHitByPlayer, int looting) {
       this.entityDropItem(Witchery.Items.GENERIC.itemDogTongue.createStack(), 0.0F);
       if(super.worldObj.rand.nextInt(12) <= Math.min(looting, 3)) {
@@ -207,6 +223,7 @@ public class EntityHellhound extends EntityMob implements IEntitySelector {
 
    }
 
+   @Override
    public void onLivingUpdate() {
       super.onLivingUpdate();
       if(!super.worldObj.isRemote && !super.isDead && this.isShaking && !this.field_70928_h && !this.hasPath() && super.onGround) {
@@ -218,6 +235,7 @@ public class EntityHellhound extends EntityMob implements IEntitySelector {
 
    }
 
+   @Override
    public void onUpdate() {
       if(!super.worldObj.isRemote && this.isConverting()) {
          int f = this.getConversionTimeBoost();
@@ -300,6 +318,7 @@ public class EntityHellhound extends EntityMob implements IEntitySelector {
       return MathHelper.sin(f2 * 3.1415927F) * MathHelper.sin(f2 * 3.1415927F * 11.0F) * 0.15F * 3.1415927F;
    }
 
+   @Override
    public float getEyeHeight() {
       return super.height * 0.8F;
    }
@@ -309,6 +328,7 @@ public class EntityHellhound extends EntityMob implements IEntitySelector {
       return (this.field_70924_f + (this.field_70926_e - this.field_70924_f) * p_70917_1_) * 0.15F * 3.1415927F;
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_) {
       if(this.isEntityInvulnerable()) {
          return false;
@@ -322,6 +342,7 @@ public class EntityHellhound extends EntityMob implements IEntitySelector {
       }
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity p_70652_1_) {
       boolean flag = super.attackEntityAsMob(p_70652_1_);
       if(flag) {
@@ -334,6 +355,7 @@ public class EntityHellhound extends EntityMob implements IEntitySelector {
       return flag;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void handleHealthUpdate(byte p_70103_1_) {
       if(p_70103_1_ == 8) {
@@ -351,6 +373,7 @@ public class EntityHellhound extends EntityMob implements IEntitySelector {
       return 1.5393804F;
    }
 
+   @Override
    public int getMaxSpawnedInChunk() {
       return super.getMaxSpawnedInChunk();
    }
@@ -368,6 +391,7 @@ public class EntityHellhound extends EntityMob implements IEntitySelector {
       return super.dataWatcher.getWatchableObjectByte(19) == 1;
    }
 
+   @Override
    protected boolean canDespawn() {
       return !this.isConverting();
    }
@@ -376,6 +400,7 @@ public class EntityHellhound extends EntityMob implements IEntitySelector {
       return this.getDataWatcher().getWatchableObjectByte(14) == 1;
    }
 
+   @Override
    public boolean getCanSpawnHere() {
       return super.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && super.worldObj.checkNoEntityCollision(super.boundingBox) && super.worldObj.getCollidingBoundingBoxes(this, super.boundingBox).isEmpty() && !super.worldObj.isAnyLiquid(super.boundingBox);
    }

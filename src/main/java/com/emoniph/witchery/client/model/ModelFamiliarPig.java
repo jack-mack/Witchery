@@ -23,6 +23,7 @@ public class ModelFamiliarPig extends ModelPig {
       this.field_78163_i = 1;
    }
 
+   @Override
    public void setLivingAnimations(EntityLivingBase par1EntityLivingBase, float par2, float par3, float par4) {
       EntityFamiliar entityocelot = (EntityFamiliar)par1EntityLivingBase;
       super.head.setRotationPoint(0.0F, 12.0F, -6.0F);
@@ -48,6 +49,7 @@ public class ModelFamiliarPig extends ModelPig {
 
    }
 
+   @Override
    public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) {
       super.head.rotateAngleX = par5 / 57.295776F;
       super.head.rotateAngleY = par4 / 57.295776F;

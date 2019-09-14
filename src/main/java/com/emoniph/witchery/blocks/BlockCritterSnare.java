@@ -39,6 +39,7 @@ public class BlockCritterSnare extends BlockBaseBush {
       this.setBlockBounds(0.050000012F, 0.0F, 0.050000012F, 0.95F, 1.0F, 0.95F);
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int posX, int posY, int posZ, Entity entity) {
       int meta = world.getBlockMetadata(posX, posY, posZ);
       if(meta == 0 && !world.isRemote && entity != null && entity.isEntityAlive()) {
@@ -60,6 +61,7 @@ public class BlockCritterSnare extends BlockBaseBush {
 
    }
 
+   @Override
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
       int meta = world.getBlockMetadata(x, y, z);
       if(!world.isRemote && meta > 0 && player.isSneaking()) {
@@ -135,12 +137,14 @@ public class BlockCritterSnare extends BlockBaseBush {
       return critter;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int side, int meta) {
       int critterType = this.getCritterFromMeta(meta);
       return this.critterIcons[critterType];
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {
       this.critterIcons = new IIcon[CAUGHT_TYPES.length];
@@ -151,6 +155,7 @@ public class BlockCritterSnare extends BlockBaseBush {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
       if(rand.nextInt(24) == 0) {
@@ -164,36 +169,44 @@ public class BlockCritterSnare extends BlockBaseBush {
 
    }
 
+   @Override
    public Item getItemDropped(int par1, Random rand, int fortune) {
       return Item.getItemFromBlock(this);
    }
 
+   @Override
    public int damageDropped(int metadata) {
       return metadata;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list) {
       list.add(new ItemStack(item, 1, 0));
    }
 
+   @Override
    protected ItemStack createStackedBlock(int par1) {
       return new ItemStack(this, 1, par1);
    }
 
+   @Override
    public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
       return super.canPlaceBlockAt(par1World, par2, par3, par4) && this.canBlockStay(par1World, par2, par3, par4);
    }
 
+   @Override
    protected boolean canPlaceBlockOn(Block block) {
       return block != null && block.isOpaqueCube();
    }
 
+   @Override
    public boolean canBlockStay(World world, int posX, int posY, int posZ) {
       Material material = world.getBlock(posX, posY - 1, posZ).getMaterial();
       return material != null && material.isSolid();
    }
 
+   @Override
    public void harvestBlock(World par3World, EntityPlayer player, int par4, int par5, int par6, int damageValue) {
       super.harvestBlock(par3World, player, par4, par5, par6, damageValue);
    }
@@ -205,10 +218,12 @@ public class BlockCritterSnare extends BlockBaseBush {
          super(block);
       }
 
+      @Override
       protected String[] getNames() {
          return BlockCritterSnare.CAUGHT_TYPES;
       }
 
+      @Override
       @SideOnly(Side.CLIENT)
       public IIcon getIconFromDamage(int par1) {
          return super.field_150939_a.getIcon(0, par1);

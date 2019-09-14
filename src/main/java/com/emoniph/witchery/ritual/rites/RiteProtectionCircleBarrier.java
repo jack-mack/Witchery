@@ -21,6 +21,7 @@ public class RiteProtectionCircleBarrier extends RiteProtectionCircle {
       this.blockPlayers = blockPlayers;
    }
 
+   @Override
    protected void update(World world, int posX, int posY, int posZ, int radius, long ticks) {
       if(ticks % 20L == 0L) {
          this.drawFilledCircle(world, posX, posZ, posY - 1, radius);

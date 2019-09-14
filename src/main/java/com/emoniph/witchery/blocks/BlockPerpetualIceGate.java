@@ -18,16 +18,19 @@ public class BlockPerpetualIceGate extends BlockFenceGate {
       this.setResistance(5.0F);
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       BlockUtil.registerBlock(this, blockName);
       return super.setBlockName(blockName);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getRenderBlockPass() {
       return 1;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int p_149691_1_, int p_149691_2_) {
       return Blocks.ice.getBlockTextureFromSide(p_149691_1_);

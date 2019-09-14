@@ -13,6 +13,7 @@ public class InfusedSpiritScreamerEffect extends InfusedSpiritEffect {
       super(id, "screamer", spirits, spectres, banshees, poltergeists);
    }
 
+   @Override
    public boolean doUpdateEffect(TileEntity tile, boolean triggered, ArrayList foundEntities) {
       if(triggered) {
          ParticleEffect.REDDUST.send(tile.getBlockType() != Witchery.Blocks.FETISH_WITCHS_LADDER?SoundEffect.WITCHERY_MOB_SPECTRE_SPECTRE_HIT:SoundEffect.NONE, tile.getWorldObj(), 0.5D + (double)tile.xCoord, 0.3D + (double)tile.yCoord, 0.5D + (double)tile.zCoord, 0.2D, 0.5D, 16);
@@ -21,10 +22,12 @@ public class InfusedSpiritScreamerEffect extends InfusedSpiritEffect {
       return triggered;
    }
 
+   @Override
    public boolean isRedstoneSignaller() {
       return true;
    }
 
+   @Override
    public double getRadius() {
       return 16.0D;
    }

@@ -82,6 +82,7 @@ public class ModelWolfman extends ModelBase {
       this.armRight.addBox(-3.0F, -2.0F, -2.0F, 4, 14, 4, scale);
    }
 
+   @Override
    public void render(Entity entity, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float p_78088_7_) {
       this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, p_78088_7_, entity);
       this.headMain.render(p_78088_7_);
@@ -99,6 +100,7 @@ public class ModelWolfman extends ModelBase {
       modelRenderer.rotateAngleZ = z;
    }
 
+   @Override
    public void setLivingAnimations(EntityLivingBase entity, float par2, float par3, float par4) {
       float i = 0.0F;
       if(entity instanceof EntityWolfman) {
@@ -124,6 +126,7 @@ public class ModelWolfman extends ModelBase {
       return (Math.abs(par1 % par2 - par2 * 0.5F) - par2 * 0.25F) / (par2 * 0.25F);
    }
 
+   @Override
    public void setRotationAngles(float p_78087_1_, float p_78087_2_, float p_78087_3_, float p_78087_4_, float p_78087_5_, float p_78087_6_, Entity p_78087_7_) {
       this.headMain.rotateAngleY = p_78087_4_ / 57.295776F;
       this.headMain.rotateAngleX = p_78087_5_ / 57.295776F;

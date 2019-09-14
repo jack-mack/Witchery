@@ -24,6 +24,7 @@ public class RiteTransposeMobs extends Rite {
       this.minDistance = minDistance;
    }
 
+   @Override
    public void addSteps(ArrayList steps, int initialStep) {
       steps.add(new RiteTransposeMobs.StepTeleportation(this, initialStep));
    }
@@ -40,10 +41,12 @@ public class RiteTransposeMobs extends Rite {
          this.step = initialStep;
       }
 
+      @Override
       public int getCurrentStage() {
          return this.step;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(ticks % 20L != 0L) {
             return RitualStep.Result.STARTING;

@@ -36,6 +36,7 @@ public abstract class EntityIllusion extends EntityMob {
       super.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.illusion.name");
    }
@@ -44,34 +45,41 @@ public abstract class EntityIllusion extends EntityMob {
       return SoundEffect.NONE;
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
       this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(0.0D);
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    public int getTalkInterval() {
       return super.getTalkInterval() * 2;
    }
 
+   @Override
    public EntityLivingBase getAttackTarget() {
       return super.worldObj.getPlayerEntityByName(this.getVictimName());
    }
 
+   @Override
    public int getMaxSafePointTries() {
       return this.getAttackTarget() == null?3:3 + (int)(this.getHealth() - 1.0F);
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(17, "");
       super.dataWatcher.addObject(18, Byte.valueOf((byte)0));
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
       if(this.getVictimName() == null) {
@@ -83,6 +91,7 @@ public abstract class EntityIllusion extends EntityMob {
       par1NBTTagCompound.setInteger("IllusionType", this.getIllusionType());
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
       String s = par1NBTTagCompound.getString("Victim");
@@ -109,6 +118,7 @@ public abstract class EntityIllusion extends EntityMob {
       super.dataWatcher.updateObject(18, Byte.valueOf((byte)par1));
    }
 
+   @Override
    public void onUpdate() {
       super.onUpdate();
       if(!super.worldObj.isRemote) {
@@ -135,25 +145,31 @@ public abstract class EntityIllusion extends EntityMob {
 
    }
 
+   @Override
    protected String getLivingSound() {
       return null;
    }
 
+   @Override
    protected String getHurtSound() {
       return null;
    }
 
+   @Override
    protected String getDeathSound() {
       return null;
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity entity) {
       return true;
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
       return false;
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {}
 }

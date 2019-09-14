@@ -44,16 +44,20 @@ import powercrystals.minefactoryreloaded.api.FactoryRegistry;
 
 public class ModHookMineFactoryReloaded extends ModHook {
 
+   @Override
    public String getModID() {
       return "MineFactoryReloaded";
    }
 
+   @Override
    protected void doInit() {}
 
+   @Override
    protected void doPostInit() {
       ModHookMineFactoryReloaded.IntegrateMineFactoryReloaded.register();
    }
 
+   @Override
    protected void doReduceMagicPower(EntityLivingBase entity, float factor) {}
 
    public static class IntegrateMineFactoryReloaded {

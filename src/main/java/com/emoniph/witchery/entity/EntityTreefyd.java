@@ -75,6 +75,7 @@ public class EntityTreefyd extends EntityMob implements IEntitySelector {
       super.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
    }
 
+   @Override
    public boolean isEntityApplicable(Entity entity) {
       if(entity.getClass() != this.getClass() && !(entity instanceof EntityHornedHuntsman) && !(entity instanceof EntityEnt) && !(entity instanceof EntityFlying) && !(entity instanceof EntityFlyingTameable) && !(entity instanceof EntityAmbientCreature) && !(entity instanceof EntityWaterMob) && !this.isFamiliar(entity) && !(entity instanceof EntityCovenWitch) && !(entity instanceof EntityCorpse)) {
          if(entity instanceof EntityPlayer) {
@@ -107,10 +108,12 @@ public class EntityTreefyd extends EntityMob implements IEntitySelector {
       }
    }
 
+   @Override
    public int getTalkInterval() {
       return super.getTalkInterval() * 2;
    }
 
+   @Override
    protected boolean interact(EntityPlayer player) {
       if(!super.worldObj.isRemote && player != null && player.getCommandSenderName().equals(this.getOwnerName())) {
          ItemStack stack = player.getHeldItem();
@@ -312,10 +315,12 @@ public class EntityTreefyd extends EntityMob implements IEntitySelector {
       }
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.treefyd.name");
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
@@ -323,10 +328,12 @@ public class EntityTreefyd extends EntityMob implements IEntitySelector {
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(50.0D);
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity entity) {
       if(!super.worldObj.isRemote && entity instanceof EntityPlayer) {
          EntityPlayer player = (EntityPlayer)entity;
@@ -338,10 +345,12 @@ public class EntityTreefyd extends EntityMob implements IEntitySelector {
       return super.attackEntityAsMob(entity);
    }
 
+   @Override
    public int getMaxSafePointTries() {
       return this.getAttackTarget() == null?3:3 + (int)(this.getHealth() - 1.0F);
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(17, "");
@@ -356,6 +365,7 @@ public class EntityTreefyd extends EntityMob implements IEntitySelector {
       super.dataWatcher.updateObject(18, Integer.valueOf(Integer.valueOf(screaming?1:0).intValue()));
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       super.writeEntityToNBT(nbtRoot);
       if(this.getOwnerName() == null) {
@@ -415,6 +425,7 @@ public class EntityTreefyd extends EntityMob implements IEntitySelector {
       nbtRoot.setBoolean("SentinalPlant", this.isSentinal());
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       super.readEntityFromNBT(nbtRoot);
       String s = nbtRoot.getString("Owner");
@@ -488,30 +499,37 @@ public class EntityTreefyd extends EntityMob implements IEntitySelector {
       return super.worldObj.getPlayerEntityByName(this.getOwnerName());
    }
 
+   @Override
    public void onUpdate() {
       super.onUpdate();
    }
 
+   @Override
    protected String getHurtSound() {
       return "mob.silverfish.hit";
    }
 
+   @Override
    protected String getLivingSound() {
       return "witchery:mob.treefyd.treefyd_say";
    }
 
+   @Override
    protected String getDeathSound() {
       return "mob.creeper.death";
    }
 
+   @Override
    protected Item getDropItem() {
       return Item.getItemFromBlock(Blocks.red_flower);
    }
 
+   @Override
    protected void dropRareDrop(int par1) {
       this.entityDropItem(Witchery.Items.GENERIC.itemSeedsTreefyd.createStack(), 0.0F);
    }
 
+   @Override
    protected boolean canDespawn() {
       return false;
    }

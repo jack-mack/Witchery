@@ -21,10 +21,12 @@ public class RecipeShapelessPoppet implements IRecipe {
       this.pattern = pattern;
    }
 
+   @Override
    public ItemStack getRecipeOutput() {
       return null;
    }
 
+   @Override
    public boolean matches(InventoryCrafting par1InventoryCrafting, World par2World) {
       ArrayList arraylist = new ArrayList(Arrays.asList(this.pattern));
 
@@ -54,6 +56,7 @@ public class RecipeShapelessPoppet implements IRecipe {
       return arraylist.isEmpty();
    }
 
+   @Override
    public ItemStack getCraftingResult(InventoryCrafting inv) {
       ItemStack newPoppet = this.prototype.copy();
       int recipePoppet = 0;
@@ -84,6 +87,7 @@ public class RecipeShapelessPoppet implements IRecipe {
       return null;
    }
 
+   @Override
    public int getRecipeSize() {
       return this.pattern.length;
    }

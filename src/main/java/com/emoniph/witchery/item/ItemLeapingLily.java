@@ -19,6 +19,7 @@ public class ItemLeapingLily extends ItemColored {
       super(par1, false);
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
       MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(par2World, par3EntityPlayer, true);
       if(movingobjectposition == null) {
@@ -48,6 +49,7 @@ public class ItemLeapingLily extends ItemColored {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getColorFromItemStack(ItemStack par1ItemStack, int par2) {
       return Blocks.waterlily.getRenderColor(par1ItemStack.getItemDamage());

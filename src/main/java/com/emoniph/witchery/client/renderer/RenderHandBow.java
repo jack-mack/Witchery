@@ -34,6 +34,7 @@ public class RenderHandBow implements IItemRenderer {
    private static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation("textures/misc/enchanted_item_glint.png");
 
 
+   @Override
    public boolean handleRenderType(ItemStack item, ItemRenderType type) {
       switch(RenderHandBow.NamelessClass472725253.$SwitchMap$net$minecraftforge$client$IItemRenderer$ItemRenderType[type.ordinal()]) {
       case 1:
@@ -44,10 +45,12 @@ public class RenderHandBow implements IItemRenderer {
       }
    }
 
+   @Override
    public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
       return false;
    }
 
+   @Override
    public void renderItem(ItemRenderType type, ItemStack stack, Object ... data) {
       switch(RenderHandBow.NamelessClass472725253.$SwitchMap$net$minecraftforge$client$IItemRenderer$ItemRenderType[type.ordinal()]) {
       case 1:

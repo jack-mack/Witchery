@@ -37,6 +37,7 @@ public class PacketPlayerStyle implements IMessage {
       this.playerSkin = playerEx.getOtherPlayerSkin();
    }
 
+   @Override
    public void toBytes(ByteBuf buffer) {
       ByteBufUtils.writeUTF8String(buffer, this.username);
       buffer.writeInt(this.grotesqueTicks);
@@ -47,6 +48,7 @@ public class PacketPlayerStyle implements IMessage {
       ByteBufUtils.writeUTF8String(buffer, this.playerSkin);
    }
 
+   @Override
    public void fromBytes(ByteBuf buffer) {
       this.username = ByteBufUtils.readUTF8String(buffer);
       this.grotesqueTicks = buffer.readInt();
@@ -59,6 +61,7 @@ public class PacketPlayerStyle implements IMessage {
 
    public static class Handler implements IMessageHandler<PacketPlayerStyle, IMessage> {
 
+      @Override
       public IMessage onMessage(PacketPlayerStyle message, MessageContext ctx) {
          EntityPlayer player = Witchery.proxy.getPlayer(ctx);
          EntityPlayer otherPlayer = player.worldObj.getPlayerEntityByName(message.username);

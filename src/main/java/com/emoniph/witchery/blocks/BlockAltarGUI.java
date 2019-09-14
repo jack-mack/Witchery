@@ -20,6 +20,7 @@ public class BlockAltarGUI extends GuiScreen {
       this.tileEntity = tileEntity;
    }
 
+   @Override
    public void drawScreen(int x, int y, float f) {
       this.drawDefaultBackground();
       super.mc.getTextureManager().bindTexture(TEXTURE_URL);
@@ -32,10 +33,12 @@ public class BlockAltarGUI extends GuiScreen {
       this.drawCenteredString(super.fontRendererObj, power, super.width / 2, super.height / 2, 16777215);
    }
 
+   @Override
    public boolean doesGuiPauseGame() {
       return false;
    }
 
+   @Override
    protected void keyTyped(char par1, int par2) {
       if(par2 == 1 || par2 == super.mc.gameSettings.keyBindInventory.getKeyCode()) {
          super.mc.thePlayer.closeScreen();

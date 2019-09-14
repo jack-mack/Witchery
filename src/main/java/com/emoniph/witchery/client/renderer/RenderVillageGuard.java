@@ -18,6 +18,7 @@ public class RenderVillageGuard extends RenderBiped {
       super(new ModelVillageGuard(), 0.5F);
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(Entity entity) {
       return this.func_110832_a((EntityVillageGuard)entity);
    }

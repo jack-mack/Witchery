@@ -23,6 +23,7 @@ public class EntityAIWanderWithRestriction extends EntityAIBase {
       this.home = home;
    }
 
+   @Override
    public boolean shouldExecute() {
       if(this.entity.getAge() >= 100) {
          return false;
@@ -43,10 +44,12 @@ public class EntityAIWanderWithRestriction extends EntityAIBase {
       }
    }
 
+   @Override
    public boolean continueExecuting() {
       return !this.entity.getNavigator().noPath();
    }
 
+   @Override
    public void startExecuting() {
       this.entity.getNavigator().tryMoveToXYZ(this.xPosition, this.yPosition, this.zPosition, this.speed);
    }

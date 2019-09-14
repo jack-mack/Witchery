@@ -28,11 +28,13 @@ public class ModelWolfHead extends ModelBase {
       this.skeletonHead.setTextureOffset(0, 10).addBox(-1.5F, -3.1F, -3.0F, 3, 3, 4, f);
    }
 
+   @Override
    public void render(Entity entity, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float p_78088_7_) {
       this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, p_78088_7_, entity);
       this.skeletonHead.render(p_78088_7_);
    }
 
+   @Override
    public void setRotationAngles(float p_78087_1_, float p_78087_2_, float p_78087_3_, float p_78087_4_, float p_78087_5_, float p_78087_6_, Entity p_78087_7_) {
       super.setRotationAngles(p_78087_1_, p_78087_2_, p_78087_3_, p_78087_4_, p_78087_5_, p_78087_6_, p_78087_7_);
       this.skeletonHead.rotateAngleY = p_78087_4_ / 57.295776F;

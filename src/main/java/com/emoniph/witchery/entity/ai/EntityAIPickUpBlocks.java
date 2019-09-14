@@ -19,10 +19,12 @@ public class EntityAIPickUpBlocks extends EntityAIBase {
       this.setMutexBits(7);
    }
 
+   @Override
    public boolean shouldExecute() {
       return this.entity != null && !this.entity.isWorshipping() && this.entity.getHeldItem() == null && this.entity.getLeashed() && this.isItemInReachableDistance();
    }
 
+   @Override
    public void startExecuting() {
       AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(this.entity.posX - this.range, this.entity.posY - this.range, this.entity.posZ - this.range, this.entity.posX + this.range, this.entity.posY + this.range, this.entity.posZ + this.range);
       List items = this.entity.worldObj.getEntitiesWithinAABB(EntityItem.class, bb);
@@ -38,10 +40,12 @@ public class EntityAIPickUpBlocks extends EntityAIBase {
 
    }
 
+   @Override
    public boolean continueExecuting() {
       return this.entity != null && !this.entity.isWorshipping() && this.entity.getHeldItem() == null && this.entity.getLeashed() && this.isItemInReachableDistance();
    }
 
+   @Override
    public void updateTask() {
       if(this.entity.getNavigator().noPath()) {
          AxisAlignedBB PICKUP_RANGE = AxisAlignedBB.getBoundingBox(this.entity.posX - this.range, this.entity.posY - this.range, this.entity.posZ - this.range, this.entity.posX + this.range, this.entity.posY + this.range, this.entity.posZ + this.range);

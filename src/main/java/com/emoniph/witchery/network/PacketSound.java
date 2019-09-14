@@ -34,6 +34,7 @@ public class PacketSound implements IMessage {
       this.pitch = pitch;
    }
 
+   @Override
    public void toBytes(ByteBuf buffer) {
       buffer.writeInt(this.effect.ordinal());
       buffer.writeDouble(this.x);
@@ -43,6 +44,7 @@ public class PacketSound implements IMessage {
       buffer.writeFloat(this.pitch);
    }
 
+   @Override
    public void fromBytes(ByteBuf buffer) {
       this.effect = SoundEffect.values()[buffer.readInt()];
       this.x = buffer.readDouble();
@@ -54,6 +56,7 @@ public class PacketSound implements IMessage {
 
    public static class Handler implements IMessageHandler<PacketSound, IMessage> {
 
+      @Override
       public IMessage onMessage(PacketSound message, MessageContext ctx) {
          EntityPlayer player = Witchery.proxy.getPlayer(ctx);
          if(message.volume == -1.0F) {

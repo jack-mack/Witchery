@@ -51,20 +51,24 @@ public class ItemCircleTalisman extends ItemBase {
       this.setHasSubtypes(true);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack itemstack) {
       return EnumRarity.uncommon;
    }
 
+   @Override
    public String getUnlocalizedName(ItemStack itemStack) {
       Integer damage = Integer.valueOf(itemStack.getItemDamage());
       return damage.equals(Integer.valueOf(0))?this.getUnlocalizedName():this.getUnlocalizedName() + "." + damage.toString();
    }
 
+   @Override
    public String getUnlocalizedNameInefficiently(ItemStack par1ItemStack) {
       return super.getUnlocalizedName(par1ItemStack);
    }
 
+   @Override
    public String getItemStackDisplayName(ItemStack itemStack) {
       String localizedName = super.getItemStackDisplayName(itemStack);
       int damage = itemStack.getItemDamage();
@@ -98,6 +102,7 @@ public class ItemCircleTalisman extends ItemBase {
       return result.toString();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerIcons(IIconRegister iconRegister) {
       super.registerIcons(iconRegister);
@@ -113,6 +118,7 @@ public class ItemCircleTalisman extends ItemBase {
       this.item9 = iconRegister.registerIcon(this.getIconString() + ".9");
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIconFromDamage(int damage) {
       int small = damage & 7;
@@ -143,6 +149,7 @@ public class ItemCircleTalisman extends ItemBase {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void getSubItems(Item itemID, CreativeTabs tab, List itemList) {
       itemList.add(new ItemStack(itemID, 1, 0));
@@ -157,6 +164,7 @@ public class ItemCircleTalisman extends ItemBase {
       itemList.add(new ItemStack(itemID, 1, 192));
    }
 
+   @Override
    public boolean onItemUse(ItemStack itemstack, EntityPlayer player, World world, int posX, int posY, int posZ, int side, float hitX, float hitY, float hitZ) {
       if((!BlockSide.TOP.isEqual(side) || world.getBlock(posX, posY, posZ) != Witchery.Blocks.CIRCLE) && !Witchery.Blocks.CIRCLE.canBlockStay(world, posX, posY + 1, posZ)) {
          SoundEffect.NOTE_SNARE.playAtPlayer(world, player);

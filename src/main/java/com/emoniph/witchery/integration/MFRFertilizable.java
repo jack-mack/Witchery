@@ -19,14 +19,17 @@ public class MFRFertilizable implements IFactoryFertilizable {
       this.stages = stages;
    }
 
+   @Override
    public Block getPlant() {
       return this.block;
    }
 
+   @Override
    public boolean canFertilize(World world, int x, int y, int z, FertilizerType fertilizerType) {
       return fertilizerType == FertilizerType.GrowPlant && (this.stages == 0 || world.getBlockMetadata(x, y, z) < this.stages);
    }
 
+   @Override
    public boolean fertilize(World world, Random rand, int x, int y, int z, FertilizerType fertilizerType) {
       Block blockID = world.getBlock(x, y, z);
       Log.instance().debug(String.format("Fertilize %d, %d", new Object[]{blockID.getUnlocalizedName(), Integer.valueOf(this.stages)}));

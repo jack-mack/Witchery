@@ -24,26 +24,31 @@ public class BlockBrew extends BlockFluidClassic {
       super.quantaPerBlock = 2;
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       BlockUtil.registerBlock(this, blockName);
       return super.setBlockName(blockName);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int side, int meta) {
       return side != 0 && side != 1?this.icons[1]:this.icons[0];
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {
       this.icons = new IIcon[]{iconRegister.registerIcon(this.getTextureName() + "_still"), iconRegister.registerIcon(this.getTextureName() + "_flow")};
       Witchery.Fluids.BREW.setIcons(this.icons[0], this.icons[1]);
    }
 
+   @Override
    public boolean canDisplace(IBlockAccess world, int x, int y, int z) {
       return world.getBlock(x, y, z).getMaterial().isLiquid()?false:super.canDisplace(world, x, y, z);
    }
 
+   @Override
    public boolean displaceIfPossible(World world, int x, int y, int z) {
       return world.getBlock(x, y, z).getMaterial().isLiquid()?false:super.displaceIfPossible(world, x, y, z);
    }

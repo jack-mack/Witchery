@@ -28,9 +28,11 @@ import net.minecraftforge.fluids.IFluidBlock;
 public class BlockBrewGas extends BlockBaseContainer implements IFluidBlock {
 
    public static final Material MATERIAL = (new Material(MapColor.airColor) {
+      @Override
       public boolean isSolid() {
          return false;
       }
+      @Override
       public boolean blocksMovement() {
          return false;
       }
@@ -45,76 +47,94 @@ public class BlockBrewGas extends BlockBaseContainer implements IFluidBlock {
       this.setBlockUnbreakable();
    }
 
+   @Override
    public boolean isAir(IBlockAccess world, int x, int y, int z) {
       return true;
    }
 
+   @Override
    public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
       TileEntityBrewFluid gas = (TileEntityBrewFluid)BlockUtil.getTileEntity(world, x, y, z, TileEntityBrewFluid.class);
       return gas != null?gas.color:3385907;
    }
 
+   @Override
    public int getRenderColor(int metadata) {
       return 3385907;
    }
 
+   @Override
    public int getBlockColor() {
       return 3385907;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
       return null;
    }
 
+   @Override
    public boolean canCollideCheck(int p_149678_1_, boolean p_149678_2_) {
       return false;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public Item getItemDropped(int metadata, Random rand, int fortune) {
       return null;
    }
 
+   @Override
    public int quantityDropped(Random par1Random) {
       return 0;
    }
 
+   @Override
    public int tickRate(World world) {
       return 5;
    }
 
+   @Override
    public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
       Block block = world.getBlock(x, y, z);
       return block == this?false:super.shouldSideBeRendered(world, x, y, z, side);
    }
 
+   @Override
    public boolean isBlockSolid(IBlockAccess world, int x, int y, int z, int side) {
       return false;
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       return null;
    }
 
+   @Override
    public Fluid getFluid() {
       return Witchery.Fluids.BREW_GAS;
    }
 
+   @Override
    public int getRenderType() {
       return Witchery.proxy.getGasRenderId();
    }
 
+   @Override
    public int getRenderBlockPass() {
       return 1;
    }
 
+   @Override
    public void onBlockAdded(World world, int x, int y, int z) {
       world.scheduleBlockUpdate(x, y, z, this, 5);
    }
@@ -123,14 +143,17 @@ public class BlockBrewGas extends BlockBaseContainer implements IFluidBlock {
       this.onBlockAdded(world, x, y, z);
    }
 
+   @Override
    public FluidStack drain(World world, int x, int y, int z, boolean doDrain) {
       return null;
    }
 
+   @Override
    public boolean canDrain(World world, int x, int y, int z) {
       return false;
    }
 
+   @Override
    public float getFilledPercentage(World world, int x, int y, int z) {
       return 0.0F;
    }
@@ -139,6 +162,7 @@ public class BlockBrewGas extends BlockBaseContainer implements IFluidBlock {
       return block != null && block != Blocks.air && block != this;
    }
 
+   @Override
    public void updateTick(World world, int x, int y, int z, Random rand) {
       if(!world.isRemote) {
          int initialMetadata = world.getBlockMetadata(x, y, z);
@@ -205,6 +229,7 @@ public class BlockBrewGas extends BlockBaseContainer implements IFluidBlock {
 
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
       if(entity != null && entity instanceof EntityLivingBase && !world.isRemote && world.rand.nextInt(10) == 4) {
          TileEntityBrewFluid gas = (TileEntityBrewFluid)BlockUtil.getTileEntity(world, x, y, z, TileEntityBrewFluid.class);

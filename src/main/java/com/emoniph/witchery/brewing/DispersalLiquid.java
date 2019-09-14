@@ -18,6 +18,7 @@ import net.minecraft.world.World;
 
 public class DispersalLiquid extends Dispersal {
 
+   @Override
    public void onImpactSplashPotion(World world, NBTTagCompound nbtBrew, MovingObjectPosition mop, ModifiersImpact modifiers) {
       Coord coord = new Coord(mop, modifiers.impactPosition, true);
       boolean replaceable = BlockUtil.isReplaceableBlock(world, coord.x, coord.y, coord.z, modifiers.thrower);
@@ -31,10 +32,12 @@ public class DispersalLiquid extends Dispersal {
 
    }
 
+   @Override
    public String getUnlocalizedName() {
       return "witchery:brew.dispersal.liquid";
    }
 
+   @Override
    public RitualStatus onUpdateRitual(World world, int x, int y, int z, NBTTagCompound nbtBrew, ModifiersRitual modifiers, ModifiersImpact impactModifiers) {
       BlockPosition target = modifiers.getTarget();
       World targetWorld = target.getWorld(MinecraftServer.getServer());

@@ -25,10 +25,12 @@ public abstract class MultiItemBlock extends ItemBlock {
 
    protected abstract String[] getNames();
 
+   @Override
    public int getMetadata(int par1) {
       return par1;
    }
 
+   @Override
    public String getUnlocalizedName(ItemStack par1ItemStack) {
       int i = par1ItemStack.getItemDamage();
       String[] names = this.internalGetNames();

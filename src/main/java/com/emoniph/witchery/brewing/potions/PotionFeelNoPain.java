@@ -21,6 +21,7 @@ public class PotionFeelNoPain extends PotionBase implements IHandleLivingHurt, I
       this.setIncurable();
    }
 
+   @Override
    public void onLivingUpdate(World world, EntityLivingBase entity, LivingUpdateEvent event, int amplifier, int duration) {
       if(!world.isRemote && world.getWorldTime() % 20L == 2L && amplifier > 0 && !entity.isPotionActive(Potion.confusion) && !entity.isPotionActive(Witchery.Potions.STOUT_BELLY) && world.rand.nextInt(5 - Math.min(amplifier, 3)) == 0) {
          entity.addPotionEffect(new PotionEffect(Potion.confusion.id, TimeUtil.secsToTicks(6 + amplifier * 2)));
@@ -28,10 +29,12 @@ public class PotionFeelNoPain extends PotionBase implements IHandleLivingHurt, I
 
    }
 
+   @Override
    public boolean handleAllHurtEvents() {
       return false;
    }
 
+   @Override
    public void onLivingHurt(World world, EntityLivingBase entity, LivingHurtEvent event, int amplifier) {
       if(!world.isRemote && entity instanceof EntityPlayer && (event.source.getDamageType() == "mob" || event.source.getDamageType() == "player" || event.source.getEntity() != null && event.source.getEntity() instanceof EntityLivingBase)) {
          EntityPlayer player = (EntityPlayer)entity;

@@ -19,6 +19,7 @@ public class BrewFluid extends ItemGeneral.Brew {
       this.fluid = fluid;
    }
 
+   @Override
    public ItemGeneral.Brew.BrewResult onImpact(World world, EntityLivingBase thrower, MovingObjectPosition mop, boolean enhanced, double brewX, double brewY, double brewZ, AxisAlignedBB brewBounds) {
       switch(BrewFluid.NamelessClass84047679.$SwitchMap$net$minecraft$util$MovingObjectPosition$MovingObjectType[mop.typeOfHit.ordinal()]) {
       case 1:

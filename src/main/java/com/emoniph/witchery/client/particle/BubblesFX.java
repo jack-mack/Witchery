@@ -18,6 +18,7 @@ public class BubblesFX extends EntityFX {
       super.noClip = true;
    }
 
+   @Override
    public void renderParticle(Tessellator tess, float partialTicks, float par3, float par4, float par5, float par6, float par7) {
       Minecraft.getMinecraft().renderEngine.bindTexture(particles);
       GL11.glDepthMask(false);
@@ -49,6 +50,7 @@ public class BubblesFX extends EntityFX {
       GL11.glAlphaFunc(516, 0.1F);
    }
 
+   @Override
    public void onUpdate() {
       if(!super.worldObj.isRemote) {
          this.setDead();
@@ -76,6 +78,7 @@ public class BubblesFX extends EntityFX {
 
    }
 
+   @Override
    public int getFXLayer() {
       return 3;
    }

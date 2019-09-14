@@ -54,6 +54,7 @@ public class BlockPressurePlateBase extends BlockBaseContainer {
 
    }
 
+   @Override
    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
       this.func_150063_b(world.getBlockMetadata(x, y, z));
    }
@@ -69,30 +70,37 @@ public class BlockPressurePlateBase extends BlockBaseContainer {
 
    }
 
+   @Override
    public int tickRate(World world) {
       return 20;
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
       return null;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public boolean getBlocksMovement(IBlockAccess world, int x, int y, int z) {
       return true;
    }
 
+   @Override
    public boolean canPlaceBlockAt(World world, int x, int y, int z) {
       return World.doesBlockHaveSolidTopSurface(world, x, y - 1, z) || BlockFence.func_149825_a(world.getBlock(x, y - 1, z));
    }
 
+   @Override
    public void onNeighborBlockChange(World world, int x, int y, int z, Block p_149695_5_) {
       boolean flag = false;
       if(!World.doesBlockHaveSolidTopSurface(world, x, y - 1, z) && !BlockFence.func_149825_a(world.getBlock(x, y - 1, z))) {
@@ -106,6 +114,7 @@ public class BlockPressurePlateBase extends BlockBaseContainer {
 
    }
 
+   @Override
    public void updateTick(World world, int x, int y, int z, Random rand) {
       if(!world.isRemote) {
          int l = this.func_150060_c(world.getBlockMetadata(x, y, z));
@@ -116,6 +125,7 @@ public class BlockPressurePlateBase extends BlockBaseContainer {
 
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
       if(!world.isRemote) {
          int metadata = world.getBlockMetadata(x, y, z);
@@ -194,6 +204,7 @@ public class BlockPressurePlateBase extends BlockBaseContainer {
       return AxisAlignedBB.getBoundingBox((double)((float)x + f), (double)y, (double)((float)z + f), (double)((float)(x + 1) - f), (double)y + 0.25D, (double)((float)(z + 1) - f));
    }
 
+   @Override
    public void breakBlock(World world, int x, int y, int z, Block block, int p_149749_6_) {
       if(this.func_150060_c(p_149749_6_) > 0) {
          this.func_150064_a_(world, x, y, z);
@@ -207,18 +218,22 @@ public class BlockPressurePlateBase extends BlockBaseContainer {
       world.notifyBlocksOfNeighborChange(x, y - 1, z, this);
    }
 
+   @Override
    public int isProvidingWeakPower(IBlockAccess world, int x, int y, int z, int p_149709_5_) {
       return this.func_150060_c(world.getBlockMetadata(x, y, z));
    }
 
+   @Override
    public int isProvidingStrongPower(IBlockAccess world, int x, int y, int z, int p_149748_5_) {
       return p_149748_5_ == 1?this.func_150060_c(world.getBlockMetadata(x, y, z)):0;
    }
 
+   @Override
    public boolean canProvidePower() {
       return true;
    }
 
+   @Override
    public void setBlockBoundsForItemRender() {
       float f = 0.5F;
       float f1 = 0.125F;
@@ -226,6 +241,7 @@ public class BlockPressurePlateBase extends BlockBaseContainer {
       this.setBlockBounds(0.5F - f, 0.5F - f1, 0.5F - f2, 0.5F + f, 0.5F + f1, 0.5F + f2);
    }
 
+   @Override
    public int getMobilityFlag() {
       return 1;
    }
@@ -266,15 +282,18 @@ public class BlockPressurePlateBase extends BlockBaseContainer {
       return 0;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {
       super.blockIcon = iconRegister.registerIcon(this.textureName);
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       return new ItemStack(this.original);
    }
 
+   @Override
    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
       return Item.getItemFromBlock(this.original);
    }

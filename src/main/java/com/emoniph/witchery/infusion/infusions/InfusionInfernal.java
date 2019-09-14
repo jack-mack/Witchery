@@ -42,10 +42,12 @@ public class InfusionInfernal extends Infusion {
       super(infusionID);
    }
 
+   @Override
    public IIcon getPowerBarIcon(EntityPlayer player, int index) {
       return Blocks.netherrack.getIcon(0, 0);
    }
 
+   @Override
    public void onLeftClickEntity(ItemStack itemstack, World world, EntityPlayer player, Entity otherEntity) {
       if(!world.isRemote && otherEntity instanceof EntityLivingBase) {
          EntityLivingBase entityLivingBase = (EntityLivingBase)otherEntity;
@@ -133,6 +135,7 @@ public class InfusionInfernal extends Infusion {
 
    }
 
+   @Override
    public void onHurt(World worldObj, EntityPlayer player, LivingHurtEvent event) {
       int creaturePowerID = CreaturePower.getCreaturePowerID(player);
       if(creaturePowerID > 0) {
@@ -141,6 +144,7 @@ public class InfusionInfernal extends Infusion {
 
    }
 
+   @Override
    public void onFalling(World world, EntityPlayer player, LivingFallEvent event) {
       int creaturePowerID = CreaturePower.getCreaturePowerID(player);
       if(creaturePowerID > 0) {
@@ -149,10 +153,12 @@ public class InfusionInfernal extends Infusion {
 
    }
 
+   @Override
    public void onUsingItemTick(ItemStack itemstack, World world, EntityPlayer player, int countdown) {
       int elapsedTicks = this.getMaxItemUseDuration(itemstack) - countdown;
    }
 
+   @Override
    public void onPlayerStoppedUsing(ItemStack itemstack, World world, EntityPlayer player, int countdown) {
       if(!world.isRemote) {
          int elapsedTicks = this.getMaxItemUseDuration(itemstack) - countdown;

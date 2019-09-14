@@ -59,8 +59,10 @@ public class RenderBrewLiquid implements ISimpleBlockRenderingHandler {
       return !world.getBlock(x, y, z).getMaterial().isSolid() && world.getBlock(x, y - block.densityDir, z) == block?1.0F:block.getQuantaPercentage(world, x, y, z) * 0.875F;
    }
 
+   @Override
    public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {}
 
+   @Override
    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
       if(!(block instanceof BlockBrewLiquidEffect)) {
          return false;
@@ -262,10 +264,12 @@ public class RenderBrewLiquid implements ISimpleBlockRenderingHandler {
       }
    }
 
+   @Override
    public boolean shouldRender3DInInventory(int modelId) {
       return false;
    }
 
+   @Override
    public int getRenderId() {
       return Witchery.proxy.getBrewLiquidRenderId();
    }

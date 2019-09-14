@@ -27,6 +27,7 @@ public class ItemAlluringSkull extends ItemBlock {
       this.setMaxStackSize(1);
    }
 
+   @Override
    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
       if(par7 == 0) {
          return false;
@@ -78,6 +79,7 @@ public class ItemAlluringSkull extends ItemBlock {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerIcons(IIconRegister par1IconRegister) {
       this.field_94586_c = new IIcon[field_94587_a.length];
@@ -88,6 +90,7 @@ public class ItemAlluringSkull extends ItemBlock {
 
    }
 
+   @Override
    public IIcon getIconFromDamage(int par1) {
       if(par1 < 0 || par1 >= field_94587_a.length) {
          par1 = 0;
@@ -96,6 +99,7 @@ public class ItemAlluringSkull extends ItemBlock {
       return this.field_94586_c[par1];
    }
 
+   @Override
    public String getUnlocalizedName(ItemStack par1ItemStack) {
       return super.getUnlocalizedName();
    }

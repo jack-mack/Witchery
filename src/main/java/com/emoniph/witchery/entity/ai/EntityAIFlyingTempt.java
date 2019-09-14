@@ -33,6 +33,7 @@ public class EntityAIFlyingTempt extends EntityAIBase {
       this.setMutexBits(1);
    }
 
+   @Override
    public boolean shouldExecute() {
       boolean isTame = this.temptedEntity instanceof EntityTameable && ((EntityTameable)this.temptedEntity).isTamed();
       if(isTame) {
@@ -65,6 +66,7 @@ public class EntityAIFlyingTempt extends EntityAIBase {
       return false;
    }
 
+   @Override
    public boolean continueExecuting() {
       if(this.scaredByPlayerMovement) {
          if(this.temptedEntity.getDistanceSqToEntity(this.temptingPlayer) < 36.0D) {
@@ -84,16 +86,19 @@ public class EntityAIFlyingTempt extends EntityAIBase {
       return this.shouldExecute();
    }
 
+   @Override
    public void startExecuting() {
       this.isRunning = true;
    }
 
+   @Override
    public void resetTask() {
       this.temptingPlayer = null;
       this.delayTemptCounter = 100;
       this.isRunning = false;
    }
 
+   @Override
    public void updateTask() {
       if(this.temptedEntity.getDistanceSqToEntity(this.temptingPlayer) >= 3.0D) {
          double d0 = this.targetX - this.temptedEntity.posX;

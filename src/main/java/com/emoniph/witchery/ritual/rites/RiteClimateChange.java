@@ -40,6 +40,7 @@ public class RiteClimateChange extends Rite {
       this.radius = radius;
    }
 
+   @Override
    public void addSteps(ArrayList steps, int intialStage) {
       steps.add(new RiteClimateChange.StepClimateChange(this, intialStage));
    }
@@ -92,10 +93,12 @@ public class RiteClimateChange extends Rite {
          this.stage = initialStage;
       }
 
+      @Override
       public int getCurrentStage() {
          return (byte)this.stage;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(!this.activated) {
             if(ticks % 20L != 0L) {

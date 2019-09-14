@@ -23,6 +23,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class DispersalInstant extends Dispersal {
 
+   @Override
    public void onImpactSplashPotion(World world, NBTTagCompound nbtBrew, MovingObjectPosition mop, ModifiersImpact modifiers) {
       double R = (double)(3 + modifiers.extent);
       double R_SQ = R * R;
@@ -47,10 +48,12 @@ public class DispersalInstant extends Dispersal {
 
    }
 
+   @Override
    public String getUnlocalizedName() {
       return "witchery:brew.dispersal.splash";
    }
 
+   @Override
    public RitualStatus onUpdateRitual(World world, int x, int y, int z, NBTTagCompound nbtBrew, ModifiersRitual modifiers, ModifiersImpact impactModifiers) {
       BlockPosition target = modifiers.getTarget();
       ModifiersEffect effectModifiers = new ModifiersEffect(1.0D, 1.0D, false, new EntityPosition(target), true, modifiers.covenSize, EntityUtil.playerOrFake(world, (EntityLivingBase)((EntityPlayer)null)));

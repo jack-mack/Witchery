@@ -76,10 +76,12 @@ public class EntityVillageGuard extends EntityCreature implements IRangedAttackM
       super.experienceValue = 5;
    }
 
+   @Override
    public boolean canAttackClass(Class p_70686_1_) {
       return EntityCreeper.class != p_70686_1_ && this.getClass() != p_70686_1_;
    }
 
+   @Override
    public boolean isEntityApplicable(Entity entity) {
       if((!(entity instanceof IMob) || entity instanceof EntityWitchHunter) && !(entity instanceof EntityGoblin)) {
          if(this.villageObj != null && entity instanceof EntityPlayer) {
@@ -129,14 +131,17 @@ public class EntityVillageGuard extends EntityCreature implements IRangedAttackM
 
    }
 
+   @Override
    public Village getVillage() {
       return this.villageObj;
    }
 
+   @Override
    public EntityCreature getCreature() {
       return this;
    }
 
+   @Override
    protected void updateAITick() {
       if(--this.homeCheckTimer <= 0) {
          this.homeCheckTimer = 70 + super.rand.nextInt(50);
@@ -158,14 +163,17 @@ public class EntityVillageGuard extends EntityCreature implements IRangedAttackM
       super.updateAITick();
    }
 
+   @Override
    protected String getSwimSound() {
       return "game.hostile.swim";
    }
 
+   @Override
    protected String getSplashSound() {
       return "game.hostile.swim.splash";
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
@@ -175,32 +183,39 @@ public class EntityVillageGuard extends EntityCreature implements IRangedAttackM
       this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0D);
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(13, new Byte((byte)0));
       super.dataWatcher.addObject(14, new Integer(500));
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    protected String getLivingSound() {
       return "mob.villager.idle";
    }
 
+   @Override
    protected String getHurtSound() {
       return "mob.villager.hit";
    }
 
+   @Override
    protected String getDeathSound() {
       return "mob.villager.death";
    }
 
+   @Override
    protected float getSoundPitch() {
       return 0.8F;
    }
 
+   @Override
    public void onLivingUpdate() {
       this.updateArmSwingProgress();
       float f = this.getBrightness(1.0F);
@@ -211,10 +226,12 @@ public class EntityVillageGuard extends EntityCreature implements IRangedAttackM
       super.onLivingUpdate();
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource damageSource, float damage) {
       return damageSource.getEntity() != null && (damageSource.getEntity() instanceof EntityVillageGuard || damageSource.getEntity() instanceof EntityWitchHunter)?false:super.attackEntityFrom(damageSource, damage);
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity p_70652_1_) {
       float f = (float)this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
       int i = 0;
@@ -246,6 +263,7 @@ public class EntityVillageGuard extends EntityCreature implements IRangedAttackM
       return flag;
    }
 
+   @Override
    protected void attackEntity(Entity p_70785_1_, float p_70785_2_) {
       if(super.attackTime <= 0 && p_70785_2_ < 2.0F && p_70785_1_.boundingBox.maxY > super.boundingBox.minY && p_70785_1_.boundingBox.minY < super.boundingBox.maxY) {
          super.attackTime = 20;
@@ -254,8 +272,10 @@ public class EntityVillageGuard extends EntityCreature implements IRangedAttackM
 
    }
 
+   @Override
    protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_) {}
 
+   @Override
    public void updateRidden() {
       super.updateRidden();
       if(super.ridingEntity instanceof EntityCreature) {
@@ -265,10 +285,12 @@ public class EntityVillageGuard extends EntityCreature implements IRangedAttackM
 
    }
 
+   @Override
    protected String func_146067_o(int p_146067_1_) {
       return p_146067_1_ > 4?"game.hostile.hurt.fall.big":"game.hostile.hurt.fall.small";
    }
 
+   @Override
    public void onDeath(DamageSource p_70645_1_) {
       if(super.attackingPlayer != null && this.villageObj != null) {
          this.villageObj.setReputationForPlayer(super.attackingPlayer.getCommandSenderName(), -5);
@@ -277,14 +299,17 @@ public class EntityVillageGuard extends EntityCreature implements IRangedAttackM
       super.onDeath(p_70645_1_);
    }
 
+   @Override
    protected Item getDropItem() {
       return Items.arrow;
    }
 
+   @Override
    protected void dropRareDrop(int p_70600_1_) {
       this.entityDropItem(new ItemStack(Items.leather_chestplate, 1), 0.0F);
    }
 
+   @Override
    protected void addRandomArmor() {
       this.setCurrentItemOrArmor(0, new ItemStack(Items.bow));
       this.setCurrentItemOrArmor(1, new ItemStack(Items.leather_boots));
@@ -293,10 +318,12 @@ public class EntityVillageGuard extends EntityCreature implements IRangedAttackM
       this.setCurrentItemOrArmor(4, new ItemStack(super.worldObj.rand.nextInt(5) == 0?Items.iron_helmet:Items.leather_helmet));
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.villageguard.name");
    }
 
+   @Override
    public IEntityLivingData onSpawnWithEgg(IEntityLivingData p_110161_1_) {
       p_110161_1_ = super.onSpawnWithEgg(p_110161_1_);
       this.addRandomArmor();
@@ -315,6 +342,7 @@ public class EntityVillageGuard extends EntityCreature implements IRangedAttackM
 
    }
 
+   @Override
    public void attackEntityWithRangedAttack(EntityLivingBase target, float p_82196_2_) {
       PotionEffect effect = this.getActivePotionEffect(Witchery.Potions.PARALYSED);
       if(effect == null || effect.getAmplifier() < 4) {
@@ -354,6 +382,7 @@ public class EntityVillageGuard extends EntityCreature implements IRangedAttackM
 
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       super.readEntityFromNBT(nbtRoot);
       if(nbtRoot.hasKey("GuardType", 99)) {
@@ -368,12 +397,14 @@ public class EntityVillageGuard extends EntityCreature implements IRangedAttackM
 
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       super.writeEntityToNBT(nbtRoot);
       nbtRoot.setByte("GuardType", (byte)this.getGuardType());
       nbtRoot.setInteger("BloodLevel", this.getBlood());
    }
 
+   @Override
    public void setCurrentItemOrArmor(int p_70062_1_, ItemStack p_70062_2_) {
       super.setCurrentItemOrArmor(p_70062_1_, p_70062_2_);
       if(!super.worldObj.isRemote && p_70062_1_ == 0) {
@@ -382,6 +413,7 @@ public class EntityVillageGuard extends EntityCreature implements IRangedAttackM
 
    }
 
+   @Override
    public double getYOffset() {
       return super.getYOffset() - 0.5D;
    }

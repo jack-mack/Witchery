@@ -14,6 +14,7 @@ public class BlockSnowStairs extends BlockStairs {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       BlockUtil.registerBlock(this, blockName);
       super.setBlockName(blockName);

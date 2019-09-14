@@ -48,6 +48,7 @@ public class EntityAIDigBlocks extends EntityAIBase {
       this.setMutexBits(7);
    }
 
+   @Override
    public boolean shouldExecute() {
       if(this.entity != null && !this.entity.isWorshipping() && this.entity.getHeldItem() != null && this.entity.getHeldItem().getItem() instanceof ItemPickaxe && this.entity.getLeashed() && this.entity.worldObj.rand.nextInt(2) == 0) {
          MovingObjectPosition mop = raytraceBlocks(this.entity.worldObj, this.entity, true, this.failedChecks == 15?1.0D:4.0D, this.failedChecks == 15);
@@ -90,15 +91,18 @@ public class EntityAIDigBlocks extends EntityAIBase {
       return world.func_147447_a(playerPosition, playerViewOffset, collisionFlag, !collisionFlag, false);
    }
 
+   @Override
    public void startExecuting() {
       double SPEED = 0.6D;
       this.entity.getNavigator().tryMoveToXYZ((double)this.mop.blockX, (double)this.mop.blockY, (double)this.mop.blockZ, 0.6D);
    }
 
+   @Override
    public boolean continueExecuting() {
       return this.entity != null && !this.entity.isWorshipping() && this.entity.getHeldItem() != null && this.entity.getHeldItem().getItem() instanceof ItemPickaxe && this.entity.getLeashed() && this.mop != null;
    }
 
+   @Override
    public void resetTask() {
       if(this.entity.isWorking()) {
          this.entity.setWorking(false);
@@ -106,6 +110,7 @@ public class EntityAIDigBlocks extends EntityAIBase {
 
    }
 
+   @Override
    public void updateTask() {
       double DROP_RANGE = 2.5D;
       double DROP_RANGE_SQ = 6.25D;

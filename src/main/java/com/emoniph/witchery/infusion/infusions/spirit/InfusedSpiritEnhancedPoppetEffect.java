@@ -10,6 +10,7 @@ public class InfusedSpiritEnhancedPoppetEffect extends InfusedSpiritEffect {
       super(id, "enhancedpoppets", spirits, spectres, banshees, poltergeists);
    }
 
+   @Override
    public boolean doUpdateEffect(TileEntity tile, boolean triggered, ArrayList foundEntities) {
       return false;
    }

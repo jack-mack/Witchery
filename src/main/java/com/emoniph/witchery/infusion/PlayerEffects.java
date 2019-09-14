@@ -24,8 +24,11 @@ public class PlayerEffects {
    private static final ArrayList effects = new ArrayList();
    public static final String KEY_EFFECTS = "witchery.effects";
    public static final PlayerEffects.PlayerEffect IMP_FIRE_TOUCH = new PlayerEffects.PlayerEffect("witchery.imp.firetouch", effects) {
+      @Override
       protected void doUpdate(EntityPlayer player, int worldTicks) {}
+      @Override
       protected void doHarvest(EntityPlayer player, HarvestDropsEvent event) {}
+      @Override
       protected void doInteract(EntityPlayer player, PlayerInteractEvent event) {
          World world = player.worldObj;
          if(world.rand.nextDouble() < 0.2D) {
@@ -74,6 +77,7 @@ public class PlayerEffects {
       }
    };
    public static final PlayerEffects.PlayerEffect IMP_EVAPORATION = new PlayerEffects.PlayerEffect("witchery.imp.evaporation", effects) {
+      @Override
       protected void doUpdate(EntityPlayer player, int worldTicks) {
          if(player.worldObj.rand.nextInt(5) == 0) {
             int midX = MathHelper.floor_double(player.posX);
@@ -104,11 +108,15 @@ public class PlayerEffects {
          }
 
       }
+      @Override
       protected void doHarvest(EntityPlayer player, HarvestDropsEvent event) {}
+      @Override
       protected void doInteract(EntityPlayer player, PlayerInteractEvent event) {}
    };
    public static final PlayerEffects.PlayerEffect IMP_METLING_TOUCH = new PlayerEffects.PlayerEffect("witchery.im.meltingtouch", effects) {
+      @Override
       protected void doUpdate(EntityPlayer player, int worldTicks) {}
+      @Override
       protected void doHarvest(EntityPlayer player, HarvestDropsEvent event) {
          ArrayList newDrops = new ArrayList();
          Iterator i$ = event.drops.iterator();
@@ -140,6 +148,7 @@ public class PlayerEffects {
          }
 
       }
+      @Override
       protected void doInteract(EntityPlayer player, PlayerInteractEvent event) {}
    };
    private static final int TICKS_PER_UPDATE = 20;

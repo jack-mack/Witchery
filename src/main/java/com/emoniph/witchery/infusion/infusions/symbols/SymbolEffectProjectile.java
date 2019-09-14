@@ -51,6 +51,7 @@ public abstract class SymbolEffectProjectile extends SymbolEffect {
       return this.size;
    }
 
+   @Override
    public void perform(World world, EntityPlayer player, int effectLevel) {
       world.playAuxSFXAtEntity((EntityPlayer)null, 1008, (int)player.posX, (int)player.posY, (int)player.posZ, 0);
       float f = 1.0F;

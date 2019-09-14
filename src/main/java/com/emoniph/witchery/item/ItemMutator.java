@@ -50,11 +50,13 @@ public class ItemMutator extends ItemBase {
       this.setFull3D();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack itemstack) {
       return EnumRarity.uncommon;
    }
 
+   @Override
    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
       Block block = world.getBlock(x, y, z);
       Material materialAbove = world.getBlock(x, y + 1, z).getMaterial();

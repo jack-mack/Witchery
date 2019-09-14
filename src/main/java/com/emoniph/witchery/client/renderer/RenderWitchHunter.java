@@ -20,6 +20,7 @@ public class RenderWitchHunter extends RenderBiped {
       super(new ModelWitchHunter(), 0.5F);
    }
 
+   @Override
    protected ResourceLocation getEntityTexture(Entity entity) {
       return this.func_110832_a((EntityWitchHunter)entity);
    }

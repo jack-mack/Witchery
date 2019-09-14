@@ -24,6 +24,7 @@ public class ItemPoppetShelfCompass extends ItemBase {
       this.setMaxDamage(0);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerIcons(IIconRegister iconRegister) {
       this.icons = new IIcon[6];
@@ -35,10 +36,12 @@ public class ItemPoppetShelfCompass extends ItemBase {
       super.itemIcon = this.icons[0];
    }
 
+   @Override
    public IIcon getIconFromDamage(int damageValue) {
       return damageValue > 0 && damageValue < this.icons.length?this.icons[damageValue]:this.icons[0];
    }
 
+   @Override
    public void onUpdate(ItemStack stack, World world, Entity entity, int inventorySlot, boolean isHeldItem) {
       if(world.isRemote && world.rand.nextInt(20) == 0) {
          List list = world.loadedTileEntityList;
@@ -72,6 +75,7 @@ public class ItemPoppetShelfCompass extends ItemBase {
 
    }
 
+   @Override
    public boolean onDroppedByPlayer(ItemStack item, EntityPlayer player) {
       item.setItemDamage(0);
       return super.onDroppedByPlayer(item, player);

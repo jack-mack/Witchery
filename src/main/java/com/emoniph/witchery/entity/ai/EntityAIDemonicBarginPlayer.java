@@ -15,6 +15,7 @@ public class EntityAIDemonicBarginPlayer extends EntityAIBase {
       this.setMutexBits(5);
    }
 
+   @Override
    public boolean shouldExecute() {
       if(!this.trader.isEntityAlive()) {
          return false;
@@ -30,10 +31,12 @@ public class EntityAIDemonicBarginPlayer extends EntityAIBase {
       }
    }
 
+   @Override
    public void startExecuting() {
       this.trader.getNavigator().clearPathEntity();
    }
 
+   @Override
    public void resetTask() {
       this.trader.setCustomer((EntityPlayer)null);
       this.trader.targetTasks.onUpdateTasks();

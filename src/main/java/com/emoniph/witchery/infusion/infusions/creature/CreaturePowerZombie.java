@@ -14,6 +14,7 @@ public class CreaturePowerZombie extends CreaturePower {
       super(powerID, EntityZombie.class);
    }
 
+   @Override
    public void onActivate(World world, EntityPlayer player, int elapsedTicks, MovingObjectPosition mop) {
       if(!world.isRemote) {
          player.addPotionEffect(new PotionEffect(Potion.resistance.id, 600, 1));

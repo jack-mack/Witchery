@@ -16,8 +16,10 @@ public class PotionKeepInventory extends PotionBase implements IHandlePlayerDrop
       super(id, color);
    }
 
+   @Override
    public void postContructInitialize() {}
 
+   @Override
    public void onPlayerDrops(World world, EntityPlayer player, PlayerDropsEvent event, int amplifier) {
       if(!event.entityPlayer.worldObj.isRemote) {
          if(event.entityPlayer.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory")) {
@@ -34,6 +36,7 @@ public class PotionKeepInventory extends PotionBase implements IHandlePlayerDrop
 
    }
 
+   @Override
    public void onLivingDeath(World world, EntityLivingBase entity, LivingDeathEvent event, int amplifier) {
       if(!event.entityLiving.worldObj.isRemote && event.entityLiving instanceof EntityPlayer) {
          EntityPlayer player = (EntityPlayer)event.entityLiving;

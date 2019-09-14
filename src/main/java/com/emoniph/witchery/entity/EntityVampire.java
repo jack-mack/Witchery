@@ -41,6 +41,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.village.Village;
+import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
 public class EntityVampire extends EntityCreature implements IEntitySelector, IHandleDT {
@@ -64,22 +66,61 @@ public class EntityVampire extends EntityCreature implements IEntitySelector, IH
       super.tasks.addTask(11, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
       super.tasks.addTask(12, new EntityAILookIdle(this));
       super.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-      super.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityCreature.class, 0, false, true, this));
+      super.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, false, true, this));
       super.experienceValue = 20;
    }
 
-   public boolean isEntityApplicable(Entity entity) {
-      return entity instanceof EntityVillager && this.villageObj != null || entity instanceof EntityPlayer && !ExtendedPlayer.get((EntityPlayer)entity).isVampire();
+   protected boolean isValidLightLevel()
+   {
+      int i = MathHelper.floor_double(this.posX);
+      int j = MathHelper.floor_double(this.boundingBox.minY);
+      int k = MathHelper.floor_double(this.posZ);
+
+      if (this.worldObj.getSavedLightValue(EnumSkyBlock.Sky, i, j, k) > this.rand.nextInt(32))
+      {
+         return false;
+      }
+      else
+      {
+         int l = this.worldObj.getBlockLightValue(i, j, k);
+
+         if (this.worldObj.isThundering())
+         {
+            int i1 = this.worldObj.skylightSubtracted;
+            this.worldObj.skylightSubtracted = 10;
+            l = this.worldObj.getBlockLightValue(i, j, k);
+            this.worldObj.skylightSubtracted = i1;
+         }
+
+         // only spawn naturally under objects
+         if (worldObj.canBlockSeeTheSky(i, k, k)) return false;
+
+         return l <= this.rand.nextInt(8);
+      }
    }
 
+   @Override
+   public boolean getCanSpawnHere()
+   {
+      return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere();
+   }
+
+   @Override
+   public boolean isEntityApplicable(Entity entity) {
+      return (entity instanceof EntityVillager && this.villageObj != null) || (entity instanceof EntityPlayer && !ExtendedPlayer.get((EntityPlayer)entity).isVampire()) || entity instanceof EntityWitchHunter;
+   }
+
+   @Override
    protected void updateAITick() {
       super.updateAITick();
       if(!super.worldObj.isRemote) {
          if(super.worldObj.isDaytime()) {
+            //it will attack nobody in daylight
             if(this.getAITarget() == null) {
                this.setAttackTarget((EntityLivingBase)null);
             }
 
+            //if coffin too far then Vampire will vanish and reappear at coffin in a puff of smoke
             if(super.ticksExisted % 100 == 2) {
                this.villageObj = null;
                this.damageDone = 0.0F;
@@ -91,6 +132,7 @@ public class EntityVampire extends EntityCreature implements IEntitySelector, IH
                }
             }
 
+            //if vampire is in daylight make it burn
             if(super.ticksExisted % 20 == 2 && CreatureUtil.isInSunlight(this)) {
                this.setFire(2);
             }
@@ -139,6 +181,7 @@ public class EntityVampire extends EntityCreature implements IEntitySelector, IH
 
    }
 
+   @Override
    public EnumCreatureAttribute getCreatureAttribute() {
       return EnumCreatureAttribute.UNDEAD;
    }
@@ -147,14 +190,17 @@ public class EntityVampire extends EntityCreature implements IEntitySelector, IH
       this.coffinPos.set(p_110171_1_, p_110171_2_, p_110171_3_);
    }
 
+   @Override
    protected String getSwimSound() {
       return "game.hostile.swim";
    }
 
+   @Override
    protected String getSplashSound() {
       return "game.hostile.swim.splash";
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
@@ -164,32 +210,39 @@ public class EntityVampire extends EntityCreature implements IEntitySelector, IH
       this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5.0D);
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(13, new Byte((byte)0));
       super.dataWatcher.addObject(14, new Integer(500));
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    protected String getLivingSound() {
       return "mob.villager.idle";
    }
 
+   @Override
    protected String getHurtSound() {
       return "mob.villager.hit";
    }
 
+   @Override
    protected String getDeathSound() {
       return "mob.villager.death";
    }
 
+   @Override
    protected float getSoundPitch() {
       return 0.6F;
    }
 
+   @Override
    public void onLivingUpdate() {
       this.updateArmSwingProgress();
       float f = this.getBrightness(1.0F);
@@ -200,6 +253,7 @@ public class EntityVampire extends EntityCreature implements IEntitySelector, IH
       super.onLivingUpdate();
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity entity) {
       float f = (float)this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
       int i = 0;
@@ -248,6 +302,7 @@ public class EntityVampire extends EntityCreature implements IEntitySelector, IH
       return flag;
    }
 
+   @Override
    protected void attackEntity(Entity p_70785_1_, float p_70785_2_) {
       if(super.attackTime <= 0 && p_70785_2_ < 2.0F && p_70785_1_.boundingBox.maxY > super.boundingBox.minY && p_70785_1_.boundingBox.minY < super.boundingBox.maxY) {
          super.attackTime = 20;
@@ -256,8 +311,10 @@ public class EntityVampire extends EntityCreature implements IEntitySelector, IH
 
    }
 
+   @Override
    protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_) {}
 
+   @Override
    public void updateRidden() {
       super.updateRidden();
       if(super.ridingEntity instanceof EntityCreature) {
@@ -267,34 +324,42 @@ public class EntityVampire extends EntityCreature implements IEntitySelector, IH
 
    }
 
+   @Override
    protected String func_146067_o(int p_146067_1_) {
       return p_146067_1_ > 4?"game.hostile.hurt.fall.big":"game.hostile.hurt.fall.small";
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource source, float damage) {
       return super.attackEntityFrom(source, damage);
    }
 
+   @Override
    public float getCapDT(DamageSource source, float damage) {
       return 0.0F;
    }
 
+   @Override
    public void onDeath(DamageSource source) {
       if(CreatureUtil.checkForVampireDeath(this, source)) {
          super.onDeath(source);
       }
    }
 
+   @Override
    protected Item getDropItem() {
       return Items.shears;
    }
 
+   @Override
    protected boolean canDespawn() {
       return false;
    }
 
+   @Override
    protected void dropRareDrop(int p_70600_1_) {}
 
+   @Override
    protected void addRandomArmor() {
       this.setCurrentItemOrArmor(1, new ItemStack(Witchery.Items.VAMPIRE_BOOTS));
       boolean male = super.worldObj.rand.nextBoolean();
@@ -308,10 +373,12 @@ public class EntityVampire extends EntityCreature implements IEntitySelector, IH
 
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.vampire.name");
    }
 
+   @Override
    public IEntityLivingData onSpawnWithEgg(IEntityLivingData p_110161_1_) {
       p_110161_1_ = super.onSpawnWithEgg(p_110161_1_);
       this.addRandomArmor();
@@ -327,6 +394,7 @@ public class EntityVampire extends EntityCreature implements IEntitySelector, IH
       super.dataWatcher.updateObject(13, Byte.valueOf((byte)p_82201_1_));
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       super.readEntityFromNBT(nbtRoot);
       if(nbtRoot.hasKey("GuardType", 99)) {
@@ -337,6 +405,7 @@ public class EntityVampire extends EntityCreature implements IEntitySelector, IH
       this.coffinPos.set(nbtRoot.getInteger("BaseX"), nbtRoot.getInteger("BaseY"), nbtRoot.getInteger("BaseZ"));
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       super.writeEntityToNBT(nbtRoot);
       nbtRoot.setByte("GuardType", (byte)this.getGuardType());
@@ -346,10 +415,12 @@ public class EntityVampire extends EntityCreature implements IEntitySelector, IH
       nbtRoot.setInteger("BaseZ", this.coffinPos.posZ);
    }
 
+   @Override
    public void setCurrentItemOrArmor(int p_70062_1_, ItemStack p_70062_2_) {
       super.setCurrentItemOrArmor(p_70062_1_, p_70062_2_);
    }
 
+   @Override
    public double getYOffset() {
       return super.getYOffset() - 0.5D;
    }

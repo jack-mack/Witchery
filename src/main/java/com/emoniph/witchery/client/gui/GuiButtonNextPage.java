@@ -18,6 +18,7 @@ class GuiButtonNextPage extends GuiButton {
       this.nextPage = par4;
    }
 
+   @Override
    public void drawButton(Minecraft par1Minecraft, int par2, int par3) {
       if(super.visible) {
          boolean flag = par2 >= super.xPosition && par3 >= super.yPosition && par2 < super.xPosition + super.width && par3 < super.yPosition + super.height;

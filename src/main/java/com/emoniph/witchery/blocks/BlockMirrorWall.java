@@ -22,37 +22,45 @@ public class BlockMirrorWall extends BlockBase {
       this.disableStats();
    }
 
+   @Override
    public int getRenderType() {
       return super.getRenderType();
    }
 
+   @Override
    public int getBlockColor() {
       return 13426175;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
       return this.getBlockColor();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public int getRenderColor(int par1) {
       return this.getBlockColor();
    }
 
+   @Override
    protected boolean canSilkHarvest() {
       return false;
    }
 
+   @Override
    public int quantityDropped(Random rand) {
       return 0;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int side, int meta) {
       return side != 0 && side != 1?this.icons[1]:this.icons[0];
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {
       this.icons = new IIcon[]{iconRegister.registerIcon(this.getTextureName() + "_still"), iconRegister.registerIcon(this.getTextureName() + "_flow")};

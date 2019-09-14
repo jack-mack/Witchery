@@ -243,6 +243,7 @@ public class ClientProxy extends CommonProxy {
    public static final ResourceLocation APOTHECARY_TEXTURE = new ResourceLocation("witchery:textures/entities/apothecary.png");
 
 
+   @Override
    public void registerRenderers() {
       RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
       MinecraftForgeClient.registerItemRenderer(Witchery.Items.WITCH_HAND, new RenderWitchHand());
@@ -348,22 +349,27 @@ public class ClientProxy extends CommonProxy {
       RenderingRegistry.registerBlockHandler(PITGRASS_RENDER_ID, new RenderPitGrass());
    }
 
+   @Override
    public int getStockageRenderId() {
       return STOCKADE_RENDER_ID;
    }
 
+   @Override
    public int getPitGrassRenderId() {
       return PITGRASS_RENDER_ID;
    }
 
+   @Override
    public int getGasRenderId() {
       return GAS_RENDER_ID;
    }
 
+   @Override
    public int getBrewLiquidRenderId() {
       return BREW_LIQUID_RENDER_ID;
    }
 
+   @Override
    public int getVineRenderId() {
       return VINE_RENDER_ID;
    }
@@ -388,10 +394,12 @@ public class ClientProxy extends CommonProxy {
 
    }
 
+   @Override
    public void registerHandlers() {
       super.registerHandlers();
    }
 
+   @Override
    public void registerEvents() {
       super.registerEvents();
       MinecraftForge.EVENT_BUS.register(new ClientEvents());
@@ -399,8 +407,10 @@ public class ClientProxy extends CommonProxy {
       MinecraftForge.EVENT_BUS.register(new ItemEarmuffs.ClientEventHooks());
    }
 
+   @Override
    public void postInit() {}
 
+   @Override
    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
       switch(ID) {
       case 0:
@@ -426,10 +436,12 @@ public class ClientProxy extends CommonProxy {
       }
    }
 
+   @Override
    public boolean getGraphicsLevel() {
       return Minecraft.getMinecraft().gameSettings.fancyGraphics;
    }
 
+   @Override
    public void registerVillagers() {
       super.registerVillagers();
       if(Config.instance().generateApothecaries) {
@@ -438,6 +450,7 @@ public class ClientProxy extends CommonProxy {
 
    }
 
+   @Override
    public void generateParticle(World worldObj, double posX, double posY, double posZ, float r, float g, float b, int ttl, float gravity) {
       if(worldObj.isRemote) {
          NaturePowerFX sparkle = new NaturePowerFX(worldObj, posX, posY, posZ);
@@ -450,10 +463,12 @@ public class ClientProxy extends CommonProxy {
 
    }
 
+   @Override
    public EntityPlayer getPlayer(MessageContext ctx) {
       return (EntityPlayer)(ctx.side == Side.SERVER?ctx.getServerHandler().playerEntity:Minecraft.getMinecraft().thePlayer);
    }
 
+   @Override
    public void showParticleEffect(World world, double x, double y, double z, double width, double height, SoundEffect sound, int color, ParticleEffect particle) {
       if(sound != SoundEffect.NONE) {
          world.playSound(x, y, z, sound.toString(), 0.5F, 0.4F / ((float)world.rand.nextDouble() * 0.4F + 0.8F), false);

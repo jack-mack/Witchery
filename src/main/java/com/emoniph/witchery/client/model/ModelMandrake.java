@@ -64,6 +64,7 @@ public class ModelMandrake extends ModelBase {
       this.setRotation(this.leftleg, 0.0F, 0.0F, 0.0F);
    }
 
+   @Override
    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
       super.render(entity, f, f1, f2, f3, f4, f5);
       this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
@@ -81,10 +82,12 @@ public class ModelMandrake extends ModelBase {
       model.rotateAngleZ = z;
    }
 
+   @Override
    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
       super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
    }
 
+   @Override
    public void setLivingAnimations(EntityLivingBase par1EntityLiving, float par2, float par3, float par4) {
       EntityMandrake entityDemon = (EntityMandrake)par1EntityLiving;
       this.rightarm.rotateAngleX = (-0.2F + 1.5F * this.func_78172_a(par2, 13.0F)) * par3;

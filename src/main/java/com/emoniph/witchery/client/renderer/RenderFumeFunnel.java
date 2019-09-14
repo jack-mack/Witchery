@@ -24,6 +24,7 @@ public class RenderFumeFunnel extends TileEntitySpecialRenderer {
       this.model = new ModelFumeFunnel(filtered);
    }
 
+   @Override
    public void renderTileEntityAt(TileEntity tileEntity, double d, double d1, double d2, float f) {
       GL11.glPushMatrix();
       GL11.glTranslatef((float)d, (float)d1, (float)d2);

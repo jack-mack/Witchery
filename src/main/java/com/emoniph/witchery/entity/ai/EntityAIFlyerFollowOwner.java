@@ -33,6 +33,7 @@ public class EntityAIFlyerFollowOwner extends EntityAIBase {
       this.setMutexBits(1);
    }
 
+   @Override
    public boolean shouldExecute() {
       Object entitylivingbase = this.thePet.getOwner();
       if(entitylivingbase == null && Familiar.couldBeFamiliar(this.thePet)) {
@@ -51,18 +52,22 @@ public class EntityAIFlyerFollowOwner extends EntityAIBase {
       }
    }
 
+   @Override
    public boolean continueExecuting() {
       return this.thePet.getDistanceSqToEntity(this.theOwner) > (double)(this.maxDist * this.maxDist) && !this.thePet.isSitting();
    }
 
+   @Override
    public void startExecuting() {
       this.field_75343_h = 0;
    }
 
+   @Override
    public void resetTask() {
       this.theOwner = null;
    }
 
+   @Override
    public void updateTask() {
       if(!this.thePet.isSitting() && --this.field_75343_h <= 0) {
          this.field_75343_h = 10;

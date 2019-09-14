@@ -33,6 +33,7 @@ public class PacketExtendedPlayerSync implements IMessage {
       this.reserveBlood = extendedPlayer.getBloodReserve();
    }
 
+   @Override
    public void toBytes(ByteBuf buffer) {
       buffer.writeInt(this.werewolfLevel);
       buffer.writeInt(this.creatureOrdinal);
@@ -44,6 +45,7 @@ public class PacketExtendedPlayerSync implements IMessage {
       buffer.writeInt(this.reserveBlood);
    }
 
+   @Override
    public void fromBytes(ByteBuf buffer) {
       this.werewolfLevel = buffer.readInt();
       this.creatureOrdinal = buffer.readInt();
@@ -57,6 +59,7 @@ public class PacketExtendedPlayerSync implements IMessage {
 
    public static class Handler implements IMessageHandler<PacketExtendedPlayerSync, IMessage> {
 
+      @Override
       public IMessage onMessage(PacketExtendedPlayerSync message, MessageContext ctx) {
          EntityPlayer player = Witchery.proxy.getPlayer(ctx);
          ExtendedPlayer playerEx = ExtendedPlayer.get(player);

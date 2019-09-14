@@ -36,6 +36,7 @@ public class RiteCurseCreature extends Rite {
       this.curseType = curseType;
    }
 
+   @Override
    public void addSteps(ArrayList steps, int intialStage) {
       steps.add(new RiteCurseCreature.StepCurseCreature(this));
    }
@@ -51,6 +52,7 @@ public class RiteCurseCreature extends Rite {
          this.rite = rite;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(ticks % 20L != 0L) {
             return RitualStep.Result.STARTING;

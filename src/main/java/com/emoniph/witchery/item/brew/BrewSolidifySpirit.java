@@ -23,10 +23,12 @@ public class BrewSolidifySpirit extends ItemGeneral.Brew {
       this.replacementBlock = block;
    }
 
+   @Override
    public boolean isSolidifier() {
       return true;
    }
 
+   @Override
    public ItemGeneral.Brew.BrewResult onImpact(World world, EntityLivingBase thrower, MovingObjectPosition mop, boolean enhanced, double brewX, double brewY, double brewZ, AxisAlignedBB brewBounds) {
       if(mop.typeOfHit == MovingObjectType.ENTITY) {
          return ItemGeneral.Brew.BrewResult.DROP_ITEM;
@@ -63,6 +65,7 @@ public class BrewSolidifySpirit extends ItemGeneral.Brew {
          }
 
          BrewSolidifySpirit.SpreadEffect.spread(world, x, y, z, 64, new BrewSolidifySpirit.SpreadEffect(new Block[]{Witchery.Blocks.HOLLOW_TEARS}) {
+            @Override
             public boolean doEffect(World world, int posX, int posY, int posZ, Block block) {
                ParticleEffect.INSTANT_SPELL.send(SoundEffect.NONE, world, 0.5D + (double)posX, 1.5D + (double)posY, 0.5D + (double)posZ, 2.0D, 2.0D, 16);
                if(BrewSolidifySpirit.this.replacementBlock == null) {

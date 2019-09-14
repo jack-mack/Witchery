@@ -26,23 +26,28 @@ public class ItemMoonCharm extends ItemBase {
       this.setMaxDamage(49);
    }
 
+   @Override
    public boolean getIsRepairable(ItemStack item, ItemStack otherMaterial) {
       return otherMaterial.isItemEqual(new ItemStack(Items.gold_ingot));
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack itemstack) {
       return EnumRarity.rare;
    }
 
+   @Override
    public EnumAction getItemUseAction(ItemStack itemstack) {
       return EnumAction.bow;
    }
 
+   @Override
    public int getMaxItemUseDuration(ItemStack itemstack) {
       return TimeUtil.secsToTicks(3);
    }
 
+   @Override
    public void onUsingTick(ItemStack stack, EntityPlayer player, int countdown) {
       if(!player.worldObj.isRemote) {
          ExtendedPlayer playerEx = ExtendedPlayer.get(player);
@@ -90,6 +95,7 @@ public class ItemMoonCharm extends ItemBase {
 
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
       player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
       return stack;

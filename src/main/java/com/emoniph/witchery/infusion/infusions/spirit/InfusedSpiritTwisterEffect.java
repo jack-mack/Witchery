@@ -23,14 +23,17 @@ public class InfusedSpiritTwisterEffect extends InfusedSpiritEffect {
       super(id, "twister", spirits, spectres, banshees, poltergeists);
    }
 
+   @Override
    public int getCooldownTicks() {
       return 10;
    }
 
+   @Override
    public double getRadius() {
       return 8.0D;
    }
 
+   @Override
    public boolean doUpdateEffect(TileEntity tile, boolean triggered, ArrayList foundEntities) {
       if(triggered) {
          Iterator i$ = foundEntities.iterator();

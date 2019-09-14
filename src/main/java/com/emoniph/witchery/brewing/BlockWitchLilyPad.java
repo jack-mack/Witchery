@@ -21,16 +21,19 @@ public class BlockWitchLilyPad extends BlockLilyPad {
       this.setStepSound(Block.soundTypeGrass);
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       this.setCreativeTab((CreativeTabs)null);
       BlockUtil.registerBlock(this, blockName);
       return super.setBlockName(blockName);
    }
 
+   @Override
    public void onBlockAdded(World world, int x, int y, int z) {
       world.scheduleBlockUpdate(x, y, z, this, 20);
    }
 
+   @Override
    public void updateTick(World world, int x, int y, int z, Random rand) {
       if(!world.isRemote) {
          int meta = world.getBlockMetadata(x, y, z);
@@ -59,18 +62,22 @@ public class BlockWitchLilyPad extends BlockLilyPad {
       return flag;
    }
 
+   @Override
    public int quantityDropped(Random rand) {
       return 1;
    }
 
+   @Override
    public Item getItemDropped(int metadata, Random rand, int fortune) {
       return rand.nextInt(4) == 0?Item.getItemFromBlock(Blocks.waterlily):null;
    }
 
+   @Override
    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
       return new ItemStack(Blocks.waterlily);
    }
 
+   @Override
    protected boolean canSilkHarvest() {
       return false;
    }

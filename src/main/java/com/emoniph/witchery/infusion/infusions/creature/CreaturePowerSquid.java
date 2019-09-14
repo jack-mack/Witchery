@@ -22,6 +22,7 @@ public class CreaturePowerSquid extends CreaturePower {
       super(powerID, EntitySquid.class);
    }
 
+   @Override
    public void onActivate(World world, EntityPlayer player, int elapsedTicks, MovingObjectPosition mop) {
       if(mop != null && mop.typeOfHit == MovingObjectType.ENTITY && mop.entityHit != null && mop.entityHit instanceof EntityLivingBase) {
          EntityLivingBase targetPlayer = (EntityLivingBase)mop.entityHit;
@@ -31,6 +32,7 @@ public class CreaturePowerSquid extends CreaturePower {
 
    }
 
+   @Override
    public void onUpdate(World world, EntityPlayer player) {
       if(player.isInWater()) {
          Minecraft minecraft = Minecraft.getMinecraft();
@@ -42,6 +44,7 @@ public class CreaturePowerSquid extends CreaturePower {
 
    }
 
+   @Override
    public void onDamage(World world, EntityPlayer player, LivingHurtEvent event) {
       if(event.source == DamageSource.drown) {
          int currentEnergy = Infusion.getCurrentEnergy(player);

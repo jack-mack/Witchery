@@ -41,6 +41,7 @@ public class EntityLostSoul extends EntitySpirit {
       super.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
       par1NBTTagCompound.setInteger("FeatherColor", this.getFeatherColor());
@@ -48,6 +49,7 @@ public class EntityLostSoul extends EntitySpirit {
       par1NBTTagCompound.setInteger("SuicideIn", this.timeToLive);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
       if(par1NBTTagCompound.hasKey("FeatherColor")) {
@@ -66,8 +68,10 @@ public class EntityLostSoul extends EntitySpirit {
 
    }
 
+   @Override
    public void setInWeb() {}
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(22, Integer.valueOf(super.worldObj.rand.nextInt(3)));
@@ -92,6 +96,7 @@ public class EntityLostSoul extends EntitySpirit {
       super.dataWatcher.updateObject(22, Integer.valueOf(par1));
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
@@ -99,6 +104,7 @@ public class EntityLostSoul extends EntitySpirit {
       this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.0D);
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity targetEntity) {
       float f = (float)this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
       int i = 0;
@@ -148,6 +154,7 @@ public class EntityLostSoul extends EntitySpirit {
       return flag;
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource source, float damage) {
       float MAX_DAMAGE = 15.0F;
       switch(this.getSoulType()) {
@@ -170,6 +177,7 @@ public class EntityLostSoul extends EntitySpirit {
       return false;
    }
 
+   @Override
    protected void updateAITick() {
       super.updateAITick();
       if(!super.worldObj.isRemote && this.timeToLive != -1 && --this.timeToLive <= 0) {
@@ -178,10 +186,12 @@ public class EntityLostSoul extends EntitySpirit {
 
    }
 
+   @Override
    public void onUpdate() {
       super.onUpdate();
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.lostsoul.name");
    }

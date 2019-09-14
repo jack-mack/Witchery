@@ -29,6 +29,7 @@ public class ItemSunGrenade extends ItemBase {
       this.setMaxDamage(0);
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean moreTips) {
       super.addInformation(stack, player, list, moreTips);
       if(this.mode == 1) {
@@ -37,35 +38,42 @@ public class ItemSunGrenade extends ItemBase {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean hasEffect(ItemStack stack, int pass) {
       return pass == 0;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean requiresMultipleRenderPasses() {
       return true;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(ItemStack stack, int pass) {
       return pass == 0?this.itemIconOverlay:super.itemIcon;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerIcons(IIconRegister iconRegister) {
       super.registerIcons(iconRegister);
       this.itemIconOverlay = iconRegister.registerIcon("witchery:ingredient.quartzSphere");
    }
 
+   @Override
    public EnumRarity getRarity(ItemStack stack) {
       return EnumRarity.uncommon;
    }
 
+   @Override
    public EnumAction getItemUseAction(ItemStack stack) {
       return EnumAction.bow;
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
       if(!player.capabilities.isCreativeMode) {
          --stack.stackSize;

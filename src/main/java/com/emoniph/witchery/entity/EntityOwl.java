@@ -66,10 +66,12 @@ public class EntityOwl extends EntityFlyingTameable implements IFamiliar {
       super.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
    }
 
+   @Override
    public int getTotalArmorValue() {
       return super.getTotalArmorValue() + (this.isFamiliar()?5:1);
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       super.writeEntityToNBT(nbtRoot);
       nbtRoot.setByte("FeatherColor", (byte)this.getFeatherColor());
@@ -77,6 +79,7 @@ public class EntityOwl extends EntityFlyingTameable implements IFamiliar {
       nbtRoot.setInteger("SuicideIn", this.timeToLive);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       super.readEntityFromNBT(nbtRoot);
       if(nbtRoot.hasKey("FeatherColor")) {
@@ -95,11 +98,13 @@ public class EntityOwl extends EntityFlyingTameable implements IFamiliar {
 
    }
 
+   @Override
    public void onUpdate() {
       super.isImmuneToFire = this.isFamiliar();
       super.onUpdate();
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(18, Byte.valueOf((byte)0));
@@ -107,6 +112,7 @@ public class EntityOwl extends EntityFlyingTameable implements IFamiliar {
       super.dataWatcher.addObject(26, Byte.valueOf((byte)0));
    }
 
+   @Override
    public boolean isFamiliar() {
       return super.dataWatcher.getWatchableObjectByte(26) > 0;
    }
@@ -115,10 +121,12 @@ public class EntityOwl extends EntityFlyingTameable implements IFamiliar {
       super.dataWatcher.updateObject(26, Byte.valueOf((byte)(familiar?1:0)));
    }
 
+   @Override
    protected int decreaseAirSupply(int par1) {
       return par1;
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
@@ -127,24 +135,29 @@ public class EntityOwl extends EntityFlyingTameable implements IFamiliar {
       this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0D);
    }
 
+   @Override
    public void setMaxHealth(float maxHealth) {
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue((double)maxHealth);
       this.setHealth(maxHealth);
       this.setFamiliar(true);
    }
 
+   @Override
    protected boolean canDespawn() {
       return false;
    }
 
+   @Override
    public EntityLivingBase getOwner() {
       return this.isFamiliar() && !super.worldObj.isRemote?TameableUtil.getOwnerAccrossDimensions(this):super.getOwner();
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    public void updateAITick() {
       this.getNavigator().clearPathEntity();
       super.updateAITick();
@@ -155,6 +168,7 @@ public class EntityOwl extends EntityFlyingTameable implements IFamiliar {
 
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {
       if(!this.isTemp()) {
          int var3 = super.rand.nextInt(3) + super.rand.nextInt(1 + par2);
@@ -166,26 +180,32 @@ public class EntityOwl extends EntityFlyingTameable implements IFamiliar {
 
    }
 
+   @Override
    public int getTalkInterval() {
       return super.getTalkInterval() * 2;
    }
 
+   @Override
    protected String getLivingSound() {
       return "witchery:mob.owl.owl_hoot";
    }
 
+   @Override
    protected String getHurtSound() {
       return "witchery:mob.owl.owl_hurt";
    }
 
+   @Override
    protected String getDeathSound() {
       return "witchery:mob.owl.owl_hurt";
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity par1Entity) {
       return par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), 2.0F);
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
       if(this.isEntityInvulnerable()) {
          return false;
@@ -198,6 +218,7 @@ public class EntityOwl extends EntityFlyingTameable implements IFamiliar {
       }
    }
 
+   @Override
    public boolean interact(EntityPlayer par1EntityPlayer) {
       if(this.isTemp()) {
          return true;
@@ -302,6 +323,7 @@ public class EntityOwl extends EntityFlyingTameable implements IFamiliar {
       }
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getItemIcon(ItemStack stack, int pass) {
       return stack.getItem().requiresMultipleRenderPasses()?stack.getItem().getIcon(stack, pass):stack.getIconIndex();
@@ -318,10 +340,12 @@ public class EntityOwl extends EntityFlyingTameable implements IFamiliar {
       return entityocelot;
    }
 
+   @Override
    public boolean isBreedingItem(ItemStack itemstack) {
       return itemstack != null && (itemstack.getItem() == Items.porkchop || itemstack.getItem() == Items.beef);
    }
 
+   @Override
    public boolean canMateWith(EntityAnimal par1EntityAnimal) {
       if(par1EntityAnimal == this) {
          return false;
@@ -352,6 +376,7 @@ public class EntityOwl extends EntityFlyingTameable implements IFamiliar {
       super.dataWatcher.updateObject(18, Byte.valueOf((byte)par1));
    }
 
+   @Override
    public boolean getCanSpawnHere() {
       if(super.worldObj.rand.nextInt(3) == 0) {
          return false;
@@ -374,15 +399,18 @@ public class EntityOwl extends EntityFlyingTameable implements IFamiliar {
       }
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.owl.name");
    }
 
+   @Override
    public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData) {
       par1EntityLivingData = super.onSpawnWithEgg(par1EntityLivingData);
       return par1EntityLivingData;
    }
 
+   @Override
    public EntityAgeable createChild(EntityAgeable par1EntityAgeable) {
       return this.spawnBabyAnimal(par1EntityAgeable);
    }
@@ -395,6 +423,7 @@ public class EntityOwl extends EntityFlyingTameable implements IFamiliar {
       return this.timeToLive != -1;
    }
 
+   @Override
    public void clearFamiliar() {
       this.setFamiliar(false);
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);

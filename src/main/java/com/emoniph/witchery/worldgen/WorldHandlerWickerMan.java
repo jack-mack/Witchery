@@ -18,18 +18,22 @@ public class WorldHandlerWickerMan implements IWorldGenHandler {
       this.range = range;
    }
 
+   @Override
    public int getExtentX() {
       return 6;
    }
 
+   @Override
    public int getExtentZ() {
       return 5;
    }
 
+   @Override
    public int getRange() {
       return this.range;
    }
 
+   @Override
    public boolean generate(World world, Random random, int x, int z) {
       int direction = random.nextInt(4);
       if(Config.instance().generateWickerMen && random.nextDouble() < this.chance) {
@@ -41,5 +45,6 @@ public class WorldHandlerWickerMan implements IWorldGenHandler {
       }
    }
 
+   @Override
    public void initiate() {}
 }

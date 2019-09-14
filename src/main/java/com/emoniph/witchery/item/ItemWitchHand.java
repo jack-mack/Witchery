@@ -23,11 +23,13 @@ public class ItemWitchHand extends ItemBase {
       this.setFull3D();
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack itemstack) {
       return EnumRarity.uncommon;
    }
 
+   @Override
    public void onUpdate(ItemStack itemstack, World world, Entity entity, int par4, boolean par5) {
       if(entity instanceof EntityPlayer) {
          Infusion.Registry.instance().get((EntityPlayer)entity).onUpdate(itemstack, world, (EntityPlayer)entity, par4, par5);
@@ -35,24 +37,29 @@ public class ItemWitchHand extends ItemBase {
 
    }
 
+   @Override
    public boolean onLeftClickEntity(ItemStack itemstack, EntityPlayer player, Entity entity) {
       Infusion.Registry.instance().get(player).onLeftClickEntity(itemstack, player.worldObj, player, entity);
       return true;
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
       player.setItemInUse(itemstack, this.getMaxItemUseDuration(itemstack));
       return itemstack;
    }
 
+   @Override
    public int getMaxItemUseDuration(ItemStack itemstack) {
       return 400;
    }
 
+   @Override
    public void onUsingTick(ItemStack itemstack, EntityPlayer player, int countdown) {
       Infusion.Registry.instance().get(player).onUsingItemTick(itemstack, player.worldObj, player, countdown);
    }
 
+   @Override
    public void onPlayerStoppedUsing(ItemStack itemstack, World world, EntityPlayer player, int countdown) {
       if(world.isRemote || !Infusion.isOnCooldown(world, itemstack)) {
          Infusion.Registry.instance().get(player).onPlayerStoppedUsing(itemstack, world, player, countdown);

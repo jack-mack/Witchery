@@ -19,6 +19,7 @@ public class RenderDistillery extends TileEntitySpecialRenderer {
    private static final ResourceLocation TEXTURE_URL = new ResourceLocation("witchery", "textures/blocks/distillery.png");
 
 
+   @Override
    public void renderTileEntityAt(TileEntity tileEntity, double d, double d1, double d2, float f) {
       GL11.glPushMatrix();
       GL11.glTranslatef((float)d, (float)d1, (float)d2);

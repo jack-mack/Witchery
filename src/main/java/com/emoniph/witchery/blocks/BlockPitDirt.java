@@ -20,9 +20,11 @@ import net.minecraft.world.World;
 public class BlockPitDirt extends BlockBase {
 
    private static final Material passThrough = new Material(MapColor.dirtColor) {
+      @Override
       public boolean blocksMovement() {
          return true;
       }
+      @Override
       public boolean isOpaque() {
          return false;
       }
@@ -39,14 +41,17 @@ public class BlockPitDirt extends BlockBase {
       this.setStepSound(Block.soundTypeGravel);
    }
 
+   @Override
    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
       return null;
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int p_149691_1_, int p_149691_2_) {
       if(p_149691_2_ == 2) {
@@ -62,10 +67,12 @@ public class BlockPitDirt extends BlockBase {
       return super.blockIcon;
    }
 
+   @Override
    public int damageDropped(int meta) {
       return 0;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
       int i1 = world.getBlockMetadata(x, y, z);
@@ -90,6 +97,7 @@ public class BlockPitDirt extends BlockBase {
       return super.blockIcon;
    }
 
+   @Override
    protected ItemStack createStackedBlock(int p_149644_1_) {
       if(p_149644_1_ == 1) {
          p_149644_1_ = 0;
@@ -98,11 +106,13 @@ public class BlockPitDirt extends BlockBase {
       return super.createStackedBlock(p_149644_1_);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void getSubBlocks(Item item, CreativeTabs tabs, List list) {
       list.add(new ItemStack(this, 1, 0));
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {
       super.registerBlockIcons(iconRegister);
@@ -110,6 +120,7 @@ public class BlockPitDirt extends BlockBase {
       this.iconPodzolSide = iconRegister.registerIcon(this.getTextureName() + "_" + "podzol_side");
    }
 
+   @Override
    public int getDamageValue(World world, int x, int y, int z) {
       int l = world.getBlockMetadata(x, y, z);
       if(l == 1) {

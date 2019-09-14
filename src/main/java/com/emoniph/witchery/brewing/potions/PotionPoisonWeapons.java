@@ -15,6 +15,7 @@ public class PotionPoisonWeapons extends PotionBase implements IHandleLivingHurt
       super(id, color);
    }
 
+   @Override
    public void onLivingHurt(World world, EntityLivingBase entity, LivingHurtEvent event, int amplifier) {
       if(!world.isRemote && event.source.getEntity() != null && event.source.getEntity() instanceof EntityLivingBase && this.isValidDamageType(event.source.getDamageType())) {
          EntityLivingBase attacker = (EntityLivingBase)event.source.getEntity();
@@ -43,6 +44,7 @@ public class PotionPoisonWeapons extends PotionBase implements IHandleLivingHurt
       return damageType.equals("mob") || damageType.equals("player");
    }
 
+   @Override
    public boolean handleAllHurtEvents() {
       return true;
    }

@@ -19,47 +19,58 @@ public class WorldProviderMirror extends WorldProvider {
       super.hasNoSky = true;
    }
 
+   @Override
    public int getActualHeight() {
       return Config.instance().shrinkMirrorWorld?this.getHeight():super.getActualHeight();
    }
 
+   @Override
    public String getDimensionName() {
       return "Mirror";
    }
 
+   @Override
    public IChunkProvider createChunkGenerator() {
       return new WorldChunkManagerMirror(super.worldObj);
    }
 
+   @Override
    public boolean canRespawnHere() {
       return false;
    }
 
+   @Override
    public boolean isSurfaceWorld() {
       return false;
    }
 
+   @Override
    public boolean canDoLightning(Chunk chunk) {
       return false;
    }
 
+   @Override
    public boolean isBlockHighHumidity(int x, int y, int z) {
       return false;
    }
 
+   @Override
    public boolean isDaytime() {
       return false;
    }
 
+   @Override
    public ChunkCoordinates getSpawnPoint() {
       return new ChunkCoordinates(4, 9, 4);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean isSkyColored() {
       return false;
    }
 
+   @Override
    protected void generateLightBrightnessTable() {
       float f = 0.1F;
 
@@ -70,20 +81,24 @@ public class WorldProviderMirror extends WorldProvider {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public Vec3 getFogColor(float p_76562_1_, float p_76562_2_) {
       return Vec3.createVectorHelper(0.0D, 0.03D, 0.1D);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean doesXZShowFog(int p_76568_1_, int p_76568_2_) {
       return true;
    }
 
+   @Override
    public float calculateCelestialAngle(long par1, float par3) {
       return 0.5F;
    }
 
+   @Override
    public Vec3 getSkyColor(Entity cameraEntity, float partialTicks) {
       return super.getSkyColor(cameraEntity, partialTicks);
    }
@@ -96,10 +111,12 @@ public class WorldProviderMirror extends WorldProvider {
       return isSafe;
    }
 
+   @Override
    public float getSunBrightnessFactor(float par1) {
       return 0.0F;
    }
 
+   @Override
    public boolean canDoRainSnowIce(Chunk chunk) {
       return false;
    }

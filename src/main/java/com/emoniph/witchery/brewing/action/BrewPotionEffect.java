@@ -55,6 +55,7 @@ public class BrewPotionEffect extends BrewAction {
       return this;
    }
 
+   @Override
    public void applyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {
       if(!modifiers.disableEntityTarget) {
          if(modifiers.inverted) {
@@ -80,6 +81,7 @@ public class BrewPotionEffect extends BrewAction {
 
    }
 
+   @Override
    public final boolean augmentEffectLevels(EffectLevelCounter totalEffects) {
       return totalEffects.tryConsumeLevel(this.effectLevel);
    }
@@ -98,14 +100,19 @@ public class BrewPotionEffect extends BrewAction {
 
    }
 
+   @Override
    public final void prepareSplashPotion(World world, BrewActionList actionList, ModifiersImpact modifiers) {}
 
+   @Override
    public final void applyToBlock(World world, int x, int y, int z, ForgeDirection side, int radius, ModifiersEffect modifiers, ItemStack stack) {}
 
+   @Override
    public final void augmentEffectModifiers(ModifiersEffect modifiers) {}
 
+   @Override
    public final void prepareRitual(World world, int x, int y, int z, ModifiersRitual modifiers, ItemStack stack) {}
 
+   @Override
    public final RitualStatus updateRitual(MinecraftServer server, BrewActionList actionList, World world, int x, int y, int z, ModifiersRitual modifiers, ModifiersImpact impactModifiers) {
       return RitualStatus.COMPLETE;
    }

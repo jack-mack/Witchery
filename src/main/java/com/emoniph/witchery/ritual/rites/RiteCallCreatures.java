@@ -30,6 +30,7 @@ public class RiteCallCreatures extends Rite {
       this.creatureTypes = Arrays.asList(creatureTypes);
    }
 
+   @Override
    public void addSteps(ArrayList steps, int initialStage) {
       steps.add(new RiteCallCreatures.StepCallCreatures(this, initialStage));
    }
@@ -100,10 +101,12 @@ public class RiteCallCreatures extends Rite {
 
       }
 
+      @Override
       public int getCurrentStage() {
          return this.stage;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(ticks % 60L != 0L) {
             return RitualStep.Result.STARTING;

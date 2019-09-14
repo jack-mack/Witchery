@@ -28,6 +28,7 @@ public class EntityAIFlyerMate extends EntityAIBase {
       this.setMutexBits(1);
    }
 
+   @Override
    public boolean shouldExecute() {
       if(!this.theAnimal.isInLove()) {
          return false;
@@ -37,16 +38,19 @@ public class EntityAIFlyerMate extends EntityAIBase {
       }
    }
 
+   @Override
    public boolean continueExecuting() {
       return this.targetMate.isEntityAlive() && this.targetMate.isInLove() && this.spawnBabyDelay < 60;
    }
 
+   @Override
    public void resetTask() {
       this.targetMate = null;
       this.spawnBabyDelay = 0;
       this.updateDelay = 0;
    }
 
+   @Override
    public void updateTask() {
       if(--this.updateDelay <= 0) {
          double d0 = this.targetMate.posX - this.theAnimal.posX;

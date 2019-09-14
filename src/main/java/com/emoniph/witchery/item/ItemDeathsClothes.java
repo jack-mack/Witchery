@@ -40,15 +40,18 @@ public class ItemDeathsClothes extends ItemArmor {
       this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
    }
 
+   @Override
    public Item setUnlocalizedName(String itemName) {
       ItemUtil.registerItem(this, itemName);
       return super.setUnlocalizedName(itemName);
    }
 
+   @Override
    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
       return stack != null?"witchery:textures/entities/deathsclothes" + (type == null?"":"_overlay") + ".png":null;
    }
 
+   @Override
    public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
       if(!world.isRemote && player.getCurrentArmor(3) == stack) {
          int offset = (int)(world.getTotalWorldTime() % 10L);
@@ -76,6 +79,7 @@ public class ItemDeathsClothes extends ItemArmor {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack stack, int armorSlot) {
       if(this.modelClothesChest == null) {
@@ -122,16 +126,19 @@ public class ItemDeathsClothes extends ItemArmor {
       return null;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public EnumRarity getRarity(ItemStack stack) {
       return EnumRarity.epic;
    }
 
+   @Override
    public String getItemStackDisplayName(ItemStack stack) {
       String baseName = super.getItemStackDisplayName(stack);
       return baseName;
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advancedTooltips) {
       if(stack != null && (stack.getItem() != Witchery.Items.DEATH_HOOD || Config.instance().allowDeathsHoodToFreezeVictims)) {
          String localText = Witchery.resource(this.getUnlocalizedName() + ".tip");

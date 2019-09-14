@@ -33,6 +33,7 @@ public class ItemLeonardsUrn extends ItemBase {
       this.setHasSubtypes(true);
    }
 
+   @Override
    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advancedTooltips) {
       if(stack != null) {
          String localText = Witchery.resource(this.getUnlocalizedName() + ".tip");
@@ -51,11 +52,13 @@ public class ItemLeonardsUrn extends ItemBase {
 
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIconFromDamage(int damageValue) {
       return this.icons[Math.min(damageValue, this.icons.length - 1)];
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerIcons(IIconRegister iconRegister) {
       this.icons = new IIcon[4];
@@ -67,6 +70,7 @@ public class ItemLeonardsUrn extends ItemBase {
       super.itemIcon = this.icons[0];
    }
 
+   @Override
    public void getSubItems(Item item, CreativeTabs tab, List items) {
       for(int i = 0; i < 4; ++i) {
          items.add(new ItemStack(this, 1, i));
@@ -74,6 +78,7 @@ public class ItemLeonardsUrn extends ItemBase {
 
    }
 
+   @Override
    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
       if(!world.isRemote) {
          player.openGui(Witchery.instance, 8, world, 0, 0, 0);
@@ -82,11 +87,13 @@ public class ItemLeonardsUrn extends ItemBase {
       return stack;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean hasEffect(ItemStack stack) {
       return true;
    }
 
+   @Override
    public EnumRarity getRarity(ItemStack stack) {
       return EnumRarity.epic;
    }
@@ -97,6 +104,7 @@ public class ItemLeonardsUrn extends ItemBase {
          super(inventory, slot, x, y);
       }
 
+      @Override
       public boolean isItemValid(ItemStack stack) {
          return isBrew(stack);
       }
@@ -143,6 +151,7 @@ public class ItemLeonardsUrn extends ItemBase {
          this.bag = bag;
       }
 
+      @Override
       public boolean canInteractWith(EntityPlayer player) {
          ItemStack itemStack = null;
          if(player.getCurrentEquippedItem() != null) {
@@ -152,6 +161,7 @@ public class ItemLeonardsUrn extends ItemBase {
          return itemStack != null && itemStack.getItem() == Witchery.Items.LEONARDS_URN;
       }
 
+      @Override
       public ItemStack transferStackInSlot(EntityPlayer player, int index) {
          ItemStack returnStack = null;
          Slot slot = (Slot)super.inventorySlots.get(index);
@@ -180,6 +190,7 @@ public class ItemLeonardsUrn extends ItemBase {
          return returnStack;
       }
 
+      @Override
       protected boolean mergeItemStack(ItemStack stack, int slotCount, int invSize, boolean upper) {
          boolean flag1 = false;
          int k = slotCount;
@@ -274,10 +285,12 @@ public class ItemLeonardsUrn extends ItemBase {
          this.readFromNBT();
       }
 
+      @Override
       public int getInventoryStackLimit() {
          return 1;
       }
 
+      @Override
       public void markDirty() {
          super.markDirty();
          if(!this.locked) {
@@ -286,14 +299,17 @@ public class ItemLeonardsUrn extends ItemBase {
 
       }
 
+      @Override
       public void openInventory() {
          this.readFromNBT();
       }
 
+      @Override
       public void closeInventory() {
          this.writeToNBT();
       }
 
+      @Override
       public String getInventoryName() {
          return this.title;
       }

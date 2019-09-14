@@ -63,6 +63,7 @@ public class EntityNightmare extends EntityMob implements IEntitySelector {
       super.experienceValue = 25;
    }
 
+   @Override
    public boolean isEntityApplicable(Entity entity) {
       if(!(entity instanceof EntityPlayer)) {
          return false;
@@ -73,10 +74,12 @@ public class EntityNightmare extends EntityMob implements IEntitySelector {
       }
    }
 
+   @Override
    public int getTalkInterval() {
       return super.getTalkInterval() * 2;
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       super.dataWatcher.addObject(17, "");
@@ -84,8 +87,10 @@ public class EntityNightmare extends EntityMob implements IEntitySelector {
       super.dataWatcher.addObject(21, Byte.valueOf((byte)0));
    }
 
+   @Override
    public void setInWeb() {}
 
+   @Override
    protected void fall(float par1) {}
 
    public boolean isScreaming() {
@@ -104,14 +109,17 @@ public class EntityNightmare extends EntityMob implements IEntitySelector {
       super.dataWatcher.updateObject(21, Byte.valueOf((byte)(par1?1:0)));
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.nightmare.name");
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    protected void updateAITick() {
       super.updateAITick();
       if(!super.worldObj.isRemote && this.isEntityAlive()) {
@@ -124,6 +132,7 @@ public class EntityNightmare extends EntityMob implements IEntitySelector {
 
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(100.0D);
@@ -132,18 +141,22 @@ public class EntityNightmare extends EntityMob implements IEntitySelector {
       this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0D);
    }
 
+   @Override
    protected void updateEntityActionState() {
       super.updateEntityActionState();
    }
 
+   @Override
    protected int decreaseAirSupply(int par1) {
       return par1;
    }
 
+   @Override
    protected void collideWithEntity(Entity par1Entity) {
       super.collideWithEntity(par1Entity);
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
       super.writeEntityToNBT(par1NBTTagCompound);
       if(this.getVictimName() == null) {
@@ -154,6 +167,7 @@ public class EntityNightmare extends EntityMob implements IEntitySelector {
 
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
       super.readEntityFromNBT(par1NBTTagCompound);
       String s = par1NBTTagCompound.getString("Victim");
@@ -172,6 +186,7 @@ public class EntityNightmare extends EntityMob implements IEntitySelector {
       super.dataWatcher.updateObject(17, par1Str);
    }
 
+   @Override
    public void onLivingUpdate() {
       super.onLivingUpdate();
       if(!super.worldObj.isRemote) {
@@ -196,6 +211,7 @@ public class EntityNightmare extends EntityMob implements IEntitySelector {
       return nbtTag != null && nbtTag.hasKey("witcheryWakingNightmare")?nbtTag.getInteger("witcheryWakingNightmare") > 0:player.isPotionActive(Witchery.Potions.WAKING_NIGHTMARE);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void handleHealthUpdate(byte par1) {
       if(par1 == 4) {
@@ -206,6 +222,7 @@ public class EntityNightmare extends EntityMob implements IEntitySelector {
 
    }
 
+   @Override
    public boolean attackEntityAsMob(Entity entity) {
       this.attackTimer = 15;
       super.worldObj.setEntityState(this, (byte)4);
@@ -260,6 +277,7 @@ public class EntityNightmare extends EntityMob implements IEntitySelector {
       return false;
    }
 
+   @Override
    public boolean attackEntityFrom(DamageSource source, float damage) {
       if(this.isDefended()) {
          return false;
@@ -286,18 +304,22 @@ public class EntityNightmare extends EntityMob implements IEntitySelector {
       return this.attackTimer;
    }
 
+   @Override
    protected String getLivingSound() {
       return "witchery:mob.nightmare.nightmare_live";
    }
 
+   @Override
    protected String getHurtSound() {
       return "witchery:mob.nightmare.nightmare_dead";
    }
 
+   @Override
    protected String getDeathSound() {
       return "witchery:mob.nightmare.nightmare_hit";
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {
       if(super.dimension == Config.instance().dimensionDreamID) {
          int chance = super.rand.nextInt(Math.max(10 - par2, 5));
@@ -307,6 +329,7 @@ public class EntityNightmare extends EntityMob implements IEntitySelector {
 
    }
 
+   @Override
    public void onDeath(DamageSource source) {
       if(!super.worldObj.isRemote && source != null && source.getEntity() != null && source.getEntity() instanceof EntityPlayer) {
          EntityPlayer player = (EntityPlayer)source.getEntity();
@@ -319,10 +342,12 @@ public class EntityNightmare extends EntityMob implements IEntitySelector {
       super.onDeath(source);
    }
 
+   @Override
    protected boolean canDespawn() {
       return true;
    }
 
+   @Override
    public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData) {
       return super.onSpawnWithEgg(par1EntityLivingData);
    }

@@ -7,6 +7,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderOtherPlayer extends RenderPlayer {
 
+   @Override
    protected ResourceLocation getEntityTexture(AbstractClientPlayer entity) {
       ExtendedPlayer playerEx = ExtendedPlayer.get(entity);
       return playerEx.getOtherPlayerSkinLocation();

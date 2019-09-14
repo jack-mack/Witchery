@@ -35,6 +35,7 @@ public class BlockStatueGoddess extends BlockBaseContainer {
       this.setBlockBounds(0.0F, 0.0F, 0.1F, 1.0F, 2.0F, 0.9F);
    }
 
+   @Override
    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
       int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
       if(l == 0) {
@@ -63,6 +64,7 @@ public class BlockStatueGoddess extends BlockBaseContainer {
 
    }
 
+   @Override
    public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player) {
       if(!world.isRemote) {
          BlockStatueGoddess.TileEntityStatueGoddess tile = (BlockStatueGoddess.TileEntityStatueGoddess)BlockUtil.getTileEntity(world, x, y, z, BlockStatueGoddess.TileEntityStatueGoddess.class);
@@ -76,6 +78,7 @@ public class BlockStatueGoddess extends BlockBaseContainer {
 
    }
 
+   @Override
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
       if(world.isRemote) {
          return super.onBlockActivated(world, x, y, z, player, par6, par7, par8, par9);
@@ -137,26 +140,32 @@ public class BlockStatueGoddess extends BlockBaseContainer {
       }
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean renderAsNormalBlock() {
       return false;
    }
 
+   @Override
    public int quantityDropped(Random rand) {
       return 1;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
       return false;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {}
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister par1IconRegister) {
       super.blockIcon = par1IconRegister.registerIcon("stone");
@@ -168,6 +177,7 @@ public class BlockStatueGoddess extends BlockBaseContainer {
       private String owner;
 
 
+      @Override
       public boolean canUpdate() {
          return false;
       }
@@ -180,11 +190,13 @@ public class BlockStatueGoddess extends BlockBaseContainer {
          return this.owner != null?this.owner:"";
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtTag) {
          super.writeToNBT(nbtTag);
          nbtTag.setString("WITCPlacer", this.getOwner());
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtTag) {
          super.readFromNBT(nbtTag);
          if(nbtTag.hasKey("WITCPlacer")) {

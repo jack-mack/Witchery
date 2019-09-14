@@ -19,16 +19,19 @@ public class PacketBrewPrepared implements IMessage {
       this.brewIndex = brewIndex;
    }
 
+   @Override
    public void toBytes(ByteBuf buffer) {
       buffer.writeInt(this.brewIndex);
    }
 
+   @Override
    public void fromBytes(ByteBuf buffer) {
       this.brewIndex = buffer.readInt();
    }
 
    public static class Handler implements IMessageHandler<PacketBrewPrepared, IMessage> {
 
+      @Override
       public IMessage onMessage(PacketBrewPrepared message, MessageContext ctx) {
          EntityPlayer player = Witchery.proxy.getPlayer(ctx);
          player.getEntityData().setInteger("WITCLastBrewIndex", message.brewIndex);

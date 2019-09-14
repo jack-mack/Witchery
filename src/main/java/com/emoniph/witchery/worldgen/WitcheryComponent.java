@@ -29,6 +29,7 @@ public class WitcheryComponent extends StructureComponent {
       return true;
    }
 
+   @Override
    protected void func_151554_b(World par1World, Block par2, int par3, int par4, int par5, int par6, StructureBoundingBox par7StructureBoundingBox) {
       int j1 = this.getXWithOffset(par4, par6);
       int k0 = this.getYWithOffset(par5);
@@ -45,6 +46,7 @@ public class WitcheryComponent extends StructureComponent {
 
    }
 
+   @Override
    protected void clearCurrentPositionBlocksUpwards(World par1World, int par2, int par3, int par4, StructureBoundingBox par5StructureBoundingBox) {
       int l = this.getXWithOffset(par2, par4);
       int i1 = this.getYWithOffset(par3);
@@ -183,10 +185,13 @@ public class WitcheryComponent extends StructureComponent {
       }
    }
 
+   @Override
    protected void func_143012_a(NBTTagCompound nbttagcompound) {}
 
+   @Override
    protected void func_143011_b(NBTTagCompound nbttagcompound) {}
 
+   @Override
    public boolean addComponentParts(World world, Random random, StructureBoundingBox structureboundingbox) {
       return true;
    }

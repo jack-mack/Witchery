@@ -212,6 +212,7 @@ public class ModelWolfAltar extends ModelBase {
       this.wolfHeadMain0_2.addChild(this.wolfHeadMain2_2);
    }
 
+   @Override
    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
       GL11.glPushMatrix();
       GL11.glTranslatef(this.bipedBody.offsetX, this.bipedBody.offsetY, this.bipedBody.offsetZ);

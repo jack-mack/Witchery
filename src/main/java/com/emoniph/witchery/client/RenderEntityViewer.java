@@ -26,6 +26,7 @@ public class RenderEntityViewer extends EntityRenderer {
       return this.mc.thePlayer != null && !this.mc.thePlayer.isPlayerSleeping() && !this.mc.thePlayer.isRiding();
    }
 
+   @Override
    public void updateCameraAndRender(float partialTicks) {
       if(this.canShiftView()) {
          this.mc.thePlayer.posY += (double)(-this.offsetY);
@@ -44,6 +45,7 @@ public class RenderEntityViewer extends EntityRenderer {
 
    }
 
+   @Override
    public void getMouseOver(float partialTicks) {
       if(this.canShiftView()) {
          this.mc.thePlayer.posY += (double)(-this.offsetY);

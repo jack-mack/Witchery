@@ -65,14 +65,17 @@ public class WorldHandlerVillageDistrict implements IVillageCreationHandler {
       this.quantityMax = max;
    }
 
+   @Override
    public PieceWeight getVillagePieceWeight(Random rand, int size) {
       return new PieceWeight(this.pieceClazz, this.weight, this.quantityMax <= this.quantityMin?this.quantityMin:this.quantityMin + rand.nextInt(this.quantityMax - this.quantityMin + 1));
    }
 
+   @Override
    public Class getComponentClass() {
       return this.pieceClazz;
    }
 
+   @Override
    public Object buildComponent(PieceWeight weight, Start startPiece, List pieces, Random rand, int p1, int p2, int p3, int p4, int p5) {
       Object object = null;
       if(this.pieceClazz == House4Garden.class) {
@@ -311,11 +314,13 @@ public class WorldHandlerVillageDistrict implements IVillageCreationHandler {
          return false;
       }
 
+      @Override
       public void buildComponent(StructureComponent component, List pieces, Random rand) {
          super.buildComponent(component, pieces, rand);
          this.pieces = pieces;
       }
 
+      @Override
       public boolean addComponentParts(World world, Random rand, StructureBoundingBox bounds) {
          if(super.field_143015_k < 0) {
             super.field_143015_k = this.getAverageGroundLevel(world, bounds);
@@ -345,11 +350,13 @@ public class WorldHandlerVillageDistrict implements IVillageCreationHandler {
          return true;
       }
 
+      @Override
       protected void func_143012_a(NBTTagCompound nbtRoot) {
          super.func_143012_a(nbtRoot);
          nbtRoot.setBoolean("WallBlock", this.hasMadeWallBlock);
       }
 
+      @Override
       protected void func_143011_b(NBTTagCompound nbtRoot) {
          super.func_143011_b(nbtRoot);
          this.hasMadeWallBlock = nbtRoot.getBoolean("WallBlock");
@@ -725,6 +732,7 @@ public class WorldHandlerVillageDistrict implements IVillageCreationHandler {
             private boolean desert;
 
 
+            @Override
             public void updateEntity() {
                super.updateEntity();
                if(!super.worldObj.isRemote && this.bb != null && super.ticks > 40L) {

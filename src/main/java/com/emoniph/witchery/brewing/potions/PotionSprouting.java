@@ -13,6 +13,7 @@ public class PotionSprouting extends PotionBase implements IHandleLivingUpdate {
       super(id, color);
    }
 
+   @Override
    public void onLivingUpdate(World world, EntityLivingBase entity, LivingUpdateEvent event, int amplifier, int duration) {
       if(!world.isRemote && world.getTotalWorldTime() % 20L == 9L && world.rand.nextInt(4) == 0) {
          BrewActionSprouting.growBranch(entity, 1 + amplifier);

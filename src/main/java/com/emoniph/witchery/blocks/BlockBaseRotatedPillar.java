@@ -19,6 +19,7 @@ public abstract class BlockBaseRotatedPillar extends BlockRotatedPillar {
       this.clazzItem = clazzItem;
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       if(this.registerWithCreateTab) {
          this.setCreativeTab(WitcheryCreativeTab.INSTANCE);
@@ -35,5 +36,6 @@ public abstract class BlockBaseRotatedPillar extends BlockRotatedPillar {
       return super.setBlockName(blockName);
    }
 
+   @Override
    protected abstract IIcon getSideIcon(int var1);
 }

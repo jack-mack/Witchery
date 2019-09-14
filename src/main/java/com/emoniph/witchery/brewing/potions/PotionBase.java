@@ -80,6 +80,7 @@ public class PotionBase extends Potion {
       this.inventoryTextHidden = true;
    }
 
+   @Override
    public void applyAttributesModifiersToEntity(EntityLivingBase entity, BaseAttributeMap attributes, int amplifier) {
       super.applyAttributesModifiersToEntity(entity, attributes, amplifier);
       if(this instanceof IHandleRenderLiving) {
@@ -89,6 +90,7 @@ public class PotionBase extends Potion {
 
    }
 
+   @Override
    public void removeAttributesModifiersFromEntity(EntityLivingBase entity, BaseAttributeMap attributes, int amplifier) {
       super.removeAttributesModifiersFromEntity(entity, attributes, amplifier);
       if(this instanceof IHandleRenderLiving) {
@@ -97,10 +99,12 @@ public class PotionBase extends Potion {
 
    }
 
+   @Override
    public boolean shouldRenderInvText(PotionEffect effect) {
       return !this.inventoryTextHidden;
    }
 
+   @Override
    public void renderInventoryEffect(int x, int y, PotionEffect effect, Minecraft mc) {
       if(this.inventoryTextHidden) {
          mc.fontRenderer.drawStringWithShadow(Witchery.resource("witchery:potion.unknown"), x + 10 + 18, y + 6, 16777215);

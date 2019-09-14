@@ -35,19 +35,23 @@ public class BlockPoppetShelf extends BlockBaseContainer {
       this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.51F, 1.0F);
    }
 
+   @Override
    public void onBlockAdded(World world, int posX, int posY, int posZ) {
       super.onBlockAdded(world, posX, posY, posZ);
       BlockUtil.setBlockDefaultDirection(world, posX, posY, posZ);
    }
 
+   @Override
    public boolean isOpaqueCube() {
       return false;
    }
 
+   @Override
    public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l) {
       return false;
    }
 
+   @Override
    public boolean onBlockActivated(World world, int posX, int posY, int posZ, EntityPlayer player, int par6, float par7, float par8, float par9) {
       if(world.isRemote) {
          return true;
@@ -61,6 +65,7 @@ public class BlockPoppetShelf extends BlockBaseContainer {
       }
    }
 
+   @Override
    public void onNeighborBlockChange(World world, int posX, int posY, int posZ, Block par5) {
       boolean flag = world.isBlockIndirectlyGettingPowered(posX, posY, posZ) || world.isBlockIndirectlyGettingPowered(posX, posY + 1, posZ);
       int i1 = world.getBlockMetadata(posX, posY, posZ);
@@ -74,11 +79,13 @@ public class BlockPoppetShelf extends BlockBaseContainer {
 
    }
 
+   @Override
    public void onBlockPlacedBy(World world, int posX, int posY, int posZ, EntityLivingBase entityLiving, ItemStack itemstack) {
       int l = BlockPistonBase.determineOrientation(world, posX, posY, posZ, entityLiving);
       world.setBlockMetadataWithNotify(posX, posY, posZ, l, 2);
    }
 
+   @Override
    public void breakBlock(World world, int posX, int posY, int posZ, Block par5, int par6) {
       BlockPoppetShelf.TileEntityPoppetShelf tileEntity = (BlockPoppetShelf.TileEntityPoppetShelf)world.getTileEntity(posX, posY, posZ);
       if(tileEntity != null) {
@@ -116,10 +123,12 @@ public class BlockPoppetShelf extends BlockBaseContainer {
       super.breakBlock(world, posX, posY, posZ, par5, par6);
    }
 
+   @Override
    public boolean hasComparatorInputOverride() {
       return true;
    }
 
+   @Override
    public int getComparatorInputOverride(World world, int posX, int posY, int posZ, int par5) {
       return Container.calcRedstoneFromInventory((IInventory)world.getTileEntity(posX, posY, posZ));
    }
@@ -131,6 +140,7 @@ public class BlockPoppetShelf extends BlockBaseContainer {
       private Ticket chunkTicket;
 
 
+      @Override
       protected void initiate() {
          super.initiate();
          if(!super.worldObj.isRemote && this.chunkTicket == null) {
@@ -160,6 +170,7 @@ public class BlockPoppetShelf extends BlockBaseContainer {
 
       }
 
+      @Override
       public void invalidate() {
          if(!super.worldObj.isRemote) {
             if(this.chunkTicket != null) {
@@ -172,14 +183,17 @@ public class BlockPoppetShelf extends BlockBaseContainer {
          super.invalidate();
       }
 
+      @Override
       public int getSizeInventory() {
          return 9;
       }
 
+      @Override
       public ItemStack getStackInSlot(int slot) {
          return this.contents[slot];
       }
 
+      @Override
       public ItemStack decrStackSize(int slot, int size) {
          if(this.contents[slot] != null) {
             ItemStack itemstack;
@@ -202,6 +216,7 @@ public class BlockPoppetShelf extends BlockBaseContainer {
          }
       }
 
+      @Override
       public ItemStack getStackInSlotOnClosing(int slot) {
          if(this.contents[slot] != null) {
             ItemStack itemstack = this.contents[slot];
@@ -225,6 +240,7 @@ public class BlockPoppetShelf extends BlockBaseContainer {
          return i;
       }
 
+      @Override
       public void setInventorySlotContents(int slot, ItemStack itemstack) {
          this.contents[slot] = itemstack;
          if(itemstack != null && itemstack.stackSize > this.getInventoryStackLimit()) {
@@ -245,31 +261,37 @@ public class BlockPoppetShelf extends BlockBaseContainer {
          return -1;
       }
 
+      @Override
       public void markDirty() {
          super.worldObj.markBlockForUpdate(super.xCoord, super.yCoord, super.zCoord);
          super.markDirty();
       }
 
+      @Override
       public String getInventoryName() {
          return "container.witchery:poppetshelf";
       }
 
+      @Override
       public Packet getDescriptionPacket() {
          NBTTagCompound nbtTag = new NBTTagCompound();
          this.writeToNBT(nbtTag);
          return new S35PacketUpdateTileEntity(super.xCoord, super.yCoord, super.zCoord, 1, nbtTag);
       }
 
+      @Override
       public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
          super.onDataPacket(net, packet);
          this.readFromNBT(packet.func_148857_g());
          super.worldObj.func_147479_m(super.xCoord, super.yCoord, super.zCoord);
       }
 
+      @Override
       public boolean hasCustomInventoryName() {
          return false;
       }
 
+      @Override
       public void readFromNBT(NBTTagCompound nbtTag) {
          super.readFromNBT(nbtTag);
          NBTTagList nbttaglist = nbtTag.getTagList("Items", 10);
@@ -289,6 +311,7 @@ public class BlockPoppetShelf extends BlockBaseContainer {
 
       }
 
+      @Override
       public void writeToNBT(NBTTagCompound nbtTag) {
          super.writeToNBT(nbtTag);
          NBTTagList nbttaglist = new NBTTagList();
@@ -309,18 +332,23 @@ public class BlockPoppetShelf extends BlockBaseContainer {
 
       }
 
+      @Override
       public int getInventoryStackLimit() {
          return 64;
       }
 
+      @Override
       public boolean isUseableByPlayer(EntityPlayer player) {
          return super.worldObj.getTileEntity(super.xCoord, super.yCoord, super.zCoord) != this?false:player.getDistanceSq((double)super.xCoord + 0.5D, (double)super.yCoord + 0.5D, (double)super.zCoord + 0.5D) <= 64.0D;
       }
 
+      @Override
       public void openInventory() {}
 
+      @Override
       public void closeInventory() {}
 
+      @Override
       public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
          return itemstack != null && itemstack.getItem() == Witchery.Items.POPPET;
       }

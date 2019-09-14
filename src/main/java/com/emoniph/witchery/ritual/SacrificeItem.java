@@ -36,6 +36,7 @@ public class SacrificeItem extends Sacrifice {
       this.itemstacks = itemstacks;
    }
 
+   @Override
    public void addDescription(StringBuffer sb) {
       ItemStack[] arr$ = this.itemstacks;
       int len$ = arr$.length;
@@ -69,6 +70,7 @@ public class SacrificeItem extends Sacrifice {
 
    }
 
+   @Override
    public boolean isMatch(World world, int posX, int posY, int posZ, int maxDistance, ArrayList entities, ArrayList grassperStacks) {
       ArrayList itemsToRemove = new ArrayList();
       ArrayList otherItemsToRemove = new ArrayList();
@@ -133,6 +135,7 @@ public class SacrificeItem extends Sacrifice {
       return (itemstackFound.getItem() == Witchery.Items.ARTHANA || itemstackFound.getItem() == Witchery.Items.BOLINE) && itemstackFound.getItem() == itemstackToFind.getItem() || itemstackFound.isItemEqual(itemstackToFind);
    }
 
+   @Override
    public void addSteps(ArrayList steps, AxisAlignedBB bounds, int maxDistance) {
       ItemStack[] arr$ = this.itemstacks;
       int len$ = arr$.length;
@@ -160,6 +163,7 @@ public class SacrificeItem extends Sacrifice {
          this.showMessages = false;
       }
 
+      @Override
       public RitualStep.Result process(World world, int posX, int posY, int posZ, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(ticks % 20L != 0L) {
             return RitualStep.Result.STARTING;

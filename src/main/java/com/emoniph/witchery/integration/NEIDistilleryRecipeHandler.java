@@ -15,18 +15,22 @@ import net.minecraft.util.StatCollector;
 
 public class NEIDistilleryRecipeHandler extends TemplateRecipeHandler {
 
+   @Override
    public Class getGuiClass() {
       return BlockDistilleryGUI.class;
    }
 
+   @Override
    public String getRecipeName() {
       return StatCollector.translateToLocal("tile.witchery:distilleryidle.name");
    }
 
+   @Override
    public void loadTransferRects() {
       this.transferRects.add(new RecipeTransferRect(new Rectangle(63, 4, 39, 35), "witchery_distilling", new Object[0]));
    }
 
+   @Override
    public void loadCraftingRecipes(String outputId, Object ... results) {
       if(outputId.equals("witchery_distilling") && this.getClass() == NEIDistilleryRecipeHandler.class) {
          Iterator i$ = DistilleryRecipes.instance().recipes.iterator();
@@ -41,6 +45,7 @@ public class NEIDistilleryRecipeHandler extends TemplateRecipeHandler {
 
    }
 
+   @Override
    public void loadCraftingRecipes(ItemStack result) {
       DistilleryRecipes.DistilleryRecipe recipe = DistilleryRecipes.instance().findRecipeFor(result);
       if(recipe != null) {
@@ -49,6 +54,7 @@ public class NEIDistilleryRecipeHandler extends TemplateRecipeHandler {
 
    }
 
+   @Override
    public void loadUsageRecipes(ItemStack ingredient) {
       DistilleryRecipes.DistilleryRecipe recipe = DistilleryRecipes.instance().findRecipeUsing(ingredient);
       if(recipe != null) {
@@ -57,15 +63,18 @@ public class NEIDistilleryRecipeHandler extends TemplateRecipeHandler {
 
    }
 
+   @Override
    public String getGuiTexture() {
       return "witchery:textures/gui/distiller.png";
    }
 
+   @Override
    public void drawExtras(int recipe) {
       this.drawProgressBar(63, 3, 176, 29, 39, 35, 200, 0);
       this.drawProgressBar(28, 8, 185, -2, 12, 30, 35, 3);
    }
 
+   @Override
    public String getOverlayIdentifier() {
       return "witchery_distilling";
    }
@@ -108,10 +117,12 @@ public class NEIDistilleryRecipeHandler extends TemplateRecipeHandler {
 
       }
 
+      @Override
       public PositionedStack getResult() {
          return this.outputs[0];
       }
 
+      @Override
       public ArrayList getIngredients() {
          ArrayList recipestacks = new ArrayList();
          recipestacks.add(this.ingred1);

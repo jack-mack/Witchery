@@ -150,6 +150,7 @@ public class ModelLilith extends ModelBase {
       modelRenderer.rotateAngleZ = z;
    }
 
+   @Override
    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
       this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
       this.neck.render(f5);
@@ -165,6 +166,7 @@ public class ModelLilith extends ModelBase {
       this.head.render(f5);
    }
 
+   @Override
    public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity entity) {
       this.head.rotateAngleY = par4 / 57.295776F;
       this.head.rotateAngleX = par5 / 57.295776F;

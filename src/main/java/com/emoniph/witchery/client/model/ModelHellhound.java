@@ -58,6 +58,7 @@ public class ModelHellhound extends ModelBase {
       this.wolfHeadMain.setTextureOffset(0, 10).addBox(-1.5F, 0.0F, -5.0F, 3, 3, 4, f);
    }
 
+   @Override
    public void render(Entity p_78088_1_, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float p_78088_7_) {
       super.render(p_78088_1_, p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, p_78088_7_);
       this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, p_78088_7_, p_78088_1_);
@@ -71,6 +72,7 @@ public class ModelHellhound extends ModelBase {
       this.wolfMane.render(p_78088_7_);
    }
 
+   @Override
    public void setLivingAnimations(EntityLivingBase p_78086_1_, float p_78086_2_, float p_78086_3_, float p_78086_4_) {
       EntityHellhound entitywolf = (EntityHellhound)p_78086_1_;
       this.setRotateAngle(this.wolfTail, entitywolf.isConverting()?2.0F:0.59184116F, 0.0F, 0.0F);
@@ -100,6 +102,7 @@ public class ModelHellhound extends ModelBase {
       this.wolfTail.rotateAngleZ = entitywolf.getShakeAngle(p_78086_4_, -0.2F);
    }
 
+   @Override
    public void setRotationAngles(float p_78087_1_, float p_78087_2_, float p_78087_3_, float p_78087_4_, float p_78087_5_, float p_78087_6_, Entity p_78087_7_) {
       super.setRotationAngles(p_78087_1_, p_78087_2_, p_78087_3_, p_78087_4_, p_78087_5_, p_78087_6_, p_78087_7_);
       EntityHellhound entitywolf = (EntityHellhound)p_78087_7_;

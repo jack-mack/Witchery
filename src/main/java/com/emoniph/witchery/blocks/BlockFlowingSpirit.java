@@ -43,16 +43,19 @@ public class BlockFlowingSpirit extends BlockFluidClassic {
       this.igniteSpiritPortals = igniteSpiritPortals;
    }
 
+   @Override
    public Block setBlockName(String blockName) {
       BlockUtil.registerBlock(this, blockName);
       return super.setBlockName(blockName);
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public IIcon getIcon(int side, int meta) {
       return side != 0 && side != 1?this.icons[1]:this.icons[0];
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void registerBlockIcons(IIconRegister iconRegister) {
       this.icons = new IIcon[]{iconRegister.registerIcon(this.getTextureName() + "_still"), iconRegister.registerIcon(this.getTextureName() + "_flow")};
@@ -62,6 +65,7 @@ public class BlockFlowingSpirit extends BlockFluidClassic {
 
    }
 
+   @Override
    public void onBlockAdded(World world, int x, int y, int z) {
       if(!this.igniteSpiritPortals || world.provider.dimensionId != Config.instance().dimensionDreamID || world.getBlock(x, y - 1, z) != Blocks.snow || world.getBlockMetadata(x, y, z) != 0 || !Witchery.Blocks.SPIRIT_PORTAL.tryToCreatePortal(world, x, y, z)) {
          super.onBlockAdded(world, x, y, z);
@@ -69,6 +73,7 @@ public class BlockFlowingSpirit extends BlockFluidClassic {
 
    }
 
+   @Override
    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
       if(!world.isRemote && entity != null) {
          if(entity instanceof EntityLivingBase) {
@@ -92,10 +97,12 @@ public class BlockFlowingSpirit extends BlockFluidClassic {
 
    }
 
+   @Override
    public boolean canDisplace(IBlockAccess world, int x, int y, int z) {
       return world.getBlock(x, y, z).getMaterial().isLiquid()?false:super.canDisplace(world, x, y, z);
    }
 
+   @Override
    public boolean displaceIfPossible(World world, int x, int y, int z) {
       return world.getBlock(x, y, z).getMaterial().isLiquid()?false:super.displaceIfPossible(world, x, y, z);
    }

@@ -106,6 +106,7 @@ public class EntityCovenWitch extends EntityTameable implements IRangedAttackMob
       this.setTamed(false);
    }
 
+   @Override
    public boolean getCanSpawnHere() {
       boolean living = super.worldObj.checkNoEntityCollision(super.boundingBox) && super.worldObj.getCollidingBoundingBoxes(this, super.boundingBox).isEmpty() && !super.worldObj.isAnyLiquid(super.boundingBox);
       int i = MathHelper.floor_double(super.posX);
@@ -115,29 +116,34 @@ public class EntityCovenWitch extends EntityTameable implements IRangedAttackMob
       return creature;
    }
 
+   @Override
    public void setCustomNameTag(String par1Str) {}
 
    private void setInnerCustomNameTag(String s) {
       super.dataWatcher.updateObject(10, s);
    }
 
+   @Override
    public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData) {
       this.setTameSkin(super.worldObj.rand.nextInt(5));
       return super.onSpawnWithEgg(par1EntityLivingData);
    }
 
+   @Override
    protected void entityInit() {
       super.entityInit();
       this.getDataWatcher().addObject(18, Byte.valueOf((byte)0));
       this.getDataWatcher().addObject(21, Byte.valueOf((byte)0));
    }
 
+   @Override
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(30.0D);
       this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
    }
 
+   @Override
    public void writeEntityToNBT(NBTTagCompound nbtRoot) {
       super.writeEntityToNBT(nbtRoot);
       nbtRoot.setInteger("SkinType", this.getTameSkin());
@@ -148,6 +154,7 @@ public class EntityCovenWitch extends EntityTameable implements IRangedAttackMob
       nbtRoot.setInteger("SuicideIn", this.timeToLive);
    }
 
+   @Override
    public void readEntityFromNBT(NBTTagCompound nbtRoot) {
       super.readEntityFromNBT(nbtRoot);
       this.setTameSkin(nbtRoot.getInteger("SkinType"));
@@ -167,6 +174,7 @@ public class EntityCovenWitch extends EntityTameable implements IRangedAttackMob
 
    }
 
+   @Override
    public String getCommandSenderName() {
       return this.hasCustomNameTag()?this.getCustomNameTag():StatCollector.translateToLocal("entity.witchery.covenwitch.name");
    }
@@ -175,6 +183,7 @@ public class EntityCovenWitch extends EntityTameable implements IRangedAttackMob
       this.timeToLive = i;
    }
 
+   @Override
    public void updateAITick() {
       super.updateAITick();
       if(super.worldObj != null && !super.isDead && !super.worldObj.isRemote && this.timeToLive != -1) {
@@ -190,6 +199,7 @@ public class EntityCovenWitch extends EntityTameable implements IRangedAttackMob
 
    }
 
+   @Override
    public void onDeath(DamageSource damageSource) {
       if(!super.worldObj.isRemote && this.isTamed()) {
          EntityLivingBase owner = this.getOwner();
@@ -221,14 +231,17 @@ public class EntityCovenWitch extends EntityTameable implements IRangedAttackMob
       super.dataWatcher.updateObject(18, Byte.valueOf((byte)par1));
    }
 
+   @Override
    protected String getLivingSound() {
       return null;
    }
 
+   @Override
    protected String getHurtSound() {
       return "mob.witch.hurt";
    }
 
+   @Override
    protected String getDeathSound() {
       return "mob.witch.death";
    }
@@ -263,10 +276,12 @@ public class EntityCovenWitch extends EntityTameable implements IRangedAttackMob
       return (super.dataWatcher.getWatchableObjectByte(21) & 2) != 0;
    }
 
+   @Override
    public boolean isAIEnabled() {
       return true;
    }
 
+   @Override
    public void onLivingUpdate() {
       if(!super.worldObj.isRemote) {
          if(this.getAggressive()) {
@@ -318,6 +333,7 @@ public class EntityCovenWitch extends EntityTameable implements IRangedAttackMob
       super.onLivingUpdate();
    }
 
+   @Override
    protected float applyPotionDamageCalculations(DamageSource par1DamageSource, float par2) {
       par2 = super.applyPotionDamageCalculations(par1DamageSource, par2);
       if(par1DamageSource.getEntity() == this) {
@@ -331,6 +347,7 @@ public class EntityCovenWitch extends EntityTameable implements IRangedAttackMob
       return par2;
    }
 
+   @Override
    @SideOnly(Side.CLIENT)
    public void handleHealthUpdate(byte par1) {
       if(par1 == 15) {
@@ -343,6 +360,7 @@ public class EntityCovenWitch extends EntityTameable implements IRangedAttackMob
 
    }
 
+   @Override
    public boolean interact(EntityPlayer player) {
       if(!super.worldObj.isRemote && player != null) {
          if(!this.isTamed() && !this.getAggressive() && player.dimension != Config.instance().dimensionDreamID) {
@@ -457,6 +475,7 @@ public class EntityCovenWitch extends EntityTameable implements IRangedAttackMob
       }
    }
 
+   @Override
    protected boolean canDespawn() {
       if(this.isTamed()) {
          EntityLivingBase player = this.getOwner();
@@ -713,6 +732,7 @@ public class EntityCovenWitch extends EntityTameable implements IRangedAttackMob
       return false;
    }
 
+   @Override
    protected void dropFewItems(boolean par1, int par2) {
       int j = super.rand.nextInt(3) + 1;
 
@@ -730,6 +750,7 @@ public class EntityCovenWitch extends EntityTameable implements IRangedAttackMob
 
    }
 
+   @Override
    public void attackEntityWithRangedAttack(EntityLivingBase par1EntityLivingBase, float par2) {
       if(!this.getAggressive()) {
          EntityPotion entitypotion = new EntityPotion(super.worldObj, this, 32732);
@@ -752,6 +773,7 @@ public class EntityCovenWitch extends EntityTameable implements IRangedAttackMob
 
    }
 
+   @Override
    public EntityAgeable createChild(EntityAgeable entityageable) {
       return null;
    }
@@ -777,6 +799,7 @@ public class EntityCovenWitch extends EntityTameable implements IRangedAttackMob
          super(descriptionText, startText, 1);
       }
 
+      @Override
       public void activate(World world, EntityCovenWitch witch, EntityPlayer player) {
          EntitySpider spider = new EntitySpider(world);
          spider.setLocationAndAngles(witch.posX, witch.posY, witch.posZ, witch.rotationPitch, witch.rotationYaw);
@@ -816,6 +839,7 @@ public class EntityCovenWitch extends EntityTameable implements IRangedAttackMob
          super(descriptionText, startText, 1);
       }
 
+      @Override
       public void activate(World world, EntityCovenWitch witch, EntityPlayer player) {
          EntityZombie spider = new EntityZombie(world);
          spider.setLocationAndAngles(witch.posX, witch.posY, witch.posZ, witch.rotationPitch, witch.rotationYaw);
@@ -892,8 +916,10 @@ public class EntityCovenWitch extends EntityTameable implements IRangedAttackMob
          this.stack = stack;
       }
 
+      @Override
       public void activate(World world, EntityCovenWitch witch, EntityPlayer player) {}
 
+      @Override
       public boolean isQuestItem(ItemStack stack) {
          return this.stack.isItemEqual(stack);
       }
@@ -911,6 +937,7 @@ public class EntityCovenWitch extends EntityTameable implements IRangedAttackMob
          this.position = position;
       }
 
+      @Override
       public RitualStep.Result process(World world, int xCoord, int yCoord, int zCoord, long ticks, BlockCircle.TileEntityCircle.ActivatedRitual ritual) {
          if(ticks % 20L != 0L) {
             return RitualStep.Result.STARTING;

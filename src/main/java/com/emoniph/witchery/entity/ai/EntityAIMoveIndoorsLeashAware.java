@@ -13,6 +13,7 @@ public class EntityAIMoveIndoorsLeashAware extends EntityAIMoveIndoors {
       this.creature = creature;
    }
 
+   @Override
    public boolean shouldExecute() {
       return this.creature != null && !this.creature.getLeashed() && super.shouldExecute();
    }

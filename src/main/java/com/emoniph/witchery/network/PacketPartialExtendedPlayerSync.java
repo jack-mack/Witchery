@@ -22,11 +22,13 @@ public class PacketPartialExtendedPlayerSync implements IMessage {
       this.blood = playerEx.getHumanBlood();
    }
 
+   @Override
    public void toBytes(ByteBuf buffer) {
       buffer.writeInt(this.entityId);
       buffer.writeInt(this.blood);
    }
 
+   @Override
    public void fromBytes(ByteBuf buffer) {
       this.entityId = buffer.readInt();
       this.blood = buffer.readInt();
@@ -34,6 +36,7 @@ public class PacketPartialExtendedPlayerSync implements IMessage {
 
    public static class Handler implements IMessageHandler<PacketPartialExtendedPlayerSync, IMessage> {
 
+      @Override
       public IMessage onMessage(PacketPartialExtendedPlayerSync message, MessageContext ctx) {
          EntityPlayer player = Witchery.proxy.getPlayer(ctx);
          if(player != null) {
