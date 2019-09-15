@@ -21,8 +21,8 @@ version = "1.7.10-0.24.1"
 group= "com.emoniph.witchery" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "witchery"
 
-sourceCompatibility = 7
-targetCompatibility = 7
+sourceCompatibility = 8
+targetCompatibility = 8
 
 minecraft {
     version = "1.7.10-10.13.4.1614-1.7.10"
