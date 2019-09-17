@@ -38,6 +38,7 @@ import com.emoniph.witchery.util.TameableUtil;
 import com.emoniph.witchery.util.TargetPointUtil;
 import com.emoniph.witchery.util.TimeUtil;
 import com.emoniph.witchery.util.TransformCreature;
+import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.eventhandler.Event.Result;
@@ -162,9 +163,7 @@ public class GenericEvents {
 
    }
 
-   @SubscribeEvent(
-      priority = EventPriority.HIGH
-   )
+   @SubscribeEvent(priority = EventPriority.HIGH)
    public void onEntityJoinWorld(EntityJoinWorldEvent event) {
       if(event.entity instanceof EntityLivingBase) {
          NBTTagCompound creature = event.entity.getEntityData();
@@ -441,9 +440,7 @@ public class GenericEvents {
 
    }
 
-   @SubscribeEvent(
-      priority = EventPriority.HIGH
-   )
+   @SubscribeEvent(priority = EventPriority.HIGH)
    public void onPlayerDrops(PlayerDropsEvent event) {
       if(!event.entityPlayer.worldObj.isRemote && !event.isCanceled() && ExtendedPlayer.get(event.entityPlayer).isVampire()) {
          int ticks = TimeUtil.minsToTicks(MathHelper.clamp_int(Config.instance().vampireDeathItemKeepAliveMins, 5, 30));
@@ -456,9 +453,7 @@ public class GenericEvents {
 
    }
 
-   @SubscribeEvent(
-      priority = EventPriority.HIGH
-   )
+   @SubscribeEvent(priority = EventPriority.HIGH)
    public void onEntityInteract(EntityInteractEvent event) {
       PotionEffect effect = event.entityPlayer.getActivePotionEffect(Witchery.Potions.PARALYSED);
       if(effect != null && effect.getAmplifier() >= 4) {

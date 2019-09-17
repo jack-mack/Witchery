@@ -1,7 +1,7 @@
 package com.emoniph.witchery.entity.ai;
 
 import com.emoniph.witchery.common.ExtendedVillager;
-import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.util.MathHelper;
 import net.minecraft.village.Village;
@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 public class EntityAISleep extends EntityAIBase {
 
    private EntityVillager villager;
+   private Boolean flag = null;
    private VillageDoorInfo doorInfo;
    private int insidePosX = -1;
    private int insidePosZ = -1;
@@ -26,8 +27,13 @@ public class EntityAISleep extends EntityAIBase {
 
    @Override
    public boolean shouldExecute() {
+      flag = false;
+      for (Object task : this.villager.tasks.taskEntries) {
+         if (((EntityAITasks.EntityAITaskEntry) task).action instanceof EntityAIMoveIndoors) flag = true;
+      }
+
       long time = this.world.getWorldTime() % 24000L;
-      if(time >= 13000L && time < 23999L && this.villager.hurtTime <= 0) {
+      if(flag == true && time >= 13000L && time < 23999L && this.villager.hurtTime <= 0) {
          if(this.villager.getRNG().nextInt(50) != 0) {
             return false;
          } else {

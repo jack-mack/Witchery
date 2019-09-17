@@ -4,37 +4,24 @@ import com.emoniph.witchery.Witchery;
 import com.emoniph.witchery.entity.EntityGoblin;
 import com.emoniph.witchery.entity.EntityWitchHunter;
 import com.emoniph.witchery.entity.ai.EntityAIDefendVillageGeneric;
+import com.emoniph.witchery.entity.ai.EntityAISleep;
 import com.emoniph.witchery.util.ParticleEffect;
 import com.emoniph.witchery.util.SoundEffect;
 import net.minecraft.block.Block;
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.IRangedAttackMob;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIArrowAttack;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
-import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIOpenDoor;
-import net.minecraft.entity.ai.EntityAIRestrictOpenDoor;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
@@ -46,11 +33,20 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.village.Village;
 import net.minecraft.world.World;
 
-public class EntityVillageGuard extends EntityCreature implements IRangedAttackMob, EntityAIDefendVillageGeneric.IVillageGuard, IEntitySelector {
+public class EntityVillageGuard extends EntityVillager implements IRangedAttackMob, EntityAIDefendVillageGeneric.IVillageGuard, IEntitySelector {
 
    private EntityAIArrowAttack aiArrowAttack = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F);
-   private EntityAIAttackOnCollide aiAttackOnCollide = new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.2D, false);
+   private EntityAIAttackOnCollide aiAttackOnCollide = new EntityAIAttackOnCollide(this, EntityLiving.class, 1.2D, false);
+   private EntityAIMoveThroughVillage aiMoveThoughVillage;
+   private EntityAIAvoidEntity aiAvoidEntity;
+   private EntityAIMoveIndoors aiMoveIndoors;
+   private EntityAIDefendVillageGeneric aiDefendVillageGeneric;
+   private EntityAIHurtByTarget aiHurtByTarget;
+   private EntityAINearestAttackableTarget aiNearestAttackableTarget;
+   private EntityAISleep aiSleep;
    private int homeCheckTimer;
+   private int fleeCheckTimer;
+   public boolean fleeing = false;
    Village villageObj;
 
 
@@ -58,6 +54,14 @@ public class EntityVillageGuard extends EntityCreature implements IRangedAttackM
       super(world);
       this.getNavigator().setAvoidsWater(true);
       this.getNavigator().setBreakDoors(true);
+      aiMoveThoughVillage = new EntityAIMoveThroughVillage(this, 0.6D, true);
+      aiAvoidEntity = new EntityAIAvoidEntity(this, IMob.class, 8.0F, 0.6D, 0.6D);
+      aiMoveIndoors =  new EntityAIMoveIndoors(this);
+      aiDefendVillageGeneric = new EntityAIDefendVillageGeneric(this);
+      aiHurtByTarget = new EntityAIHurtByTarget(this, true);
+      aiNearestAttackableTarget = new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, false, true, this);
+      aiSleep = new EntityAISleep(this);
+      this.tasks.taskEntries.clear();
       super.tasks.addTask(1, new EntityAISwimming(this));
       super.tasks.addTask(6, new EntityAIMoveThroughVillage(this, 0.6D, true));
       super.tasks.addTask(7, new EntityAIMoveTowardsRestriction(this, 1.0D));
@@ -74,6 +78,12 @@ public class EntityVillageGuard extends EntityCreature implements IRangedAttackM
       }
 
       super.experienceValue = 5;
+   }
+
+   /* disable merchant interactions */
+   @Override
+   public boolean interact(EntityPlayer p_70085_1_) {
+      return true;
    }
 
    @Override
@@ -141,8 +151,43 @@ public class EntityVillageGuard extends EntityCreature implements IRangedAttackM
       return this;
    }
 
+   public void updateTasks() {
+      if (fleeing) {
+         super.tasks.removeTask(this.aiAttackOnCollide);
+         super.tasks.removeTask(this.aiArrowAttack);
+         super.targetTasks.taskEntries.clear();
+         super.setAttackTarget(null);
+         super.tasks.removeTask(aiMoveThoughVillage);
+         super.tasks.addTask(1, this.aiAvoidEntity);
+         super.tasks.addTask(2, this.aiMoveIndoors);
+         super.tasks.addTask(1, this.aiSleep);
+      } else {
+         super.tasks.removeTask(this.aiAvoidEntity);
+         super.tasks.removeTask(this.aiMoveIndoors);
+         super.tasks.removeTask(this.aiSleep);
+         this.setCombatTask();
+         super.tasks.addTask(6, aiMoveThoughVillage);
+         super.targetTasks.addTask(1, aiDefendVillageGeneric);
+         super.targetTasks.addTask(2, aiHurtByTarget);
+         super.targetTasks.addTask(3, aiNearestAttackableTarget);
+      }
+   }
+
    @Override
    protected void updateAITick() {
+      if (--fleeCheckTimer <= 0) {
+         this.fleeCheckTimer = 40;
+         if (!fleeing  && this.getHealth() < 16.0F) {
+            fleeing = true;
+            updateTasks();
+            System.out.println("fleeing");
+         } else if (fleeing && this.getHealth() == getMaxHealth()) {
+            fleeing = false;
+            updateTasks();
+            System.out.println("not fleeing");
+         }
+      }
+
       if(--this.homeCheckTimer <= 0) {
          this.homeCheckTimer = 70 + super.rand.nextInt(50);
          this.villageObj = super.worldObj.villageCollectionObj.findNearestVillage(MathHelper.floor_double(super.posX), MathHelper.floor_double(super.posY), MathHelper.floor_double(super.posZ), 32);
@@ -152,7 +197,7 @@ public class EntityVillageGuard extends EntityCreature implements IRangedAttackM
             ChunkCoordinates chunkcoordinates = this.villageObj.getCenter();
             this.setHomeArea(chunkcoordinates.posX, chunkcoordinates.posY, chunkcoordinates.posZ, (int)((float)this.villageObj.getVillageRadius() * 1.5F));
             if(this.getAttackTarget() == null) {
-               this.heal(1.0F);
+               this.heal(2.0F);
                if(super.worldObj.rand.nextInt(4) == 0) {
                   this.giveBlood(1);
                }
@@ -311,9 +356,9 @@ public class EntityVillageGuard extends EntityCreature implements IRangedAttackM
 
    @Override
    protected void addRandomArmor() {
-      this.setCurrentItemOrArmor(0, new ItemStack(Items.bow));
-      this.setCurrentItemOrArmor(1, new ItemStack(Items.leather_boots));
-      this.setCurrentItemOrArmor(2, new ItemStack(Items.leather_leggings));
+      this.setCurrentItemOrArmor(0, new ItemStack(super.worldObj.rand.nextInt(3) == 0?Items.iron_sword:Items.bow));
+      this.setCurrentItemOrArmor(1, new ItemStack(super.worldObj.rand.nextInt(5) == 0?Items.iron_boots:Items.leather_boots));
+      this.setCurrentItemOrArmor(2, new ItemStack(super.worldObj.rand.nextInt(5) == 0?Items.iron_leggings:Items.leather_leggings));
       this.setCurrentItemOrArmor(3, new ItemStack(super.worldObj.rand.nextInt(5) == 0?Items.iron_chestplate:Items.leather_chestplate));
       this.setCurrentItemOrArmor(4, new ItemStack(super.worldObj.rand.nextInt(5) == 0?Items.iron_helmet:Items.leather_helmet));
    }
@@ -334,7 +379,7 @@ public class EntityVillageGuard extends EntityCreature implements IRangedAttackM
       super.tasks.removeTask(this.aiAttackOnCollide);
       super.tasks.removeTask(this.aiArrowAttack);
       ItemStack itemstack = this.getHeldItem();
-      if(itemstack != null && itemstack.getItem() == Items.bow) {
+      if(itemstack != null && itemstack.getItem() instanceof ItemBow) {
          super.tasks.addTask(4, this.aiArrowAttack);
       } else {
          super.tasks.addTask(4, this.aiAttackOnCollide);

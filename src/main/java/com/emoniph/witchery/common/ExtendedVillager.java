@@ -111,7 +111,7 @@ public class ExtendedVillager implements IExtendedEntityProperties {
             PotionResizing.setEntitySize(this.villager, 0.8F, 1.1F);
          } else {
             PotionResizing.setEntitySize(this.villager, 0.6F, 1.8F);
-            if(this.sleepingTicks >= TimeUtil.minsToTicks(2)) {
+            if(this.sleepingTicks >= TimeUtil.minsToTicks(1)) {
                this.villager.setHealth(this.villager.getMaxHealth());
             }
 
